@@ -5,6 +5,7 @@
 ## Reference
 [open FDA API](https://open.fda.gov/drug/label/reference/)
 ### State Schema
+Redux state will have an array of `drug` and array of `reminder`. 
 [sonya's google doc](https://docs.google.com/document/d/1NPTiCs2K8Hbr_bSWCMIF6_e9GLG8Zi9QRPR03Ea3VXk)
 ```js
 {
