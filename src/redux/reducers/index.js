@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-let exampleState = {something: []};
+let userState = {something: []};
 
 const exampleReducer = (state = userState, action) => {
   switch (action.type) {

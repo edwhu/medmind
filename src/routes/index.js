@@ -1,13 +1,13 @@
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import LoginScreen from '../screens/Login';
 
-
-const DrawerNavigation = DrawerNavigator(
+const DrawerNavigation = createDrawerNavigator(
   {
     firstScreen: {
-      screen: FirstScreen
+      screen: LoginScreen
     },
     secondScreen: {
-      screen: SecondScreen
+      screen: LoginScreen
     }
   },
   {
@@ -16,7 +16,7 @@ const DrawerNavigation = DrawerNavigator(
   }
 )
 
-const DrawerStack = StackNavigator(
+const DrawerStack = createStackNavigator(
   {
     DrawerNavigation: { screen: DrawerNavigation }
   },
@@ -30,10 +30,10 @@ const DrawerStack = StackNavigator(
 
 
 
-export const AppStackNavigator = StackNavigator(
+const AppStackNavigator = createStackNavigator(
   {
     someStack: {
-      screen: SomeStack
+      screen: LoginScreen
     },
     drawerStack: {
       screen: DrawerStack
@@ -45,3 +45,5 @@ export const AppStackNavigator = StackNavigator(
     initialRouteName: 'someStack',
   }
 );
+
+export default AppStackNavigator;
