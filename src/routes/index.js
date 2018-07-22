@@ -1,17 +1,19 @@
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/Login/Login';
+import TimelineScreen from '../screens/Timeline/Timeline';
+import { medmindBlue } from '../constants/styles';
 
 const DrawerNavigation = createDrawerNavigator(
   {
-    firstScreen: {
-      screen: LoginScreen
+    timelineScreen: {
+      screen: TimelineScreen
     },
-    secondScreen: {
+    logout: {
       screen: LoginScreen
     }
   },
   {
-    initialRouteName: 'firstScreen',
+    initialRouteName: 'timelineScreen',
     // contentComponent: DrawerComponent
   }
 )
@@ -24,15 +26,21 @@ const DrawerStack = createStackNavigator(
     headerMode: 'float',
     navigationOptions: ({navigation}) => ({
       header: null,
+      // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
+      // title: 'Medmind',
+      // headerTintColor: 'white', // styles the title color
     }),
-  }
+    cardStyle: {
+      shadowColor: 'transparent',
+    },
+  },
 );
 
 
 
 const AppStackNavigator = createStackNavigator(
   {
-    someStack: {
+    loginStack: {
       screen: LoginScreen
     },
     drawerStack: {
@@ -41,8 +49,8 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-    title: 'Main',
-    initialRouteName: 'someStack',
+    // initialRouteName: 'loginStack',
+    initialRouteName: 'drawerStack',
   }
 );
 

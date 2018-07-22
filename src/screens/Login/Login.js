@@ -1,12 +1,20 @@
 import  LoginButton from '../../components/LoginButton/LoginButton';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import MedmindLogo from '../../assets/medmind-logo.png';
-import { medmindBlue } from '../../utilities/styles.js'
-export default class MainScreen extends Component {
-  constructor(props) {
-    super(props)
+import { medmindBlue } from '../../constants/styles';
+
+export default class LoginScreen extends Component {
+  static navigationOption = {
+    drawerLabel: 'Logout'
   };
+
+  static propTypes = {};
+
+  static defaultProps = {};
+
+  state = {};
   
   // callback for login errors
   onError = error => {
@@ -15,11 +23,11 @@ export default class MainScreen extends Component {
 
   // callback for login success
   onLogin = () => {
-    console.log('onLogin called')
+    console.log('onLogin called');
+    this.props.navigation.navigate('drawerStack');
   };
 
   render() {
-    const nav= this.props.navigator;
     return (
       <View style={styles.container}>
         <Image resizeMode="contain" style={styles.logo} source={MedmindLogo} />
@@ -29,9 +37,10 @@ export default class MainScreen extends Component {
           />
         </View>
         <Text style={styles.text}>
-            By logging in or creating an account, I acknowledge I agree to the <Text style={styles.link} onPress={ () => {}} >Terms and Conditions</Text> and 
-            <Text style={styles.link} onPress={()=>{}}>Privacy Policy</Text>.
-          </Text>
+          By logging in or creating an account, I acknowledge I agree to the 
+          <Text style={styles.link} onPress={ () => {}} >Terms and Conditions</Text> and 
+          <Text style={styles.link} onPress={()=>{}}>Privacy Policy</Text>.
+        </Text>
       </View>
     );
   }
