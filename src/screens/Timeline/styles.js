@@ -4,19 +4,10 @@ export default styles = StyleSheet.create({
   container:{
     backgroundColor: 'white',
     height: '100%',
-  },
-  calendarWrapper: {
+    flex: 1,
   },
   text: {
     textAlign: 'center',
     color: 'black'
   },
-  logo: {
-    width: 300,
-    height: 300
-  },
-  link: {
-    textDecorationLine: 'underline',
-    color: 'blue'
-  }
 });

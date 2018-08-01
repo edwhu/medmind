@@ -9,6 +9,7 @@ import {
 import MedmindLogo from '../../assets/medmind-logo.png';
 import { medmindBlue } from '../../constants/styles';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import CalendarWeek from '../../components/CalendarWeek/CalendarWeek';
 import styles from './styles';
 
 export default class TimelineScreen extends Component {
@@ -20,7 +21,9 @@ export default class TimelineScreen extends Component {
     title: PropTypes.string,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+
+  };
 
   state = {
     title: this.props.title || 'April 2018',
@@ -31,9 +34,7 @@ export default class TimelineScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <View style={styles.calendarWrapper}>
-          <Text style={styles.text}> hello</Text>
-        </View>
+        <CalendarWeek />
       </View>
     );
   }

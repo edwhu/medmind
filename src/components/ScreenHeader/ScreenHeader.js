@@ -48,7 +48,6 @@ export default class ScreenHeader extends Component {
             <TouchableOpacity style={styles.hamburgerWrapper} onPress={this.openHamburger}>
               <Ionicons style={styles.hamburgerIcon} name='md-menu' size={32} color='white' />
             </TouchableOpacity>
-            
           }
           {this.props.title && <Text style={styles.appBarTitle}>{this.props.title}</Text>}
           {
