@@ -1,19 +1,27 @@
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { medmindBlue } from '../constants/styles';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
-import { medmindBlue } from '../constants/styles';
+import CameraScreen from '../screens/Camera/Camera';
+import AddDrugScreen from '../screens/AddDrug/AddDrug';
 
 const DrawerNavigation = createDrawerNavigator(
   {
     timelineScreen: {
       screen: TimelineScreen
     },
+    cameraScreen: {
+      screen: CameraScreen
+    },
+    addDrugScreen: {
+      screen: AddDrugScreen
+    },
     logout: {
       screen: LoginScreen
     }
   },
   {
-    initialRouteName: 'timelineScreen',
+    initialRouteName: 'addDrugScreen',
     // contentComponent: DrawerComponent
   }
 )
@@ -49,7 +57,6 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-    // initialRouteName: 'loginStack',
     initialRouteName: 'drawerStack',
   }
 );

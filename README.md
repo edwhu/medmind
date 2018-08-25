@@ -7,8 +7,9 @@ Should be depth 1
 ```
 # medmind specific fields
 - drugname
+- startdate
 - enddate
-- label
+- color
 # fda fields
 - description
 - warnings

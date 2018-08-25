@@ -17,12 +17,14 @@ export default class ScreenHeader extends Component {
     title: PropTypes.string,
     hasMenu: PropTypes.bool,
     hasSettings: PropTypes.bool,
+    fontSize: PropTypes.number,
   };
 
   static defaultProps = {
     title: 'Medmind',
     hasMenu: true,
     hasSettings: true,
+    fontSize: 24,
   };
 
   state = {
@@ -50,7 +52,7 @@ export default class ScreenHeader extends Component {
             </TouchableOpacity>
             
           }
-          {this.props.title && <Text style={styles.appBarTitle}>{this.props.title}</Text>}
+          {this.props.title && <Text style={[styles.appBarTitle, {fontSize: this.props.fontSize}]}>{this.props.title}</Text>}
           {
             this.props.hasSettings &&
             <TouchableOpacity style={styles.settingsWrapper} onPress={this.openSettings}>
