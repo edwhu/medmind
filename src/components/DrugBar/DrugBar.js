@@ -26,55 +26,56 @@ class DrugBar extends Component {
 
   static defaultProps = {
     backgroundColor: medmindBlue,
-    days: 5
+    dayWidth: 0,
+    width: 0,
   };
 
   state = {
-
+    numDays: 0,
   };
 
   componentWillMount() {
     const { height, width } = Dimensions.get('window');
     let marginLeft = 0;
     let marginRight = 0;
+    let numDays;
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
+    console.log(this.props.drugInfo.label);
 
-    // if (startDate.isSameOrBefore(this.props.beginningOfWeek)) {
-    //   // start drug on monday
-    // } else if (startDate.isAfter(this.props.beginningOfWeek) && startDate.isSameOrBefore(this.props.endOfWeek)) {
-    //   // the drug is starting this week but not on the first day
-    // } else {
-    //   // drug didn't start on or before this week, so shouldn't appear
-
-    // }
-
-    // if (endDate.isSameOrAfter(this.props.beginningOfWeek)) {
-    //   // the drug is ending after the week start
-
-    // }
+    //TODO: calculate the width of the drugBar
     if (startDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
-      // started in this week
-
+      console.log('first if');
+      // starting and ending in this week
+      numDays = Math.abs(moment.duration(startDate.diff(endDate)).days()) + 1;
+      console.log('if 1: numDays:', numDays);
     } else if (endDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
       // otherwise check if maybe it ended in this week
-
-    } else if (startDate.isBefore(this.props.beginningOfWeek) && endDate.isSameOrAfter(this.props.beginningOfWeek)) {
+      console.log('second if');
+      numDays = Math.abs(moment.duration(this.props.beginningOfWeek.diff(endDate)).days()) + 1;
+      console.log('if 2: numDays:', numDays);
+    } else if (startDate.isBefore(this.props.beginningOfWeek) && endDate.isAfter(this.props.beginningOfWeek)) {
       // handles if start date was before the week but the end date is in the week or after
+      console.log('third if');
 
     } else {
-      
+      console.log('else');
     }
+
+    const dayWidth = numDays / 7 * width;
 
     this.setState({
       width,
+      dayWidth,
     });
   }
 
   render() {
     return (
-      <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.props.days * (this.state.width / 7) }]}>
-        <Text style={styles.drugText} numberOfLines={1}>{ this.props.drugInfo.label }</Text>
+      <View style={{width: this.state.width}}>
+        <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.state.dayWidth}]}>
+          <Text style={styles.drugText} numberOfLines={1} >{ this.props.drugInfo.label }</Text>
+        </View>
       </View>
     );
   }
