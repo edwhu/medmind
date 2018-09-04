@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Dimensions,
+  FlatList,
   View,
+  ScrollView,
   StyleSheet,
   Text,
   Image
@@ -26,6 +28,56 @@ class CalendarWeek extends Component {
 
   static defaultProps = {
     drugInfo: [
+      {
+        label: 'DRUGGGS',
+        startDate: moment().subtract(3, 'days'),
+        endDate: moment(),
+      },
+      {
+        label: 'DRUGGGS 2',
+        startDate: moment().subtract(7, 'days'),
+        endDate: moment(),
+      },
+      {
+        label: 'DRUGGGS 3',
+        startDate: moment().add(3, 'days'),
+        endDate: moment().add(7, 'days'),
+      },
+      {
+        label: 'DRUGGGS 4',
+        startDate: moment(),
+        endDate: moment().add(2, 'days'),
+      },
+      {
+        label: 'DRUG 5',
+        startDate: moment().subtract(7, 'days'),
+        endDate: moment().endOf('isoWeek'),
+      },
+      {
+        label: 'DRUGGGS',
+        startDate: moment().subtract(3, 'days'),
+        endDate: moment(),
+      },
+      {
+        label: 'DRUGGGS 2',
+        startDate: moment().subtract(7, 'days'),
+        endDate: moment(),
+      },
+      {
+        label: 'DRUGGGS 3',
+        startDate: moment().add(7, 'days'),
+        endDate: moment().add(10, 'days'),
+      },
+      {
+        label: 'DRUGGGS 4',
+        startDate: moment(),
+        endDate: moment().add(2, 'days'),
+      },
+      {
+        label: 'DRUG 5',
+        startDate: moment().subtract(7, 'days'),
+        endDate: moment().endOf('isoWeek'),
+      },
       {
         label: 'DRUGGGS',
         startDate: moment().subtract(3, 'days'),
@@ -126,16 +178,22 @@ class CalendarWeek extends Component {
     });
 
     const drugBars = this.props.drugInfo.map((drug, index) => {
-      const color = this.props.drugColors[this.props.drugColors.length - index - 1];
+      const color = this.props.drugColors[this.props.drugColors.length - index % 4 - 1];
       return (<DrugBar drugInfo={drug} backgroundColor={color} beginningOfWeek={this.state.beginning} endOfWeek={this.state.end} key={index} />);
     });
 
     return (
       <View style={styles.container}>
         { dates }
-        <View style={styles.drugBarWrapper}>
-          {/* <DrugBar drugInfo={this.props.drugInfo} backgroundColor={'blue'} beginningOfWeek={this.state.beginning} endOfWeek={this.state.end} /> */}
-          {drugBars}
+        <View style={styles.scrollWrapper} >
+          <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 20}} >
+            {drugBars}
+          </ScrollView>
+          {/* <FlatList
+            data={this.props.drugInfo}
+            renderItem={this._renderDrugBars}
+            keyExtractor={(item, index) => index.toString()}
+          /> */}
         </View>
       </View>
     );

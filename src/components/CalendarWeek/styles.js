@@ -7,6 +7,9 @@ export default styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     position: 'relative',
+    top: 0,
+    marginBottom: 20,
+    // bottom: 20,
   },
   dayColumn: {
     flex:1,
@@ -18,7 +21,6 @@ export default styles = StyleSheet.create({
     height: 70,
     borderColor: '#E0E0E0',
     borderBottomWidth: 1,
-    // justifyContent: 'space-around',
     alignItems: 'center',
   },
   dayNumberText: {
@@ -28,11 +30,22 @@ export default styles = StyleSheet.create({
   dayText: {
     fontSize: 16,
   },
-  drugBarWrapper: {
-    position: 'absolute',
-    backgroundColor: 'transparent',
+  scrollWrapper: {
+    // height: '100%',
     top: 70,
     left: 0,
+    right: 0,
+    bottom: 0,
+    position: 'absolute',
+    flex: 1,
+  },
+  drugBarWrapper: {
+    // position: 'absolute',
+    backgroundColor: 'transparent',
+    // top: 70,
+    // left: 0,
+    // bottom: 0,
     marginTop: 30,
+    // marginBottom: 20,
   },
 });

@@ -32,13 +32,16 @@ class DrugBar extends Component {
 
   state = {
     numDays: 0,
+    offsetWidth: 0,
+    width: 0,
   };
 
   componentWillMount() {
     const { height, width } = Dimensions.get('window');
     let marginLeft = 0;
     let marginRight = 0;
-    let numDays;
+    let numDays; // track the number of days should be populated in the week
+    let offset; // track what offset off of Monday the drug bar should be where 0 means it's Monday
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
     console.log(this.props.drugInfo.label);
@@ -46,34 +49,46 @@ class DrugBar extends Component {
     //TODO: calculate the width of the drugBar
     if (startDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
       console.log('first if');
-      // starting and ending in this week
+      // starting in this week
       numDays = Math.abs(moment.duration(startDate.diff(endDate)).days()) + 1;
-      console.log('if 1: numDays:', numDays);
+      offset = Math.abs(moment.duration(this.props.beginningOfWeek.diff(startDate)).days())
+      // console.log('if 1: numDays:', numDays);
     } else if (endDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
       // otherwise check if maybe it ended in this week
       console.log('second if');
       numDays = Math.abs(moment.duration(this.props.beginningOfWeek.diff(endDate)).days()) + 1;
-      console.log('if 2: numDays:', numDays);
-    } else if (startDate.isBefore(this.props.beginningOfWeek) && endDate.isAfter(this.props.beginningOfWeek)) {
-      // handles if start date was before the week but the end date is in the week or after
+      offset = 0;
+      // console.log('if 2: numDays:', numDays);
+    } else if (endDate.isSameOrAfter(this.props.beginningOfWeek)) {
+      // handles if both start date was before the week and end date is after this week
       console.log('third if');
-
+      numDays = Math.abs(moment.duration(this.props.beginningOfWeek.diff(endDate)))
+      offset = 0;
     } else {
-      console.log('else');
+      console.log('Found a weird one, investigate');
+      console.log(`Startdate: ${startDate}, enddate: ${endDate}, beginningOfWeek: ${this.props.beginningOfWeek}, endOfWeek: ${this.props.endOfWeek}`);
     }
 
-    const dayWidth = numDays / 7 * width;
+    let dayWidth = numDays / 7 * width;
+    let offsetWidth = offset * (width / 7);
+
+    if (numDays + offset > 7) {
+      const subDays = numDays + offset - 7;
+      dayWidth = (offset - 7) / 7 * width; 
+    }
 
     this.setState({
       width,
       dayWidth,
+      offsetWidth,
     });
   }
 
   render() {
+    console.log(`render ${this.props.drugInfo.label}`)
     return (
       <View style={{width: this.state.width}}>
-        <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.state.dayWidth}]}>
+        <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.state.dayWidth, marginLeft: this.state.offsetWidth}]}>
           <Text style={styles.drugText} numberOfLines={1} >{ this.props.drugInfo.label }</Text>
         </View>
       </View>
@@ -86,7 +101,8 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 6
+    borderRadius: 6,
+    marginBottom: 1,
   },
   drugText: {
     color: 'white',

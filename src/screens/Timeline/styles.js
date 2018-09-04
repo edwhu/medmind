@@ -4,7 +4,8 @@ export default styles = StyleSheet.create({
   container:{
     backgroundColor: 'white',
     height: '100%',
-    flex: 1,
+    // flex: 1,
+    zIndex: -1,
   },
   text: {
     textAlign: 'center',
