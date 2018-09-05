@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Dimensions,
-  FlatList,
   View,
   ScrollView,
   StyleSheet,
@@ -14,7 +13,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import styles from './styles';
-import { medmindBlue } from '../../constants/styles';
+import { DAYS } from '../../constants/constants';
 import DrugBar from '../DrugBar/DrugBar';
 
 class CalendarWeek extends Component {
@@ -29,22 +28,22 @@ class CalendarWeek extends Component {
   static defaultProps = {
     drugInfo: [
       {
-        label: 'DRUGGGS',
+        label: 'Tylenol',
         startDate: moment().subtract(3, 'days'),
         endDate: moment(),
       },
       {
-        label: 'DRUGGGS 2',
+        label: 'Methamphetamine fkdsal;f kasd;lfkapowe',
         startDate: moment().subtract(7, 'days'),
         endDate: moment(),
       },
       {
-        label: 'DRUGGGS 3',
+        label: 'Aspirin',
         startDate: moment().add(3, 'days'),
         endDate: moment().add(7, 'days'),
       },
       {
-        label: 'DRUGGGS 4',
+        label: 'Antihistamine',
         startDate: moment(),
         endDate: moment().add(2, 'days'),
       },
@@ -118,17 +117,19 @@ class CalendarWeek extends Component {
   componentWillMount() {
     const now = moment();
     const dateOfMonth = now.date(); // 1-31
+    console.log("Today:", now);
 
     const theWeek = [];
-    const beginning = now.clone().startOf('isoWeek'); // set to first dat of this week per ISO, which is Mon
+    const beginning = now.clone().startOf('isoWeek'); // set to first date of this week per ISO, which is Mon
     const end = now.clone().endOf('isoWeek');
-    let day;
+    now.startOf('isoWeek');
     // construct week
     for (let i = 0; i < 7; i++) {
       theWeek.push(now.date());
       now.add(1, 'day');
     }
 
+    console.log("week", theWeek);
     this.setState({
       dateOfMonth,
       theWeek,
@@ -137,36 +138,11 @@ class CalendarWeek extends Component {
     });
   };
 
-  render() {
-    const dates = this.state.theWeek.map((day, index) => {
-      let dayText;
+  _mapDates = () => {
+    return this.state.theWeek.map((day, index) => {
       const isToday = this.state.dateOfMonth === day;
-      switch (index) {
-        case 0: 
-          dayText = 'Mon';
-          break;
-        case 1:
-          dayText = 'Tue';
-          break;
-        case 2:
-          dayText = 'Wed';
-          break;
-        case 3:
-          dayText = 'Thu';
-          break;
-        case 4:
-          dayText = 'Fri';
-          break;
-        case 5:
-          dayText = 'Sat';
-          break;
-        case 6:
-          dayText = 'Sun';
-          break;
-        default:
-          console.error('Issue getting the correct day.');
-          break;
-      }
+      const dayText = DAYS[index] ? DAYS[index] : '';
+
       return (
         <View style={[styles.dayColumn, { borderRightWidth: index === 6 ? 0 : 1 }]} key={ day + index }>
           <View style={styles.date}>
@@ -176,6 +152,10 @@ class CalendarWeek extends Component {
         </View>
       );
     });
+  };
+
+  render() {
+    const dates = this._mapDates();
 
     const drugBars = this.props.drugInfo.map((drug, index) => {
       const color = this.props.drugColors[this.props.drugColors.length - index % 4 - 1];
@@ -186,14 +166,9 @@ class CalendarWeek extends Component {
       <View style={styles.container}>
         { dates }
         <View style={styles.scrollWrapper} >
-          <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 20}} >
+          <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 50}} >
             {drugBars}
           </ScrollView>
-          {/* <FlatList
-            data={this.props.drugInfo}
-            renderItem={this._renderDrugBars}
-            keyExtractor={(item, index) => index.toString()}
-          /> */}
         </View>
       </View>
     );

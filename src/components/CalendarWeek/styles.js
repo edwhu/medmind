@@ -42,10 +42,10 @@ export default styles = StyleSheet.create({
   drugBarWrapper: {
     // position: 'absolute',
     backgroundColor: 'transparent',
-    // top: 70,
+    // top: 30,
     // left: 0,
     // bottom: 0,
-    marginTop: 30,
+    paddingTop: 30,
     // marginBottom: 20,
   },
 });

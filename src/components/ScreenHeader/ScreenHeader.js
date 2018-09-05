@@ -53,7 +53,7 @@ export default class ScreenHeader extends Component {
           {
             this.props.hasSettings &&
             <TouchableOpacity style={styles.settingsWrapper} onPress={this.openSettings}>
-              <MaterialCommunityIcons style={styles.settingsIcon} name='dots-vertical' size={30} color='white' onPress={this.openSettings} />
+              <MaterialCommunityIcons style={styles.settingsIcon} name='dots-vertical' size={30} color='white' />
             </TouchableOpacity>
           }
         </View>
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontFamily: 'System',
     fontSize: 24,
-    flex: 1,
+    flex: 8,
+    textAlign: 'center'
   }
 })

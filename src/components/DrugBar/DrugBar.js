@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Text,
-  Image
+  TouchableOpacity,
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -38,30 +38,21 @@ class DrugBar extends Component {
 
   componentWillMount() {
     const { height, width } = Dimensions.get('window');
-    let marginLeft = 0;
-    let marginRight = 0;
     let numDays; // track the number of days should be populated in the week
     let offset; // track what offset off of Monday the drug bar should be where 0 means it's Monday
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
-    console.log(this.props.drugInfo.label);
 
-    //TODO: calculate the width of the drugBar
     if (startDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
-      console.log('first if');
       // starting in this week
       numDays = Math.abs(moment.duration(startDate.diff(endDate)).days()) + 1;
       offset = Math.abs(moment.duration(this.props.beginningOfWeek.diff(startDate)).days())
-      // console.log('if 1: numDays:', numDays);
     } else if (endDate.isBetween(this.props.beginningOfWeek, this.props.endOfWeek, null, '[]')) {
       // otherwise check if maybe it ended in this week
-      console.log('second if');
       numDays = Math.abs(moment.duration(this.props.beginningOfWeek.diff(endDate)).days()) + 1;
       offset = 0;
-      // console.log('if 2: numDays:', numDays);
     } else if (endDate.isSameOrAfter(this.props.beginningOfWeek)) {
       // handles if both start date was before the week and end date is after this week
-      console.log('third if');
       numDays = Math.abs(moment.duration(this.props.beginningOfWeek.diff(endDate)))
       offset = 0;
     } else {
@@ -82,16 +73,21 @@ class DrugBar extends Component {
       dayWidth,
       offsetWidth,
     });
-  }
+  };
+
+  _openDrugInfo = () => {
+    console.log('Open the drug info modal here.');
+  };
 
   render() {
-    console.log(`render ${this.props.drugInfo.label}`)
     return (
-      <View style={{width: this.state.width}}>
-        <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.state.dayWidth, marginLeft: this.state.offsetWidth}]}>
-          <Text style={styles.drugText} numberOfLines={1} >{ this.props.drugInfo.label }</Text>
+      <TouchableOpacity onPress={this._openDrugInfo} activeOpacity={0.6}>
+        <View style={{width: this.state.width}}>
+          <View style={[styles.drugBarContainer, { backgroundColor: this.props.backgroundColor, width: this.state.dayWidth, marginLeft: this.state.offsetWidth}]}>
+            <Text style={styles.drugText} numberOfLines={2} >{ this.props.drugInfo.label }</Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 };
@@ -107,8 +103,8 @@ const styles = StyleSheet.create({
   drugText: {
     color: 'white',
     fontSize: 16,
-    marginRight: 15,
-    marginLeft: 15,
+    marginRight: 10,
+    marginLeft: 10,
   },
 });
 
