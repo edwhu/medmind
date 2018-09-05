@@ -64,7 +64,6 @@ class DrugBar extends Component {
     let offsetWidth = offset * (width / 7);
 
     if (numDays + offset > 7) {
-      const subDays = numDays + offset - 7;
       dayWidth = (offset - 7) / 7 * width; 
     }
 

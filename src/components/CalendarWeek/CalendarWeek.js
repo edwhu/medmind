@@ -8,6 +8,7 @@ import {
   Text,
   Image
 } from 'react-native';
+import Swiper from 'react-native-swiper';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -15,6 +16,7 @@ import moment from 'moment';
 import styles from './styles';
 import { DAYS } from '../../constants/constants';
 import DrugBar from '../DrugBar/DrugBar';
+const { height, width } = Dimensions.get('window');
 
 class CalendarWeek extends Component {
   static navigationOptions = {
@@ -22,7 +24,7 @@ class CalendarWeek extends Component {
   };
 
   static propTypes = {
-
+    week: PropTypes.objectOf(PropTypes.any),
   };
 
   static defaultProps = {
@@ -110,41 +112,33 @@ class CalendarWeek extends Component {
   state = {
     dateOfMonth: 1,
     theWeek: [],
-    beginning: null,
-    end: null,
   };
 
   componentWillMount() {
-    const now = moment();
-    const dateOfMonth = now.date(); // 1-31
-    console.log("Today:", now);
+    const dateOfMonth = moment().date(); // 1-31
 
     const theWeek = [];
-    const beginning = now.clone().startOf('isoWeek'); // set to first date of this week per ISO, which is Mon
-    const end = now.clone().endOf('isoWeek');
-    now.startOf('isoWeek');
+    const temp = this.props.week.beginning.clone();
     // construct week
     for (let i = 0; i < 7; i++) {
-      theWeek.push(now.date());
-      now.add(1, 'day');
+      theWeek.push(temp.date());
+      temp.add(1, 'day');
     }
 
-    console.log("week", theWeek);
     this.setState({
       dateOfMonth,
       theWeek,
-      beginning,
-      end,
     });
   };
 
   _mapDates = () => {
+    const columnWidth = width / 7;
     return this.state.theWeek.map((day, index) => {
       const isToday = this.state.dateOfMonth === day;
       const dayText = DAYS[index] ? DAYS[index] : '';
 
       return (
-        <View style={[styles.dayColumn, { borderRightWidth: index === 6 ? 0 : 1 }]} key={ day + index }>
+        <View style={[styles.dayColumn, { width: columnWidth, borderRightWidth: index === 6 ? 0 : 1 }]} key={ day + index }>
           <View style={styles.date}>
             <Text style={[styles.dayNumberText, { color: isToday ? '#4185F5' : 'black', fontWeight: isToday ? '600' : '400' }]}>{ day }</Text>
             <Text style={[styles.dayText, { color: isToday ? '#4185F5' : 'black', fontWeight: isToday ? '700' : '400' }]}>{ dayText }</Text>
@@ -159,17 +153,17 @@ class CalendarWeek extends Component {
 
     const drugBars = this.props.drugInfo.map((drug, index) => {
       const color = this.props.drugColors[this.props.drugColors.length - index % 4 - 1];
-      return (<DrugBar drugInfo={drug} backgroundColor={color} beginningOfWeek={this.state.beginning} endOfWeek={this.state.end} key={index} />);
+      return (<DrugBar drugInfo={drug} backgroundColor={color} beginningOfWeek={this.props.week.beginning} endOfWeek={this.props.week.end} key={index} />);
     });
 
     return (
       <View style={styles.container}>
-        { dates }
-        <View style={styles.scrollWrapper} >
-          <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 50}} >
-            {drugBars}
-          </ScrollView>
-        </View>
+          { dates }
+          {/* <View style={styles.scrollWrapper} >
+            <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 50}} >
+              {drugBars}
+            </ScrollView>
+          </View> */}        
       </View>
     );
   }

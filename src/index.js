@@ -1,9 +1,10 @@
 import React from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
 
 import AppNavigator from './routes';
 import store from './redux/store';
+YellowBox.ignoreWarnings(['Remote debugger']); // ignore image loader warning
 
 export default class App extends React.Component {
   render() {

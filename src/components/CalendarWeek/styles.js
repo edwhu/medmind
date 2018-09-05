@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
     backgroundColor: 'white',
     position: 'relative',
     top: 0,
-    marginBottom: 20,
+    marginBottom: 30,
     // bottom: 20,
   },
   dayColumn: {
@@ -40,12 +40,7 @@ export default styles = StyleSheet.create({
     flex: 1,
   },
   drugBarWrapper: {
-    // position: 'absolute',
     backgroundColor: 'transparent',
-    // top: 30,
-    // left: 0,
-    // bottom: 0,
     paddingTop: 30,
-    // marginBottom: 20,
   },
 });
