@@ -93,7 +93,7 @@ class DrugBar extends Component {
 
 const styles = StyleSheet.create({
   drugBarContainer: {
-    height: 60,
+    height: 52,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 6,
