@@ -53,6 +53,7 @@ export function getPreviousWeek(currentWeek, pageTracker, index) {
   const newPageTracker = pageTracker.slice(); // need to make a deep copy
   newPageTracker.unshift(newIndex.toString());
   const timeline = store.getState().timelineReducer;
+  //TODO: optimize this part, find a different place to trigger updating the title, b/c it's kind of slow, same for getNextWeek
   if (currentWeek.beginning.month() !== timeline.currentMonth) {
     updateMonth(currentWeek.beginning.month());
   }
