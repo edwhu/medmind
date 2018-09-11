@@ -1,7 +1,7 @@
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
-import LoginScreen from '../screens/Login/Login';
-import TimelineScreen from '../screens/Timeline/Timeline';
-import { medmindBlue } from '../constants/styles';
+import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import LoginScreen from "../screens/Login/Login";
+import TimelineScreen from "../screens/Timeline/Timeline";
+import { medmindBlue } from "../constants/styles";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -13,30 +13,28 @@ const DrawerNavigation = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: 'timelineScreen',
+    initialRouteName: "timelineScreen"
     // contentComponent: DrawerComponent
   }
-)
+);
 
 const DrawerStack = createStackNavigator(
   {
     DrawerNavigation: { screen: DrawerNavigation }
   },
   {
-    headerMode: 'float',
-    navigationOptions: ({navigation}) => ({
-      header: null,
+    headerMode: "float",
+    navigationOptions: ({ navigation }) => ({
+      header: null
       // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
       // title: 'Medmind',
       // headerTintColor: 'white', // styles the title color
     }),
     cardStyle: {
-      shadowColor: 'transparent',
-    },
-  },
+      shadowColor: "transparent"
+    }
+  }
 );
-
-
 
 const AppStackNavigator = createStackNavigator(
   {
@@ -48,9 +46,9 @@ const AppStackNavigator = createStackNavigator(
     }
   },
   {
-    headerMode: 'none',
+    headerMode: "none",
     // initialRouteName: 'loginStack',
-    initialRouteName: 'drawerStack',
+    initialRouteName: "drawerStack"
   }
 );
 
