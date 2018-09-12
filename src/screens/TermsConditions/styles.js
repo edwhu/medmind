@@ -19,21 +19,6 @@ export default styles = StyleSheet.create({
     color: 'rgb(160,160,160)',
     marginTop: 10,
   },
-  appBar: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 15,
-    marginRight: 10,
-  },
-  appBarTitle: {
-    color: 'white',
-    fontWeight: '500',
-    fontFamily: 'System',
-    fontSize: 24,
-    flex: 1,
-    alignItems: 'center',
-  },
   boxContainer: {
     height: '75%',
   },

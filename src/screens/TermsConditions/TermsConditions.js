@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import StatusBarBackground from '../../components/StatusBarBackground/StatusBarBackground';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
 import { medmindBlue } from '../../constants/styles';
 
@@ -18,15 +19,15 @@ export default class TermsAndConditionsScreen extends Component {
     console.log('Error', error);
   };
 
+  state = {
+    title: this.props.title || 'Medmind',
+
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.heading}>
-          <StatusBarBackground />
-          <View style={styles.appBar}>
-            <Text style={styles.appBarTitle}>MEDMIND</Text>
-          </View>
-        </View>
+        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.title}>Terms and Conditions</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>
