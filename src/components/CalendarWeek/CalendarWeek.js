@@ -26,83 +26,7 @@ class CalendarWeek extends Component {
   };
 
   static defaultProps = {
-    drugInfo: [
-      {
-        label: "Tylenol",
-        startDate: moment().subtract(3, "days"),
-        endDate: moment()
-      },
-      {
-        label: "Methamphetamine fkdsal;f kasd;lfkapowe",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment()
-      },
-      {
-        label: "Aspirin",
-        startDate: moment().add(3, "days"),
-        endDate: moment().add(7, "days")
-      },
-      {
-        label: "Antihistamine",
-        startDate: moment(),
-        endDate: moment().add(2, "days")
-      },
-      {
-        label: "DRUG 5",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment().endOf("isoWeek")
-      },
-      {
-        label: "DRUGGGS",
-        startDate: moment().subtract(3, "days"),
-        endDate: moment()
-      },
-      {
-        label: "DRUGGGS 2",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment()
-      },
-      {
-        label: "DRUGGGS 3",
-        startDate: moment().add(7, "days"),
-        endDate: moment().add(10, "days")
-      },
-      {
-        label: "DRUGGGS 4",
-        startDate: moment(),
-        endDate: moment().add(2, "days")
-      },
-      {
-        label: "DRUG 5",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment().endOf("isoWeek")
-      },
-      {
-        label: "DRUGGGS",
-        startDate: moment().subtract(3, "days"),
-        endDate: moment()
-      },
-      {
-        label: "DRUGGGS 2",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment()
-      },
-      {
-        label: "DRUGGGS 3",
-        startDate: moment().add(3, "days"),
-        endDate: moment().add(7, "days")
-      },
-      {
-        label: "DRUGGGS 4",
-        startDate: moment(),
-        endDate: moment().add(2, "days")
-      },
-      {
-        label: "DRUG 5",
-        startDate: moment().subtract(7, "days"),
-        endDate: moment().endOf("isoWeek")
-      }
-    ],
+    drugInfo: [],
     drugColors: ["blue", "red", "green", "orange"],
     screenWidth: Dimensions.get("window")
   };
@@ -142,7 +66,7 @@ class CalendarWeek extends Component {
         <View
           style={[
             styles.dayColumn,
-            { width: columnWidth, borderRightWidth: index === 6 ? 0 : 1 }
+            { width: columnWidth, borderRightWidth: 1 }
           ]}
           key={day + index}
         >
@@ -196,11 +120,11 @@ class CalendarWeek extends Component {
     return (
       <View style={styles.container}>
         {dates}
-        {/* <View style={styles.scrollWrapper} >
+        <View style={styles.scrollWrapper} >
             <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 50}} >
               {drugBars}
             </ScrollView>
-          </View> */}
+          </View>
       </View>
     );
   }
@@ -208,7 +132,8 @@ class CalendarWeek extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    currentMonth: state.timelineReducer.currentMonth
+    currentMonth: state.timelineReducer.currentMonth,
+    drugInfo: state.drugInfoReducer.drugInfo,
   };
 }
 

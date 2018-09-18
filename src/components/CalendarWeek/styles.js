@@ -8,7 +8,7 @@ export default (styles = StyleSheet.create({
     backgroundColor: "white",
     position: "relative",
     top: 0,
-    marginBottom: 30
+    // marginBottom: 30
     // bottom: 20,
   },
   dayColumn: {

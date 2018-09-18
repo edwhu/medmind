@@ -6,8 +6,10 @@ import {
   UPDATE_YEAR,
   GET_PREVIOUS_WEEK,
   GET_NEXT_WEEK,
-  UPDATE_CURRENT_WEEK
+  UPDATE_CURRENT_WEEK,
+  ADD_DRUG,
 } from "../../constants/action-types";
+import { testDrugs } from '../../constants/constants';
 
 const now = moment();
 const start = now.clone().startOf("isoWeek");
@@ -72,8 +74,24 @@ const timelineReducer = (state = timelineState, action) => {
   }
 };
 
+let drugState = {
+  drugInfo: testDrugs || [],
+};
+const drugInfoReducer = (state = drugState, action) => {
+  switch (action.type) {
+    case ADD_DRUG:
+      let newDrugInfo = state.drugInfo;
+      newDrugInfo.push(action.drug);
+      state = Object.assign({}, state, {drugInfo: newDrugInfo});
+      return state;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  timelineReducer
+  timelineReducer,
+  drugInfoReducer,
 });
 
 export default rootReducer;

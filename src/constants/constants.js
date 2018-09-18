@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const MONTHS = {
   0: "January",
   1: "February",
@@ -22,3 +24,36 @@ export const DAYS = {
   5: "Sat",
   6: "Sun"
 };
+
+export const testDrugs = [
+  {
+    label: "Tylenol",
+    startDate: moment().subtract(3, "days"),
+    endDate: moment()
+  },
+  {
+    label: "Methamphetamine fkdsal;f kasd;lfkapowe",
+    startDate: moment().subtract(7, "days"),
+    endDate: moment()
+  },
+  {
+    label: "Aspirin",
+    startDate: moment().add(3, "days"),
+    endDate: moment().add(7, "days")
+  },
+  {
+    label: "Antihistamine",
+    startDate: moment(),
+    endDate: moment().add(2, "days")
+  },
+  {
+    label: "DRUG 5",
+    startDate: moment().subtract(7, "days"),
+    endDate: moment().endOf("isoWeek")
+  },
+  {
+    label: "Drug 20 days",
+    startDate: moment().subtract(10, "days"),
+    endDate: moment().add(10, "days")
+  },
+];

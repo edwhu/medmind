@@ -31,8 +31,12 @@ class DrugBar extends Component {
   };
 
   state = {
-    numDays: 0,
-    offsetWidth: 0,
+    barStyle: {
+      backgroundColor: this.props.backgroundColor,
+      width: 0,
+      marginLeft: 0,
+    },
+    marginLeft: 0,
     width: 0
   };
 
@@ -42,6 +46,8 @@ class DrugBar extends Component {
     let offset; // track what offset off of Monday the drug bar should be where 0 means it's Monday
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
+
+    let borderTopLeftRadius = 6, borderTopRightRadius = 6, borderBottomLeftRadius = 6, borderBottomRightRadius = 6;
 
     if (
       startDate.isBetween(
@@ -56,6 +62,18 @@ class DrugBar extends Component {
       offset = Math.abs(
         moment.duration(this.props.beginningOfWeek.diff(startDate)).days()
       );
+
+      if (
+        !endDate.isBetween(
+          this.props.beginningOfWeek,
+          this.props.endOfWeek,
+          null,
+          "[]"
+        )
+      ) {
+        borderTopRightRadius = 0;
+        borderBottomRightRadius = 0;
+      }
     } else if (
       endDate.isBetween(
         this.props.beginningOfWeek,
@@ -70,52 +88,57 @@ class DrugBar extends Component {
           moment.duration(this.props.beginningOfWeek.diff(endDate)).days()
         ) + 1;
       offset = 0;
-    } else if (endDate.isSameOrAfter(this.props.beginningOfWeek)) {
+      borderBottomLeftRadius = 0;
+      borderTopLeftRadius = 0;
+    } else if (endDate.isSameOrAfter(this.props.beginningOfWeek) && startDate.isSameOrBefore(this.props.beginningOfWeek)) {
       // handles if both start date was before the week and end date is after this week
       numDays = Math.abs(
         moment.duration(this.props.beginningOfWeek.diff(endDate))
       );
       offset = 0;
+      borderBottomLeftRadius = 0;
+      borderBottomRightRadius = 0;
+      borderTopLeftRadius = 0;
+      borderTopRightRadius = 0;
     } else {
-      console.log("Found a weird one, investigate");
-      console.log(
-        `Startdate: ${startDate}, enddate: ${endDate}, beginningOfWeek: ${
-          this.props.beginningOfWeek
-        }, endOfWeek: ${this.props.endOfWeek}`
-      );
+      // Shouldn't be in the week
+      return;
     }
 
     let dayWidth = (numDays / 7) * width;
     let offsetWidth = offset * (width / 7);
 
     if (numDays + offset > 7) {
-      dayWidth = ((offset - 7) / 7) * width;
+      dayWidth = Math.abs(((offset - 7) / 7) * width);
     }
+
+    const barStyle = {
+      width: dayWidth,
+      marginLeft: offsetWidth,
+      borderBottomLeftRadius,
+      borderBottomRightRadius,
+      borderTopLeftRadius,
+      borderTopRightRadius,
+    };
+
+    const newStyle = Object.assign({}, this.state.barStyle, barStyle);
 
     this.setState({
       width,
-      dayWidth,
-      offsetWidth
+      barStyle: newStyle,
     });
   }
 
   _openDrugInfo = () => {
-    console.log("Open the drug info modal here.");
+    console.log(`Label: ${this.props.drugInfo.label}, start: ${this.props.drugInfo.startDate.toDate()}, end: ${this.props.drugInfo.endDate.toDate()}`);
   };
 
   render() {
     return (
-      <TouchableOpacity onPress={this._openDrugInfo} activeOpacity={0.6}>
-        <View style={{ width: this.state.width }}>
+      <TouchableOpacity onPress={this._openDrugInfo} activeOpacity={0.6} style={[ { marginBottom: 1 }, this.state.barStyle] }>
+        <View>
           <View
-            style={[
-              styles.drugBarContainer,
-              {
-                backgroundColor: this.props.backgroundColor,
-                width: this.state.dayWidth,
-                marginLeft: this.state.offsetWidth
-              }
-            ]}
+            style={styles.drugBarContainer}
           >
             <Text style={styles.drugText} numberOfLines={2}>
               {this.props.drugInfo.label}
@@ -132,8 +155,6 @@ const styles = StyleSheet.create({
     height: 52,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 6,
-    marginBottom: 1
   },
   drugText: {
     color: "white",
