@@ -1,6 +1,7 @@
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
+import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
 import { medmindBlue } from '../constants/styles';
 
 const DrawerNavigation = createDrawerNavigator(
@@ -14,7 +15,7 @@ const DrawerNavigation = createDrawerNavigator(
   },
   {
     initialRouteName: 'timelineScreen',
-    // contentComponent: DrawerComponent
+    contentComponent: CustomDrawer
   }
 )
 

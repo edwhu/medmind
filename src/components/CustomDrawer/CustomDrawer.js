@@ -29,8 +29,8 @@ export default class CustomDrawer extends Component {
     return (
       <ScrollView>
         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-          <View>
-            <Image resizeMode="contain" style={} source={MedmindLogo} />
+          <View style={{flexDirection: 'row'}}>
+            <Image resizeMode="contain" style={styles.profilePicture} source={MedmindLogo} />
             <Text >
               Section 1
             </Text>
