@@ -4,7 +4,7 @@ import { Image, View, Text , ScrollView} from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 
 import { medmindBlue } from '../../constants/styles';
-import MedmindLogo from '../../assets/medmind-logo.png';
+import ProfilePicturePlaceholder from '../../assets/profile_picture_placeholder.png';
 import styles from './styles';
 
 
@@ -30,9 +30,9 @@ export default class CustomDrawer extends Component {
       <ScrollView>
         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
           <View style={{flexDirection: 'row'}}>
-            <Image resizeMode="contain" style={styles.profilePicture} source={MedmindLogo} />
-            <Text >
-              Section 1
+            <Image resizeMode="contain" style={styles.profilePicture} source={ProfilePicturePlaceholder} />
+            <Text style={styles.text}>
+              FirstName LastName
             </Text>
           </View>
           <DrawerItems {...this.props} />
