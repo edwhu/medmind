@@ -7,7 +7,7 @@ import { medmindBlue } from '../../constants/styles';
 
 
 export default class LoginScreen extends Component {
-  static navigationOption = {
+  static navigationOptions = {
     drawerLabel: 'Logout'
   };
 
@@ -30,7 +30,7 @@ export default class LoginScreen extends Component {
 
   openTermsAndConditions = () => {
     console.log("openTermsAndConditions called");
-    this.props.navigation.navigate('termsAndConditionsScreen');
+    this.props.navigation.push('termsAndConditionsScreen');
   }
 
   render() {

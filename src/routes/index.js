@@ -12,7 +12,7 @@ const DrawerNavigation = createDrawerNavigator(
     logout: {
       screen: LoginScreen
     },
-    'termsAndConditionsScreen': {
+    termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen,
     },
   },
