@@ -1,7 +1,9 @@
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
+import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
 import { medmindBlue } from "../constants/styles";
+
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -10,7 +12,10 @@ const DrawerNavigation = createDrawerNavigator(
     },
     logout: {
       screen: LoginScreen
-    }
+    },
+    termsAndConditionsScreen: {
+      screen: TermsAndConditionsScreen,
+    },
   },
   {
     initialRouteName: "timelineScreen"
@@ -39,11 +44,11 @@ const DrawerStack = createStackNavigator(
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
-      screen: LoginScreen
+      screen: LoginScreen,
     },
     drawerStack: {
       screen: DrawerStack
-    }
+    },
   },
   {
     headerMode: "none",
