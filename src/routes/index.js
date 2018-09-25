@@ -1,6 +1,8 @@
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
+import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicy/PrivacyPolicy';
 import { medmindBlue } from '../constants/styles';
 
 const DrawerNavigation = createDrawerNavigator(
@@ -10,7 +12,13 @@ const DrawerNavigation = createDrawerNavigator(
     },
     logout: {
       screen: LoginScreen
-    }
+    },
+    termsAndConditionsScreen: {
+      screen: TermsAndConditionsScreen,
+    },
+    privacyPolicyScreen: {
+      screen: PrivacyPolicyScreen,
+    }, 
   },
   {
     initialRouteName: 'timelineScreen',

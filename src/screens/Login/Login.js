@@ -27,6 +27,16 @@ export default class LoginScreen extends Component {
     this.props.navigation.navigate('drawerStack');
   };
 
+  openTermsAndConditions = () => {
+    console.log("openTermsAndConditions called");
+    this.props.navigation.navigate('termsAndConditionsScreen', {showButton: true});
+  };
+
+  openPrivacyPolicy = () => {
+    console.log("openPrivacyPolicy called");
+    this.props.navigation.navigate('privacyPolicyScreen');
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -38,8 +48,8 @@ export default class LoginScreen extends Component {
         </View>
         <Text style={styles.text}>
           By logging in or creating an account, I acknowledge I agree to the 
-          <Text style={styles.link} onPress={ () => {}} >Terms and Conditions</Text> and 
-          <Text style={styles.link} onPress={()=>{}}>Privacy Policy</Text>.
+          <Text style={styles.link} onPress={ () => this.openTermsAndConditions()} >Terms and Conditions</Text> and 
+          <Text style={styles.link} onPress={ () => this.openPrivacyPolicy()}>Privacy Policy</Text>.
         </Text>
       </View>
     );
