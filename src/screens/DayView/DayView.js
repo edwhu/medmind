@@ -20,42 +20,42 @@ const asNeededDrugs = [
     key: "1",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "yellow"
+    color: "#FFDF00"
   },
   {
     id: 2,
     key: "2",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "blue"
+    color: "#0000ff"
   },
   {
     id : 3,
     key: "3",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "red"
+    color: "#009900"
   },
   {
     id : 4,
     key: "4",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "purple"
+    color: "#090990"
   },
   {
     id : 5,
     key: "5",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "pink"
+    color: "#123456"
   },
   {
     id : 6,
     key: "6",
     name : "Lorazepam",
     dosage: "2 mg",
-    color: "yellow"
+    color: "#990099"
   }
 ]
 
@@ -70,14 +70,14 @@ const drugsByEvents =[
         key: "1",
         name : "Lorazepam",
         dosage: "2 mg",
-        color: "purple"
+        color: "#123456"
       },
       {
         id: 2,
         key: "2",
         name : "Lorazepam",
         dosage: "2 mg",
-        color: "pink"
+        color: "#990099"
       },
     ],
   },
@@ -90,14 +90,14 @@ const drugsByEvents =[
         key: "1",
         name : "Lorazepam",
         dosage: "2 mg",
-        color: "yellow"
+        color: "#0000ff"
       },
       {
         id: 2,
         key: "2",
         name : "Lorazepam",
         dosage: "2 mg",
-        color: "green"
+        color: "#0000ff"
       },
     ],
   },
@@ -110,14 +110,14 @@ const drugsByEvents =[
         key: "1",
         name : "Tylenol",
         dosage: "2 mg",
-        color: "blue"
+        color: "#0000ff"
       },
       {
         id: 2,
         key: "2",
         name : "Lorazepam",
         dosage: "2 mg",
-        color: "red"
+        color: "#0000ff"
       },
     ],
   },

@@ -29,7 +29,7 @@ const createStyles = (drugColor)=> {
       height: 75,
       borderTopLeftRadius: 37,
       borderBottomLeftRadius: 37,
-      backgroundColor: "#EEEEEE",
+      backgroundColor: drugColor + "50",
       marginBottom: 10,
       flexDirection: "row",
       paddingLeft: 20,
