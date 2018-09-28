@@ -3,6 +3,8 @@ import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
 import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
 import { medmindBlue } from '../constants/styles';
+import SplashScreen from '../screens/SplashScreen/SplashScreen';
+import PDFshare from "../screens/PDFshare/PDFshare";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -15,6 +17,12 @@ const DrawerNavigation = createDrawerNavigator(
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen,
     },
+    splashScreen: {
+      screen: SplashScreen
+    },
+    PDFshare: {
+      screen: PDFshare
+    }
   },
   {
     initialRouteName: 'timelineScreen',
