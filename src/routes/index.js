@@ -19,6 +19,7 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen,
     }, 
+  },
   {
     initialRouteName: 'timelineScreen',
     // contentComponent: DrawerComponent
