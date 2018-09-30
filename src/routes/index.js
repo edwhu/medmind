@@ -19,7 +19,6 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen,
     }, 
-  },
   {
     initialRouteName: 'timelineScreen',
     // contentComponent: DrawerComponent
@@ -49,11 +48,11 @@ const DrawerStack = createStackNavigator(
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
-      screen: LoginScreen
+      screen: LoginScreen,
     },
     drawerStack: {
       screen: DrawerStack
-    }
+    },
   },
   {
     headerMode: 'none',

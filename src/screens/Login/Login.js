@@ -5,8 +5,9 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import MedmindLogo from '../../assets/medmind-logo.png';
 import { medmindBlue } from '../../constants/styles';
 
+
 export default class LoginScreen extends Component {
-  static navigationOption = {
+  static navigationOptions = {
     drawerLabel: 'Logout'
   };
 
