@@ -51,7 +51,7 @@ class WeekSwiper extends Component {
 
   _renderWeek = () => {
     return this.props.pageTracker.map((weekKey, index) => {
-      return <CalendarWeek week={this.props.weeks[weekKey]} key={index} />;
+      return <CalendarWeek week={this.props.weeks[weekKey]} key={index.toString() + weekKey} />;
     });
   };
 

@@ -8,7 +8,6 @@ import {
   Text,
   Image
 } from "react-native";
-import Swiper from "react-native-swiper";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -33,7 +32,8 @@ class CalendarWeek extends Component {
 
   state = {
     dateOfMonth: 1,
-    theWeek: []
+    theWeek: [],
+    weekMonth: []
   };
 
   componentWillMount() {
@@ -42,24 +42,27 @@ class CalendarWeek extends Component {
     const dateOfMonth = now.date(); // 1-31
 
     const theWeek = [];
+    const weekMonth = [];
     const temp = this.props.week.beginning.clone();
     // construct week
     for (let i = 0; i < 7; i++) {
       theWeek.push(temp.date());
+      weekMonth.push(temp.month());
       temp.add(1, "day");
     }
 
     this.setState({
       month,
       dateOfMonth,
-      theWeek
+      theWeek,
+      weekMonth
     });
   }
 
   _mapDates = () => {
     const columnWidth = width / 7;
     return this.state.theWeek.map((day, index) => {
-      const isToday = this.state.dateOfMonth === day && this.state.month === this.props.currentMonth;
+      const isToday = this.state.dateOfMonth.toString() === day && this.state.month === this.state.weekMonth[index];
       const dayText = DAYS[index] ? DAYS[index] : "";
 
       return (
