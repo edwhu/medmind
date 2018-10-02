@@ -1,4 +1,3 @@
-"use strict";
 import React, { Component } from "react";
 import { Dimensions, View, Text, StyleSheet, Platform } from "react-native";
 

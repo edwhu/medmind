@@ -25,49 +25,8 @@ class TimelineScreen extends Component {
   state = {
     title: `${MONTHS[this.props.currentMonth].toUpperCase()} ${
       this.props.currentYear
-    }`,
-    now: null,
-    calendarData: null,
-    currentPage: 0
+    }`,    
   };
-
-  componentWillMount() {
-    const now = moment();
-    const month = MONTHS[now.month()];
-    const year = now.year();
-
-    let calendarData;
-    // populate the week before and after for the swiper
-    if (this.props.calendarType === "week") {
-      const beginning = now.clone().startOf("isoWeek"); // set to first date of this week per ISO, which is Mon
-      const end = now.clone().endOf("isoWeek");
-      const lastWeek = beginning.clone().subtract(7, "day");
-      const nextWeek = end.clone().add(7, "day");
-      calendarData = {
-        0: {
-          beginning,
-          end
-        },
-        1: {
-          beginning: end.clone().add(1, "day"),
-          end: nextWeek
-        },
-        "-1": {
-          beginning: lastWeek,
-          end: beginning.clone().subtract(1, "day")
-        }
-      };
-    }
-    const pageTracker = Object.keys(calendarData).sort();
-    const currentPage = pageTracker.indexOf("0");
-    this.setState({
-      // title: `${month.toUpperCase()} ${year}`,
-      now,
-      calendarData,
-      currentPage,
-      pageTracker
-    });
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.currentMonth && nextProps.currentYear) {
