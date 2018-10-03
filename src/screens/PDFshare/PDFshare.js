@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Share, Button } from 'react-native';
 import { Constants, FileSystem } from 'expo';
 import moment from 'moment';
+import MedmindLogo from '../../assets/medmind-logo.png';
 // You can import from local files
 
 
@@ -9,34 +10,39 @@ import moment from 'moment';
 
 
 export default class App extends React.Component {
-  onSharePress() {
+
+  constructor(props) {
+    super(props);
+    console.log(MedmindLogo)
+  }
+  async onSharePress() {
     Share.share({
-    message: 'BAM: we\'re helping your business with awesome React Native apps',
-    url: FileSystem.getInfoAsync(FileSystem.documentDirectory + "Test.pdf"),
-    title: 'Wow, did you see that?'
-  }, {
-    // Android only:
-    dialogTitle: 'Share BAM goodness',
-    // iOS only:
-    excludedActivityTypes: [
-      'com.apple.UIKit.activity.PostToTwitter'
-    ]
-  })
+      message: 'BAM: we\'re helping your business with awesome React Native apps',
+      url: MedmindLogo,
+      title: 'Wow, did you see that?'
+    }, {
+        // Android only:
+        dialogTitle: 'Share BAM goodness',
+        // iOS only:
+        excludedActivityTypes: [
+          'com.apple.UIKit.activity.PostToTwitter'
+        ]
+      })
   }
   render() {
     return (
       <View style={styles.container}>
-      <Text>
-      {moment().format("DD/MM/YYYY")}
-      </Text>
         <Text>
-         Jane Smith
+          {moment().format("DD/MM/YYYY")}
         </Text>
-       <Button
-        onPress={this.onSharePress}
-        title="Share"
-       color="#841584"
-       accessibilityLabel="Share to your friends!"
+        <Text>
+          Jane Smith
+        </Text>
+        <Button
+          onPress={this.onSharePress}
+          title="Share"
+          color="#841584"
+          accessibilityLabel="Share to your friends!"
         />
       </View>
     );
