@@ -19,46 +19,45 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen,
     }, 
+
   },
   {
-    initialRouteName: 'timelineScreen',
+    initialRouteName: "timelineScreen"
     // contentComponent: DrawerComponent
   }
-)
+);
 
 const DrawerStack = createStackNavigator(
   {
     DrawerNavigation: { screen: DrawerNavigation }
   },
   {
-    headerMode: 'float',
-    navigationOptions: ({navigation}) => ({
-      header: null,
+    headerMode: "float",
+    navigationOptions: ({ navigation }) => ({
+      header: null
       // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
       // title: 'Medmind',
       // headerTintColor: 'white', // styles the title color
     }),
     cardStyle: {
-      shadowColor: 'transparent',
-    },
-  },
+      shadowColor: "transparent"
+    }
+  }
 );
-
-
 
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
-      screen: LoginScreen,
+      screen: LoginScreen
     },
     drawerStack: {
       screen: DrawerStack
-    },
+    }
   },
   {
-    headerMode: 'none',
+    headerMode: "none",
     // initialRouteName: 'loginStack',
-    initialRouteName: 'drawerStack',
+    initialRouteName: "drawerStack"
   }
 );
 

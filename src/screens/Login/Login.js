@@ -8,7 +8,7 @@ import { medmindBlue } from '../../constants/styles';
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
-    drawerLabel: 'Logout'
+    drawerLabel: "Logout"
   };
 
   static propTypes = {};
@@ -16,16 +16,16 @@ export default class LoginScreen extends Component {
   static defaultProps = {};
 
   state = {};
-  
+
   // callback for login errors
   onError = error => {
-    console.log('Error', error);
+    console.log("Error", error);
   };
 
   // callback for login success
   onLogin = () => {
-    console.log('onLogin called');
-    this.props.navigation.navigate('drawerStack');
+    console.log("onLogin called");
+    this.props.navigation.navigate("drawerStack");
   };
 
   openTermsAndConditions = () => {
@@ -41,9 +41,7 @@ export default class LoginScreen extends Component {
       <View style={styles.container}>
         <Image resizeMode="contain" style={styles.logo} source={MedmindLogo} />
         <View style={styles.button}>
-          <LoginButton
-            onPress={this.onLogin}
-          />
+          <LoginButton onPress={this.onLogin} />
         </View>
         <Text style={styles.text}>
           By logging in or creating an account, I acknowledge I agree to the 
@@ -56,10 +54,10 @@ export default class LoginScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    alignItems: "center",
+    justifyContent: "space-around",
     flexGrow: 1,
     backgroundColor: medmindBlue
   },
@@ -67,15 +65,15 @@ const styles = StyleSheet.create({
     width: "80%"
   },
   text: {
-    textAlign: 'center',
-    color: 'white'
+    textAlign: "center",
+    color: "white"
   },
   logo: {
     width: 300,
     height: 300
   },
   link: {
-    textDecorationLine: 'underline',
-    color: 'blue'
+    textDecorationLine: "underline",
+    color: "blue"
   }
-})
+});

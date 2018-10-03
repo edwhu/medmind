@@ -1,21 +1,20 @@
-import { StyleSheet } from 'react-native';
-import { medmindBlue } from '../../constants/styles';
+import { StyleSheet } from "react-native";
+import { medmindBlue } from "../../constants/styles";
 
-export default styles = StyleSheet.create({
-  container:{
+export default (styles = StyleSheet.create({
+  container: {
     backgroundColor: medmindBlue,
-    height: '100%',
+    height: "100%"
   },
   logo: {
     height: 100,
-    margin: 'auto',
-    marginTop: '40%'
+    margin: "auto",
+    marginTop: "40%"
   },
   text: {
-    textAlign: 'center',
-    color: 'white',
-    paddingTop: '10%',
-    fontSize: 50,
+    textAlign: "center",
+    color: "white",
+    paddingTop: "10%",
+    fontSize: 50
   }
-
-});
+}));
