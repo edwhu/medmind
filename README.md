@@ -1,5 +1,9 @@
 ## Setup
-- yarn install
+- rm -rf node_modules && yarn install
+- yarn start
+- Windows version of `rm -rf node_modules`
+    - `rd /s /q node_modules`
+    - or powershell: `rd -r node_modules`
 - Use Expo XDE to build and serve project
 
 [XDE Tutorial](https://docs.expo.io/versions/latest/introduction/xde-tour)
@@ -23,6 +27,5 @@ Should be depth 1
 - nursing
 - mechanism_of_action
 ```
-
 ## Reference
 - https://open.fda.gov/drug/label/reference/

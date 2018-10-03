@@ -1,16 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-let userState = {something: []};
-
-const exampleReducer = (state = userState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import drugInfoReducer from "./drug";
+import timelineReducer from "./timeline";
 
 const rootReducer = combineReducers({
-  exampleReducer
+  timelineReducer,
+  drugInfoReducer
 });
 
 export default rootReducer;
