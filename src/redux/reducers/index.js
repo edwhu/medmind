@@ -5,7 +5,7 @@ import timelineReducer from "./timeline";
 
 const rootReducer = combineReducers({
   timelineReducer,
-  drugInfoReducer,
+  drugInfoReducer
 });
 
 export default rootReducer;

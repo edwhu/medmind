@@ -5,7 +5,6 @@ import { View, StyleSheet, Text, Image } from "react-native";
 import MedmindLogo from "../../assets/medmind-logo.png";
 import { medmindBlue } from "../../constants/styles";
 
-
 export default class LoginScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Logout"
@@ -30,8 +29,8 @@ export default class LoginScreen extends Component {
 
   openTermsAndConditions = () => {
     console.log("openTermsAndConditions called");
-    this.props.navigation.push('termsAndConditionsScreen');
-  }
+    this.props.navigation.push("termsAndConditionsScreen");
+  };
 
   render() {
     return (
@@ -41,9 +40,18 @@ export default class LoginScreen extends Component {
           <LoginButton onPress={this.onLogin} />
         </View>
         <Text style={styles.text}>
-          By logging in or creating an account, I acknowledge I agree to the 
-          <Text style={styles.link} onPress={ () => this.openTermsAndConditions()} >Terms and Conditions</Text> and 
-          <Text style={styles.link} onPress={()=>{}}>Privacy Policy</Text>.
+          By logging in or creating an account, I acknowledge I agree to the
+          <Text
+            style={styles.link}
+            onPress={() => this.openTermsAndConditions()}
+          >
+            Terms and Conditions
+          </Text>{" "}
+          and
+          <Text style={styles.link} onPress={() => {}}>
+            Privacy Policy
+          </Text>
+          .
         </Text>
       </View>
     );

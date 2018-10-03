@@ -25,7 +25,7 @@ class TimelineScreen extends Component {
   state = {
     title: `${MONTHS[this.props.currentMonth].toUpperCase()} ${
       this.props.currentYear
-    }`,    
+    }`
   };
 
   componentWillReceiveProps(nextProps) {

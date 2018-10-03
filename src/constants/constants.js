@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const MONTHS = {
   0: "January",
@@ -55,5 +55,5 @@ export const testDrugs = [
     label: "Drug 20 days",
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days")
-  },
+  }
 ];

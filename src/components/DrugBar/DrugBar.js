@@ -34,7 +34,7 @@ class DrugBar extends Component {
     barStyle: {
       backgroundColor: this.props.backgroundColor,
       width: 0,
-      marginLeft: 0,
+      marginLeft: 0
     },
     marginLeft: 0,
     width: 0
@@ -47,7 +47,10 @@ class DrugBar extends Component {
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
 
-    let borderTopLeftRadius = 6, borderTopRightRadius = 6, borderBottomLeftRadius = 6, borderBottomRightRadius = 6;
+    let borderTopLeftRadius = 6,
+      borderTopRightRadius = 6,
+      borderBottomLeftRadius = 6,
+      borderBottomRightRadius = 6;
 
     if (
       startDate.isBetween(
@@ -90,7 +93,10 @@ class DrugBar extends Component {
       offset = 0;
       borderBottomLeftRadius = 0;
       borderTopLeftRadius = 0;
-    } else if (endDate.isSameOrAfter(this.props.beginningOfWeek) && startDate.isSameOrBefore(this.props.beginningOfWeek)) {
+    } else if (
+      endDate.isSameOrAfter(this.props.beginningOfWeek) &&
+      startDate.isSameOrBefore(this.props.beginningOfWeek)
+    ) {
       // handles if both start date was before the week and end date is after this week
       numDays = Math.abs(
         moment.duration(this.props.beginningOfWeek.diff(endDate))
@@ -118,28 +124,34 @@ class DrugBar extends Component {
       borderBottomLeftRadius,
       borderBottomRightRadius,
       borderTopLeftRadius,
-      borderTopRightRadius,
+      borderTopRightRadius
     };
 
     const newStyle = Object.assign({}, this.state.barStyle, barStyle);
 
     this.setState({
       width,
-      barStyle: newStyle,
+      barStyle: newStyle
     });
   }
 
   _openDrugInfo = () => {
-    console.log(`Label: ${this.props.drugInfo.label}, start: ${this.props.drugInfo.startDate.toDate()}, end: ${this.props.drugInfo.endDate.toDate()}`);
+    console.log(
+      `Label: ${
+        this.props.drugInfo.label
+      }, start: ${this.props.drugInfo.startDate.toDate()}, end: ${this.props.drugInfo.endDate.toDate()}`
+    );
   };
 
   render() {
     return (
-      <TouchableOpacity onPress={this._openDrugInfo} activeOpacity={0.6} style={[ { marginBottom: 1 }, this.state.barStyle] }>
+      <TouchableOpacity
+        onPress={this._openDrugInfo}
+        activeOpacity={0.6}
+        style={[{ marginBottom: 1 }, this.state.barStyle]}
+      >
         <View>
-          <View
-            style={styles.drugBarContainer}
-          >
+          <View style={styles.drugBarContainer}>
             <Text style={styles.drugText} numberOfLines={2}>
               {this.props.drugInfo.label}
             </Text>
@@ -154,7 +166,7 @@ const styles = StyleSheet.create({
   drugBarContainer: {
     height: 52,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   drugText: {
     color: "white",

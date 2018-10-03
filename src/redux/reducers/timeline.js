@@ -1,11 +1,11 @@
 import moment from "moment";
 import {
-    UPDATE_MONTH,
-    UPDATE_YEAR,
-    GET_PREVIOUS_WEEK,
-    GET_NEXT_WEEK,
-    UPDATE_CURRENT_WEEK,
-  } from "../../constants/action-types";
+  UPDATE_MONTH,
+  UPDATE_YEAR,
+  GET_PREVIOUS_WEEK,
+  GET_NEXT_WEEK,
+  UPDATE_CURRENT_WEEK
+} from "../../constants/action-types";
 
 const now = moment();
 const start = now.clone().startOf("isoWeek");
@@ -32,7 +32,7 @@ let timelineState = {
   currentWeek: "0" // should be the key in weeks
 };
 
-export default timelineReducer = (state = timelineState, action) => {
+export default (timelineReducer = (state = timelineState, action) => {
   switch (action.type) {
     case UPDATE_MONTH:
       state = Object.assign({}, state, { currentMonth: action.month });
@@ -97,4 +97,4 @@ export default timelineReducer = (state = timelineState, action) => {
     default:
       return state;
   }
-};
+});

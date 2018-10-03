@@ -4,7 +4,6 @@ import TimelineScreen from "../screens/Timeline/Timeline";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
 import { medmindBlue } from "../constants/styles";
 
-
 const DrawerNavigation = createDrawerNavigator(
   {
     timelineScreen: {
@@ -14,8 +13,8 @@ const DrawerNavigation = createDrawerNavigator(
       screen: LoginScreen
     },
     termsAndConditionsScreen: {
-      screen: TermsAndConditionsScreen,
-    },
+      screen: TermsAndConditionsScreen
+    }
   },
   {
     initialRouteName: "timelineScreen"
@@ -44,11 +43,11 @@ const DrawerStack = createStackNavigator(
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
-      screen: LoginScreen,
+      screen: LoginScreen
     },
     drawerStack: {
       screen: DrawerStack
-    },
+    }
   },
   {
     headerMode: "none",

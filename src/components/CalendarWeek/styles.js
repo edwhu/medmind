@@ -7,7 +7,7 @@ export default (styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     position: "relative",
-    top: 0,
+    top: 0
     // marginBottom: 30
     // bottom: 20,
   },

@@ -62,7 +62,9 @@ class CalendarWeek extends Component {
   _mapDates = () => {
     const columnWidth = width / 7;
     return this.state.theWeek.map((day, index) => {
-      const isToday = this.state.dateOfMonth.toString() === day && this.state.month === this.state.weekMonth[index];
+      const isToday =
+        this.state.dateOfMonth.toString() === day &&
+        this.state.month === this.state.weekMonth[index];
       const dayText = DAYS[index] ? DAYS[index] : "";
 
       return (
@@ -123,11 +125,14 @@ class CalendarWeek extends Component {
     return (
       <View style={styles.container}>
         {dates}
-        <View style={styles.scrollWrapper} >
-            <ScrollView style={styles.drugBarWrapper} contentInset={{bottom: 50}} >
-              {drugBars}
-            </ScrollView>
-          </View>
+        <View style={styles.scrollWrapper}>
+          <ScrollView
+            style={styles.drugBarWrapper}
+            contentInset={{ bottom: 50 }}
+          >
+            {drugBars}
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -136,13 +141,11 @@ class CalendarWeek extends Component {
 function mapStateToProps(state, props) {
   return {
     currentMonth: state.timelineReducer.currentMonth,
-    drugInfo: state.drugInfoReducer.drugInfo,
+    drugInfo: state.drugInfoReducer.drugInfo
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default connect(
   mapStateToProps,
