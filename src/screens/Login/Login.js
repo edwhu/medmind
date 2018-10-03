@@ -1,4 +1,4 @@
-import  LoginButton from '../../components/LoginButton/LoginButton';
+import LoginButton from '../../components/LoginButton/LoginButton';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Text, Image } from 'react-native';
@@ -29,12 +29,10 @@ export default class LoginScreen extends Component {
   };
 
   openTermsAndConditions = () => {
-    console.log("openTermsAndConditions called");
     this.props.navigation.navigate('termsAndConditionsScreen', {showButton: true});
   };
 
   openPrivacyPolicy = () => {
-    console.log("openPrivacyPolicy called");
     this.props.navigation.navigate('privacyPolicyScreen');
   };
 

@@ -1,8 +1,9 @@
+import moment from 'moment';
 
 const initialState = {
   reminders: [
-    { id: 1, drugId: 1, time: 1000, repeat: 'week'},
-    { id: 2, drugId: 1, time: 2000, repeat: 'week'},
+    { id: 1, drugId: 1, time: moment(), repeat: 'week'},
+    { id: 2, drugId: 1, time: moment(), repeat: 'week'},
   ]
 };
 
