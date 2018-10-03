@@ -29,9 +29,30 @@ export default class App extends React.Component {
       <Text>
       {moment().format("DD/MM/YYYY")}
       </Text>
+
         <Text>
-         Jane Smith
+         Jane Smith {"\n"}
         </Text>
+
+      <Text style={{fontWeight: 'bold'}}>
+      Current Medications
+      </Text>
+      
+      <Text>
+        drugs {"\n"}
+        are bad {"\n"}
+        kids {"\n"} {"\n"}
+      </Text>
+        
+      <Text style={{fontWeight: 'bold'}}>
+      Supplements
+      </Text>
+
+      <Text>
+        Tiger blood
+      </Text>
+
+
        <Button
         onPress={this.onSharePress}
         title="Share"
