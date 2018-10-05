@@ -1,9 +1,10 @@
-import LoginButton from "../../components/LoginButton/LoginButton";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import MedmindLogo from "../../assets/medmind-logo.png";
-import { medmindBlue } from "../../constants/styles";
+import LoginButton from '../../components/LoginButton/LoginButton';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import MedmindLogo from '../../assets/medmind-logo.png';
+import { medmindBlue } from '../../constants/styles';
+
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -28,8 +29,11 @@ export default class LoginScreen extends Component {
   };
 
   openTermsAndConditions = () => {
-    console.log("openTermsAndConditions called");
-    this.props.navigation.push("termsAndConditionsScreen");
+    this.props.navigation.navigate('termsAndConditionsScreen', {showButton: true});
+  };
+
+  openPrivacyPolicy = () => {
+    this.props.navigation.navigate('privacyPolicyScreen');
   };
 
   render() {
@@ -40,18 +44,9 @@ export default class LoginScreen extends Component {
           <LoginButton onPress={this.onLogin} />
         </View>
         <Text style={styles.text}>
-          By logging in or creating an account, I acknowledge I agree to the
-          <Text
-            style={styles.link}
-            onPress={() => this.openTermsAndConditions()}
-          >
-            Terms and Conditions
-          </Text>{" "}
-          and
-          <Text style={styles.link} onPress={() => {}}>
-            Privacy Policy
-          </Text>
-          .
+          By logging in or creating an account, I acknowledge I agree to the 
+          <Text style={styles.link} onPress={ () => this.openTermsAndConditions()} >Terms and Conditions</Text> and 
+          <Text style={styles.link} onPress={ () => this.openPrivacyPolicy()}>Privacy Policy</Text>.
         </Text>
       </View>
     );

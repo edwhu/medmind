@@ -23,10 +23,21 @@ export default class TermsAndConditionsScreen extends Component {
   };
 
   state = {
-    title: this.props.title || "Medmind"
+    title: this.props.title || 'Medmind',
+    showButton: false
   };
 
   render() {
+    const { navigation } = this.props;
+    const showButton = navigation.getParam('showButton', false)
+    const button = <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.acceptButton}
+            onPress={() => this.props.navigation.goBack()}
+          >
+            <Text style={styles.buttonText}>Accept</Text>
+          </TouchableOpacity>
+        </View>;
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
@@ -68,14 +79,7 @@ export default class TermsAndConditionsScreen extends Component {
             </Text>
           </ScrollView>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.acceptButton}
-            onPress={() => this.props.navigation.goBack()}
-          >
-            <Text style={styles.buttonText}>Accept</Text>
-          </TouchableOpacity>
-        </View>
+        {showButton ? button : null}   
       </View>
     );
   }

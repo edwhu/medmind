@@ -1,9 +1,11 @@
-import { combineReducers } from "redux";
-
+import { combineReducers } from 'redux';
+import remindersReducer from './reminders';
 import drugInfoReducer from "./drug";
 import timelineReducer from "./timeline";
 
 const rootReducer = combineReducers({
+  exampleReducer,
+  remindersReducer,
   timelineReducer,
   drugInfoReducer
 });
