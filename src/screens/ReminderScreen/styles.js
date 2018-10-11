@@ -7,7 +7,7 @@ export default styles = StyleSheet.create({
   	height: '100%',
   },
   drug: {
-		height: 65,
+		height: 60,
   	flexDirection: 'row',
   	alignItems: 'center',
   },
