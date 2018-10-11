@@ -3,6 +3,7 @@ import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
 import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
 import PrivacyPolicyScreen from '../screens/PrivacyPolicy/PrivacyPolicy';
+import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from '../constants/styles';
 
 const DrawerNavigation = createDrawerNavigator(
@@ -19,7 +20,9 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen,
     }, 
-
+    reminderScreen: {
+      screen: ReminderScreen,
+    },
   },
   {
     initialRouteName: "timelineScreen"
