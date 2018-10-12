@@ -10,117 +10,59 @@ import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
 
 import { ScrollView, FlatList} from 'react-native';
-import DrugIcon from '../../components/DrugIcon/DrugIcon';
-import EventInDayView from '../../components/EventInDayView/EventInDayView';
+import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
-// Temp schema for as needed drugs
-const asNeededDrugs = [
-  {
-    id : 1,
-    key: "1",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#FFDF00"
-  },
-  {
-    id: 2,
-    key: "2",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#0000ff"
-  },
-  {
-    id : 3,
-    key: "3",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#009900"
-  },
-  {
-    id : 4,
-    key: "4",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#090990"
-  },
-  {
-    id : 5,
-    key: "5",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#123456"
-  },
-  {
-    id : 6,
-    key: "6",
-    name : "Lorazepam",
-    dosage: "2 mg",
-    color: "#990099"
-  }
-]
-
-// Temp schema for drugs by events
-const drugsByEvents =[
-  {
-    time: "7:00 PM",
-    key: "1",
-    drugs :[
-      {
-        id : 1,
-        key: "1",
-        name : "Lorazepam",
-        dosage: "2 mg",
-        color: "#123456"
-      },
-      {
-        id: 2,
-        key: "2",
-        name : "Lorazepam",
-        dosage: "2 mg",
-        color: "#990099"
-      },
-    ],
-  },
-  {
-    time: "8:00 PM",
-    key:"2",
-    drugs :[
-      {
-        id : 1,
-        key: "1",
-        name : "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
-      },
-      {
-        id: 2,
-        key: "2",
-        name : "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
-      },
-    ],
-  },
-  {
-    time: "9:00 PM",
-    key:"3",
-    drugs :[
-      {
-        id : 1,
-        key: "1",
-        name : "Tylenol",
-        dosage: "2 mg",
-        color: "#0000ff"
-      },
-      {
-        id: 2,
-        key: "2",
-        name : "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
-      },
-    ],
-  },
+// Drugs must be alphabetized and put into separate arrays in order. (we could make a function in here that does that)
+// The component will know what the alphabet is for the separator.
+// Must be arrays in array
+const drugsListAlphabetized = [
+  [
+    {
+      id : 1,
+      key: "1",
+      name : "Abemaciclib",
+      dosage: "2 mg",
+      color: "#FFDF00"
+    },
+    {
+      id: 2,
+      key: "2",
+      name : "Abraxane",
+      dosage: "2 mg",
+      color: "#0000ff"
+    },
+    {
+      id : 3,
+      key: "3",
+      name : "Actemra",
+      dosage: "2 mg",
+      color: "#009900"
+    },
+    {
+      id : 4,
+      key: "4",
+      name : "Ado-Trastuzumab Emtansine",
+      dosage: "2 mg",
+      color: "#090990"
+    },
+    {
+      id : 5,
+      key: "5",
+      name : "Aminolevulinic Acid",
+      dosage: "2 mg",
+      color: "#123456"
+    },
+  ],
+  [
+    {
+      id : 6,
+      key: "6",
+      name : "Bevacizumab",
+      dosage: "2 mg",
+      color: "#990099"
+    }
+  ],
 ]
 
 export default class GlobalDrugList extends Component {
@@ -131,17 +73,41 @@ export default class GlobalDrugList extends Component {
   static defaultProps = {};
 
   state = {
+    atTopOfList: true
   };
 
+  handleScroll(event) {
+    if (event.nativeEvent.contentOffset.y <= 0) {
+      this.setState({
+        atTopOfList: true
+      });
+    }else{
+      this.setState({
+        atTopOfList: false
+      });
+    }
+  }
+
   render() {
+    let alphabetizedDrugsListComponent = drugsListAlphabetized.map((item, index)=>{
+      return  <View key={index} style={styles.alphabetList}>
+                <View style={styles.alphabetSeparator}>
+                  <Text style={styles.alphabetSeparatorText}>
+                    {item[0].name[0].toUpperCase()}
+                  </Text>
+                  <View style={styles.alphabetSeparatorLine}></View>
+                </View>
+                <FlatList data={item} renderItem={({item}) => <GlobalDrugListItem drug={item} /> } style={styles.flatList} ></FlatList>
+              </View>
+    });
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-          <ScrollView >
-              <SearchBar />
-              <FlatList data={drugsByEvents} renderItem={({item}) => <EventInDayView event={item} /> } style={styles.dayVerticalList} >
-              </FlatList>
-          </ScrollView>
+        <SearchBar atTopOfList={this.state.atTopOfList}/>
+        { !this.state.atTopOfList && <View style={styles.separator} ></View> }
+        <ScrollView style={styles.scrollView} onScroll={this.handleScroll.bind(this)}>
+          {alphabetizedDrugsListComponent}
+        </ScrollView>
       </View>
     );
   }

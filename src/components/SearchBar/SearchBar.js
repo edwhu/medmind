@@ -10,34 +10,26 @@ import LogoWhite from "../../assets/logo-white.png";
 
 const SearchBar = ({ onPress }) => (
   <TouchableHighlight onPress={onPress}>
-    <View style={styles.loginButton}>
-      <Image source={LogoWhite} style={styles.loginButtonLogo} />
-      <Text style={styles.loginButtonText}>Login with CancerBase</Text>
+    <View style={styles.container}>
+
     </View>
   </TouchableHighlight>
 );
 
 const styles = StyleSheet.create({
-  loginButton: {
-    paddingLeft: 15,
-    paddingRight: 20,
-    paddingVertical: 10,
-    backgroundColor: "#3B3E9D",
-    flexDirection: "row",
-    borderRadius: 3
-  },
-  loginButtonLogo: {
-    width: 26,
-    height: 26,
-    resizeMode: "contain",
-    marginRight: 10,
-    marginBottom: 0
-  },
-  loginButtonText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
+  container :{
+    width: "90%",
+    height: 40,
+    marginTop:15,
+    marginBottom:20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0 , height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
   }
 });
 

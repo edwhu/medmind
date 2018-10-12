@@ -8,10 +8,9 @@ export default styles = StyleSheet.create({
     width: '100%',
   },
   container:{
-    backgroundColor: 'white',
+    backgroundColor: '#FBFBFB',
     height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
   title: {
     fontSize: 22,
@@ -19,19 +18,33 @@ export default styles = StyleSheet.create({
     color: 'rgb(160,160,160)',
     marginTop: 10,
   },
-  boxContainer: {
-    height: '75%',
+  scrollView: {
+    width: "100%",
+    height: "auto"
   },
-  textBox: {
-    width: '75%',
-    borderWidth: 2,
-    borderColor: 'rgb(72,72,72)',
+  flatList :{
   },
-  text: {
-    color: 'rgb(72,72,72)',
-    marginLeft: 12,
-    marginRight: 12,
-    marginTop: 8,
-    marginBottom: 8,
+  separator: {
+    borderBottomColor: '#bbb',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  alphabetList:{
+
+  },
+  alphabetSeparator:{
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10
+  },
+  alphabetSeparatorText:{
+    color: "#6E7782",
+    fontSize: 20,
+    marginRight: 15
+  },
+  alphabetSeparatorLine:{
+    width:"82%",
+    borderBottomColor: '#BDBDBD',
+    borderBottomWidth: 1
+  }
 })
