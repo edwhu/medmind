@@ -80,8 +80,19 @@ export default class App extends React.Component {
             }}
           >
             <Text style = {{
-              textAlign: 'right',
-              margin: 5,
+              position: absolute,
+              width: 234,
+              height: 20,
+              right: 24,
+              top: 75,
+              font-family: Open Sans,
+              font-style: normal,
+              font-weight: normal,
+              line-height: normal,
+              font-size: 14,
+              text-align: right,
+              
+              color: #5B6571
             }}>
               Downloaded:  
               {moment().format("DD/MM/YYYY")}
