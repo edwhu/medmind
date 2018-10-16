@@ -5,7 +5,7 @@ import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions
 import PrivacyPolicyScreen from '../screens/PrivacyPolicy/PrivacyPolicy';
 import { medmindBlue } from '../constants/styles';
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
-import PDFshare from "../screens/PDFshare/PDFshare";
+import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -21,8 +21,8 @@ const DrawerNavigation = createDrawerNavigator(
     splashScreen: {
       screen: SplashScreen
     },
-    PDFshare: {
-      screen: PDFshare
+    ShareDrugScreen: {
+      screen: ShareDrugScreen
     }
   },
   {
