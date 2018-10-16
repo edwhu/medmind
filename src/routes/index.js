@@ -21,8 +21,8 @@ const DrawerNavigation = createDrawerNavigator(
     splashScreen: {
       screen: SplashScreen
     },
-    ShareDrugScreen: {
-      screen: ShareDrugScreen
+    shareDrugScreen: {
+      screen: shareDrugScreen
     }
   },
   {
