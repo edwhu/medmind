@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, Switch } from 'react-native';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { View, Text, Switch } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import StatusBarBackground from '../../components/StatusBarBackground/StatusBarBackground';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
-import { medmindBlue } from '../../constants/styles';
-import styles from './styles';
+import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
+import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import { medmindBlue } from "../../constants/styles";
+import styles from "./styles";
 
 class ReminderScreen extends Component {
   static navigationOptions = {
-    drawerLabel: 'Reminders'
+    drawerLabel: "Reminders"
   };
 
   static propTypes = {};
@@ -18,69 +18,103 @@ class ReminderScreen extends Component {
   static defaultProps = {};
 
   state = {};
-  
+
   // callback for login errors
   onError = error => {
-    console.log('Error', error);
+    console.log("Error", error);
   };
 
   state = {
-    title: this.props.title || 'Reminder',
+    title: this.props.title || "Reminder"
   };
 
   getDrugById = id => {
-    return this.props.drugs.filter(
-      function(drug){ return drug.id == id }
-    );
+    return this.props.drugs.filter(function(drug) {
+      return drug.id == id;
+    });
+  };
+
+  groupReminders = () => {
+    var dict = {};
+    this.props.reminders.forEach(item => {
+      var drug = this.getDrugById(item.drugId);
+      if (drug.length == 0) {
+        return;
+      }
+      if (!dict[drug[0].label]) {
+        dict[drug[0].label] = [];
+      }
+      dict[drug[0].label].push(item);
+    });
+    return dict;
   };
 
   displayRepeat = reminder => {
     switch (reminder.repeat) {
-      case 'week':
-        return ', every ' + reminder.time.format('dddd');
-      case 'day':
-        return ', every day';
-      case 'hour':
-        return ', every hour';
-      case 'month':
-        return ', monthly';
-      case 'year':
-        return ', yearly';
+      case "week":
+        return ", every " + reminder.time.format("dddd");
+      case "day":
+        return ", every day";
+      case "hour":
+        return ", every hour";
+      case "month":
+        return ", monthly";
+      case "year":
+        return ", yearly";
       default:
-        return '';
+        return "";
     }
   };
 
   render() {
-    return (
-      <View style={styles.container} >
-        <ScreenHeader {...this.props} title={this.state.title} />
-        {this.props.reminders.map((reminder) => {
-          var drug = this.getDrugById(reminder.id)[0];
-          return (
-            <View>
-              <View style={styles.drug}>
-                <Text style={styles.drugName}>{drug.label}</Text>
-                <Switch trackColor={medmindBlue} tintColor='rgb(232,232,232)' value={true} style={styles.switchButton} />
-              </View>
-              <View style={styles.horizontalLine} />
-              <View style={styles.reminder}>
-                <View style={styles.info}>
-                  <View style={styles.timeContainer} >
-                    <Text style={styles.timeLabel}>{reminder.time.format('h:mm')} </Text>
-                    <Text style={styles.timeMidday}>{reminder.time.format('A')}</Text>
-                  </View>
-                  <View style={styles.detailsContainer} >
-                    <Text style={styles.details}> {reminder.dosage}</Text>
-                    <Text style={styles.details}>{this.displayRepeat(reminder)}</Text>
-                  </View>
+    const dict = this.groupReminders();
+    const reminders = Object.keys(dict).map(drug => {
+      const drugReminders = dict[drug];
+      const reminderList = drugReminders.map(reminder => {
+        return (
+          <View>
+            <View style={styles.horizontalLine} />
+            <View style={styles.reminder}>
+              <View style={styles.info}>
+                <View style={styles.timeContainer}>
+                  <Text style={styles.timeLabel}>
+                    {reminder.time.format("h:mm")}{" "}
+                  </Text>
+                  <Text style={styles.timeMidday}>
+                    {reminder.time.format("A")}
+                  </Text>
                 </View>
-                <Switch trackColor={medmindBlue} tintColor='rgb(232,232,232)' value={true} style={styles.switchButton} />
+                <View style={styles.detailsContainer}>
+                  <Text style={styles.details}> {reminder.dosage}</Text>
+                  <Text style={styles.details}>
+                    {this.displayRepeat(reminder)}
+                  </Text>
+                </View>
               </View>
-              <View style={styles.horizontalLine} />
+              <Switch onTintColor={medmindBlue} style={styles.switchButton} />
             </View>
-          )
-        })}
+            <View style={styles.horizontalLine} />
+          </View>
+        );
+      });
+      return (
+        <View>
+          <View style={styles.drug}>
+            <Text style={styles.drugName}>{drug}</Text>
+            <Switch
+              onTintColor={medmindBlue}
+              value={true}
+              style={styles.switchButton}
+            />
+          </View>
+          {reminderList}
+        </View>
+      );
+    });
+    return (
+      <View style={styles.container}>
+        <ScreenHeader {...this.props} title={this.state.title} />
+        {reminders}
       </View>
     );
   }
@@ -89,12 +123,11 @@ class ReminderScreen extends Component {
 function mapStateToProps(state, props) {
   return {
     reminders: state.remindersReducer.reminders,
-    drugs: state.drugInfoReducer.drugInfo,
+    drugs: state.drugInfoReducer.drugInfo
   };
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-
 
 export default connect(
   mapStateToProps,
