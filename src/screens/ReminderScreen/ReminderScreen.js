@@ -72,7 +72,7 @@ class ReminderScreen extends Component {
       const drugReminders = dict[drug];
       const reminderList = drugReminders.map(reminder => {
         return (
-          <View>
+          <View key={reminder.id}>
             <View style={styles.horizontalLine} />
             <View style={styles.reminder}>
               <View style={styles.info}>
@@ -98,7 +98,7 @@ class ReminderScreen extends Component {
         );
       });
       return (
-        <View>
+        <View key={drug}>
           <View style={styles.drug}>
             <Text style={styles.drugName}>{drug}</Text>
             <Switch
