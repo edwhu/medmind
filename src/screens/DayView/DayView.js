@@ -10,7 +10,7 @@ import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
 
 import { ScrollView, FlatList} from 'react-native';
-import DrugIcon from '../../components/DrugIcon/DrugIcon';
+import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
 
 // Temp schema for as needed drugs
@@ -145,7 +145,7 @@ export default class DayView extends Component {
                       horizontal={true}
                       showsHorizontalScrollIndicator={false}
                       data={asNeededDrugs}
-                      renderItem={({item}) => <DrugIcon drug={item} /> }
+                      renderItem={({item}) => <DrugItemInDayView drug={item} /> }
             >
 
             </FlatList>

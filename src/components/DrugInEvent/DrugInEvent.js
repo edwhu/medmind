@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableHighlight, Text, Image } from 'react-native';
-
+import DrugIcon from '../DrugIcon/DrugIcon';
 const DrugInEvent = ({ onPress, drug}) =>{
   let styles = createStyles(drug.color);
   return  <TouchableHighlight onPress={onPress}>
             <View style={styles.container}>
-              <View style={styles.pillIconContainer}>
-                <View style={styles.pillColorSide}></View>
-                <View style={styles.pillGraySide}></View>
-              </View>
+              <DrugIcon color={drug.color} scale={1.8} />
               <View style={styles.textWrapper}>
                 <Text style={styles.drugName}>
                   {drug.name}
@@ -40,29 +37,6 @@ const createStyles = (drugColor)=> {
       shadowOffset: { width: 0 , height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 2,
-    },
-    pillIconContainer: {
-      transform: [{ rotate: '-70deg'}],
-      flexDirection: "row",
-      margin: "auto",
-      shadowColor: '#000',
-      shadowOffset: { width: -2 , height: 2 },
-      shadowOpacity: 0.3,
-      shadowRadius: 2,
-    },
-    pillGraySide: {
-      height: 18,
-      width: 23.4,
-      borderTopRightRadius: 9,
-      borderBottomRightRadius: 9,
-      backgroundColor: "#FFFFFF",
-    },
-    pillColorSide: {
-      height: 18,
-      width: 23.4,
-      borderTopLeftRadius: 9,
-      borderBottomLeftRadius: 9,
-      backgroundColor: drugColor,
     },
     textWrapper:{
       marginLeft: 10,
