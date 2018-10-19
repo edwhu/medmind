@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableHighlight, Text, Image } from 'react-native';
 import DrugIcon from '../../components/DrugIcon/DrugIcon';
-// TODO: use drug.drugColor to modify the color in the StyleSheet
-// TODO: props for
 
 const DrugItemInDayView = ({ onPress, drug}) => {
   let styles = createStyles(drug.color);
@@ -19,9 +17,7 @@ const DrugItemInDayView = ({ onPress, drug}) => {
           </TouchableHighlight>;
 }
 
-
-
-const createStyles = (drugColor) => {
+const createStyles = drugColor => {
   return StyleSheet.create({
     container: {
       marginRight: 10,

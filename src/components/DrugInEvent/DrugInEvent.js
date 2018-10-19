@@ -19,7 +19,7 @@ const DrugInEvent = ({ onPress, drug}) =>{
 }
 
 
-const createStyles = (drugColor)=> {
+const createStyles = drugColor => {
   return StyleSheet.create({
     container: {
       width: 300,
