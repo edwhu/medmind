@@ -3,6 +3,7 @@ import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
 import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
 import { medmindBlue } from '../constants/styles';
+import DayViewScreen from '../screens/DayViewScreen/DayViewScreen';
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -15,6 +16,9 @@ const DrawerNavigation = createDrawerNavigator(
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen,
     },
+    dayViewScreen: {
+      screen: DayViewScreen,
+    }
   },
   {
     initialRouteName: 'timelineScreen',

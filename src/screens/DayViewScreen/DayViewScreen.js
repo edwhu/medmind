@@ -123,10 +123,15 @@ const drugsByEvents =[
   },
 ]
 
-export default class DayView extends Component {
+export default class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string,
   };
+
+  static navigationOptions = {
+    drawerLabel: 'Day View'
+  };
+
 
   static defaultProps = {};
 
