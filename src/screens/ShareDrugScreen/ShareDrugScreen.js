@@ -51,175 +51,226 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
 
-        <View style={styles.buttonContainer}>
-          <View style={styles.button} >
-            <Button
-              onPress={this.onCurrentPress}
-              title = "Current"
-              color = {medmindBlue}
-              />
-          </View>
-          <View style={styles.button}>
-            <Button
-              onPress={this.onAllDrugsPress}
-              title = "All Drugs"
-              color = {medmindBlue}
-              />
-          </View>
-        </View>
-
-        <ScrollView
-          scrollEnabled={true}
-        >
-          <View
-            style = {{
-              borderWidth: 2,
-              borderColor: 'lightgrey',
-              margin: 10,
-              height: 400
-            }}
-          >
+          <View style = {{
+            justifyContent: 'space-between'
+          }}>
             <Text style = {{
-              position: absolute,
-              width: 234,
-              height: 20,
-              right: 24,
-              top: 75,
-              font-family: Open Sans,
-              font-style: normal,
-              font-weight: normal,
-              line-height: normal,
-              font-size: 14,
-              text-align: right,
-              
-              color: #5B6571
+              fontSize: 14,
+              textAlign: 'right',
+              color: '#5B6571',
             }}>
               Downloaded:  
               {moment().format("DD/MM/YYYY")}
             </Text>
 
             <Text style = {{
-              fontSize: 24,
-              margin: 5,
+              fontWeight: '600',
+              fontSize: 20,
+              margin: 7,
+              textAlign: 'left',
             }}>
             Jane Smith {"\n"}
             </Text>
 
             <View style = {{
-              borderBottomColor: medmindBlue,
+              borderBottomColor: '#E5E5E5',
               borderBottomWidth: 1,
               margin: 5,
             }}
             />
 
             <Text style = {{
-              fontSize: 10,
+              fontSize: 15,
               margin: 5,
             }}>
               Diagnosis {"\n"}
               Diagnosis Date {"\n"}
               Diagnosis Status
             </Text>
-
-            <View style = {styles.buttonContainer}>
-              <Text style={{
-                fontSize: 18,
-                margin: 5
-                }}>
-                Current Medications
-              </Text>
-
-              <Text style = {styles.greyHeader}>
-                Dosage
-              </Text>
-              <Text style = {styles.greyHeader}>
-                Frequency
-              </Text>
-
+            
+            <View style = {{
+              padding: 10
+            }}>
             </View>
 
-            <View style = {{
-              borderBottomColor: medmindBlue,
-              borderBottomWidth: 1,
-              margin: 5,
-            }}
-            />
-          
-            <View style = {styles.buttonContainer}>
-              <Text style = {{
-                margin: 5,
-                width: '30%'
-              }}>
-                Drug example
-              </Text>
+            <ScrollView
+            scrollEnabled={true}
+            >
 
-              <Text style = {{
-                width: '25%',
-                textAlign: 'right'
+            <View style = {styles.buttonContainer}>
+              <View style = {{
+                flexDirection: 'column',
+                width: '33%',
               }}>
-                Dosage example
-              </Text>
-            
-              <Text style = {{
-                textAlign: 'right',
-                margin: 5,
-                width: '25%'
+                <Text style={{
+                  fontSize: 15,
+                  fontWeight: '600',
+                  margin: 5,
+                  textAlign: 'center',
+                  
+                  }}>
+                  CURRENT MEDS
+                </Text>
+
+                <Text style = {{
+                  textAlign: 'center',
+                  fontSize: 15,
+                  }}>
+                Drug example
+                </Text>
+              </View>
+
+              <View
+                style={{
+                borderLeftWidth: 1,
+                borderLeftColor: '#E5E5E5',
+                }}
+              />
+
+              <View style = {{
+                flexDirection: 'column',
+                width: '33.5%',
               }}>
-                Frequency example
-              </Text>
+                <View style = {{
+                  height: 
+                }}></View>
+
+                <Text style = {{
+                fontSize: 14,
+                fontWeight: '600',
+                flexWrap: 'wrap',
+                textAlign: 'center',
+                }}>
+                  Dosage
+                </Text>
+
+                <Text style = {{
+                fontSize: 14,
+                textAlign: 'center'
+                }}>
+                  Dosage example
+                </Text>
+
+              </View>
+
+              <View
+                style={{
+                borderLeftWidth: 1,
+                borderLeftColor: '#E5E5E5',
+                }}
+              />
+
+              <View style = {{
+              flexDirection: 'column',
+              width: '33.5%'
+              }}>
+
+                <Text style = {{
+                fontSize: 14,
+                fontWeight: '600',
+                flexWrap: 'wrap',
+                textAlign: 'center',
+                }}>
+                  Frequency
+                </Text>
+
+                <Text style = {{
+                textAlign: 'center'
+                }}>
+                  Frequency example
+                </Text>
+
+              </View>
             </View>
               
-            <View style = {styles.buttonContainer}>
-              <Text style={{
-                fontSize: 18,
-                margin: 5
-                }}>
-                Supplements
-              </Text>
-
-              <Text style = {styles.greyHeader}>
-                Dosage
-              </Text>
-              <Text style = {styles.greyHeader}>
-                Frequency
-              </Text>
-
-            </View>
-
             <View style = {{
-              borderBottomColor: medmindBlue,
-              borderBottomWidth: 1,
-              margin: 5,
-            }}
-            />
+              padding: 10
+            }}>
+            </View>
 
             <View style = {styles.buttonContainer}>
-              <Text style = {{
-                margin: 5,
-                width: '30%'
+              <View style = {{
+                flexDirection: 'column',
+                width: '33%'
               }}>
-                Supplement example
-              </Text>
+                <Text style={{
+                  fontSize: 15,
+                  fontWeight: '600',
+                  margin: 5,
+                  }}>
+                    SUPPLEMENTS
+                </Text>
 
-              <Text style = {{
-                width: '25%',
-                textAlign: 'right'
+                <Text style = {{
+                  textAlign: 'center',
+                  fontSize: 15
+                  }}>
+                Drug example
+                </Text>
+              </View>
+
+              <View
+                style={{
+                borderLeftWidth: 1,
+                borderLeftColor: '#E5E5E5',
+                }}
+              />
+
+              <View style = {{
+                flexDirection: 'column',
+                width: '33.5%'
               }}>
-                Dosage example
-              </Text>
+                <Text style = {{
+                fontSize: 14,
+                fontWeight: '600',
+                textAlign: 'center',
+                }}>
+                  Dosage
+                </Text>
+
+                <Text style = {{
+                fontSize: 14,
+                textAlign: 'center',
+                flexWrap: 'wrap'
+                }}>
+                  Dosage example
+                </Text>
+
+              </View>
+
+              <View
+                style={{
+                borderLeftWidth: 1,
+                borderLeftColor: '#E5E5E5',
+                }}
+              />
+
+              <View style = {{
+              flexDirection: 'column',
+              width: '33.5%'
+              }}>
+
+                <Text style = {{
+                fontSize: 14,
+                fontWeight: '600',
+                textAlign: 'center',
+                }}>
+                  Frequency
+                </Text>
+
+                <Text style = {{
+                textAlign: 'center',
+                flexWrap: 'wrap'
+                }}>
+                  Frequency example
+                </Text>
+
+              </View>
+            </View>
+
+
+          </ScrollView>
             
-              <Text style = {{
-                textAlign: 'right',
-                margin: 5,
-                width: '25%'
-              }}>
-                Frequency example
-              </Text>
-            </View>
-
-
-          
-            </View>
 
           <View style={{
             alignItems: 'center'
@@ -227,13 +278,14 @@ export default class App extends React.Component {
             <View style={styles.button} >
               <Button
                 onPress={this.onSharePress}
-                title="Share"
+                title="Export"
                 color={medmindBlue}
                 accessibilityLabel="Share to your friends!"
               />
             </View>
-          </View>  
-      </ScrollView>  
+          </View> 
+          </View>   
+        
 
       </View>
       
@@ -246,6 +298,7 @@ const styles = StyleSheet.create({
   container:{
     backgroundColor: 'white',
     height: '100%',
+    flex: 1,
   },
   buttonContainer: {
     flexDirection: 'row', 
