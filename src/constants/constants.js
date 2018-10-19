@@ -27,32 +27,50 @@ export const DAYS = {
 
 export const testDrugs = [
   {
-    label: "Tylenol",
+    id: 1,
+    name: "Abemaciclib",
+    dosage: "2 mg",
+    color: "#FFDF00",
     startDate: moment().subtract(3, "days"),
     endDate: moment()
   },
   {
-    label: "Methamphetamine fkdsal;f kasd;lfkapowe",
+    id: 2,
+    name: "Abraxane",
+    dosage: "2 mg",
+    color: "#0000ff",
     startDate: moment().subtract(7, "days"),
     endDate: moment()
   },
   {
-    label: "Aspirin",
+    id: 3,
+    name: "Actemra",
+    dosage: "2 mg",
+    color: "#009900",
     startDate: moment().add(3, "days"),
     endDate: moment().add(7, "days")
   },
   {
-    label: "Antihistamine",
+    id: 4,
+    name: "Ado-Trastuzumab Emtansine",
+    dosage: "2 mg",
+    color: "#090990",
     startDate: moment(),
     endDate: moment().add(2, "days")
   },
   {
-    label: "DRUG 5",
+    id: 5,
+    name: "Aminolevulinic Acid",
+    dosage: "2 mg",
+    color: "#123456",
     startDate: moment().subtract(7, "days"),
     endDate: moment().endOf("isoWeek")
   },
   {
-    label: "Drug 20 days",
+    id: 6,
+    name: "Bevacizumab",
+    dosage: "2 mg",
+    color: "#990099",
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days")
   }
