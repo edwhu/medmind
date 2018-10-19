@@ -1,22 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
+import { medmindBlue } from "../../constants/styles";
 
-export default styles = StyleSheet.create({
-  container:{
-    backgroundColor: 'white',
-    height: '100%',
-  },
-  calendarWrapper: {
+export default (styles = StyleSheet.create({
+  container: {
+    backgroundColor: medmindBlue,
+    height: "100%",
+    // flex: 1,
+    zIndex: -1
   },
   text: {
-    textAlign: 'center',
-    color: 'black'
+    textAlign: "center",
+    color: "black"
   },
-  logo: {
-    width: 300,
-    height: 300
-  },
-  link: {
-    textDecorationLine: 'underline',
-    color: 'blue'
+  calendarSwiper: {
+    // backgroundColor: 'blue',
   }
-});
+}));

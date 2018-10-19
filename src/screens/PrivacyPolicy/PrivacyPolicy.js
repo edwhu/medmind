@@ -6,9 +6,9 @@ import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
 
-export default class TermsAndConditionsScreen extends Component {
+export default class PrivacyScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Terms and Conditions"
+    drawerLabel: "Privacy Policy"
   };
 
   static propTypes = {};
@@ -23,27 +23,14 @@ export default class TermsAndConditionsScreen extends Component {
   };
 
   state = {
-    title: this.props.title || "Medmind",
-    showButton: false
+    title: this.props.title || "Medmind"
   };
 
   render() {
-    const { navigation } = this.props;
-    const showButton = navigation.getParam("showButton", false);
-    const button = (
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.acceptButton}
-          onPress={() => this.props.navigation.goBack()}
-        >
-          <Text style={styles.buttonText}>Accept</Text>
-        </TouchableOpacity>
-      </View>
-    );
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <Text style={styles.title}>Terms and Conditions</Text>
+        <Text style={styles.title}>Privacy Policy</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>
             <Text style={styles.text}>
@@ -81,7 +68,6 @@ export default class TermsAndConditionsScreen extends Component {
             </Text>
           </ScrollView>
         </View>
-        {showButton ? button : null}
       </View>
     );
   }

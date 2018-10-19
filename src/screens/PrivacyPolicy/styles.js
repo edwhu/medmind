@@ -33,21 +33,5 @@ export default (styles = StyleSheet.create({
     marginRight: 12,
     marginTop: 8,
     marginBottom: 8
-  },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: "center"
-  },
-  acceptButton: {
-    backgroundColor: medmindBlue,
-    borderRadius: 3,
-    width: 100
-  },
-  buttonText: {
-    fontSize: 18,
-    color: "white",
-    textAlign: "center",
-    fontFamily: "System",
-    padding: 8
   }
 }));
