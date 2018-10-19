@@ -9,22 +9,6 @@ import styles from './styles';
 
 
 export default class CustomDrawer extends Component {
-  // static propTypes = {
-  //   // title: PropTypes.string,
-  //   // hasMenu: PropTypes.bool,
-  //   // hasSettings: PropTypes.bool,
-  // };
-  //
-  // static defaultProps = {
-  //   // title: 'Medmind',
-  //   // hasMenu: true,
-  //   // hasSettings: true,
-  // };
-  //
-  // state = {
-  //
-  // };
-
   render() {
     return (
       <ScrollView>
