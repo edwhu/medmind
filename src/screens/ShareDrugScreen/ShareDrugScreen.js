@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Share, Button } from 'react-native';
+import { Text, View, StyleSheet, Share, Button} from 'react-native';
 import { Constants, FileSystem } from 'expo';
 import moment from 'moment';
 import { medmindBlue } from '../../constants/styles';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import {testDrugs} from '../../constants/constants';
+import styles from './styles';
 // You can import from local files
-
 
 // or any pure javascript modules available in npm
 
@@ -28,13 +29,6 @@ export default class App extends React.Component {
   })
   }
 
-  onCurrentPress() {
-  }
-
-  onAllDrugsPress() {
-
-  }
-
   static propTypes = {
     title: PropTypes.string,
   };
@@ -43,17 +37,57 @@ export default class App extends React.Component {
 
   state = {
     title: this.props.title || 'Export Summary',
-
   };
 
+  
   render() {
+    const children = testDrugs.map(item => { 
+      return <View 
+      key={item.label}
+      style = {styles.buttonContainer}>
+        <View style = {styles.columnContainer}>
+          <Text style = {{
+          textAlign: 'center',
+          fontSize: 15,
+          }}>
+            {item.label}
+          </Text>
+        </View>
+  
+        <View style = {styles.border}>
+        </View>
+  
+        <View style = {styles.columnContainer}>
+          <Text style = {{
+          textAlign: 'center',
+          fontSize: 15,
+          }}>
+            {item.startDate.format("DD/MM/YYYY")}
+          </Text>
+        </View>
+  
+        <View style = {styles.border}>
+        </View>
+  
+        <View style = {styles.columnContainer}>
+          <Text style = {{
+          textAlign: 'center',
+          fontSize: 15,
+          }}>
+            {item.endDate.format("DD/MM/YYYY")}
+          </Text>
+        </View>
+        </View>
+    })
+
+
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
 
-          <View style = {{
+          {/* <View style = {{
             justifyContent: 'space-between'
-          }}>
+          }}> */}
             <Text style = {{
               fontSize: 14,
               textAlign: 'right',
@@ -93,15 +127,9 @@ export default class App extends React.Component {
             }}>
             </View>
 
-            <ScrollView
-            scrollEnabled={true}
-            >
-
+            <ScrollView>
             <View style = {styles.buttonContainer}>
-              <View style = {{
-                flexDirection: 'column',
-                width: '33%',
-              }}>
+              <View style = {styles.columnContainer}>
                 <Text style={{
                   fontSize: 15,
                   fontWeight: '600',
@@ -111,15 +139,7 @@ export default class App extends React.Component {
                   }}>
                   CURRENT MEDS
                 </Text>
-
-                <Text style = {{
-                  textAlign: 'center',
-                  fontSize: 15,
-                  }}>
-                Drug example
-                </Text>
-              </View>
-
+                </View>
               <View
                 style={{
                 borderLeftWidth: 1,
@@ -127,14 +147,7 @@ export default class App extends React.Component {
                 }}
               />
 
-              <View style = {{
-                flexDirection: 'column',
-                width: '33.5%',
-              }}>
-                <View style = {{
-                  height: 
-                }}></View>
-
+              <View style = {styles.columnContainer}>
                 <Text style = {{
                 fontSize: 14,
                 fontWeight: '600',
@@ -143,14 +156,6 @@ export default class App extends React.Component {
                 }}>
                   Dosage
                 </Text>
-
-                <Text style = {{
-                fontSize: 14,
-                textAlign: 'center'
-                }}>
-                  Dosage example
-                </Text>
-
               </View>
 
               <View
@@ -160,55 +165,29 @@ export default class App extends React.Component {
                 }}
               />
 
-              <View style = {{
-              flexDirection: 'column',
-              width: '33.5%'
-              }}>
+              <View style = {styles.columnContainer}>
 
-                <Text style = {{
-                fontSize: 14,
-                fontWeight: '600',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                }}>
+                <Text style = {styles.headerText}>
                   Frequency
                 </Text>
-
-                <Text style = {{
-                textAlign: 'center'
-                }}>
-                  Frequency example
-                </Text>
-
               </View>
-            </View>
-              
-            <View style = {{
-              padding: 10
-            }}>
-            </View>
-
+            
+            </View> 
+            
+            {children}
+            
             <View style = {styles.buttonContainer}>
-              <View style = {{
-                flexDirection: 'column',
-                width: '33%'
-              }}>
+              <View style = {styles.columnContainer}>
                 <Text style={{
                   fontSize: 15,
                   fontWeight: '600',
                   margin: 5,
-                  }}>
-                    SUPPLEMENTS
-                </Text>
-
-                <Text style = {{
                   textAlign: 'center',
-                  fontSize: 15
+                  
                   }}>
-                Drug example
+                  SUPPLEMENTS
                 </Text>
-              </View>
-
+                </View>
               <View
                 style={{
                 borderLeftWidth: 1,
@@ -216,26 +195,15 @@ export default class App extends React.Component {
                 }}
               />
 
-              <View style = {{
-                flexDirection: 'column',
-                width: '33.5%'
-              }}>
+              <View style = {styles.columnContainer}>
                 <Text style = {{
                 fontSize: 14,
                 fontWeight: '600',
+                flexWrap: 'wrap',
                 textAlign: 'center',
                 }}>
                   Dosage
                 </Text>
-
-                <Text style = {{
-                fontSize: 14,
-                textAlign: 'center',
-                flexWrap: 'wrap'
-                }}>
-                  Dosage example
-                </Text>
-
               </View>
 
               <View
@@ -245,33 +213,17 @@ export default class App extends React.Component {
                 }}
               />
 
-              <View style = {{
-              flexDirection: 'column',
-              width: '33.5%'
-              }}>
+              <View style = {styles.columnContainer}>
 
-                <Text style = {{
-                fontSize: 14,
-                fontWeight: '600',
-                textAlign: 'center',
-                }}>
+                <Text style = {styles.headerText}>
                   Frequency
                 </Text>
-
-                <Text style = {{
-                textAlign: 'center',
-                flexWrap: 'wrap'
-                }}>
-                  Frequency example
-                </Text>
-
               </View>
-            </View>
-
-
-          </ScrollView>
             
-
+            </View> 
+            
+            {children}
+            </ScrollView>
           <View style={{
             alignItems: 'center'
           }}>
@@ -284,49 +236,10 @@ export default class App extends React.Component {
               />
             </View>
           </View> 
-          </View>   
+          {/* </View>    */}
         
 
       </View>
-      
-      
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container:{
-    backgroundColor: 'white',
-    height: '100%',
-    flex: 1,
-  },
-  buttonContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between'
-  },
-  button: {
-    backgroundColor: medmindBlue,
-    width: '30%' ,
-    height: 40 ,
-    margin: 10
-  },
-  calendarWrapper: {
-  },
-  text: {
-    textAlign: 'center',
-    color: 'black'
-  },
-  logo: {
-    width: 300,
-    height: 300
-  },
-  link: {
-    textDecorationLine: 'underline',
-    color: 'blue'
-  },
-
-  greyHeader: {
-    color: 'grey',
-    margin: 5
-  }
-});
