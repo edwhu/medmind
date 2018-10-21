@@ -63,7 +63,7 @@ class ShareDrugScreen extends React.Component {
           textAlign: 'center',
           fontSize: 15,
           }}>
-            {item.startDate.format("DD/MM/YYYY")}
+            {item.startDate.format("MM/DD/YYYY")}
           </Text>
         </View>
   
@@ -75,7 +75,7 @@ class ShareDrugScreen extends React.Component {
           textAlign: 'center',
           fontSize: 15,
           }}>
-            {item.endDate.format("DD/MM/YYYY")}
+            {item.endDate.format("MM/DD/YYYY")}
           </Text>
         </View>
         </View>
@@ -95,7 +95,7 @@ class ShareDrugScreen extends React.Component {
               color: '#5B6571',
             }}>
               Downloaded:  
-              {moment().format("DD/MM/YYYY")}
+              {moment().format("MM/DD/YYYY")}
             </Text>
 
             <Text style = {{
