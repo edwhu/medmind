@@ -41,10 +41,10 @@ class ReminderScreen extends Component {
       if (drug.length == 0) {
         return;
       }
-      if (!dict[drug[0].label]) {
-        dict[drug[0].label] = [];
+      if (!dict[drug[0].name]) {
+        dict[drug[0].name] = [];
       }
-      dict[drug[0].label].push(item);
+      dict[drug[0].name].push(item);
     });
     return dict;
   };
