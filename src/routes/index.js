@@ -4,6 +4,7 @@ import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
+import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from "../constants/styles";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
@@ -20,7 +21,10 @@ const DrawerNavigation = createDrawerNavigator(
       screen: TermsAndConditionsScreen
     },
     privacyPolicyScreen: {
-      screen: PrivacyPolicyScreen
+      screen: PrivacyPolicyScreen,
+    }, 
+    reminderScreen: {
+      screen: ReminderScreen,
     },
     dayViewScreen: {
       screen: DayViewScreen
