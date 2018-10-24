@@ -8,12 +8,13 @@ import PropTypes from 'prop-types';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import {testDrugs} from '../../constants/constants';
 import styles from './styles';
+import { connect } from "react-redux";
 // You can import from local files
 
 // or any pure javascript modules available in npm
 
 
-export default class ShareDrugScreen extends React.Component {
+class ShareDrugScreen extends React.Component {
   onSharePress() {
     Share.share({
     message: 'BAM: we\'re helping your business with awesome React Native apps',
@@ -41,7 +42,7 @@ export default class ShareDrugScreen extends React.Component {
 
   
   render() {
-    const children = testDrugs.map(item => { 
+    const children = this.props.testDrugs.map(item => { 
       return <View 
       key={item.name}
       style = {styles.buttonContainer}>
@@ -77,7 +78,7 @@ export default class ShareDrugScreen extends React.Component {
         <ScreenHeader {...this.props} title={this.state.title} />
             <Text style = {styles.dateStyle}>
               Downloaded:  
-              {moment().format("DD/MM/YYYY")}
+              {moment().format("MM/DD/YYYY")}
             </Text>
 
             <Text style = {styles.nameStyle}>
@@ -168,7 +169,7 @@ export default class ShareDrugScreen extends React.Component {
               <Button
                 onPress={this.onSharePress}
                 title="Export"
-                color={medmindBlue}
+                color="white"
                 accessibilityLabel="Share to your friends!"
               />
             </View>
@@ -177,3 +178,18 @@ export default class ShareDrugScreen extends React.Component {
     );
   }
 }
+
+
+function mapStateToProps(state, props) {
+  return {
+    testDrugs: state.drugInfoReducer.drugInfo 
+    
+  };
+}
+
+// const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  null /* mapDispatchToProps */
+)(ShareDrugScreen);
