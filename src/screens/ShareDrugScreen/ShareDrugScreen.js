@@ -13,7 +13,7 @@ import styles from './styles';
 // or any pure javascript modules available in npm
 
 
-export default class App extends React.Component {
+export default class ShareDrugScreen extends React.Component {
   onSharePress() {
     Share.share({
     message: 'BAM: we\'re helping your business with awesome React Native apps',
@@ -43,14 +43,11 @@ export default class App extends React.Component {
   render() {
     const children = testDrugs.map(item => { 
       return <View 
-      key={item.label}
+      key={item.name}
       style = {styles.buttonContainer}>
         <View style = {styles.columnContainer}>
-          <Text style = {{
-          textAlign: 'center',
-          fontSize: 15,
-          }}>
-            {item.label}
+          <Text style = {styles.dataStyle}>
+            {item.name}
           </Text>
         </View>
   
@@ -58,10 +55,7 @@ export default class App extends React.Component {
         </View>
   
         <View style = {styles.columnContainer}>
-          <Text style = {{
-          textAlign: 'center',
-          fontSize: 15,
-          }}>
+          <Text style = {styles.dataStyle}>
             {item.startDate.format("DD/MM/YYYY")}
           </Text>
         </View>
@@ -70,10 +64,7 @@ export default class App extends React.Component {
         </View>
   
         <View style = {styles.columnContainer}>
-          <Text style = {{
-          textAlign: 'center',
-          fontSize: 15,
-          }}>
+          <Text style = {styles.dataStyle}>
             {item.endDate.format("DD/MM/YYYY")}
           </Text>
         </View>
@@ -84,39 +75,19 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-
-          {/* <View style = {{
-            justifyContent: 'space-between'
-          }}> */}
-            <Text style = {{
-              fontSize: 14,
-              textAlign: 'right',
-              color: '#5B6571',
-            }}>
+            <Text style = {styles.dateStyle}>
               Downloaded:  
               {moment().format("DD/MM/YYYY")}
             </Text>
 
-            <Text style = {{
-              fontWeight: '600',
-              fontSize: 20,
-              margin: 7,
-              textAlign: 'left',
-            }}>
+            <Text style = {styles.nameStyle}>
             Jane Smith {"\n"}
             </Text>
 
-            <View style = {{
-              borderBottomColor: '#E5E5E5',
-              borderBottomWidth: 1,
-              margin: 5,
-            }}
+            <View style = {styles.horBorder}
             />
 
-            <Text style = {{
-              fontSize: 15,
-              margin: 5,
-            }}>
+            <Text style = {styles.patientData}>
               Diagnosis {"\n"}
               Diagnosis Date {"\n"}
               Diagnosis Status
@@ -130,39 +101,22 @@ export default class App extends React.Component {
             <ScrollView>
             <View style = {styles.buttonContainer}>
               <View style = {styles.columnContainer}>
-                <Text style={{
-                  fontSize: 15,
-                  fontWeight: '600',
-                  margin: 5,
-                  textAlign: 'center',
-                  
-                  }}>
+                <Text style={styles.bigHeaderText}>
                   CURRENT MEDS
                 </Text>
                 </View>
               <View
-                style={{
-                borderLeftWidth: 1,
-                borderLeftColor: '#E5E5E5',
-                }}
+                style={styles.vertBorder}
               />
 
               <View style = {styles.columnContainer}>
-                <Text style = {{
-                fontSize: 14,
-                fontWeight: '600',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                }}>
+                <Text style = {styles.headerText}>
                   Dosage
                 </Text>
               </View>
 
               <View
-                style={{
-                borderLeftWidth: 1,
-                borderLeftColor: '#E5E5E5',
-                }}
+                style={styles.vertBorder}
               />
 
               <View style = {styles.columnContainer}>
@@ -178,39 +132,22 @@ export default class App extends React.Component {
             
             <View style = {styles.buttonContainer}>
               <View style = {styles.columnContainer}>
-                <Text style={{
-                  fontSize: 15,
-                  fontWeight: '600',
-                  margin: 5,
-                  textAlign: 'center',
-                  
-                  }}>
+                <Text style={styles.bigHeaderText}>
                   SUPPLEMENTS
                 </Text>
                 </View>
               <View
-                style={{
-                borderLeftWidth: 1,
-                borderLeftColor: '#E5E5E5',
-                }}
+                style={styles.vertBorder}
               />
 
               <View style = {styles.columnContainer}>
-                <Text style = {{
-                fontSize: 14,
-                fontWeight: '600',
-                flexWrap: 'wrap',
-                textAlign: 'center',
-                }}>
+                <Text style = {styles.headerText}>
                   Dosage
                 </Text>
               </View>
 
               <View
-                style={{
-                borderLeftWidth: 1,
-                borderLeftColor: '#E5E5E5',
-                }}
+                style={styles.vertBorder}
               />
 
               <View style = {styles.columnContainer}>
@@ -236,9 +173,6 @@ export default class App extends React.Component {
               />
             </View>
           </View> 
-          {/* </View>    */}
-        
-
       </View>
     );
   }

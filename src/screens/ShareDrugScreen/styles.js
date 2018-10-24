@@ -47,5 +47,46 @@ export default (styles = StyleSheet.create({
       greyHeader: {
         color: 'grey',
         margin: 5
+      },
+
+      dataStyle: {
+        textAlign: 'center',
+        fontSize: 15,
+      },
+
+      dateStyle: {
+        fontSize: 14,
+        textAlign: 'right',
+        color: '#5B6571',
+      },
+
+      nameStyle: {
+        fontWeight: '600',
+        fontSize: 20,
+        margin: 7,
+        textAlign: 'left',
+      },
+
+      horBorder: {
+        borderBottomColor: '#E5E5E5',
+        borderBottomWidth: 1,
+        margin: 5,
+      },
+
+      vertBorder: {
+        borderLeftWidth: 1,
+        borderLeftColor: '#E5E5E5',
+      },
+
+      patientData: {
+        fontSize: 15,
+        margin: 5,
+      },
+
+      bigHeaderText: {
+        fontSize: 15,
+        fontWeight: '600',
+        margin: 5,
+        textAlign: 'center',
       }
 }));
