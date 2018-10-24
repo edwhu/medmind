@@ -8,6 +8,8 @@ import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from "../constants/styles";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
+import SplashScreen from '../screens/SplashScreen/SplashScreen';
+import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -20,11 +22,17 @@ const DrawerNavigation = createDrawerNavigator(
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen
     },
+    splashScreen: {
+      screen: SplashScreen
+    },
+    shareDrugScreen: {
+      screen: ShareDrugScreen
+    },
     privacyPolicyScreen: {
-      screen: PrivacyPolicyScreen,
+      screen: PrivacyPolicyScreen
     }, 
     reminderScreen: {
-      screen: ReminderScreen,
+      screen: ReminderScreen
     },
     dayViewScreen: {
       screen: DayViewScreen
