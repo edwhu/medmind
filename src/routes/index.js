@@ -10,6 +10,30 @@ import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+import ReminderFormScreen from '../screens/ReminderForm/ReminderForm';
+import RepeatScreen from '../screens/RepeatScreen/RepeatScreen';
+import SoundScreen from '../screens/SoundScreen/SoundScreen';
+import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
+
+const ReminderStack = createStackNavigator(
+  {
+    reminderFormScreen: {
+      screen: ReminderFormScreen
+    },
+    repeatScreen: {
+      screen: RepeatScreen
+    },
+    soundScreen: {
+      screen: SoundScreen
+    },
+    chooseDrugScreen: {
+      screen: ChooseDrugScreen
+    },
+  },
+  {
+    initialRouteName: "reminderFormScreen",
+  }
+);
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -38,8 +62,9 @@ const DrawerNavigation = createDrawerNavigator(
       screen: DayViewScreen
     },
     globalDrugListScreen: {
-      screen: GlobalDrugListScreen
-    }
+      screen: GlobalDrugListScreen,
+    },
+    ReminderStack,
   },
   {
     initialRouteName: "timelineScreen",
