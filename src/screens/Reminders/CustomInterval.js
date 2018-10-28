@@ -16,7 +16,7 @@ export default class CustomIntervalScreen extends Component {
     static propTypes = {
       title: PropTypes.string,
     };
-    
+
     static defaultProps = {};
 
     state = {
@@ -39,7 +39,7 @@ export default class CustomIntervalScreen extends Component {
                 <WeekdayButtons onClick= {this.onWeekdayClick}/>
                 <View style={{height: 1, backgroundColor: 'gray'}} />
                 <Text>Ends</Text>
-                <EndMenu/>
+                {/* <EndMenu/> */}
             </View>
         )
     }

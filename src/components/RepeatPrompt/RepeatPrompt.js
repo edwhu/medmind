@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, View, Text, StyleSheet, Platform } from 'react-native';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dimensions, View, Text, StyleSheet, Platform, TextInput } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
 
 class IntervalMenu extends Component {
@@ -21,13 +20,16 @@ class IntervalMenu extends Component {
 
     render() {
         return (
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownMenu>
-                    <DropdownItem>days</DropdownItem>
-                    <DropdownItem>weeks</DropdownItem>
-                    <DropdownItem>months</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
+            // <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            //     <DropdownMenu>
+            //         <DropdownItem>days</DropdownItem>
+            //         <DropdownItem>weeks</DropdownItem>
+            //         <DropdownItem>months</DropdownItem>
+            //     </DropdownMenu>
+            // </Dropdown>
+            <View>
+              <Text>Repeat Prompt</Text>
+            </View>
         );
     }
 }

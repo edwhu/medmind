@@ -2,6 +2,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
 import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
+import CustomIntervalScreen from '../screens/Reminders/CustomInterval';
 import { medmindBlue } from '../constants/styles';
 
 const DrawerNavigation = createDrawerNavigator(
@@ -48,7 +49,8 @@ const AppStackNavigator = createStackNavigator(
       screen: LoginScreen,
     },
     drawerStack: {
-      screen: DrawerStack
+      // screen: DrawerStack
+      screen: CustomIntervalScreen,
     },
   },
   {
