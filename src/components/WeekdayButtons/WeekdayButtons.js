@@ -13,14 +13,14 @@ export default class WeekdayButtons extends Component {
   };
     render() {
         return (
-          <ButtonGroup>
+          <View>
             {
               ['S','M','T','W','T','F','S'].map((buttonTitle, index) => {
                 const buttonColor = index === this.props.selectedButtonIndex ? medmindBlue : 'gray';
                 return <Button color={buttonColor}>{buttonTitle}</Button>;
               })
             }
-          </ButtonGroup>
+          </View>
         )
     }
 
