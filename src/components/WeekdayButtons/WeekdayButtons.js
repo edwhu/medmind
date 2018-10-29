@@ -7,7 +7,7 @@ import { medmindBlue } from '../../constants/styles';
 
 export default class WeekdayButtons extends Component {
   static propTypes = {
-    onClick: PropTypes.func,
+    onPress: PropTypes.func,
     selectedButtonIndex: PropTypes.number,
 
   };
@@ -17,7 +17,8 @@ export default class WeekdayButtons extends Component {
             {
               ['S','M','T','W','T','F','S'].map((buttonTitle, index) => {
                 const buttonColor = index === this.props.selectedButtonIndex ? medmindBlue : 'gray';
-                return <Button key={index} color={buttonColor}>{buttonTitle}</Button>;
+                console.log(this.props.selectedButtonIndex);
+                return <Button title={buttonTitle} key={index} color={buttonColor} onPress={() => {this.props.onPress(index)}}  ></Button>;
               })
             }
           </View>

@@ -25,8 +25,9 @@ export default class CustomIntervalScreen extends Component {
         selectedWeekday: undefined,
     };
 
-    onWeekdayClick(weekday) {
+    onWeekdayPress = (weekday) => {
         this.setState({selectedWeekday: weekday});
+        console.log("onWeekdayCLick called");
     }
 
     render() {
@@ -36,7 +37,7 @@ export default class CustomIntervalScreen extends Component {
                 <RepeatPrompt/>
                 <View style={{height: 1, backgroundColor: medmindBlue}} />
                 <Text>Repeats On</Text>
-                <WeekdayButtons onClick= {this.onWeekdayClick}/>
+                <WeekdayButtons onPress= {this.onWeekdayPress} selectedButtonIndex={this.state.selectedWeekday}/>
                 <View style={{height: 1, backgroundColor: 'gray'}} />
                 <Text>Ends</Text>
                 {/* <EndMenu/> */}
