@@ -138,7 +138,7 @@ class DrugBar extends Component {
   _openDrugInfo = () => {
     console.log(
       `Label: ${
-        this.props.drugInfo.label
+        this.props.drugInfo.name
       }, start: ${this.props.drugInfo.startDate.toDate()}, end: ${this.props.drugInfo.endDate.toDate()}`
     );
   };
@@ -154,7 +154,7 @@ class DrugBar extends Component {
           <View style={styles.drugBarContainer}>
             
             <Text style={styles.drugText} numberOfLines={2}>
-              {this.props.drugInfo.label}
+              {this.props.drugInfo.name}
             </Text>
           </View>
         </View>

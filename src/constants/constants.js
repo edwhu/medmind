@@ -27,33 +27,88 @@ export const DAYS = {
 
 export const testDrugs = [
   {
-    label: "Tylenol",
+    id: 1,
+    name: "Abemaciclib",
+    dosage: "2 mg",
+    color: "#FFDF00",
     startDate: moment().subtract(3, "days"),
-    endDate: moment()
+    endDate: moment(),
+    dosage: '500mg',
   },
   {
-    label: "Methamphetamine fkdsal;f kasd;lfkapowe",
+    id: 2,
+    name: "Abraxane",
+    dosage: "2 mg",
+    color: "#0000ff",
     startDate: moment().subtract(7, "days"),
-    endDate: moment()
+    endDate: moment(),
+    dosage: '200mg',
   },
   {
-    label: "Aspirin",
+    id: 3,
+    name: "Actemra",
+    dosage: "2 mg",
+    color: "#009900",
     startDate: moment().add(3, "days"),
-    endDate: moment().add(7, "days")
+    endDate: moment().add(7, "days"),
+    dosage: '300mg',
   },
   {
-    label: "Antihistamine",
+    id: 4,
+    name: "Ado-Trastuzumab Emtansine",
+    dosage: "2 mg",
+    color: "#090990",
     startDate: moment(),
-    endDate: moment().add(2, "days")
+    endDate: moment().add(2, "days"),
+    dosage: '400mg',
   },
   {
-    label: "DRUG 5",
+    id: 5,
+    name: "Aminolevulinic Acid",
+    dosage: "2 mg",
+    color: "#123456",
     startDate: moment().subtract(7, "days"),
-    endDate: moment().endOf("isoWeek")
+    endDate: moment().endOf("isoWeek"),
+    dosage: '100mg',
   },
   {
-    label: "Drug 20 days",
+    id: 6,
+    name: "Bevacizumab",
+    dosage: "2 mg",
+    color: "#990099",
     startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days")
+    endDate: moment().add(10, "days"),
+    dosage: '500mg',
   }
+];
+
+export const testReminders = [
+    { 
+      id: 1, 
+      drugId: 1, 
+      time: moment(), 
+      repeat: 'week', 
+      dosage: '500mg'
+    },
+    { 
+      id: 2, 
+      drugId: 2, 
+      time: moment(), 
+      repeat: 'week', 
+      dosage: '200mg'
+    },
+    { 
+      id: 3, 
+      drugId: 2, 
+      time: moment(), 
+      repeat: 'week', 
+      dosage: '700mg'
+    },
+    { 
+      id: 4, 
+      drugId: 3, 
+      time: moment(), 
+      repeat: 'day', 
+      dosage: '400mg'
+    },
 ];
