@@ -34,7 +34,7 @@ class DrugBar extends Component {
     barStyle: {
       backgroundColor: this.props.backgroundColor,
       width: 0,
-      marginLeft: 0
+      marginLeft: 0,
     },
     marginLeft: 0,
     width: 0
@@ -47,10 +47,10 @@ class DrugBar extends Component {
     const startDate = this.props.drugInfo.startDate;
     const endDate = this.props.drugInfo.endDate;
 
-    let borderTopLeftRadius = 6,
-      borderTopRightRadius = 6,
-      borderBottomLeftRadius = 6,
-      borderBottomRightRadius = 6;
+    let borderTopLeftRadius = 26,
+      borderTopRightRadius = 26,
+      borderBottomLeftRadius = 26,
+      borderBottomRightRadius = 26;
 
     if (
       startDate.isBetween(
@@ -152,6 +152,7 @@ class DrugBar extends Component {
       >
         <View>
           <View style={styles.drugBarContainer}>
+            
             <Text style={styles.drugText} numberOfLines={2}>
               {this.props.drugInfo.label}
             </Text>
@@ -166,10 +167,10 @@ const styles = StyleSheet.create({
   drugBarContainer: {
     height: 52,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   drugText: {
-    color: "white",
+    color: "#5B6571",
     fontSize: 16,
     marginRight: 10,
     marginLeft: 10
