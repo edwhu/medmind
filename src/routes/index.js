@@ -10,6 +10,7 @@ import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from "../constants/styles";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
+import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -41,6 +42,9 @@ const DrawerNavigation = createDrawerNavigator(
       screen: GlobalDrugListScreen,
       initialRouteName: "timelineScreen",
       contentComponent: CustomDrawer
+    },
+    notificationScreen: {
+      screen: NotificationScreen
     }
   },
   {
