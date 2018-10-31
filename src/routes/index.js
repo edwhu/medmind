@@ -1,11 +1,15 @@
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
-import LoginScreen from '../screens/Login/Login';
-import TimelineScreen from '../screens/Timeline/Timeline';
-import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
-import PrivacyPolicyScreen from '../screens/PrivacyPolicy/PrivacyPolicy';
-import { medmindBlue } from '../constants/styles';
-import SplashScreen from '../screens/SplashScreen/SplashScreen';
+import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import LoginScreen from "../screens/Login/Login";
+import TimelineScreen from "../screens/Timeline/Timeline";
+import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
+import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
+import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
+import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
+import { medmindBlue } from "../constants/styles";
+import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
+import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -16,13 +20,27 @@ const DrawerNavigation = createDrawerNavigator(
       screen: LoginScreen
     },
     termsAndConditionsScreen: {
-      screen: TermsAndConditionsScreen,
+      screen: TermsAndConditionsScreen
     },
     splashScreen: {
       screen: SplashScreen
     },
     shareDrugScreen: {
       screen: ShareDrugScreen
+    },
+    privacyPolicyScreen: {
+      screen: PrivacyPolicyScreen
+    }, 
+    reminderScreen: {
+      screen: ReminderScreen
+    },
+    dayViewScreen: {
+      screen: DayViewScreen
+    },
+    globalDrugListScreen: {
+      screen: GlobalDrugListScreen,
+      initialRouteName: "timelineScreen",
+      contentComponent: CustomDrawer
     }
   },
   {
