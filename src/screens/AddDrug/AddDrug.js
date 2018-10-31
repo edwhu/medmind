@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import { View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
 import CollapsibleDrugPicker from '../../components/CollapsibleDrugPicker/CollapsibleDrugPicker';
 import FormField from '../../components/FormField/FormField';
 import RoundedButton from '../../components/RoundedButton/RoundedButton';
 import { KeyboardAvoidingView } from 'react-native';
-
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { medmindBlue } from '../../utilities/styles';
 export default class AddDrugScreen extends Component {
     constructor(props) {
         super(props);
@@ -22,9 +23,7 @@ export default class AddDrugScreen extends Component {
 
     render() {
         return <KeyboardAvoidingView style={styles.container}>
-            <ScreenHeader 
-            title={this.state.title}
-            fontSize={18}/>
+            <ScreenHeader {...this.props} title={this.state.title} />
             <FormField
             header='Drug Name'
             onChangeText={(name) => this.setState({name})}
@@ -57,15 +56,23 @@ export default class AddDrugScreen extends Component {
             header='End Date'
             setDate={endDate => this.setState({endDate})}
             />
-            <FormField
-            header='Notifications'
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            placeholder='Notifications'
-            />
-            <CollapsibleDrugPicker
-            setDrugType={drugType => console.log('Drug Type', drugType)}
-            />
+
+            {/* <View style={styles.form}>
+                <View style={styles.fieldContainer}>
+                    <Text>Color</Text>
+                    <Ionicons name='ios-color-palette' size={32} />
+                </View>
+                <CollapsibleDrugPicker
+                setDrugType={drugType => console.log('Drug Type', drugType)}
+                />
+            </View> */}
+
+            <View style={styles.form}>
+                <View style={styles.fieldContainer}>
+                    <Text>Notifications</Text>
+                    <Ionicons name='ios-arrow-forward' size={16} />
+                </View>
+            </View>
 
             <View style={styles.footerStyle}>
                 <RoundedButton 
@@ -97,5 +104,17 @@ const styles = StyleSheet.create({
         height: 80,
         flexGrow: 1,
         justifyContent: 'center',
-    }
+    },
+    form: {
+        height: 40,
+        borderColor: medmindBlue,
+        borderBottomWidth: 1,
+        marginHorizontal: 20
+    },
+    fieldContainer : {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
 })

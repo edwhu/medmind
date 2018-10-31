@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { StyleSheet, View, TouchableOpacity, PickerIOS, Text } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { drugTypes } from '../../utilities/drugs';
 import { medmindBlue } from '../../utilities/styles';
 

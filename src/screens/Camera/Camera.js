@@ -2,12 +2,13 @@ import React from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Camera, Permissions } from 'expo';
 import { getFDA } from '../../utilities/FDA';
+import { Ionicons } from '@expo/vector-icons';
 import drugData from '../../assets/Products.json';
 
 const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
-export default class CameraExample extends React.Component {
+export default class CameraScreen extends React.Component {
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -104,10 +105,9 @@ export default class CameraExample extends React.Component {
                   alignItems: 'center',
                 }}
                 onPress={this.takePicture}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Snap{' '}
-                </Text>
+                <View style={{alignItems:'center', borderWidth: 1, borderColor: 'white', width: 60, height: 60, borderRadius: 30, marginBottom: 10 }}>
+                  <Ionicons name='ios-camera' size={50} />
+                </View>
               </TouchableOpacity>
             </View>
           </Camera>
