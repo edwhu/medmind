@@ -61,9 +61,9 @@ const createStyles = () => {
       position: "absolute",
     },
     button: {
-    backgroundColor: "white",
-    right: 20,
-    position: "absolute",
+      backgroundColor: "white",
+      right: 20,
+      position: "absolute",
     },
     arrowButton: {
       fontSize: 35,

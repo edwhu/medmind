@@ -41,6 +41,10 @@ export default styles = StyleSheet.create({
     color: "#BDBDBD",
     fontWeight: "300",
   },
+  plusButton: {
+    fontSize: 25,
+    color: medmindBlue,
+  },
   switchButton: {
     position: "absolute",
     right: 20,

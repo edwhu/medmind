@@ -4,9 +4,10 @@ import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import TimePicker from "../../components/TimePicker/TimePicker";
+import { Ionicons } from "@expo/vector-icons";
 import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
-import { Ionicons } from "@expo/vector-icons";
 
 class ReminderFormScreen extends Component {
   static navigationOptions = {
@@ -50,6 +51,11 @@ class ReminderFormScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
+        <TimePicker 
+          header='Time'
+          setDate={startDate => this.setState({startDate})} 
+        />
+        <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Drug</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openDrugListPage()}>
