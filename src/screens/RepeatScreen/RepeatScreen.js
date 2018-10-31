@@ -7,6 +7,7 @@ import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
+import { Ionicons } from "@expo/vector-icons";
 
 class RepeatScreen extends Component {
 
@@ -38,7 +39,7 @@ class RepeatScreen extends Component {
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>
             <TouchableOpacity style={styles.button}>
-              <Text style={styles.arrowButton}>{">"}</Text>
+              <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

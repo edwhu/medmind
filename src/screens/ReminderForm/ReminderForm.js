@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
+import { Ionicons } from "@expo/vector-icons";
 
 class ReminderFormScreen extends Component {
   static navigationOptions = {
@@ -52,14 +53,14 @@ class ReminderFormScreen extends Component {
         <View style={styles.row}>
           <Text style={styles.setting}>Drug</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openDrugListPage()}>
-            <Text style={styles.arrowButton}>{">"}</Text>
+            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Repeat</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openRepeatPage()}>
-            <Text style={styles.arrowButton}>{">"}</Text>
+            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -71,7 +72,7 @@ class ReminderFormScreen extends Component {
         <View style={styles.row}>
           <Text style={styles.setting}>Sound</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openSoundPage()}>
-            <Text style={styles.arrowButton}>{">"}</Text>
+            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
