@@ -22,11 +22,13 @@ export default class CustomIntervalScreen extends Component {
     state = {
         repeatIntervalCount: 1,
         repeatInterval: 'week',
-        selectedWeekday: undefined,
+        selectedWeekday: [false, false, false, false, false, false, false],
     };
 
     onWeekdayPress = (weekday) => {
-        this.setState({selectedWeekday: weekday});
+        let newSelectedWeekday = this.state.selectedWeekday;
+        newSelectedWeekday[weekday] = !this.state.selectedWeekday[weekday];
+        this.setState({selectedWeekday: newSelectedWeekday});
         console.log("onWeekdayCLick called");
     }
 

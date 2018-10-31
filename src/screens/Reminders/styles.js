@@ -18,5 +18,13 @@ export default styles = StyleSheet.create({
   link: {
     textDecorationLine: 'underline',
     color: 'blue'
-  }
-});
+  },
+  grayButton: {
+    backgroundColor: "red",
+    width: 20,
+    height: 10,
+    borderColor: "transparent",
+    borderWidth: 0,
+    borderRadius: 4
+  }}
+,);

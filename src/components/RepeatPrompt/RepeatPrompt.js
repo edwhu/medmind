@@ -6,13 +6,13 @@ class IntervalMenu extends Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
+        this.toggle = this.onPress.bind(this);
         this.state = {
             dropdownOpen: false
         };
     }
 
-    toggle() {
+    onPress() {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
         }));
@@ -20,13 +20,14 @@ class IntervalMenu extends Component {
 
     render() {
         return (
-            // <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            //     <DropdownMenu>
-            //         <DropdownItem>days</DropdownItem>
-            //         <DropdownItem>weeks</DropdownItem>
-            //         <DropdownItem>months</DropdownItem>
-            //     </DropdownMenu>
-            // </Dropdown>
+            //use touchable opacity and collapsible
+            // <Dropdown isOpen={this.state.dropdownOpen} onPress={this.onPress}>
+            //      <DropdownMenu>
+            //          <DropdownItem>days</DropdownItem>
+            //          <DropdownItem>weeks</DropdownItem>
+            //          <DropdownItem>months</DropdownItem>
+            //      </DropdownMenu>
+            //  </Dropdown>
             <View>
               <Text>Repeat Prompt</Text>
             </View>
