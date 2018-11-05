@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, View, YellowBox } from "react-native";
+import { Alert, StatusBar, View, YellowBox } from "react-native";
 import { Provider } from "react-redux";
 
 import AppNavigator from "./routes";
@@ -10,22 +10,28 @@ import { fireNotification } from "./utils"
 
 export default class App extends React.Component {
 
-  handleNotification() {
+  handleNotification = ({origin, data, remote}) => {
         console.warn('Got Notification!');
+        console.log('origin: ', origin);
+        console.log('data: ', data);
+        Alert.alert('Notification!', JSON.stringify(data));
   }
 
   async componentDidMount() {
         // We need to ask for Notification permissions for ios devices
-        let result = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-
-        if (Constants.isDevice && result.status === 'granted') {
-            console.log('Notification permissions granted.')
+        const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+          if (status !== 'granted') {
+            await Permissions.askAsync(Permissions.NOTIFICATIONS);
         }
-
-        // If we want to do something with the notification when the app
-        // is active, we need to listen to notification events and 
-        // handle them in a callback
+        
         Notifications.addListener(this.handleNotification);
+        // this._notificationSubscription = Notifications.addListener(this.handleNotification)
+
+        // let result = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+
+        // if (Constants.isDevice && result.status === 'granted') {
+        //     console.log('Notification permissions granted.')
+        // }
   }
 
   render() {

@@ -48,7 +48,7 @@ const DrawerNavigation = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "timelineScreen"
+    initialRouteName: "notificationScreen"
     // contentComponent: DrawerComponent
   }
 );
