@@ -39,7 +39,10 @@ export default styles = StyleSheet.create({
   arrowButton: {
     fontSize: 35,
     color: "#BDBDBD",
-    fontWeight: "300",
+  },
+  selectedSetting: {
+    color: "#5B6571",
+    fontSize: 15,
   },
   plusButton: {
     fontSize: 25,

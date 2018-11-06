@@ -112,3 +112,17 @@ export const testReminders = [
       dosage: '400mg'
     },
 ];
+
+export const testSounds = [
+  'Beacon',
+  'Bulletin',
+  'By the Seaside',
+  'Circuit',
+  'Constellation',
+  'Cosmic',
+  'Crystals',
+  'Illuminate',
+  'Night Owl',
+  'Play Time',
+  'Radar',
+];

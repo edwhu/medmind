@@ -17,6 +17,10 @@ class RepeatScreen extends Component {
 
   state = {};
 
+  componentWillMount() {
+    this.setState({repeat: this.props.navigation.state.params.selectedRepeat});
+  }
+
   // callback for login errors
   onError = error => {
     console.log("Error", error);
@@ -26,15 +30,26 @@ class RepeatScreen extends Component {
     title: this.props.title || "Repeat"
   };
 
+  setRepeat = (repeat) => {
+    if (this.state.repeat != repeat) {
+      this.setState({repeat: repeat});
+      this.props.navigation.state.params.returnRepeat(repeat);
+    }
+  };
+
+  checkSelected = (repeat) => {
+    return this.state.repeat == repeat;
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <ListItem label='Does not repeat' />
-        <ListItem label='Every day' />
-        <ListItem label='Every week' />
-        <ListItem label='Every month' />
-        <ListItem label='Every year' />
+        <ListItem label='Does not repeat' onPress={() => this.setRepeat('Does not repeat')} selected={this.checkSelected('Does not repeat')}/>
+        <ListItem label='Every day' onPress={() => this.setRepeat('Every day')} selected={this.checkSelected('Every day')}/>
+        <ListItem label='Every week' onPress={() => this.setRepeat('Every week')} selected={this.checkSelected('Every week')}/>
+        <ListItem label='Every month' onPress={() => this.setRepeat('Every month')} selected={this.checkSelected('Every month')}/>
+        <ListItem label='Every year' onPress={() => this.setRepeat('Every year')} selected={this.checkSelected('Every year')}/>
         <TouchableOpacity>
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>

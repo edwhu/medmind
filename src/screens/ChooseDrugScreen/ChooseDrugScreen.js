@@ -16,6 +16,10 @@ class ChooseDrugScreen extends Component {
 
   state = {};
 
+  componentWillMount() {
+    this.setState({drug: this.props.navigation.state.params.selectedDrug});
+  }
+
   // callback for login errors
   onError = error => {
     console.log("Error", error);
@@ -25,12 +29,28 @@ class ChooseDrugScreen extends Component {
     title: this.props.title || "Drug Names"
   };
 
+  setDrug = (drug, dosage) => {
+    if (this.state.drug != drug) {
+      this.setState({drug: drug});
+      this.props.navigation.state.params.returnDrug(drug, dosage);
+    }
+  };
+
+  checkSelected = (drug) => {
+    return this.state.drug == drug;
+  };
+
   render() {
     let sortedDrugs = this.props.drugs.sort();
     const drugList = [];
     sortedDrugs.forEach(drug => {
       const listItem = (
-        <ListItem key={drug.id} label={drug.name} />
+        <ListItem 
+          key={drug.id} 
+          label={drug.name} 
+          onPress={() => this.setDrug(drug.name, drug.dosage)} 
+          selected={this.checkSelected(drug.name)}
+        />
       );
       drugList.push(listItem);
     });

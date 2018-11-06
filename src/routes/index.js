@@ -64,7 +64,10 @@ const DrawerNavigation = createDrawerNavigator(
     globalDrugListScreen: {
       screen: GlobalDrugListScreen,
     },
-    ReminderStack,
+    reminderStack: { 
+      screen: ReminderStack,
+      drawerLabel: "eds"
+    }
   },
   {
     initialRouteName: "timelineScreen",

@@ -5,13 +5,14 @@ import {
   TouchableOpacity,
   Text
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const ListItem = ( {label, entry, onPress} ) => {
+const ListItem = ( {label, entry, arrowButtonPress, onPress, selected} ) => {
   let styles = createStyles();
   
   const button = (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.arrowButton}>{">"}</Text>
+    <TouchableOpacity style={styles.button} onPress={arrowButtonPress}>
+      <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />;
     </TouchableOpacity>
   );
   
@@ -19,13 +20,18 @@ const ListItem = ( {label, entry, onPress} ) => {
     <Text style={styles.entry}>500 mg</Text>
   );
 
+  const checkMark = (
+    <Ionicons name='ios-checkmark' style={styles.checkMark} />
+  );
+
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.row}>
           <Text style={styles.setting}>{label}</Text>
-          {onPress ? button : null}
+          {arrowButtonPress ? button : null}
           {entry ? text : null}
+          {selected ? checkMark : null}
         </View>
       </TouchableOpacity>
       <View style={styles.horizontalLine} />
@@ -68,6 +74,12 @@ const createStyles = () => {
     arrowButton: {
       fontSize: 35,
       color: "#BDBDBD",
+    },
+    checkMark: {
+      right: 25,
+      position: "absolute",
+      color: '#BDBDBD',
+      fontSize: 45,
       fontWeight: "300",
     },
   });

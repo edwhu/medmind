@@ -26,28 +26,59 @@ class ReminderFormScreen extends Component {
   };
 
   state = {
-    title: this.props.title || "Reminder"
+    title: this.props.title || "Reminder",
+    snooze: false,
   };
 
   openDrugListPage = () => {
     this.props.navigation.navigate("chooseDrugScreen", {
-      showButton: true
+      showButton: true,
+      returnDrug: this.setDrug.bind(this),
+      selectedDrug: this.state.drug,
     });
   };
 
   openRepeatPage = () => {
     this.props.navigation.navigate("repeatScreen", {
-      showButton: true
+      showButton: true,
+      returnRepeat: this.setRepeat.bind(this),
+      selectedRepeat: this.state.repeat,
     });
   };
 
   openSoundPage = () => {
     this.props.navigation.navigate("soundScreen", {
-      showButton: true
+      showButton: true,
+      returnSound: this.setSound.bind(this),
+      selectedSound: this.state.sound,
     });
   };
 
+  setDrug = (drug, dosage) => {
+    this.setState({drug: drug, dosage: dosage});
+  };
+
+  setSound = (sound) => {
+    this.setState({sound: sound});
+  };
+
+  setRepeat = (repeat) => {
+    this.setState({repeat: repeat});
+  };
+
+  toggleSnooze = () => {
+    this.setState({snooze: !this.state.snooze})
+  };
+
+  saveReminder = () => {
+
+  };
+
   render() {
+    const arrowButton = <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />;
+    const soundText = <Text style={styles.selectedSetting}>{this.state.sound}</Text>;
+    const repeatText = <Text style={styles.selectedSetting}>{this.state.repeat}</Text>;
+    const drugText = <Text style={styles.selectedSetting}>{this.state.drug}</Text>;
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
@@ -59,34 +90,40 @@ class ReminderFormScreen extends Component {
         <View style={styles.row}>
           <Text style={styles.setting}>Drug</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openDrugListPage()}>
-            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
+            {this.state.drug ? drugText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Repeat</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openRepeatPage()}>
-            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
+            {this.state.repeat ? repeatText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
-          <Text style={styles.setting}>Label</Text>
-          <Text style={styles.entry}>500 mg</Text>
+          <Text style={styles.setting}>Dosage</Text>
+          <Text style={styles.entry}>{this.state.dosage ? this.state.dosage : null}</Text>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Sound</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.openSoundPage()}>
-            <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />
+            {this.state.sound ? soundText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Snooze</Text>
-          <Switch onTintColor={medmindBlue} style={styles.switchButton} value={true}/>
+          <Switch 
+            onTintColor={medmindBlue} 
+            style={styles.switchButton} 
+            onValueChange = {() => this.toggleSnooze()}
+            value = {this.state.snooze}
+          />
         </View>
         <View style={styles.horizontalLine} />
+        <TouchableOpacity onPress={() => this.saveReminder()}><Text>Save</Text></TouchableOpacity>
       </View>
     );
   }
