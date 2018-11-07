@@ -21,7 +21,6 @@ import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
->>>>>>> e794272c29f769a80e9c5ecd9dae8e4b1c95afe1
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -33,11 +32,9 @@ const DrawerNavigation = createDrawerNavigator(
     },
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen
-<<<<<<< HEAD
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-=======
     },
     splashScreen: {
       screen: SplashScreen
@@ -47,13 +44,12 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    }, 
+    },
     reminderScreen: {
       screen: ReminderScreen
     },
     dayViewScreen: {
       screen: DayViewScreen
->>>>>>> e794272c29f769a80e9c5ecd9dae8e4b1c95afe1
     },
     globalDrugListScreen: {
       screen: GlobalDrugListScreen
