@@ -36,11 +36,13 @@ export default class CustomIntervalScreen extends Component {
         return (
             <View>
                 <ScreenHeader title= { 'CUSTOM' } hasMenu = {false} hasSettings = {false} />
+                <View style={{borderBottomColor: medmindBlue, borderBottomWidth: 1}}>
                 <RepeatPrompt/>
-                <View style={{height: 1, backgroundColor: medmindBlue}} />
+                </View>
+                <View style={{borderBottomColor: 'grey', borderBottomWidth: 1, height:100}}>
                 <Text>Repeats On</Text>
                 <WeekdayButtons onPress= {this.onWeekdayPress} selectedButtonIndex={this.state.selectedWeekday}/>
-                <View style={{height: 1, backgroundColor: 'gray'}} />
+                </View>
                 <Text>Ends</Text>
                 {/* <EndMenu/> */}
             </View>

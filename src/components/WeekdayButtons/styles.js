@@ -20,7 +20,6 @@ export default styles = StyleSheet.create({
     color: 'blue'
   },
   Button: {
-    backgroundColor: "blue",
     width: 20,
     height: 20,
     borderColor: "transparent",
