@@ -13,9 +13,12 @@
 Should be depth 1
 ```
 # medmind specific fields
-- drugname
+- id
+- name
+- startdate
 - enddate
-- label
+- dosage
+- color
 # fda fields
 - description
 - warnings
@@ -27,5 +30,8 @@ Should be depth 1
 - nursing
 - mechanism_of_action
 ```
+
+## Reminder Schema
+
 ## Reference
 - https://open.fda.gov/drug/label/reference/

@@ -1,23 +1,26 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, TouchableHighlight, Text, Image } from 'react-native';
-import DrugIcon from '../DrugIcon/DrugIcon';
-const DrugInEvent = ({ onPress, drug}) =>{
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  Text,
+  Image
+} from "react-native";
+import DrugIcon from "../DrugIcon/DrugIcon";
+const DrugInEvent = ({ onPress, drug }) => {
   let styles = createStyles(drug.color);
-  return  <TouchableHighlight onPress={onPress}>
-            <View style={styles.container}>
-              <DrugIcon color={drug.color} scale={1.8} />
-              <View style={styles.textWrapper}>
-                <Text style={styles.drugName}>
-                  {drug.name}
-                </Text>
-                <Text style={styles.drugDosage}>
-                  {drug.dosage}
-                </Text>
-              </View>
-            </View>
-          </TouchableHighlight>;
-}
-
+  return (
+    <TouchableHighlight onPress={onPress}>
+      <View style={styles.container}>
+        <DrugIcon color={drug.color} scale={1.8} />
+        <View style={styles.textWrapper}>
+          <Text style={styles.drugName}>{drug.name}</Text>
+          <Text style={styles.drugDosage}>{drug.dosage}</Text>
+        </View>
+      </View>
+    </TouchableHighlight>
+  );
+};
 
 const createStyles = drugColor => {
   return StyleSheet.create({
@@ -33,22 +36,19 @@ const createStyles = drugColor => {
       paddingTop: 5,
       paddingBottom: 5,
       alignItems: "center",
-      shadowColor: '#000',
-      shadowOffset: { width: 0 , height: 2 },
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
-      shadowRadius: 2,
+      shadowRadius: 2
     },
-    textWrapper:{
-      marginLeft: 10,
+    textWrapper: {
+      marginLeft: 10
     },
     drugName: {
-      fontWeight: "bold",
+      fontWeight: "bold"
     },
-    drugDosage: {
-    },
+    drugDosage: {}
   });
-}
-
-
+};
 
 export default DrugInEvent;

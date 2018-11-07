@@ -1,18 +1,27 @@
-import React, { Component } from 'react'
-import { FlatList, StyleSheet, View, TouchableHighlight, Text, Image } from 'react-native';
-import DrugInEvent from '../DrugInEvent/DrugInEvent';
+import React, { Component } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  Text,
+  Image
+} from "react-native";
+import DrugInEvent from "../DrugInEvent/DrugInEvent";
 
-const EventInDayView = ({ event }) =>
-      <View style={styles.column}>
-        <View style={styles.container}>
-          <Text style={styles.text}>
-            {event.time}
-          </Text>
-          <FlatList data={event.drugs} renderItem={({item})=> <DrugInEvent drug={item} />} style={styles.drugList}>
-        </FlatList>
-      </View>
-      <View style={styles.line}></View>
-      </View>;
+const EventInDayView = ({ event }) => (
+  <View style={styles.column}>
+    <View style={styles.container}>
+      <Text style={styles.text}>{event.time}</Text>
+      <FlatList
+        data={event.drugs}
+        renderItem={({ item }) => <DrugInEvent drug={item} />}
+        style={styles.drugList}
+      />
+    </View>
+    <View style={styles.line} />
+  </View>
+);
 
 const styles = StyleSheet.create({
   column: {
@@ -27,15 +36,15 @@ const styles = StyleSheet.create({
   },
   drugList: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-end',
+    flexDirection: "column",
+    alignItems: "flex-end"
   },
   text: {
     margin: 10,
-    textAlign : "center"
+    textAlign: "center"
   },
-  line :{
-    borderBottomColor: '#C4C4C4',
+  line: {
+    borderBottomColor: "#C4C4C4",
     borderBottomWidth: StyleSheet.hairlineWidth,
     width: "95%",
     marginTop: 25
