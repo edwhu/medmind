@@ -3,13 +3,14 @@ import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
+import SplashScreen from "../screens/SplashScreen/SplashScreen";
+import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
 import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from "../constants/styles";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
-import SplashScreen from '../screens/SplashScreen/SplashScreen';
-import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -38,12 +39,17 @@ const DrawerNavigation = createDrawerNavigator(
       screen: DayViewScreen
     },
     globalDrugListScreen: {
-      screen: GlobalDrugListScreen
+      screen: GlobalDrugListScreen,
+      initialRouteName: "timelineScreen",
+      contentComponent: CustomDrawer
+    },
+    notificationScreen: {
+      screen: NotificationScreen
     }
   },
   {
-    initialRouteName: "timelineScreen",
-    contentComponent: CustomDrawer
+    initialRouteName: "timelineScreen"
+    // contentComponent: DrawerComponent
   }
 );
 
