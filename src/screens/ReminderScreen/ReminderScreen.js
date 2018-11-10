@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, Switch } from "react-native";
+import { View, Text, Switch, ScrollView } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
@@ -114,7 +114,9 @@ class ReminderScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
+        <ScrollView>
         {reminders}
+        </ScrollView>
       </View>
     );
   }

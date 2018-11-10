@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
+import { addReminder } from "../../redux/actions/reminder";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import TimePicker from "../../components/TimePicker/TimePicker";
@@ -17,8 +18,6 @@ class ReminderFormScreen extends Component {
   static propTypes = {};
 
   static defaultProps = {};
-
-  state = {};
 
   // callback for login errors
   onError = error => {
@@ -70,8 +69,25 @@ class ReminderFormScreen extends Component {
     this.setState({snooze: !this.state.snooze})
   };
 
-  saveReminder = () => {
+  getDrugId = drugName => {
+    return this.props.drugs.filter(function(drug) {
+      return drug.name == drugName;
+    });
+  };
 
+  saveReminder = () => {
+    const drug = this.getDrugId(this.state.drug);
+    if (drug.length == 0) {
+      return;
+    }
+    this.props.addReminder(
+      drug[0].id,
+      drug[0].dosage,
+      this.state.sound, 
+      this.state.repeat, 
+      this.state.startDate, 
+      this.state.snooze
+    );
   };
 
   render() {
@@ -135,7 +151,9 @@ function mapStateToProps(state, props) {
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => ({
+  addReminder: bindActionCreators(addReminder, dispatch)
+})
 
 export default connect(
   mapStateToProps,

@@ -3,13 +3,14 @@ import { testReminders } from "../../constants/constants";
 import { ADD_REMINDER } from "../../constants/action-types";
 
 const initialState = {
-	reminders: testReminders || []
+	reminders: testReminders || [],
+  remindersId: 30,
 };
 
 const remindersReducer = (state = initialState, action) => {
   switch (action.type) {
   	case ADD_REMINDER:
-  		const newReminder = state.reminderInfo;
+  		const newReminder = state.reminders.slice(0);
       newReminder.push(action.reminder);
       state = Object.assign({}, state, { reminders: newReminder });
   		return state;
