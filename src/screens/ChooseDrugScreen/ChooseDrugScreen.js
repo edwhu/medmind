@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
+import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
@@ -58,7 +58,9 @@ class ChooseDrugScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
+        <ScrollView>
         {drugList}
+        </ScrollView>
       </View>
     );
   }

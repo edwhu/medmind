@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
+import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
@@ -56,7 +56,9 @@ export default class SoundScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
+        <ScrollView>
         {soundList}
+        </ScrollView>
       </View>
     );
   }
