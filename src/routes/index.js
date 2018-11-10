@@ -23,6 +23,9 @@ const DrawerNavigation = createDrawerNavigator(
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen
     },
+    privacyPolicyScreen: {
+      screen: PrivacyPolicyScreen
+    },
     splashScreen: {
       screen: SplashScreen
     },
@@ -31,7 +34,7 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    }, 
+    },
     reminderScreen: {
       screen: ReminderScreen
     },

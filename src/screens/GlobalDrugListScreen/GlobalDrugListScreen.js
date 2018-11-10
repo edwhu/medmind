@@ -7,9 +7,11 @@ import styles from "./styles";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { testDrugs } from "../../constants/constants";
 
-export default class GlobalDrugListScreen extends Component {
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+class GlobalDrugListScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
@@ -46,7 +48,7 @@ export default class GlobalDrugListScreen extends Component {
   }
 
   render() {
-    let alphabetizedDrugs = this.alphabetizeDrugs(testDrugs);
+    let alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
 
     let drugsComponent = [];
 
@@ -88,3 +90,15 @@ export default class GlobalDrugListScreen extends Component {
     );
   }
 }
+function mapStateToProps(state, props) {
+  return {
+    testDrugs: state.drugInfoReducer.drugInfo,
+  };
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GlobalDrugListScreen);
