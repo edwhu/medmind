@@ -33,9 +33,6 @@ export default (styles = StyleSheet.create({
   profilePicture: {
     width: 70,
     height: 70,
-    borderRadius: 35,
-    borderColor: "#CDF0EF",
-    borderWidth: 2
   },
   text: {
     // textAlign: "center",
