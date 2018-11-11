@@ -15,7 +15,7 @@ export default class CustomDrawer extends Component {
           <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
             <View style={styles.topPart}>
               <TouchableHighlight style = {
-                [styles.profilePicture, {borderColor: "#CDF0EF50", borderWidth: 3, overflow: "hidden"}]
+                [styles.profilePictureContainer, {borderColor: "#B0DFDF", overflow:"hidden" }]
                 }>
                 <Image
                   resizeMode="contain"
