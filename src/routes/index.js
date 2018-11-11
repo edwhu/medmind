@@ -1,4 +1,5 @@
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import { Dimensions } from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
@@ -10,6 +11,8 @@ import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import SplashScreen from '../screens/SplashScreen/SplashScreen';
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+
+const { width, height } = Dimensions.get('screen');
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -50,11 +53,13 @@ const DrawerNavigation = createDrawerNavigator(
   {
     initialRouteName: "timelineScreen",
     contentComponent: CustomDrawer,
+    drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {
       labelStyle: {
         // fontFamily: 'Raleway',
         color: 'white',
         fontSize: 14,
+        marginLeft: '5.3%'
       },
       // activeTintColor: 'red',
       // activeBackgroundColor: 'transparent',

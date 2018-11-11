@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 5,
-    marginLeft: 0
+    marginLeft: '15.2%'
   }
 });

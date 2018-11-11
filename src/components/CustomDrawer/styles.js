@@ -5,7 +5,7 @@ export default (styles = StyleSheet.create({
   profilePicture: {
     width: 70,
     height: 70,
-    borderRadius: 70,
+    borderRadius: 35,
   },
   text: {
     // textAlign: "center",
@@ -16,5 +16,12 @@ export default (styles = StyleSheet.create({
   drawerBackground: {
     backgroundColor: "#65C0BE",
     flex: 1
-  }
+  },
+  topPart: {
+    alignItems: "center",
+    padding: "5.1%"
+  },
+  pad: {
+    padding: "1.5%"
+  },
 }));

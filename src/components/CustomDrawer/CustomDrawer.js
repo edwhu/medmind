@@ -13,7 +13,7 @@ export default class CustomDrawer extends Component {
       <View style = {styles.drawerBackground}>
         <ScrollView>
           <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
-            <View style={{alignItems: "center"}}>
+            <View style={styles.topPart}>
               <TouchableHighlight style = {
                 [styles.profilePicture, {borderColor: "#CDF0EF50", borderWidth: 3, overflow: "hidden"}]
                 }>
@@ -23,6 +23,7 @@ export default class CustomDrawer extends Component {
                   source={ProfilePicturePlaceholder}
                 />
               </TouchableHighlight>
+              <View style = {styles.pad}/>
               <Text style={styles.text}>Ed Hu</Text>
             </View>
             <DrawerItems {...this.props} />
