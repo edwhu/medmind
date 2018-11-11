@@ -49,8 +49,20 @@ const DrawerNavigation = createDrawerNavigator(
   },
   {
     initialRouteName: "timelineScreen",
-    contentComponent: CustomDrawer
-  }
+    contentComponent: CustomDrawer,
+    contentOptions: {
+      labelStyle: {
+        // fontFamily: 'Raleway',
+        color: 'white',
+        fontSize: 14,
+      },
+      // activeTintColor: 'red',
+      // activeBackgroundColor: 'transparent',
+      // inactiveTintColor: 'yellow',
+      // inActiveBackgroundColor: 'transparent',
+    }
+  },
+ 
 );
 
 const DrawerStack = createStackNavigator(
@@ -60,10 +72,11 @@ const DrawerStack = createStackNavigator(
   {
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
-      header: null
+      header: null,
       // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
       // title: 'Medmind',
       // headerTintColor: 'white', // styles the title color
+      
     }),
     cardStyle: {
       shadowColor: "transparent"

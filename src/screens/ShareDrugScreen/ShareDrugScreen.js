@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Share, Button} from 'react-native';
+import { Text, View, StyleSheet, Share, Button, Image} from 'react-native';
 import { Constants, FileSystem } from 'expo';
 import moment from 'moment';
 import { medmindBlue } from '../../constants/styles';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import ExportIcon from '../../assets/05-ExportSumm.png';
 import PropTypes from 'prop-types';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import {testDrugs} from '../../constants/constants';
@@ -32,6 +33,16 @@ class ShareDrugScreen extends React.Component {
 
   static propTypes = {
     title: PropTypes.string,
+  };
+
+  static navigationOptions = {
+    drawerLabel: "shareDrugScreen",
+    drawerIcon: () => (
+      <Image 
+        source = {ExportIcon}
+        style = {styles.imageStyle}
+      />
+    )
   };
 
   static defaultProps = {};
@@ -169,7 +180,7 @@ class ShareDrugScreen extends React.Component {
               <Button
                 onPress={this.onSharePress}
                 title="Export"
-                color="white"
+                color = {medmindBlue}
                 accessibilityLabel="Share to your friends!"
               />
             </View>

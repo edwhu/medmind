@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image} from "react-native";
+import PrivacyIcon from "../../assets/07-Settings.png"
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
@@ -8,7 +9,13 @@ import { medmindBlue } from "../../constants/styles";
 
 export default class PrivacyScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Privacy Policy"
+    drawerLabel: "Privacy Policy",
+    drawerIcon: () => (
+      <Image 
+        source = {PrivacyIcon}
+        style = {styles.imageStyle}
+      />
+    )
   };
 
   static propTypes = {};

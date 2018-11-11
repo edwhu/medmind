@@ -23,5 +23,11 @@ export default (styles = StyleSheet.create({
   },
   text: {
     margin: 10
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: 0
   }
 }));

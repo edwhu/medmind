@@ -16,5 +16,11 @@ export default (styles = StyleSheet.create({
     color: "white",
     paddingTop: "10%",
     fontSize: 50
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: 0
   }
 }));

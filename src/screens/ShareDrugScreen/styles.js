@@ -13,7 +13,7 @@ export default (styles = StyleSheet.create({
       },
       buttonContainer: {
         flexDirection: 'row', 
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       },
       button: {
         backgroundColor: medmindBlue,
@@ -88,5 +88,11 @@ export default (styles = StyleSheet.create({
         fontWeight: '600',
         margin: 5,
         textAlign: 'center',
+      },
+      imageStyle: {
+        width: 20,
+        height: 20,
+        borderRadius: 5,
+        marginLeft: 0
       }
 }));
