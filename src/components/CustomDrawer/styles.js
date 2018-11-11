@@ -8,18 +8,34 @@ export default (styles = StyleSheet.create({
   //   borderRadius: 40,
   //   borderWidth: 3
   // },
-  profilePictureContainer: {
+  outerBorder: {
     width: 76,
     height: 76,
     borderRadius: 38,
-    borderWidth: 3
+    borderWidth: 3,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: "#B0DFDF", 
+    overflow:"hidden" 
+  },
+  innerBorder: {
+    width: 73,
+    height: 73,
+    borderRadius: 36.5,
+    borderWidth: 3,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: "#CDF0EF",
+    overflow: "hidden",
   },
   profilePicture: {
     width: 70,
     height: 70,
     borderRadius: 35,
     borderColor: "#CDF0EF",
-    borderWidth: 3
+    borderWidth: 2
   },
   text: {
     // textAlign: "center",

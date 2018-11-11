@@ -14,14 +14,14 @@ export default class CustomDrawer extends Component {
         <ScrollView>
           <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
             <View style={styles.topPart}>
-              <TouchableHighlight style = {
-                [styles.profilePictureContainer, {borderColor: "#B0DFDF", overflow:"hidden" }]
-                }>
-                <Image
-                  resizeMode="contain"
-                  style = {styles.profilePicture}
-                  source={ProfilePicturePlaceholder}
-                />
+              <TouchableHighlight style = {styles.outerBorder}>
+                <TouchableHighlight style = {styles.innerBorder}>
+                  <Image
+                    resizeMode="contain"
+                    style = {styles.profilePicture}
+                    source={ProfilePicturePlaceholder}
+                  />
+                </TouchableHighlight>
               </TouchableHighlight>
               <View style = {styles.pad}/>
               <Text style={styles.text}>Ed Hu</Text>
