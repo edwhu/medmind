@@ -17,6 +17,9 @@ import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
 
 const ReminderStack = createStackNavigator(
   {
+    reminderScreen: {
+      screen: ReminderScreen
+    },
     reminderFormScreen: {
       screen: ReminderFormScreen
     },
@@ -31,7 +34,7 @@ const ReminderStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: "reminderFormScreen",
+    initialRouteName: "reminderScreen",
   }
 );
 
@@ -55,8 +58,8 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
     }, 
-    reminderScreen: {
-      screen: ReminderScreen
+    reminderStack: { 
+      screen: ReminderStack,
     },
     dayViewScreen: {
       screen: DayViewScreen
@@ -64,10 +67,6 @@ const DrawerNavigation = createDrawerNavigator(
     globalDrugListScreen: {
       screen: GlobalDrugListScreen,
     },
-    reminderStack: { 
-      screen: ReminderStack,
-      drawerLabel: "eds"
-    }
   },
   {
     initialRouteName: "timelineScreen",

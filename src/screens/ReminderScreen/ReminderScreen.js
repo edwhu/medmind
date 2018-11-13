@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, Switch, ScrollView } from "react-native";
+import { View, Text, Switch, ScrollView, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import { medmindBlue } from "../../constants/styles";
+import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 
 class ReminderScreen extends Component {
@@ -26,6 +27,10 @@ class ReminderScreen extends Component {
 
   state = {
     title: this.props.title || "Reminder"
+  };
+
+  openReminderFormPage = () => {
+    this.props.navigation.navigate("reminderFormScreen");
   };
 
   getDrugById = id => {
@@ -117,6 +122,9 @@ class ReminderScreen extends Component {
         <ScrollView>
         {reminders}
         </ScrollView>
+        <TouchableOpacity style={styles.plusButton} onPress={() => this.openReminderFormPage()}>
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -75,6 +75,7 @@ class ReminderFormScreen extends Component {
     });
   };
 
+  // Saves reminder to redux store
   saveReminder = () => {
     const drug = this.getDrugId(this.state.drug);
     if (drug.length == 0) {
@@ -88,6 +89,7 @@ class ReminderFormScreen extends Component {
       this.state.startDate, 
       this.state.snooze
     );
+    this.props.navigation.goBack();
   };
 
   render() {

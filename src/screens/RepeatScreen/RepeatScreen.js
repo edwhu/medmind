@@ -46,10 +46,10 @@ export default class RepeatScreen extends Component {
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
         <ListItem label='Does not repeat' onPress={() => this.setRepeat('Does not repeat')} selected={this.checkSelected('Does not repeat')}/>
-        <ListItem label='Every day' onPress={() => this.setRepeat('day')} selected={this.checkSelected('day')}/>
-        <ListItem label='Every week' onPress={() => this.setRepeat('week')} selected={this.checkSelected('week')}/>
-        <ListItem label='Every month' onPress={() => this.setRepeat('month')} selected={this.checkSelected('month')}/>
-        <ListItem label='Every year' onPress={() => this.setRepeat('year')} selected={this.checkSelected('year')}/>
+        <ListItem label='Every day' onPress={() => this.setRepeat('Every day')} selected={this.checkSelected('Every day')}/>
+        <ListItem label='Every week' onPress={() => this.setRepeat('Every week')} selected={this.checkSelected('Every week')}/>
+        <ListItem label='Every month' onPress={() => this.setRepeat('Every month')} selected={this.checkSelected('Every month')}/>
+        <ListItem label='Every year' onPress={() => this.setRepeat('Every year')} selected={this.checkSelected('Every year')}/>
         <TouchableOpacity>
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>

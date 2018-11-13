@@ -59,5 +59,22 @@ export default (styles = StyleSheet.create({
     position: "absolute",
     right: 32,
     transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
-  }
+  },
+  plusButton: {
+    backgroundColor: medmindBlue,
+    width: 74,
+    height: 74,
+    borderRadius: 37,
+    justifyContent: 'center',
+    alignItems:'center',
+    position: 'absolute',
+    bottom: 24,
+    right: 30
+  },
+  plus: {
+    color:'white',
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200",
+  },
 }));
