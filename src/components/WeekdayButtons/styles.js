@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { medmindBlue } from '../../constants/styles';
 
 export default styles = StyleSheet.create({
   container:{
@@ -20,10 +21,15 @@ export default styles = StyleSheet.create({
     color: 'blue'
   },
   Button: {
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
     borderColor: "transparent",
     borderWidth: 0,
-    borderRadius: 20
+    borderRadius: 30,
+    backgroundColor: "lightgrey"
+  },
+
+  pressedButton: {
+    backgroundColor: medmindBlue
   }}
 ,);

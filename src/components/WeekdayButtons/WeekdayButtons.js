@@ -14,14 +14,16 @@ export default class WeekdayButtons extends Component {
   };
     render() {
         return (
-          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
+          <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
             {
               ['S','M','T','W','T','F','S'].map((buttonTitle, index) => {
                 const buttonColor = this.props.selectedButtonIndex[index] === true ? medmindBlue : 'gray';
                 console.log(this.props.selectedButtonIndex);
-                return <TouchableOpacity  style={styles.Button} key={index} backgroundColor={buttonColor} onPress={() => {this.props.onPress(index)}}  >
+                return <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity  style={[styles.Button, this.props.selectedButtonIndex[index] && styles.pressedButton]} key={index} backgroundColor={buttonColor} onPress={() => {this.props.onPress(index)}}  >
                   <Text>{buttonTitle}</Text> 
-                </TouchableOpacity>;
+                </TouchableOpacity>
+                </View>;
               })
             }
           </View>
