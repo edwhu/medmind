@@ -26,7 +26,8 @@ export default styles = StyleSheet.create({
     borderColor: "transparent",
     borderWidth: 0,
     borderRadius: 30,
-    backgroundColor: "lightgrey"
+    backgroundColor: "lightgrey",
+    marginLeft: 10
   },
 
   pressedButton: {
