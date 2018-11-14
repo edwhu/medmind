@@ -96,7 +96,11 @@ class ReminderScreen extends Component {
                   </Text>
                 </View>
               </View>
-              <Switch onTintColor={medmindBlue} style={styles.switchButton} />
+              <Switch 
+              onTintColor={medmindBlue} 
+              style={styles.switchButton} 
+              value={reminder.snooze}
+              />
             </View>
             <View style={styles.horizontalLine} />
           </View>

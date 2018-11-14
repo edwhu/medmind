@@ -8,6 +8,7 @@ import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import TimePicker from "../../components/TimePicker/TimePicker";
 import { Ionicons } from "@expo/vector-icons";
 import { medmindBlue } from "../../constants/styles";
+import moment from "moment";
 import styles from "./styles";
 
 class ReminderFormScreen extends Component {
@@ -80,6 +81,9 @@ class ReminderFormScreen extends Component {
     const drug = this.getDrugId(this.state.drug);
     if (drug.length == 0) {
       return;
+    }
+    if (typeof this.state.startDate == 'undefined') {
+      this.state.startDate = moment();
     }
     this.props.addReminder(
       drug[0].id,

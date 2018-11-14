@@ -88,28 +88,32 @@ export const testReminders = [
       drugId: 1, 
       time: moment(), 
       repeat: 'week', 
-      dosage: '500mg'
+      dosage: '500mg',
+      snooze: false,
     },
     { 
       id: 2, 
       drugId: 2, 
       time: moment(), 
       repeat: 'week', 
-      dosage: '200mg'
+      dosage: '200mg',
+      snooze: false,
     },
     { 
       id: 3, 
       drugId: 2, 
       time: moment(), 
       repeat: 'week', 
-      dosage: '700mg'
+      dosage: '700mg',
+      snooze: true,
     },
     { 
       id: 4, 
       drugId: 3, 
       time: moment(), 
       repeat: 'day', 
-      dosage: '400mg'
+      dosage: '400mg',
+      snooze: true,
     },
 ];
 
