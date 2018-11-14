@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, View, Text, StyleSheet, Platform, TextInput } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
+import { Picker } from 'react-native'
 
 class IntervalMenu extends Component {
     constructor(props) {
@@ -49,7 +50,14 @@ export default class RepeatPrompt extends Component {
                     placeholder="1"
                     onChangeText= {(text) => this.setState({text})}
                 />
-                <IntervalMenu/>
+                <Picker
+                    selectedValue={this.state.language}
+                    style={{ height: 50, width: 100 }}
+                    onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                    <Picker.Item label="days" value="day" />
+                    <Picker.Item label="weeks" value="week" />
+                    <Picker.Item label="months" value="month" />
+                 </Picker>
             </View>
         )
     }

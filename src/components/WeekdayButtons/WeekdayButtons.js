@@ -20,7 +20,11 @@ export default class WeekdayButtons extends Component {
                 const buttonColor = this.props.selectedButtonIndex[index] === true ? medmindBlue : 'gray';
                 console.log(this.props.selectedButtonIndex);
                 return <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                <TouchableOpacity  style={[styles.Button, this.props.selectedButtonIndex[index] && styles.pressedButton]} key={index} backgroundColor={buttonColor} onPress={() => {this.props.onPress(index)}}  >
+                <TouchableOpacity 
+                  style={[styles.Button, this.props.selectedButtonIndex[index] && styles.pressedButton, {flex: 1, justifyContent: 'center', alignItems: 'center'}]} 
+                  key={index} backgroundColor={buttonColor} 
+                  onPress={() => {this.props.onPress(index)}}
+                >
                   <Text>{buttonTitle}</Text> 
                 </TouchableOpacity>
                 </View>;

@@ -11,6 +11,7 @@ import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
 import RepeatPrompt from '../../components/RepeatPrompt/RepeatPrompt';
 import WeekdayButtons from '../../components/WeekdayButtons/WeekdayButtons';
+import EndMenu from '../../components/EndMenu/EndMenu';
 
 export default class CustomIntervalScreen extends Component {
     static propTypes = {
@@ -23,6 +24,7 @@ export default class CustomIntervalScreen extends Component {
         repeatIntervalCount: 1,
         repeatInterval: 'week',
         selectedWeekday: [false, false, false, false, false, false, false],
+        selectedOccurance: 0,
     };
 
     onWeekdayPress = (weekday) => {
@@ -30,6 +32,12 @@ export default class CustomIntervalScreen extends Component {
         newSelectedWeekday[weekday] = !this.state.selectedWeekday[weekday];
         this.setState({selectedWeekday: newSelectedWeekday});
         console.log("onWeekdayCLick called");
+    }
+
+    onOccurancePress = (button) => {
+        let newSelectedOccurance = button;
+        this.setState({selectedOccurance: newSelectedOccurance});
+        console.log("onOccurancePress called");
     }
 
     render() {
@@ -44,7 +52,9 @@ export default class CustomIntervalScreen extends Component {
                 <WeekdayButtons onPress= {this.onWeekdayPress} selectedButtonIndex={this.state.selectedWeekday}/>
                 </View>
                 <Text>Ends</Text>
-                {/* <EndMenu/> */}
+                <View>
+                <EndMenu onPress={this.onOccurancePress} selectedOccurance={this.state.selectedOccurance}/>
+                </View>
             </View>
         )
     }

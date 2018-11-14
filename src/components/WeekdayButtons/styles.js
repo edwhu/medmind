@@ -31,5 +31,21 @@ export default styles = StyleSheet.create({
 
   pressedButton: {
     backgroundColor: medmindBlue
-  }}
+  },
+
+  unpressedIcon: {
+    width: 20,
+    height: 20,
+    backgroundColor: "lightgrey",
+    borderRadius: 20
+  },
+
+  pressedIcon: {
+    width: 20,
+    height: 20,
+    backgroundColor: medmindBlue,
+    borderRadius: 20,
+
+  }
+}
 ,);
