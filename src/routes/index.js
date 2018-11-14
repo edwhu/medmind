@@ -3,17 +3,18 @@ import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
+import SplashScreen from "../screens/SplashScreen/SplashScreen";
+import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
 import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
 import { medmindBlue } from "../constants/styles";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
-import SplashScreen from '../screens/SplashScreen/SplashScreen';
-import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import ReminderFormScreen from '../screens/ReminderForm/ReminderForm';
 import RepeatScreen from '../screens/RepeatScreen/RepeatScreen';
 import SoundScreen from '../screens/SoundScreen/SoundScreen';
 import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
+import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 
 const ReminderStack = createStackNavigator(
   {
@@ -49,6 +50,9 @@ const DrawerNavigation = createDrawerNavigator(
     termsAndConditionsScreen: {
       screen: TermsAndConditionsScreen
     },
+    privacyPolicyScreen: {
+      screen: PrivacyPolicyScreen
+    },
     splashScreen: {
       screen: SplashScreen
     },
@@ -66,11 +70,16 @@ const DrawerNavigation = createDrawerNavigator(
     },
     globalDrugListScreen: {
       screen: GlobalDrugListScreen,
+      initialRouteName: "timelineScreen",
+      contentComponent: CustomDrawer
     },
+    notificationScreen: {
+      screen: NotificationScreen
+    }
   },
   {
-    initialRouteName: "timelineScreen",
-    contentComponent: CustomDrawer
+    initialRouteName: "timelineScreen"
+    // contentComponent: DrawerComponent
   }
 );
 
