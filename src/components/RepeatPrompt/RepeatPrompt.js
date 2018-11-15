@@ -12,7 +12,7 @@ export default class RepeatPrompt extends Component {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}> 
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', alignContent: 'center'}}> 
                 <Text>Repeats every </Text>
                 <TextInput
                     placeholder="1"
