@@ -6,12 +6,14 @@ export default styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20,
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'lightgrey',
+    marginLeft: 10
   },
   radioButtonActive: {
     height: 20,
     width: 20,
     borderRadius: 20,
-    backgroundColor: medmindBlue
+    backgroundColor: medmindBlue,
+    marginLeft: 10
   }
 });

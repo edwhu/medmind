@@ -7,21 +7,23 @@ import { medmindBlue } from '../../constants/styles';
 export default class RepeatPrompt extends Component {
     static propTypes = {
       onSelect: PropTypes.func,
+      selectedValue: PropTypes.string,
     }
 
     render() {
         return (
-            <View>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}> 
                 <Text>Repeats every </Text>
                 <TextInput
                     placeholder="1"
                     onChangeText={(text) => this.setState({text})}
+                    keyboardType="numeric"
                 />
                 <Picker
                     mode="dropdown"
-                    selectedValue={'days'}
+                    selectedValue={this.props.selectedValue}
                     style={{ height: 50, width: 100 }}
-                    onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                    onValueChange={this.props.onSelect}>
                     <Picker.Item label="days" value="day" />
                     <Picker.Item label="weeks" value="week" />
                     <Picker.Item label="months" value="month" />

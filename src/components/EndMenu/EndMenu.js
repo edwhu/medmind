@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TouchableHighlight, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 // import { AntDesign } from '@expo/vector-icons';
 
@@ -30,21 +30,32 @@ export default class EndMenu extends Component {
                     );
                 })
             */}
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', height: 40, alignItems: 'center'}}>
                 <TouchableOpacity style={this.props.selectedOccurance !== 0 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(0)}}>
-                  // { this.props.selectedOccurance === 0 && <AntDesign name="check" color="white" /> }
+                  {/*} { this.props.selectedOccurance === 0 && <AntDesign name="check" color="white" /> } */}
                 </TouchableOpacity>
-                <Text>Never</Text>
+                <Text>  Never</Text>
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', height: 40, alignItems: 'center'}}>
                 <TouchableOpacity style={this.props.selectedOccurance !== 1 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(1)}}>
                 </TouchableOpacity>
-                <Text>On 10/24</Text>
+                <Text>  On </Text>
+                <TextInput
+                    placeholder="MM/DD"
+                    onChangeText={(text) => this.setState({text})}
+                    keyboardType="numeric"
+                />
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', height: 40, alignItems: 'center'}}>
                 <TouchableOpacity style={this.props.selectedOccurance !== 2 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(2)}}>
                 </TouchableOpacity>
-                <Text>After _ occurences</Text>
+                <Text>  After </Text>
+                    <TextInput
+                        placeholder= "1"
+                        onChangeText={(text) => this.setState({text})}
+                        keyboardType="numeric"
+                    /> 
+                <Text>occurences</Text>
             </View>
             </View>
         )

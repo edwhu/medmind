@@ -25,6 +25,8 @@ export default class CustomIntervalScreen extends Component {
         repeatInterval: 'weeks',
         selectedWeekday: [false, false, false, false, false, false, false],
         selectedOccurance: 0,
+        endDate: "MM/DD",
+        endOccurenceCount: 1,
     };
 
     onWeekdayPress = (weekday) => {
@@ -48,14 +50,14 @@ export default class CustomIntervalScreen extends Component {
         return (
             <View style={{flex: 1}}>
                 <ScreenHeader title= { 'CUSTOM' } hasMenu = {false} hasSettings = {false} />
-                <View style={{borderBottomColor: medmindBlue, borderBottomWidth: 1}}>
-                <RepeatPrompt onSelect={this.onIntervalPress}/>
+                <View style={{borderBottomColor: medmindBlue, borderBottomWidth: 1, height: 50, marginHorizontal: 5}}>
+                    <RepeatPrompt onSelect={this.onIntervalPress} selectedValue={this.state.repeatInterval}/>
                 </View>
-                <View style={{borderBottomColor: 'lightgrey', borderBottomWidth: 1, height:100}}>
-                <Text>Repeats On</Text>
+                <View style={{borderBottomColor: 'lightgrey', borderBottomWidth: 1, height:100, marginHorizontal: 5}}>
+                    <Text>Repeats On</Text>
                 <WeekdayButtons onPress={this.onWeekdayPress} selectedButtonIndex={this.state.selectedWeekday}/>
                 </View>
-                <Text>Ends</Text>
+                <Text style={{margin: 5}}>Ends</Text>
                 <EndMenu onPress={this.onOccurancePress} selectedOccurance={this.state.selectedOccurance}/>
             </View>
         );
