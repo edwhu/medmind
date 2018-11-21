@@ -6,16 +6,23 @@ import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
-import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
-import { medmindBlue } from "../constants/styles";
+import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
+import CameraScreen from "../screens/Camera/Camera";
+import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
     timelineScreen: {
       screen: TimelineScreen
+    },
+    cameraScreen: {
+      screen: CameraScreen
+    },
+    addDrugScreen: {
+      screen: AddDrugScreen
     },
     logout: {
       screen: LoginScreen
@@ -25,9 +32,6 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    },
-    splashScreen: {
-      screen: SplashScreen
     },
     shareDrugScreen: {
       screen: ShareDrugScreen
@@ -45,17 +49,15 @@ const DrawerNavigation = createDrawerNavigator(
       screen: DayViewScreen
     },
     globalDrugListScreen: {
-      screen: GlobalDrugListScreen,
-      initialRouteName: "timelineScreen",
-      contentComponent: CustomDrawer
+      screen: GlobalDrugListScreen
     },
     notificationScreen: {
       screen: NotificationScreen
     }
   },
   {
-    initialRouteName: "timelineScreen"
-    // contentComponent: DrawerComponent
+    initialRouteName: "addDrugScreen",
+    contentComponent: CustomDrawer
   }
 );
 
@@ -79,7 +81,7 @@ const DrawerStack = createStackNavigator(
 
 const AppStackNavigator = createStackNavigator(
   {
-    splashScreen : {
+    splashScreen: {
       screen: SplashScreen
     },
     loginStack: {
@@ -91,7 +93,6 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    // initialRouteName: 'loginStack',
     initialRouteName: "splashScreen"
   }
 );

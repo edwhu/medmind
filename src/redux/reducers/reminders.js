@@ -1,8 +1,8 @@
-import moment from 'moment';
+import moment from "moment";
 import { testReminders } from "../../constants/constants";
 
 const initialState = {
-	reminders: testReminders || []
+  reminders: testReminders || []
 };
 
 const remindersReducer = (state = initialState, action) => {
