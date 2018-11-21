@@ -7,13 +7,14 @@ import { medmindBlue } from '../../utilities/styles';
 
 export default class CollapsibleDatePicker extends Component {
     static propTypes = {
-        setDate: PropTypes.func.isRequired
+        setDate: PropTypes.func.isRequired,
+        date: PropTypes.object,
     }
 
-    constructor(props) {
-        super(props);
-        this.state = { collapsed: true, chosenDate: moment() };
-    }
+    state = { 
+        collapsed: true,
+        date: this.props.date ? this.props.date : moment()
+    };
 
     datePickerOnPress = () => {
         this.setState({ collapsed: !this.state.collapsed})
@@ -21,7 +22,7 @@ export default class CollapsibleDatePicker extends Component {
   
     setDate = newDate => {
         const date = moment(newDate);
-        this.setState({chosenDate: date});
+        this.setState({ date });
         this.props.setDate(date);
     }
 
@@ -36,7 +37,7 @@ export default class CollapsibleDatePicker extends Component {
                     {this.props.header}
                     </Text>
                     <Text>
-                        {`${this.state.chosenDate.format("ddd, MMM D YYYY, h:mm a")}`}
+                        {`${this.state.date.format("ddd, MMM D YYYY, h:mm a")}`}
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -44,7 +45,7 @@ export default class CollapsibleDatePicker extends Component {
             collapsed={this.state.collapsed}>
                 <View>
                 <DatePickerIOS
-                date={this.state.chosenDate.toDate()}
+                date={this.state.date.toDate()}
                 onDateChange={this.setDate}
                 />
                 </View>

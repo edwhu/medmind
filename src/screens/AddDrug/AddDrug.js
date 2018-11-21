@@ -2,70 +2,79 @@ import React, {Component} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
-import CollapsibleDrugPicker from '../../components/CollapsibleDrugPicker/CollapsibleDrugPicker';
 import FormField from '../../components/FormField/FormField';
 import RoundedButton from '../../components/RoundedButton/RoundedButton';
 import { KeyboardAvoidingView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { medmindBlue } from '../../utilities/styles';
-export default class AddDrugScreen extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addDrug } from '../../redux/actions/drug';
+import moment from 'moment';
+
+class AddDrugScreen extends Component {
+    static navigationOptions = {
+        drawerLabel: "Add Drug"
+    };
+
     constructor(props) {
         super(props);
     }
 
     state = {
-        title: 'DRUG ENTRY',
+        name: "Bevacizumab",
+        dosage: '500mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(10, "days"),
+        endDate: moment().add(10, "days"),
+        color: "#990099",
     };
-
-    onSubmit = () => {
-        console.log('Submitted')
-    }
 
     render() {
         return <KeyboardAvoidingView style={styles.container}>
-            <ScreenHeader {...this.props} title={this.state.title} />
+            <ScreenHeader {...this.props} title={'Drug Entry'} />
             <FormField
             header='Drug Name'
             onChangeText={(name) => this.setState({name})}
             value={this.state.name}
-            placeholder='Tylenol'
+            placeholder={this.state.name}
             />
             <FormField
             header='Dosage'
             onChangeText={(dosage) => this.setState({dosage})}
             value={this.state.dosage}
-            placeholder='2 mg'
+            placeholder={this.state.dosage}
             />
             <FormField
             header='Doctor'
             onChangeText={(doctor) => this.setState({doctor})}
             value={this.state.doctor}
-            placeholder='Dr. Usi'
+            placeholder={this.state.dosage}
             />
             <FormField
-            header='Dosage'
+            header='Frequency'
             onChangeText={(frequency) => this.setState({frequency})}
             value={this.state.frequency}
-            placeholder='5x a day'
+            placeholder={this.state.frequency}
             />
             <CollapsibleDatePicker 
             header='Start Date'
             setDate={startDate => this.setState({startDate})} 
+            date={this.state.startDate}
             />
             <CollapsibleDatePicker 
             header='End Date'
             setDate={endDate => this.setState({endDate})}
+            date={this.state.endDate}
             />
 
-            {/* <View style={styles.form}>
+            <View style={styles.form}>
                 <View style={styles.fieldContainer}>
-                    <Text>Color</Text>
-                    <Ionicons name='ios-color-palette' size={32} />
+                    <Text>Colors</Text>
+                    <Ionicons name='ios-arrow-forward' size={16} />
                 </View>
-                <CollapsibleDrugPicker
-                setDrugType={drugType => console.log('Drug Type', drugType)}
-                />
-            </View> */}
+            </View>
 
             <View style={styles.form}>
                 <View style={styles.fieldContainer}>
@@ -76,7 +85,7 @@ export default class AddDrugScreen extends Component {
 
             <View style={styles.footerStyle}>
                 <RoundedButton 
-                onPress={this.onSubmit}
+                onPress={() => this.props.addDrug(this.state)}
                 name={'Submit'}
                 buttonStyle={styles.buttonStyle}
                 />
@@ -84,7 +93,14 @@ export default class AddDrugScreen extends Component {
         </KeyboardAvoidingView>
     }
 }
-
+  
+const mapDispatchToProps = dispatch => bindActionCreators({ addDrug }, dispatch);
+  
+ export default connect(
+    null,
+    mapDispatchToProps
+  )(AddDrugScreen);
+  
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -117,4 +133,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-})
+});

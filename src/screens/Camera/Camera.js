@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import { Camera, Permissions } from 'expo';
 import { getFDA } from '../../utilities/FDA';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,6 +9,10 @@ const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
+  static navigationOptions = {
+    drawerLabel: "Camera Screen"
+  };
+
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -90,8 +94,8 @@ export default class CameraScreen extends React.Component {
       return <Text>No access to camera</Text>;
     } else {
       return (
-        <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 1 }} type={this.state.type} ref={ref => { this.camera = ref; }}>
+        <View style={styles.flex}>
+          <Camera style={styles.flex} type={this.state.type} ref={ref => { this.camera = ref; }}>
             <View
               style={{
                 flex: 1,
@@ -99,13 +103,9 @@ export default class CameraScreen extends React.Component {
                 flexDirection: 'row',
               }}>
               <TouchableOpacity
-                style={{
-                  flex: 1,
-                  alignSelf: 'flex-end',
-                  alignItems: 'center',
-                }}
+                style={styles.cameraCircle}
                 onPress={this.takePicture}>
-                <View style={{alignItems:'center', borderWidth: 1, borderColor: 'white', width: 60, height: 60, borderRadius: 30, marginBottom: 10 }}>
+                <View style={styles.cameraIcon}>
                   <Ionicons name='ios-camera' size={50} />
                 </View>
               </TouchableOpacity>
@@ -116,3 +116,21 @@ export default class CameraScreen extends React.Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  cameraCircle: {
+    flex: 1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+  cameraIcon: {
+    justifyContent: 'center', 
+    alignItems:'center', 
+    borderWidth: 1, 
+    borderColor: 'white', 
+    width: 60, 
+    height: 60, 
+    borderRadius: 30, 
+    marginBottom: 10 }
+});
