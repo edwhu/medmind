@@ -3,7 +3,6 @@ import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
-import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
 import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
@@ -56,7 +55,7 @@ const DrawerNavigation = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "addDrugScreen",
+    initialRouteName: "timelineScreen",
     contentComponent: CustomDrawer
   }
 );
@@ -81,9 +80,6 @@ const DrawerStack = createStackNavigator(
 
 const AppStackNavigator = createStackNavigator(
   {
-    splashScreen: {
-      screen: SplashScreen
-    },
     loginStack: {
       screen: LoginScreen
     },
@@ -93,7 +89,7 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "splashScreen"
+    initialRouteName: "drawerStack"
   }
 );
 
