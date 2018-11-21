@@ -15,14 +15,7 @@ const remindersReducer = (state = initialState, action) => {
       state = Object.assign({}, state, { reminders: newReminder });
   		return state;
     case UPDATE_REMINDER:
-      console.log(action.snooze);
-      const newReminders = state.reminders.map(reminder => {
-        return {
-          ...reminder,
-          snooze: action.snooze[reminder.id]
-        }
-      });
-      state = Object.assign({}, state, { reminders: newReminders });
+      state = Object.assign({}, state, { reminders: action.reminders });
       return state;
     default:
       return state;

@@ -1,6 +1,8 @@
 import { ADD_REMINDER, UPDATE_REMINDER } from "../../constants/action-types";
 import store from "../store";
 
+let nextId = 9000;
+
 export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
   if (typeof drugId !== "number" || typeof sound !== "string" || typeof repeat !== "string" 
   	|| typeof dosage !== "string") {
@@ -14,12 +16,12 @@ export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
       repeat = words[1];
     }
 		const newReminder = {
-			"id": 8,
-			"drugId": drugId,
-			"time": startDate,
-			"repeat": repeat,
-			"dosage": dosage,
-			"snooze": snooze,
+			id: nextId++,
+			drugId: drugId,
+			time: startDate,
+			repeat: repeat,
+			dosage: dosage,
+			snooze: snooze,
 		}
     return {
       type: ADD_REMINDER,
@@ -28,8 +30,8 @@ export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
   }
 }
 
-export function updateReminder(snooze) {
-  if (typeof snooze === "undefined") {
+export function updateReminder(reminders) {
+  if (typeof reminders === "undefined") {
     console.warn(
       "Required field left blank"
     );
@@ -37,7 +39,7 @@ export function updateReminder(snooze) {
   } else {  
     return {
       type: UPDATE_REMINDER,
-      snooze: snooze,
+      reminders: reminders,
     };
   }
 }

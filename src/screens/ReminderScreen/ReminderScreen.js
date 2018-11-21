@@ -19,23 +19,6 @@ class ReminderScreen extends Component {
 
   static defaultProps = {};
 
-  componentWillMount() {
-    this.initializeSnooze();
-  }
-
-  initializeSnooze = () => {
-    const snooze = {}
-    const drugSnooze = {}
-    this.props.reminders.forEach(item => {
-      snooze[item.id] = item.snooze;
-      const drug = this.getDrugById(item.drugId);
-      if (drug.length != 0) {
-        drugSnooze[drug[0].id] = drug[0].snooze;
-      }
-    });
-    this.setState({snooze, drugSnooze});
-  };
-
   // callback for login errors
   onError = error => {
     console.log("Error", error);
@@ -78,25 +61,31 @@ class ReminderScreen extends Component {
   };
 
   toggleSnooze = id => {
-    const oldState = this.state.snooze[id];
-    this.setState({
-      snooze: {
-        ...this.state.snooze,
-        [id]: !oldState,
-      },
+    const reminders = this.props.reminders.slice(0);
+    reminders.forEach(item => {
+      if (item.id == id) {
+        item.snooze = !item.snooze;
+      }
     });
-    this.props.updateReminder(this.state.snooze);
+    this.props.updateReminder(reminders);
   };
 
-  toggleBulkSnooze = drugName => {
+  toggleDrugSnooze = drugName => {
     const drugId = this.getDrugId(drugName);
-    const oldState = this.state.drugSnooze[drugId];
-    this.setState({
-      drugSnooze: {
-        ...this.state.drugSnooze,
-        [drugId]: !oldState,
-      },
+    const reminders = this.props.reminders.slice(0);
+    reminders.forEach(item => {
+      if (item.drugId == drugId) {
+        item.snoozeDrug = !item.snoozeDrug;
+        item.snooze = item.snoozeDrug;
+      }
     });
+    this.props.updateReminder(reminders);
+  }
+
+  getSnooze = drugName => {
+    const drugId = this.getDrugId(drugName);
+    const reminder = this.props.reminders.find(r => r.drugId === drugId);
+    return reminder.snoozeDrug;
   }
 
   displayRepeat = reminder => {
@@ -144,9 +133,9 @@ class ReminderScreen extends Component {
               <Switch 
               onTintColor={medmindBlue} 
               style={styles.switchButton} 
-              onValueChange = {(id) => this.toggleSnooze(reminder.id)}
-              value={this.state.snooze[reminder.id] && this.state.drugSnooze[reminder.drugId]}
-              disabled={!this.state.drugSnooze[reminder.drugId]}
+              onValueChange = {() => this.toggleSnooze(reminder.id)}
+              value={reminder.snooze}
+              disabled={!reminder.snoozeDrug}
               />
             </View>
             <View style={styles.horizontalLine} />
@@ -160,8 +149,8 @@ class ReminderScreen extends Component {
             <Switch
               onTintColor={medmindBlue}
               style={styles.switchButton}
-              onValueChange = {(drugName) => this.toggleBulkSnooze(drug)}
-              value={this.state.drugSnooze[this.getDrugId(drug)]}
+              onValueChange = {() => this.toggleDrugSnooze(drug)}
+              value={this.getSnooze(drug)}
             />
           </View>
           {reminderList}
@@ -190,7 +179,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateReminder: bindActionCreators(updateReminder, dispatch)
+  updateReminder: bindActionCreators(updateReminder, dispatch),
 })
 
 export default connect(
