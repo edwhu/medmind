@@ -1,4 +1,3 @@
-
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
@@ -7,11 +6,11 @@ import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
-import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
+import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
-import CameraScreen from '../screens/Camera/Camera';
-import AddDrugScreen from '../screens/AddDrug/AddDrug';
+import CameraScreen from "../screens/Camera/Camera";
+import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 
 const DrawerNavigation = createDrawerNavigator(
@@ -33,9 +32,6 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    },
-    splashScreen: {
-      screen: SplashScreen
     },
     shareDrugScreen: {
       screen: ShareDrugScreen
@@ -85,7 +81,7 @@ const DrawerStack = createStackNavigator(
 
 const AppStackNavigator = createStackNavigator(
   {
-    splashScreen : {
+    splashScreen: {
       screen: SplashScreen
     },
     loginStack: {
@@ -97,7 +93,6 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    // initialRouteName: 'loginStack',
     initialRouteName: "splashScreen"
   }
 );

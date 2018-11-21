@@ -29,93 +29,92 @@ export const testDrugs = [
   {
     id: 1,
     name: "Abemaciclib",
-    dosage: '500mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "500mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment().subtract(3, "days"),
     endDate: moment(),
-    color: "#FFDF00",
+    color: "#FFDF00"
   },
   {
     id: 2,
     name: "Abraxane",
-    dosage: '200mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "200mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment().subtract(7, "days"),
     endDate: moment(),
-    color: "#0000ff",
+    color: "#0000ff"
   },
   {
     id: 3,
     name: "Actemra",
-    dosage: '300mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "300mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment().add(3, "days"),
     endDate: moment().add(7, "days"),
-    color: "#009900",
+    color: "#009900"
   },
   {
     id: 4,
     name: "Ado-Trastuzumab Emtansine",
-    dosage: '400mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "400mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment(),
     endDate: moment().add(2, "days"),
-    color: "#090990",
+    color: "#090990"
   },
   {
     id: 5,
     name: "Aminolevulinic Acid",
-    dosage: '100mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "100mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment().subtract(7, "days"),
     endDate: moment().endOf("isoWeek"),
-    color: "#123456",
-
+    color: "#123456"
   },
   {
     id: 6,
     name: "Bevacizumab",
-    dosage: '500mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day',
+    dosage: "500mg",
+    doctor: "Dr. Who",
+    frequency: "5x a day",
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
-    color: "#990099",
+    color: "#990099"
   }
 ];
 
 export const testReminders = [
-    { 
-      id: 1, 
-      drugId: 1, 
-      time: moment() + 2000, 
-      repeat: 'week', 
-      dosage: '500mg'
-    },
-    { 
-      id: 2, 
-      drugId: 2, 
-      time: moment(), 
-      repeat: 'week', 
-      dosage: '200mg'
-    },
-    { 
-      id: 3, 
-      drugId: 2, 
-      time: moment(), 
-      repeat: 'week', 
-      dosage: '700mg'
-    },
-    { 
-      id: 4, 
-      drugId: 3, 
-      time: moment(), 
-      repeat: 'day', 
-      dosage: '400mg'
-    },
+  {
+    id: 1,
+    drugId: 1,
+    time: moment() + 2000,
+    repeat: "week",
+    dosage: "500mg"
+  },
+  {
+    id: 2,
+    drugId: 2,
+    time: moment(),
+    repeat: "week",
+    dosage: "200mg"
+  },
+  {
+    id: 3,
+    drugId: 2,
+    time: moment(),
+    repeat: "week",
+    dosage: "700mg"
+  },
+  {
+    id: 4,
+    drugId: 3,
+    time: moment(),
+    repeat: "day",
+    dosage: "400mg"
+  }
 ];

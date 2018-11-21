@@ -1,48 +1,48 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
-import PropTypes from 'prop-types'
-import { medmindBlue } from '../../utilities/styles';
-export default class RoundedButton  extends Component {
-    constructor(props) {
-        super(props);
-    }
+import React, { Component } from "react";
+import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
+import PropTypes from "prop-types";
+import { medmindBlue } from "../../utilities/styles";
+export default class RoundedButton extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    static propTypes = {
-        name: PropTypes.string.isRequired,
-        onPress: PropTypes.func.isRequired,
-        buttonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-        textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
-    };
-    
-    static defaultProps = {};
-    
-    state = {}
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+    buttonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+    textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
+  };
 
-    render() {
-    return <TouchableHighlight 
+  static defaultProps = {};
+
+  state = {};
+
+  render() {
+    return (
+      <TouchableHighlight
         style={[styles.loginButton, this.props.buttonStyle]}
-        onPress={this.props.onPress}>
-        <Text
-        style={[styles.loginButtonText, this.props.textStyle]}>
-        {this.props.name}
+        onPress={this.props.onPress}
+      >
+        <Text style={[styles.loginButtonText, this.props.textStyle]}>
+          {this.props.name}
         </Text>
-    </TouchableHighlight>;
-    }
+      </TouchableHighlight>
+    );
+  }
 }
-     
 
 const styles = StyleSheet.create({
   loginButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: medmindBlue,
-    borderRadius: 8,
+    borderRadius: 8
   },
   loginButtonText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'white'
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white"
   }
 });
-

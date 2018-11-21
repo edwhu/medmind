@@ -11,14 +11,14 @@ export default class ScreenHeader extends Component {
     title: PropTypes.string,
     hasMenu: PropTypes.bool,
     hasSettings: PropTypes.bool,
-    fontSize: PropTypes.number,
+    fontSize: PropTypes.number
   };
 
   static defaultProps = {
     title: "Medmind",
     hasMenu: true,
     hasSettings: true,
-    fontSize: 24,
+    fontSize: 24
   };
 
   state = {};
