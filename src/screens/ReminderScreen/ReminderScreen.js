@@ -91,6 +91,7 @@ class ReminderScreen extends Component {
   displayRepeat = reminder => {
     switch (reminder.repeat) {
       case "week":
+        console.log(reminder.time);
         return ", every " + reminder.time.format("dddd");
       case "day":
         return ", every day";
