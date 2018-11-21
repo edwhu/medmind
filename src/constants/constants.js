@@ -93,7 +93,7 @@ export const testReminders = [
     { 
       id: 1, 
       drugId: 1, 
-      time: moment(), 
+      time: moment() + 2000, 
       repeat: 'week', 
       dosage: '500mg'
     },
