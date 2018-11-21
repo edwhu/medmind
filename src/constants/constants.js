@@ -34,6 +34,7 @@ export const testDrugs = [
     startDate: moment().subtract(3, "days"),
     endDate: moment(),
     dosage: '500mg',
+    snooze: true,
   },
   {
     id: 2,
@@ -43,6 +44,7 @@ export const testDrugs = [
     startDate: moment().subtract(7, "days"),
     endDate: moment(),
     dosage: '200mg',
+    snooze: false,
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ export const testDrugs = [
     startDate: moment().add(3, "days"),
     endDate: moment().add(7, "days"),
     dosage: '300mg',
+    snooze: true,
   },
   {
     id: 4,
@@ -61,6 +64,7 @@ export const testDrugs = [
     startDate: moment(),
     endDate: moment().add(2, "days"),
     dosage: '400mg',
+    snooze: true,
   },
   {
     id: 5,
@@ -70,6 +74,7 @@ export const testDrugs = [
     startDate: moment().subtract(7, "days"),
     endDate: moment().endOf("isoWeek"),
     dosage: '100mg',
+    snooze: false,
   },
   {
     id: 6,
@@ -79,6 +84,7 @@ export const testDrugs = [
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
     dosage: '500mg',
+    snooze: false,
   }
 ];
 
@@ -113,6 +119,14 @@ export const testReminders = [
       time: moment(), 
       repeat: 'day', 
       dosage: '400mg',
+      snooze: true,
+    },
+    { 
+      id: 5, 
+      drugId: 4, 
+      time: moment(), 
+      repeat: 'day', 
+      dosage: '100mg',
       snooze: true,
     },
 ];

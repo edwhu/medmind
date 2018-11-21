@@ -1,4 +1,4 @@
-import { ADD_REMINDER } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER } from "../../constants/action-types";
 import store from "../store";
 
 export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
@@ -24,6 +24,20 @@ export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
     return {
       type: ADD_REMINDER,
       reminder: newReminder
+    };
+  }
+}
+
+export function updateReminder(snooze) {
+  if (typeof snooze === "undefined") {
+    console.warn(
+      "Required field left blank"
+    );
+    return {};
+  } else {  
+    return {
+      type: UPDATE_REMINDER,
+      snooze: snooze,
     };
   }
 }

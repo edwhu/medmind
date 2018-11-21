@@ -1,6 +1,6 @@
 import moment from "moment";
 import { testReminders } from "../../constants/constants";
-import { ADD_REMINDER } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER } from "../../constants/action-types";
 
 const initialState = {
 	reminders: testReminders || [],
@@ -14,6 +14,16 @@ const remindersReducer = (state = initialState, action) => {
       newReminder.push(action.reminder);
       state = Object.assign({}, state, { reminders: newReminder });
   		return state;
+    case UPDATE_REMINDER:
+      console.log(action.snooze);
+      const newReminders = state.reminders.map(reminder => {
+        return {
+          ...reminder,
+          snooze: action.snooze[reminder.id]
+        }
+      });
+      state = Object.assign({}, state, { reminders: newReminders });
+      return state;
     default:
       return state;
   }

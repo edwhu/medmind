@@ -5,3 +5,4 @@ export const GET_NEXT_WEEK = "GET_NEXT_WEEK";
 export const UPDATE_CURRENT_WEEK = "UPDATE_CURRENT_WEEK";
 export const ADD_DRUG = "ADD_DRUG";
 export const ADD_REMINDER = "ADD_REMINDER";
+export const UPDATE_REMINDER = "UPDATE_REMINDER";

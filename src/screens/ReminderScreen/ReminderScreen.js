@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, Switch, ScrollView, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { updateReminder } from "../../redux/actions/reminder";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import { medmindBlue } from "../../constants/styles";
@@ -18,7 +19,22 @@ class ReminderScreen extends Component {
 
   static defaultProps = {};
 
-  state = {};
+  componentWillMount() {
+    this.initializeSnooze();
+  }
+
+  initializeSnooze = () => {
+    const snooze = {}
+    const drugSnooze = {}
+    this.props.reminders.forEach(item => {
+      snooze[item.id] = item.snooze;
+      const drug = this.getDrugById(item.drugId);
+      if (drug.length != 0) {
+        drugSnooze[drug[0].id] = drug[0].snooze;
+      }
+    });
+    this.setState({snooze, drugSnooze});
+  };
 
   // callback for login errors
   onError = error => {
@@ -39,6 +55,13 @@ class ReminderScreen extends Component {
     });
   };
 
+  getDrugId = drugName => {
+    const drugId = this.props.drugs.filter(function(drug) {
+      return drug.name == drugName;
+    });
+    return drugId[0].id;
+  };
+
   groupReminders = () => {
     var dict = {};
     this.props.reminders.forEach(item => {
@@ -53,6 +76,28 @@ class ReminderScreen extends Component {
     });
     return dict;
   };
+
+  toggleSnooze = id => {
+    const oldState = this.state.snooze[id];
+    this.setState({
+      snooze: {
+        ...this.state.snooze,
+        [id]: !oldState,
+      },
+    });
+    this.props.updateReminder(this.state.snooze);
+  };
+
+  toggleBulkSnooze = drugName => {
+    const drugId = this.getDrugId(drugName);
+    const oldState = this.state.drugSnooze[drugId];
+    this.setState({
+      drugSnooze: {
+        ...this.state.drugSnooze,
+        [drugId]: !oldState,
+      },
+    });
+  }
 
   displayRepeat = reminder => {
     switch (reminder.repeat) {
@@ -99,7 +144,9 @@ class ReminderScreen extends Component {
               <Switch 
               onTintColor={medmindBlue} 
               style={styles.switchButton} 
-              value={reminder.snooze}
+              onValueChange = {(id) => this.toggleSnooze(reminder.id)}
+              value={this.state.snooze[reminder.id] && this.state.drugSnooze[reminder.drugId]}
+              disabled={!this.state.drugSnooze[reminder.drugId]}
               />
             </View>
             <View style={styles.horizontalLine} />
@@ -112,8 +159,9 @@ class ReminderScreen extends Component {
             <Text style={styles.drugName}>{drug}</Text>
             <Switch
               onTintColor={medmindBlue}
-              value={true}
               style={styles.switchButton}
+              onValueChange = {(drugName) => this.toggleBulkSnooze(drug)}
+              value={this.state.drugSnooze[this.getDrugId(drug)]}
             />
           </View>
           {reminderList}
@@ -141,7 +189,9 @@ function mapStateToProps(state, props) {
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => ({
+  updateReminder: bindActionCreators(updateReminder, dispatch)
+})
 
 export default connect(
   mapStateToProps,
