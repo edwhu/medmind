@@ -41,6 +41,9 @@ const DrawerNavigation = createDrawerNavigator(
     dayViewScreen: {
       screen: DayViewScreen
     },
+    dayViewScreen: {
+      screen: DayViewScreen
+    },
     globalDrugListScreen: {
       screen: GlobalDrugListScreen,
       initialRouteName: "timelineScreen",
@@ -76,6 +79,9 @@ const DrawerStack = createStackNavigator(
 
 const AppStackNavigator = createStackNavigator(
   {
+    splashScreen : {
+      screen: SplashScreen
+    },
     loginStack: {
       screen: LoginScreen
     },
@@ -86,7 +92,7 @@ const AppStackNavigator = createStackNavigator(
   {
     headerMode: "none",
     // initialRouteName: 'loginStack',
-    initialRouteName: "drawerStack"
+    initialRouteName: "splashScreen"
   }
 );
 

@@ -131,6 +131,11 @@ export default class DayViewScreen extends Component {
 
   state = {};
 
+  // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
+  organizeDrugsByEvent(){
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
