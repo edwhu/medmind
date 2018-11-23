@@ -56,15 +56,10 @@ const DrawerNavigation = createDrawerNavigator(
     drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {
       labelStyle: {
-        // fontFamily: 'Raleway',
         color: 'white',
         fontSize: 14,
         marginLeft: '5.3%'
       },
-      // activeTintColor: 'red',
-      // activeBackgroundColor: 'transparent',
-      // inactiveTintColor: 'yellow',
-      // inActiveBackgroundColor: 'transparent',
     }
   },
  
@@ -78,10 +73,6 @@ const DrawerStack = createStackNavigator(
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
       header: null,
-      // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
-      // title: 'Medmind',
-      // headerTintColor: 'white', // styles the title color
-      
     }),
     cardStyle: {
       shadowColor: "transparent"
@@ -100,7 +91,6 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    // initialRouteName: 'loginStack',
     initialRouteName: "drawerStack"
   }
 );

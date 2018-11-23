@@ -2,12 +2,6 @@ import { StyleSheet } from "react-native";
 
 
 export default (styles = StyleSheet.create({
-  // profilePictureOuterContainer: {
-  //   width: 80,
-  //   height: 80,
-  //   borderRadius: 40,
-  //   borderWidth: 3
-  // },
   outerBorder: {
     width: 76,
     height: 76,
