@@ -115,6 +115,11 @@ class ReminderScreen extends Component {
           <View key={reminder.id}>
             <View style={styles.horizontalLine} />
             <View style={styles.reminder}>
+              <TouchableOpacity style={styles.minusButton}>
+                <Text style={styles.minus}>
+                -
+                </Text>
+              </TouchableOpacity>
               <View style={styles.info}>
                 <View style={styles.timeContainer}>
                   <Text style={styles.timeLabel}>

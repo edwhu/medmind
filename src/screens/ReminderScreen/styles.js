@@ -77,4 +77,19 @@ export default (styles = StyleSheet.create({
     marginBottom: 6,
     fontWeight: "200",
   },
+  minusButton: {
+    backgroundColor: medmindBlue,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems:'center',
+    position: 'absolute',
+    left: 21,
+  },
+  minus: {
+    color:'white',
+    fontSize: 20,
+    fontWeight: "200",
+  },
 }));
