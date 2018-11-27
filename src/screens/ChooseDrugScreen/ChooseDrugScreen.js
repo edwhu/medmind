@@ -42,9 +42,8 @@ class ChooseDrugScreen extends Component {
 
   render() {
     let sortedDrugs = this.props.drugs.sort();
-    const drugList = [];
-    sortedDrugs.forEach(drug => {
-      const listItem = (
+    const drugList = sortedDrugs.map(drug => {
+      return (
         <ListItem 
           key={drug.id} 
           label={drug.name} 
@@ -52,7 +51,6 @@ class ChooseDrugScreen extends Component {
           selected={this.checkSelected(drug.name)}
         />
       );
-      drugList.push(listItem);
     });
 
     return (

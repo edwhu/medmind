@@ -62,10 +62,15 @@ class ReminderScreen extends Component {
   };
 
   toggleSnooze = id => {
-    const reminders = this.props.reminders.slice(0);
-    reminders.forEach(item => {
-      if (item.id == id) {
-        item.snooze = !item.snooze;
+    const reminders = this.props.reminders.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          snooze: !item.snooze
+        }
+      }
+      else {
+        return item;
       }
     });
     this.props.updateReminder(reminders);
@@ -73,11 +78,16 @@ class ReminderScreen extends Component {
 
   toggleDrugSnooze = drugName => {
     const drugId = this.getDrugId(drugName);
-    const reminders = this.props.reminders.slice(0);
-    reminders.forEach(item => {
-      if (item.drugId == drugId) {
-        item.snoozeDrug = !item.snoozeDrug;
-        item.snooze = item.snoozeDrug;
+    const reminders = this.props.reminders.map(item => {
+      if (item.drugId === drugId) {
+        return {
+          ...item,
+          snooze: !item.snoozeDrug,
+          snoozeDrug: !item.snoozeDrug
+        }
+      }
+      else {
+        return item;
       }
     });
     this.props.updateReminder(reminders);
@@ -179,14 +189,14 @@ class ReminderScreen extends Component {
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
         <ScrollView>
-        <TouchableOpacity onPress={() => this.onEditPress()}>
+        <TouchableOpacity onPress={this.onEditPress}>
           <Text>
             {this.state.editMode ? "Save" : "Edit"}
           </Text>
         </TouchableOpacity>
         {reminders}
         </ScrollView>
-        <TouchableOpacity style={styles.plusButton} onPress={() => this.openReminderFormPage()}>
+        <TouchableOpacity style={styles.plusButton} onPress={this.openReminderFormPage}>
           <Text style={styles.plus}>+</Text>
         </TouchableOpacity>
       </View>

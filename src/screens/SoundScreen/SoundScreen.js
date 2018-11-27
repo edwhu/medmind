@@ -40,9 +40,8 @@ export default class SoundScreen extends Component {
   };
 
   render() {
-    soundList = [];
-    testSounds.forEach(sound => {
-      const listItem = (
+    soundList = testSounds.map(sound => {
+      return (
         <ListItem 
           key={sound}
           label={sound}
@@ -50,7 +49,6 @@ export default class SoundScreen extends Component {
           selected={this.checkSelected(sound)}
         />
       );
-      soundList.push(listItem);
     });
 
     return (

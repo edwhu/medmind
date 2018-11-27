@@ -86,7 +86,7 @@ export const testReminders = [
     { 
       id: 1, 
       drugId: 1, 
-      time: moment(), 
+      time: moment().add(2000), 
       repeat: 'week', 
       dosage: '500mg',
       snooze: false,
@@ -107,7 +107,7 @@ export const testReminders = [
       time: moment(), 
       repeat: 'week', 
       dosage: '700mg',
-      snooze: true,
+      snooze: false,
       snoozeDrug: false,
     },
     { 
@@ -117,7 +117,7 @@ export const testReminders = [
       repeat: 'day', 
       dosage: '400mg',
       snooze: true,
-      snoozeDrug: false,
+      snoozeDrug: true,
     },
     { 
       id: 5, 
@@ -125,8 +125,8 @@ export const testReminders = [
       time: moment(), 
       repeat: 'day', 
       dosage: '100mg',
-      snooze: true,
-      snoozeDrug: false,
+      snooze: false,
+      snoozeDrug: true,
     },
 ];
 

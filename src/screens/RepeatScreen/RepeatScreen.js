@@ -37,9 +37,7 @@ export default class RepeatScreen extends Component {
     }
   };
 
-  checkSelected = (repeat) => {
-    return this.state.repeat == repeat;
-  };
+  checkSelected = repeat => this.state.repeat == repeat;
 
   render() {
     return (
