@@ -1,11 +1,26 @@
 import { StyleSheet } from 'react-native';
 
 export default styles = StyleSheet.create({
-  container:{
-    backgroundColor: 'white',
-    height: '100%',
+  repeatContainer:{
+    borderBottomColor: medmindBlue, 
+    borderBottomWidth: 1, 
+    height: 50, 
+    marginHorizontal: 15, 
+    marginTop: 5,
   },
-  calendarWrapper: {
+  weekdayContainer: {
+    borderBottomColor: 'lightgrey', 
+    borderBottomWidth: 1, 
+    height:100, 
+    marginHorizontal: 15, 
+    marginTop: 15,
+  },
+  occuranceContainer: {
+    marginHorizontal: 15, 
+    marginTop: 15, 
+    borderBottomColor: 'lightgrey', 
+    borderBottomWidth: 1, 
+    height: 150,
   },
   text: {
     textAlign: 'center',

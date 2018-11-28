@@ -3,10 +3,14 @@ import { medmindBlue } from '../../constants/styles';
 
 export default styles = StyleSheet.create({
   container:{
-    backgroundColor: 'white',
-    height: '100%',
+    flex: 1, 
+    flexDirection: 'row', 
+    alignItems: 'center',
   },
-  calendarWrapper: {
+  buttonHolder: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'flex-start',
   },
   text: {
     textAlign: 'center',
@@ -27,7 +31,9 @@ export default styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 30,
     backgroundColor: "lightgrey",
-    marginLeft: 5
+    marginLeft: 5,
+    justifyContent: 'center', 
+    alignItems: 'center',
   },
 
   pressedButton: {

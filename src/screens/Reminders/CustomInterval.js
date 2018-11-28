@@ -50,14 +50,14 @@ export default class CustomIntervalScreen extends Component {
         return (
             <View style={{flex: 1}}>
                 <ScreenHeader title= { 'CUSTOM' } hasMenu = {false} hasSettings = {false} />
-                <View style={{borderBottomColor: medmindBlue, borderBottomWidth: 1, height: 50, marginHorizontal: 15, marginTop: 5}}>
+                <View style={styles.repeatContainer}>
                     <RepeatPrompt onSelect={this.onIntervalPress} selectedValue={this.state.repeatInterval}/>
                 </View>
-                <View style={{borderBottomColor: 'lightgrey', borderBottomWidth: 1, height:100, marginHorizontal: 15, marginTop: 15}}>
+                <View style={styles.weekdayContainer}>
                     <Text>Repeats On</Text>
                 <WeekdayButtons onPress={this.onWeekdayPress} selectedButtonIndex={this.state.selectedWeekday}/>
                 </View>
-                <View style={{marginHorizontal: 15, marginTop: 15, borderBottomColor: 'lightgrey', borderBottomWidth: 1, height: 150}}>
+                <View style={styles.occuranceContainer}>
                     <Text>Ends</Text>
                     <EndMenu onPress={this.onOccurancePress} selectedOccurance={this.state.selectedOccurance}/>
                 </View>

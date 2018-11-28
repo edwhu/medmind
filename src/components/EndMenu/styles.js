@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
 
 export default styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row', 
+    height: 40, 
+    alignItems: 'center'
+  },
   radioButton: {
     height: 20,
     width: 20,

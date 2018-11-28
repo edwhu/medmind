@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Dimensions, View, Text, StyleSheet, Platform, TextInput, Picker } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 
 export default class RepeatPrompt extends Component {
@@ -12,7 +13,7 @@ export default class RepeatPrompt extends Component {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', alignContent: 'center'}}> 
+            <View style={styles.container}> 
                 <Text>Repeats every </Text>
                 <TextInput
                     placeholder="1"
@@ -22,7 +23,7 @@ export default class RepeatPrompt extends Component {
                 <Picker
                     mode="dropdown"
                     selectedValue={this.props.selectedValue}
-                    style={{ height: 50, width: 100 }}
+                    style={styles.picker}
                     onValueChange={this.props.onSelect}>
                     <Picker.Item label="days" value="day" />
                     <Picker.Item label="weeks" value="week" />
