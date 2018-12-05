@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { medmindBlue } from "../../constants/styles";
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   heading: {
     height: 80,
     backgroundColor: medmindBlue,
@@ -33,5 +33,11 @@ export default (styles = StyleSheet.create({
     marginRight: 12,
     marginTop: 8,
     marginBottom: 8
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: '15.2%'
   }
-}));
+});

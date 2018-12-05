@@ -1,13 +1,20 @@
 import LoginButton from "../../components/LoginButton/LoginButton";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import DayIcon from "../../assets/00-Day.png"
 import { View, StyleSheet, Text, Image } from "react-native";
 import MedmindLogo from "../../assets/medmind-logo.png";
 import { medmindBlue } from "../../constants/styles";
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Logout"
+    drawerLabel: "Logout",
+    drawerIcon: () => (
+      <Image 
+        source = {DayIcon}
+        style = {styles.imageStyle}
+      />
+    )
   };
 
   static propTypes = {};
@@ -85,5 +92,11 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "underline",
     color: "blue"
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: '15.2%'
   }
 });

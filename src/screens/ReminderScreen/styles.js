@@ -59,5 +59,11 @@ export default (styles = StyleSheet.create({
     position: "absolute",
     right: 32,
     transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: '15.2%'
   }
 }));

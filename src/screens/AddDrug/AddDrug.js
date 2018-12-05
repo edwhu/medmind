@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Image, Text, View, StyleSheet } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
 import FormField from "../../components/FormField/FormField";
@@ -11,12 +11,19 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDrug } from "../../redux/actions/drug";
 import moment from "moment";
+import { drawerIconStyle } from '../../constants/styles';
+import AddDrugIcon from "../../assets/07-Settings.png"
 
 class AddDrugScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Add Drug"
+    drawerLabel: "Add Drug",
+    drawerIcon: () => (
+      <Image 
+        source = {AddDrugIcon}
+        style = {drawerIconStyle}
+      />
+    )
   };
-
   constructor(props) {
     super(props);
   }

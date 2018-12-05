@@ -42,5 +42,11 @@ export default (styles = StyleSheet.create({
     width: "82%",
     borderBottomColor: "#BDBDBD",
     borderBottomWidth: 1
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: '15.2%'
   }
 }));
