@@ -42,5 +42,8 @@ export default (styles = StyleSheet.create({
   drugBarWrapper: {
     backgroundColor: "transparent",
     paddingTop: 30
+  },
+  barBackground: {
+    backgroundColor: "white"
   }
 }));

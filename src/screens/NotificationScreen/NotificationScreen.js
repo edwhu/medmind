@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import { Text, TextInput, View, Keyboard, Button } from "react-native";
-import { bindActionCreators } from "redux";
+import { Image, View, Button } from "react-native";
+import { drawerIconStyle } from "../../constants/styles";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fireNotification } from "../../utils";
+import NotificationIcon from "../../assets/07-Settings.png";
 
-class NotificationScreen extends React.Component {
+class NotificationScreen extends Component {
+  static navigationOptions = {
+    drawerLabel: "Notification List",
+    drawerIcon: () => (
+      <Image source={NotificationIcon} style={drawerIconStyle} />
+    )
+  };
+
   onSubmit = e => {
     console.log("Inside onSubmit");
     let drugs = this.props.testDrugs;
