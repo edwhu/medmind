@@ -1,20 +1,23 @@
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
+import { Dimensions } from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
 import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
-import SplashScreen from "../screens/SplashScreen/SplashScreen";
-import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
-import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
-import { medmindBlue } from "../constants/styles";
+import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import ReminderFormScreen from '../screens/ReminderForm/ReminderForm';
 import RepeatScreen from '../screens/RepeatScreen/RepeatScreen';
 import SoundScreen from '../screens/SoundScreen/SoundScreen';
 import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
+import CameraScreen from "../screens/Camera/Camera";
+import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
+import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+
+const { width, height } = Dimensions.get("screen");
 
 const ReminderStack = createStackNavigator(
   {
@@ -44,6 +47,12 @@ const DrawerNavigation = createDrawerNavigator(
     timelineScreen: {
       screen: TimelineScreen
     },
+    cameraScreen: {
+      screen: CameraScreen
+    },
+    addDrugScreen: {
+      screen: AddDrugScreen
+    },
     logout: {
       screen: LoginScreen
     },
@@ -52,9 +61,6 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    },
-    splashScreen: {
-      screen: SplashScreen
     },
     shareDrugScreen: {
       screen: ShareDrugScreen
@@ -68,32 +74,30 @@ const DrawerNavigation = createDrawerNavigator(
     dayViewScreen: {
       screen: DayViewScreen
     },
+    dayViewScreen: {
+      screen: DayViewScreen
+    },
     globalDrugListScreen: {
-      screen: GlobalDrugListScreen,
-      initialRouteName: "timelineScreen",
-      contentComponent: CustomDrawer
+      screen: GlobalDrugListScreen
     },
     notificationScreen: {
       screen: NotificationScreen
     }
   },
   {
-    initialRouteName: "timelineScreen"
-    // contentComponent: DrawerComponent
-  }
-);
-
-const DrawerStack = createStackNavigator(
-  {
-    DrawerNavigation: { screen: DrawerNavigation }
-  },
-  {
+    initialRouteName: "timelineScreen",
+    contentComponent: CustomDrawer,
+    drawerWidth: Math.min(height, width) * 0.88,
+    contentOptions: {
+      labelStyle: {
+        color: "white",
+        fontSize: 14,
+        marginLeft: "5.3%"
+      }
+    },
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
       header: null
-      // headerStyle: { backgroundColor: medmindBlue }, // styles the header bar
-      // title: 'Medmind',
-      // headerTintColor: 'white', // styles the title color
     }),
     cardStyle: {
       shadowColor: "transparent"
@@ -101,19 +105,33 @@ const DrawerStack = createStackNavigator(
   }
 );
 
+// const DrawerStack = createStackNavigator(
+//   {
+//     DrawerNavigation: { screen: DrawerNavigation }
+//   },
+//   {
+//     headerMode: "float",
+//     navigationOptions: ({ navigation }) => ({
+//       header: null
+//     }),
+//     cardStyle: {
+//       shadowColor: "transparent"
+//     }
+//   }
+// );
+
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
       screen: LoginScreen
     },
     drawerStack: {
-      screen: DrawerStack
+      screen: DrawerNavigation
     }
   },
   {
     headerMode: "none",
-    // initialRouteName: 'loginStack',
-    initialRouteName: "drawerStack"
+    initialRouteName: "drawerStack",
   }
 );
 

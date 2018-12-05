@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, StyleSheet, Text, Image } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
-
+import DayIcon from "../../assets/00-Day.png";
 import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
@@ -124,12 +124,16 @@ export default class DayViewScreen extends Component {
   };
 
   static navigationOptions = {
-    drawerLabel: "Day View"
+    drawerLabel: "Day View",
+    drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
   };
 
   static defaultProps = {};
 
   state = {};
+
+  // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
+  organizeDrugsByEvent() {}
 
   render() {
     return (

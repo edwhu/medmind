@@ -14,5 +14,11 @@ export default (styles = StyleSheet.create({
   },
   calendarSwiper: {
     // backgroundColor: 'blue',
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: "15.2%"
   }
 }));

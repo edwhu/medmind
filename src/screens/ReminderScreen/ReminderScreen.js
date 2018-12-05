@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, Switch, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Switch, ScrollView, TouchableOpacity, Image } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateReminder } from "../../redux/actions/reminder";
+import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import { medmindBlue } from "../../constants/styles";
+import { medmindBlue, drawerIconStyle } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 
 class ReminderScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Reminders"
+    drawerLabel: "Reminders",
+    drawerIcon: () => <Image source={ReminderIcon} style={styles.imageStyle} />,
   };
 
   static propTypes = {};
@@ -187,7 +188,6 @@ class ReminderScreen extends Component {
     });
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <ScrollView>
         <TouchableOpacity onPress={this.onEditPress}>
           <Text>
