@@ -8,12 +8,39 @@ import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
 import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
+import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
+import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
+import SoundScreen from "../screens/SoundScreen/SoundScreen";
+import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
 import CameraScreen from "../screens/Camera/Camera";
 import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 
 const { width, height } = Dimensions.get("screen");
+
+const ReminderStack = createStackNavigator(
+  {
+    reminderScreen: {
+      screen: ReminderScreen
+    },
+    reminderFormScreen: {
+      screen: ReminderFormScreen
+    },
+    repeatScreen: {
+      screen: RepeatScreen
+    },
+    soundScreen: {
+      screen: SoundScreen
+    },
+    chooseDrugScreen: {
+      screen: ChooseDrugScreen
+    }
+  },
+  {
+    initialRouteName: "reminderScreen"
+  }
+);
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -41,8 +68,8 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
     },
-    reminderScreen: {
-      screen: ReminderScreen
+    reminderStack: {
+      screen: ReminderStack
     },
     dayViewScreen: {
       screen: DayViewScreen
@@ -67,15 +94,7 @@ const DrawerNavigation = createDrawerNavigator(
         fontSize: 14,
         marginLeft: "5.3%"
       }
-    }
-  }
-);
-
-const DrawerStack = createStackNavigator(
-  {
-    DrawerNavigation: { screen: DrawerNavigation }
-  },
-  {
+    },
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
       header: null
@@ -86,13 +105,28 @@ const DrawerStack = createStackNavigator(
   }
 );
 
+// const DrawerStack = createStackNavigator(
+//   {
+//     DrawerNavigation: { screen: DrawerNavigation }
+//   },
+//   {
+//     headerMode: "float",
+//     navigationOptions: ({ navigation }) => ({
+//       header: null
+//     }),
+//     cardStyle: {
+//       shadowColor: "transparent"
+//     }
+//   }
+// );
+
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
       screen: LoginScreen
     },
     drawerStack: {
-      screen: DrawerStack
+      screen: DrawerNavigation
     }
   },
   {

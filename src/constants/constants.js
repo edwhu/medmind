@@ -94,27 +94,58 @@ export const testReminders = [
     drugId: 1,
     time: moment().add(2000),
     repeat: "week",
-    dosage: "500mg"
+    dosage: "500mg",
+    snooze: false,
+    snoozeDrug: false
   },
   {
     id: 2,
     drugId: 2,
     time: moment(),
     repeat: "week",
-    dosage: "200mg"
+    dosage: "200mg",
+    snooze: false,
+    snoozeDrug: false
   },
   {
     id: 3,
     drugId: 2,
     time: moment(),
     repeat: "week",
-    dosage: "700mg"
+    dosage: "700mg",
+    snooze: false,
+    snoozeDrug: false
   },
   {
     id: 4,
     drugId: 3,
     time: moment(),
     repeat: "day",
-    dosage: "400mg"
+    dosage: "400mg",
+    snooze: true,
+    snoozeDrug: true
+  },
+  {
+    id: 5,
+    drugId: 4,
+    time: moment(),
+    repeat: "day",
+    dosage: "100mg",
+    snooze: false,
+    snoozeDrug: true
   }
+];
+
+export const testSounds = [
+  "Beacon",
+  "Bulletin",
+  "By the Seaside",
+  "Circuit",
+  "Constellation",
+  "Cosmic",
+  "Crystals",
+  "Illuminate",
+  "Night Owl",
+  "Play Time",
+  "Radar"
 ];
