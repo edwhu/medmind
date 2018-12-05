@@ -24,7 +24,12 @@ export default (styles = StyleSheet.create({
   },
   info: {
     position: "absolute",
-    left: 20
+    left: 20,
+    alignItems: "center",
+    alignContent: "center"
+  },
+  info: {
+    marginLeft: 20
   },
   timeContainer: {
     flexDirection: "row"
@@ -68,6 +73,9 @@ export default (styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     position: 'absolute',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
     bottom: 24,
     right: 30
   },
@@ -76,21 +84,32 @@ export default (styles = StyleSheet.create({
     fontSize: 55,
     marginBottom: 6,
     fontWeight: "200",
+    color: "white",
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200"
+  },
+  edit: {
+    marginLeft: 21
   },
   minusButton: {
     backgroundColor: medmindBlue,
     width: 20,
     height: 20,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems:'center',
-    position: 'absolute',
-    left: 21,
-    marginH
+    justifyContent: "center",
+    alignItems: "center"
   },
   minus: {
-    color:'white',
-    fontSize: 20,
-    fontWeight: "200",
+    color: "white",
+    fontSize: 30,
+    fontWeight: "600",
+    bottom: 9
   },
+  arrowButton: {
+    fontSize: 35,
+    color: "#BDBDBD",
+    position: "absolute",
+    right: 32
+  }
 }));
