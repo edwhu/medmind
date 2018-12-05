@@ -15,6 +15,8 @@ import MedmindLogo from "../../assets/medmind-logo.png";
 import { medmindBlue } from "../../constants/styles";
 import ProgressCircle from 'react-native-progress/CircleSnail';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import PasswordInput from '../../components/PasswordInput/PasswordInput';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -45,12 +47,12 @@ export default class LoginScreen extends Component {
 
   navigateForgotPassword = () => {
     console.log("Navigate to forgot password.");
-    // this.props.navigation.navigate("ForgotPasswordScreen");
+    this.props.navigation.navigate("forgotPasswordScreen");
   }
 
   navigateCreateAccount = () => {
     console.log("Navigate to create account.");
-    // this.props.navigation.navigate("CreateAccountScreen");
+    this.props.navigation.navigate("createAccountScreen");
   }
 
   handleLogin = () => {
@@ -80,13 +82,10 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
+      // <KeyboardAwareScrollView style={styles.container} contentContainerStyle={styles.scrollStyle}>
       <View style={styles.container}>
         <ScreenHeader {...this.props} hasMenu={false} hasSettings={false} />
-        <View
-          style={[
-            styles.contentContainer,
-            // { marginTop: 108 }
-          ]}>
+        <View style={styles.contentContainer}>
           <Text style={styles.signInText}>Sign In</Text>
           <View style={[styles.inputWrapper, { marginTop: 42 }]} >
             <TextInput
@@ -100,10 +99,11 @@ export default class LoginScreen extends Component {
               autoCapitalize={"none"}
               keyboardType={"email-address"}
               underlineColorAndroid="transparent"
+              textContentType="username"
             />
           </View>
           <View style={[styles.inputWrapper, { marginTop: 13 }]} >
-            <TextInput
+            <PasswordInput
               style={styles.textInput}
               placeholderTextColor={"#5B6571"}
               editable={true}
@@ -113,6 +113,7 @@ export default class LoginScreen extends Component {
               autoCorrect={false}
               autoCapitalize={"none"}
               underlineColorAndroid="transparent"
+              textContentType="password"
             />
           </View>
           <TouchableHighlight style={[styles.loginButtonWrapper, { marginTop: 31 }]} onPress={this.handleLogin} underlayColor="rgba(101,192,190, 0.2)">
@@ -139,6 +140,7 @@ export default class LoginScreen extends Component {
             <Text style={styles.footerText}>Create an account</Text>
           </TouchableOpacity>
         </View>
+      {/* </KeyboardAwareScrollView> */}
       </View>
     );
   }
@@ -147,17 +149,18 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between",
-    // flexGrow: 1,
     height: "100%",
-    width: "100%"
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
+  // scrollStyle: {
+  //   alignItems: "center",
+  //   // justifyContent: "space-between",
+  // },
   contentContainer: {
-    // height: "100%",
     width: "100%",
     alignSelf: "center",
-    // justifyContent: "center",
     alignItems: "center",
     marginBottom: 100
   },
@@ -166,8 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     color: "#4F4F4F",
-    // justifyContent: "center",
-    // alignSelf: "center"
+    letterSpacing: 1
   },
   inputWrapper: {
     width: "80%",
@@ -183,10 +185,11 @@ const styles = StyleSheet.create({
     width: "100%",
     fontFamily: "System",
     fontSize: 16,
-    marginLeft: 10
+    paddingLeft: 10,
+    paddingRight: 10
   },
   loginButtonWrapper: {
-    width: "80%",
+    width: "70%",
     height: 46,
     justifyContent: "center",
     alignItems: "center",
@@ -206,9 +209,7 @@ const styles = StyleSheet.create({
     marginBottom: 38
   },
   opacityWrapper: {
-    // color: "rgba(91,101,113,0.5)",
-    // alignSelf: "flex-end",
-    // fontSize: 12
+    
   },
   footerText: {
     color: "#5B6571",

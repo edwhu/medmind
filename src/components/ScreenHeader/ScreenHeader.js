@@ -11,11 +11,12 @@ export default class ScreenHeader extends Component {
     title: PropTypes.string,
     hasMenu: PropTypes.bool,
     hasSettings: PropTypes.bool,
+    hasBack: PropTypes.bool,
     fontSize: PropTypes.number
   };
 
   static defaultProps = {
-    title: "Medmind",
+    title: "MEDMIND",
     hasMenu: true,
     hasSettings: true,
     fontSize: 24
@@ -32,6 +33,11 @@ export default class ScreenHeader extends Component {
     console.log("open settings");
   };
 
+  goBack = () => {
+    console.log("navigate back");
+    this.props.navigation.goBack(null);
+  }
+
   render() {
     return (
       <View {...this.props} style={styles.container}>
@@ -45,6 +51,19 @@ export default class ScreenHeader extends Component {
               <Ionicons
                 style={styles.hamburgerIcon}
                 name="md-menu"
+                size={32}
+                color="white"
+              />
+            </TouchableOpacity>
+          )}
+          {this.props.hasBack && (
+            <TouchableOpacity
+              style={[styles.hamburgerWrapper, { marginRight: -32 }]}
+              onPress={this.goBack}
+            >
+              <Ionicons
+                style={styles.hamburgerIcon}
+                name="ios-arrow-back"
                 size={32}
                 color="white"
               />
@@ -105,10 +124,11 @@ const styles = StyleSheet.create({
   },
   appBarTitle: {
     color: "white",
-    fontWeight: "500",
+    fontWeight: "600",
     fontFamily: "System",
-    fontSize: 24,
+    fontSize: 16,
     flex: 8,
-    textAlign: "center"
+    textAlign: "center",
+    letterSpacing: 2
   }
 });

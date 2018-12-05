@@ -11,6 +11,8 @@ import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugList
 import CameraScreen from "../screens/Camera/Camera";
 import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
+import ForgotPasswordScreen from "../screens/ForgotPassword/ForgotPassword";
+import CreateAccountScreen from "../screens/CreateAccountScreen/CreateAccountScreen";
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -78,10 +80,54 @@ const DrawerStack = createStackNavigator(
   }
 );
 
+const CreateAccountStack = createStackNavigator(
+  {
+    signUpScreen: {
+      screen: CreateAccountScreen
+    },
+  },
+  {
+    initialRouteName: "signUpScreen",
+    mode: "modal",
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    }),
+    cardStyle: {
+      shadowColor: "transparent"
+    }
+  }
+);
+
+const LoginStack = createStackNavigator(
+  {
+    loginScreen: {
+      screen: LoginScreen
+    },
+    forgotPasswordScreen: {
+      screen: ForgotPasswordScreen
+    },
+    createAccountScreen: {
+      screen: CreateAccountStack
+    }
+  },
+  {
+    initialRouteName: "loginScreen",
+    // initialRouteName: "forgotPasswordScreen",
+    // initialRouteName: "createAccountScreen",
+    mode: "modal",
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    }),
+    cardStyle: {
+      shadowColor: "transparent"
+    }
+  }
+);
+
 const AppStackNavigator = createStackNavigator(
   {
     loginStack: {
-      screen: LoginScreen
+      screen: LoginStack
     },
     drawerStack: {
       screen: DrawerStack
@@ -89,7 +135,7 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "drawerStack"
+    initialRouteName: "loginStack"
   }
 );
 
