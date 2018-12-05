@@ -27,14 +27,14 @@ class ReminderFormScreen extends Component {
 
   state = {
     title: this.props.title || "Reminder",
-    snooze: false,
+    snooze: false
   };
 
   openDrugListPage = () => {
     this.props.navigation.navigate("chooseDrugScreen", {
       showButton: true,
       returnDrug: this.setDrug.bind(this),
-      selectedDrug: this.state.drug,
+      selectedDrug: this.state.drug
     });
   };
 
@@ -42,7 +42,7 @@ class ReminderFormScreen extends Component {
     this.props.navigation.navigate("repeatScreen", {
       showButton: true,
       returnRepeat: this.setRepeat.bind(this),
-      selectedRepeat: this.state.repeat,
+      selectedRepeat: this.state.repeat
     });
   };
 
@@ -50,24 +50,24 @@ class ReminderFormScreen extends Component {
     this.props.navigation.navigate("soundScreen", {
       showButton: true,
       returnSound: this.setSound.bind(this),
-      selectedSound: this.state.sound,
+      selectedSound: this.state.sound
     });
   };
 
   setDrug = (drug, dosage) => {
-    this.setState({drug: drug, dosage: dosage});
+    this.setState({ drug: drug, dosage: dosage });
   };
 
-  setSound = (sound) => {
-    this.setState({sound: sound});
+  setSound = sound => {
+    this.setState({ sound: sound });
   };
 
-  setRepeat = (repeat) => {
-    this.setState({repeat: repeat});
+  setRepeat = repeat => {
+    this.setState({ repeat: repeat });
   };
 
   toggleSnooze = () => {
-    this.setState({snooze: !this.state.snooze})
+    this.setState({ snooze: !this.state.snooze });
   };
 
   getDrugId = drugName => {
@@ -82,70 +82,91 @@ class ReminderFormScreen extends Component {
     if (drug.length == 0) {
       return;
     }
-    if (typeof this.state.startDate == 'undefined') {
+    if (typeof this.state.startDate == "undefined") {
       this.state.startDate = moment();
     }
     this.props.addReminder(
       drug[0].id,
       drug[0].dosage,
-      this.state.sound, 
-      this.state.repeat, 
-      this.state.startDate, 
+      this.state.sound,
+      this.state.repeat,
+      this.state.startDate,
       this.state.snooze
     );
     this.props.navigation.goBack();
   };
 
   render() {
-    const arrowButton = <Ionicons name='ios-arrow-forward' style={styles.arrowButton} />;
-    const soundText = <Text style={styles.selectedSetting}>{this.state.sound}</Text>;
-    const repeatText = <Text style={styles.selectedSetting}>{this.state.repeat}</Text>;
-    const drugText = <Text style={styles.selectedSetting}>{this.state.drug}</Text>;
+    const arrowButton = (
+      <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
+    );
+    const soundText = (
+      <Text style={styles.selectedSetting}>{this.state.sound}</Text>
+    );
+    const repeatText = (
+      <Text style={styles.selectedSetting}>{this.state.repeat}</Text>
+    );
+    const drugText = (
+      <Text style={styles.selectedSetting}>{this.state.drug}</Text>
+    );
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <TimePicker 
-          header='Time'
-          setDate={startDate => this.setState({startDate})} 
+        <TimePicker
+          header="Time"
+          setDate={startDate => this.setState({ startDate })}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Drug</Text>
-          <TouchableOpacity style={styles.button} onPress={() => this.openDrugListPage()}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.openDrugListPage()}
+          >
             {this.state.drug ? drugText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Repeat</Text>
-          <TouchableOpacity style={styles.button} onPress={() => this.openRepeatPage()}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.openRepeatPage()}
+          >
             {this.state.repeat ? repeatText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Dosage</Text>
-          <Text style={styles.entry}>{this.state.dosage ? this.state.dosage : null}</Text>
+          <Text style={styles.entry}>
+            {this.state.dosage ? this.state.dosage : null}
+          </Text>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Sound</Text>
-          <TouchableOpacity style={styles.button} onPress={() => this.openSoundPage()}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.openSoundPage()}
+          >
             {this.state.sound ? soundText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Snooze</Text>
-          <Switch 
-            onTintColor={medmindBlue} 
-            style={styles.switchButton} 
-            onValueChange = {() => this.toggleSnooze()}
-            value = {this.state.snooze}
+          <Switch
+            onTintColor={medmindBlue}
+            style={styles.switchButton}
+            onValueChange={() => this.toggleSnooze()}
+            value={this.state.snooze}
           />
         </View>
         <View style={styles.horizontalLine} />
-        <TouchableOpacity onPress={() => this.saveReminder()}><Text>Save</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.saveReminder()}>
+          <Text>Save</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -153,13 +174,13 @@ class ReminderFormScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
-     drugs: state.drugInfoReducer.drugInfo,
+    drugs: state.drugInfoReducer.drugInfo
   };
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   addReminder: bindActionCreators(addReminder, dispatch)
-})
+});
 
 export default connect(
   mapStateToProps,

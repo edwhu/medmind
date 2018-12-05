@@ -8,7 +8,6 @@ import { testSounds } from "../../constants/constants";
 import styles from "./styles";
 
 export default class SoundScreen extends Component {
-
   static propTypes = {};
 
   static defaultProps = {};
@@ -16,7 +15,7 @@ export default class SoundScreen extends Component {
   state = {};
 
   componentWillMount() {
-    this.setState({sound: this.props.navigation.state.params.selectedSound});
+    this.setState({ sound: this.props.navigation.state.params.selectedSound });
   }
 
   // callback for login errors
@@ -28,21 +27,21 @@ export default class SoundScreen extends Component {
     title: this.props.title || "Sound"
   };
 
-  setSound = (sound) => {
+  setSound = sound => {
     if (this.state.sound != sound) {
-      this.setState({sound: sound});
+      this.setState({ sound: sound });
       this.props.navigation.state.params.returnSound(sound);
     }
   };
 
-  checkSelected = (sound) => {
+  checkSelected = sound => {
     return this.state.sound == sound;
   };
 
   render() {
     soundList = testSounds.map(sound => {
       return (
-        <ListItem 
+        <ListItem
           key={sound}
           label={sound}
           onPress={() => this.setSound(sound)}
@@ -54,9 +53,7 @@ export default class SoundScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <ScrollView>
-        {soundList}
-        </ScrollView>
+        <ScrollView>{soundList}</ScrollView>
       </View>
     );
   }

@@ -20,10 +20,10 @@ export default (styles = StyleSheet.create({
     height: 100,
     flexDirection: "row",
     alignItems: "center",
-    alignContent: "center",
+    alignContent: "center"
   },
   info: {
-    marginLeft: 20,
+    marginLeft: 20
   },
   timeContainer: {
     flexDirection: "row"
@@ -64,39 +64,39 @@ export default (styles = StyleSheet.create({
     width: 74,
     height: 74,
     borderRadius: 37,
-    justifyContent: 'center',
-    alignItems:'center',
-    position: 'absolute',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
     bottom: 24,
     right: 30
   },
   plus: {
-    color:'white',
+    color: "white",
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200",
+    fontWeight: "200"
   },
   edit: {
-    marginLeft: 21,
+    marginLeft: 21
   },
   minusButton: {
     backgroundColor: medmindBlue,
     width: 20,
     height: 20,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems:'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   minus: {
-    color:'white',
+    color: "white",
     fontSize: 30,
     fontWeight: "600",
-    bottom: 9,
+    bottom: 9
   },
   arrowButton: {
     fontSize: 35,
     color: "#BDBDBD",
     position: "absolute",
-    right: 32,
-  },
+    right: 32
+  }
 }));

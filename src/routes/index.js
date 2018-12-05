@@ -8,10 +8,10 @@ import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
 import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
-import ReminderFormScreen from '../screens/ReminderForm/ReminderForm';
-import RepeatScreen from '../screens/RepeatScreen/RepeatScreen';
-import SoundScreen from '../screens/SoundScreen/SoundScreen';
-import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
+import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
+import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
+import SoundScreen from "../screens/SoundScreen/SoundScreen";
+import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
 import CameraScreen from "../screens/Camera/Camera";
 import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
@@ -35,10 +35,10 @@ const ReminderStack = createStackNavigator(
     },
     chooseDrugScreen: {
       screen: ChooseDrugScreen
-    },
+    }
   },
   {
-    initialRouteName: "reminderScreen",
+    initialRouteName: "reminderScreen"
   }
 );
 
@@ -67,9 +67,9 @@ const DrawerNavigation = createDrawerNavigator(
     },
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
-    }, 
-    reminderStack: { 
-      screen: ReminderStack,
+    },
+    reminderStack: {
+      screen: ReminderStack
     },
     dayViewScreen: {
       screen: DayViewScreen
@@ -131,7 +131,7 @@ const AppStackNavigator = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "drawerStack",
+    initialRouteName: "drawerStack"
   }
 );
 

@@ -9,7 +9,6 @@ import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
 
 class ChooseDrugScreen extends Component {
-
   static propTypes = {};
 
   static defaultProps = {};
@@ -17,7 +16,7 @@ class ChooseDrugScreen extends Component {
   state = {};
 
   componentWillMount() {
-    this.setState({drug: this.props.navigation.state.params.selectedDrug});
+    this.setState({ drug: this.props.navigation.state.params.selectedDrug });
   }
 
   // callback for login errors
@@ -31,12 +30,12 @@ class ChooseDrugScreen extends Component {
 
   setDrug = (drug, dosage) => {
     if (this.state.drug != drug) {
-      this.setState({drug: drug});
+      this.setState({ drug: drug });
       this.props.navigation.state.params.returnDrug(drug, dosage);
     }
   };
 
-  checkSelected = (drug) => {
+  checkSelected = drug => {
     return this.state.drug == drug;
   };
 
@@ -44,10 +43,10 @@ class ChooseDrugScreen extends Component {
     let sortedDrugs = this.props.drugs.sort();
     const drugList = sortedDrugs.map(drug => {
       return (
-        <ListItem 
-          key={drug.id} 
-          label={drug.name} 
-          onPress={() => this.setDrug(drug.name, drug.dosage)} 
+        <ListItem
+          key={drug.id}
+          label={drug.name}
+          onPress={() => this.setDrug(drug.name, drug.dosage)}
           selected={this.checkSelected(drug.name)}
         />
       );
@@ -56,9 +55,7 @@ class ChooseDrugScreen extends Component {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <ScrollView>
-        {drugList}
-        </ScrollView>
+        <ScrollView>{drugList}</ScrollView>
       </View>
     );
   }
@@ -66,7 +63,7 @@ class ChooseDrugScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
-     drugs: state.drugInfoReducer.drugInfo,
+    drugs: state.drugInfoReducer.drugInfo
   };
 }
 
