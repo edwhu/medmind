@@ -49,6 +49,11 @@ export default (styles = StyleSheet.create({
     margin: 5
   },
 
+  greyHeader: {
+    color: "grey",
+    margin: 5
+  },
+
   dataStyle: {
     textAlign: "center",
     fontSize: 15
@@ -78,15 +83,16 @@ export default (styles = StyleSheet.create({
     borderLeftColor: "#E5E5E5"
   },
 
-  patientData: {
-    fontSize: 15,
-    margin: 5
-  },
-
   bigHeaderText: {
     fontSize: 15,
     fontWeight: "600",
     margin: 5,
     textAlign: "center"
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: "15.2%"
   }
 }));

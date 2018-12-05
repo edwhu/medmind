@@ -1,16 +1,26 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  StyleSheet
+} from "react-native";
 import { Camera, Permissions } from "expo";
 import { getFDA } from "../../utilities/FDA";
 import { Ionicons } from "@expo/vector-icons";
 import drugData from "../../assets/Products.json";
+import { drawerIconStyle } from "../../constants/styles";
+import CameraIcon from "../../assets/07-Settings.png";
 
 const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
   static navigationOptions = {
-    drawerLabel: "Camera Screen"
+    drawerLabel: "Camera Screen",
+    drawerIcon: () => <Image source={CameraIcon} style={drawerIconStyle} />
   };
 
   state = {

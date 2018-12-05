@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native";
+import DayIcon from "../../assets/00-Day.png";
 import MedmindLogo from "../../assets/medmind-logo.png";
 import { medmindBlue } from "../../constants/styles";
 import ProgressCircle from 'react-native-progress/CircleSnail';
@@ -20,7 +21,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Logout"
+    drawerLabel: "Logout",
+    drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
   };
 
   static propTypes = {};
@@ -208,14 +210,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginBottom: 38
   },
-  opacityWrapper: {
-    
-  },
+  opacityWrapper: {},
   footerText: {
     color: "#5B6571",
     fontFamily: "System",
     fontSize: 12,
     alignSelf: "center",
     textAlign: "center"
+  },
+  link: {
+    textDecorationLine: "underline",
+    color: "blue"
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: "15.2%"
   }
 });
