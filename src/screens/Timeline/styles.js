@@ -19,6 +19,6 @@ export default (styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 5,
-    marginLeft: '15.2%'
+    marginLeft: "15.2%"
   }
 }));

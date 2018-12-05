@@ -1,21 +1,20 @@
-import * as React from 'react';
-import { Text, View, StyleSheet, Share, Button, Image} from 'react-native';
-import { Constants, FileSystem } from 'expo';
-import moment from 'moment';
-import { medmindBlue } from '../../constants/styles';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
-import ExportIcon from '../../assets/05-ExportSumm.png';
-import PropTypes from 'prop-types';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {testDrugs} from '../../constants/constants';
-import styles from './styles';
+import * as React from "react";
+import { Text, View, StyleSheet, Share, Button, Image } from "react-native";
+import { Constants, FileSystem } from "expo";
+import moment from "moment";
+import { medmindBlue } from "../../constants/styles";
+import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import ExportIcon from "../../assets/05-ExportSumm.png";
+import PropTypes from "prop-types";
+import { ScrollView, FlatList } from "react-native-gesture-handler";
+import { testDrugs } from "../../constants/constants";
+import styles from "./styles";
 import { connect } from "react-redux";
 // You can import from local files
 
 // or any pure javascript modules available in npm
 
 class ShareDrugScreen extends React.Component {
-  
   static navigationOptions = {
     drawerLabel: "Share Drug"
   };
@@ -43,12 +42,7 @@ class ShareDrugScreen extends React.Component {
 
   static navigationOptions = {
     drawerLabel: "shareDrugScreen",
-    drawerIcon: () => (
-      <Image 
-        source = {ExportIcon}
-        style = {styles.imageStyle}
-      />
-    )
+    drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
   };
 
   static defaultProps = {};
@@ -128,77 +122,55 @@ class ShareDrugScreen extends React.Component {
 
           {children}
 
-            <ScrollView>
-            <View style = {styles.buttonContainer}>
-              <View style = {styles.columnContainer}>
-                <Text style={styles.bigHeaderText}>
-                  CURRENT MEDS
-                </Text>
-                </View>
-              <View
-                style={styles.vertBorder}
-              />
+          <ScrollView>
+            <View style={styles.buttonContainer}>
+              <View style={styles.columnContainer}>
+                <Text style={styles.bigHeaderText}>CURRENT MEDS</Text>
+              </View>
+              <View style={styles.vertBorder} />
 
-              <View style = {styles.columnContainer}>
-                <Text style = {styles.headerText}>
-                  Dosage
-                </Text>
+              <View style={styles.columnContainer}>
+                <Text style={styles.headerText}>Dosage</Text>
               </View>
 
-              <View
-                style={styles.vertBorder}
-              />
+              <View style={styles.vertBorder} />
 
-              <View style = {styles.columnContainer}>
-
-                <Text style = {styles.headerText}>
-                  Frequency
-                </Text>
+              <View style={styles.columnContainer}>
+                <Text style={styles.headerText}>Frequency</Text>
               </View>
-            
-            </View> 
-            
+            </View>
+
             {children}
-            
-            <View style = {styles.buttonContainer}>
-              <View style = {styles.columnContainer}>
-                <Text style={styles.bigHeaderText}>
-                  SUPPLEMENTS
-                </Text>
-                </View>
-              <View
-                style={styles.vertBorder}
-              />
 
-              <View style = {styles.columnContainer}>
-                <Text style = {styles.headerText}>
-                  Dosage
-                </Text>
+            <View style={styles.buttonContainer}>
+              <View style={styles.columnContainer}>
+                <Text style={styles.bigHeaderText}>SUPPLEMENTS</Text>
+              </View>
+              <View style={styles.vertBorder} />
+
+              <View style={styles.columnContainer}>
+                <Text style={styles.headerText}>Dosage</Text>
               </View>
 
-              <View
-                style={styles.vertBorder}
-              />
+              <View style={styles.vertBorder} />
 
-              <View style = {styles.columnContainer}>
-
-                <Text style = {styles.headerText}>
-                  Frequency
-                </Text>
+              <View style={styles.columnContainer}>
+                <Text style={styles.headerText}>Frequency</Text>
               </View>
-            
-            </View> 
-            
+            </View>
+
             {children}
-            </ScrollView>
-          <View style={{
-            alignItems: 'center'
-          }}>
-            <View style={styles.button} >
+          </ScrollView>
+          <View
+            style={{
+              alignItems: "center"
+            }}
+          >
+            <View style={styles.button}>
               <Button
                 onPress={this.onSharePress}
                 title="Export"
-                color = {medmindBlue}
+                color={medmindBlue}
                 accessibilityLabel="Share to your friends!"
               />
             </View>

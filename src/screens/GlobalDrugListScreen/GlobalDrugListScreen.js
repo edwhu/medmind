@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, StyleSheet, Text, Image } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
-import DrugIcon from "../../assets/04-DrugList.png"
+import DrugIcon from "../../assets/04-DrugList.png";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -18,12 +18,7 @@ class GlobalDrugListScreen extends Component {
 
   static navigationOptions = {
     drawerLabel: "Drug List",
-    drawerIcon: () => (
-      <Image 
-        source = {DrugIcon}
-        style = {styles.imageStyle}
-      />
-    )
+    drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
   };
 
   static defaultProps = {};

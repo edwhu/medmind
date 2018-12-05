@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 
-
 export default (styles = StyleSheet.create({
   outerBorder: {
     width: 76,
@@ -8,10 +7,10 @@ export default (styles = StyleSheet.create({
     borderRadius: 38,
     borderWidth: 3,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: "#B0DFDF", 
-    overflow:"hidden" 
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#B0DFDF",
+    overflow: "hidden"
   },
   innerBorder: {
     width: 73,
@@ -19,14 +18,14 @@ export default (styles = StyleSheet.create({
     borderRadius: 36.5,
     borderWidth: 3,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderColor: "#CDF0EF",
-    overflow: "hidden",
+    overflow: "hidden"
   },
   profilePicture: {
     width: 70,
-    height: 70,
+    height: 70
   },
   text: {
     // textAlign: "center",
@@ -44,5 +43,5 @@ export default (styles = StyleSheet.create({
   },
   pad: {
     padding: "1.5%"
-  },
+  }
 }));

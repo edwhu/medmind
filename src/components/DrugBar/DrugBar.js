@@ -31,12 +31,12 @@ class DrugBar extends Component {
     width: 0
   };
 
-  // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color 
+  // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color
   state = {
     barStyle: {
       backgroundColor: this.props.backgroundColor + "50",
       width: 0,
-      marginLeft: 0,
+      marginLeft: 0
     },
     marginLeft: 0,
     width: 0
@@ -126,7 +126,7 @@ class DrugBar extends Component {
       borderBottomLeftRadius,
       borderBottomRightRadius,
       borderTopLeftRadius,
-      borderTopRightRadius,
+      borderTopRightRadius
     };
 
     const newStyle = Object.assign({}, this.state.barStyle, barStyle);
@@ -151,23 +151,26 @@ class DrugBar extends Component {
       <TouchableOpacity
         onPress={this._openDrugInfo}
         activeOpacity={0.6}
-        style={[{ marginBottom: 1 }, barStyle, {backgroundColor: 'white'} ]}
+        style={[{ marginBottom: 1 }, barStyle, { backgroundColor: "white" }]}
       >
-            <View style={{borderBottomLeftRadius: barStyle.borderBottomLeftRadius,
-      borderBottomRightRadius: barStyle.borderBottomRightRadius,
-      borderTopLeftRadius: barStyle.borderTopLeftRadius,
-      borderTopRightRadius: barStyle.borderTopRightRadius, backgroundColor: barStyle.backgroundColor}} >
-
-        <View style={styles.barBackground}>
-          <View style={styles.drugBarContainer}>
-            <DrugIcon color={this.props.backgroundColor} />
-            <Text style={styles.drugText} numberOfLines={2}>
-              {this.props.drugInfo.name}
-            </Text>
+        <View
+          style={{
+            borderBottomLeftRadius: barStyle.borderBottomLeftRadius,
+            borderBottomRightRadius: barStyle.borderBottomRightRadius,
+            borderTopLeftRadius: barStyle.borderTopLeftRadius,
+            borderTopRightRadius: barStyle.borderTopRightRadius,
+            backgroundColor: barStyle.backgroundColor
+          }}
+        >
+          <View style={styles.barBackground}>
+            <View style={styles.drugBarContainer}>
+              <DrugIcon color={this.props.backgroundColor} />
+              <Text style={styles.drugText} numberOfLines={2}>
+                {this.props.drugInfo.name}
+              </Text>
+            </View>
           </View>
         </View>
-        </View>
-
       </TouchableOpacity>
     );
   }
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-    paddingRight: 50,
+    paddingRight: 50
   },
   drugText: {
     color: "#5B6571",
@@ -187,8 +190,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10
   },
-  barBackground: {
-  }
+  barBackground: {}
 });
 
 function mapStateToProps(state, props) {

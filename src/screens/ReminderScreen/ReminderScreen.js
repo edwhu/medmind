@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, Switch, Image } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import ReminderIcon from "../../assets/03-Notifs.png"
+import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import { medmindBlue } from "../../constants/styles";
@@ -12,12 +12,7 @@ import styles from "./styles";
 class ReminderScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Reminders",
-    drawerIcon: () => (
-      <Image 
-        source = {ReminderIcon}
-        style = {styles.imageStyle}
-      />
-    )
+    drawerIcon: () => <Image source={ReminderIcon} style={styles.imageStyle} />
   };
 
   static propTypes = {};

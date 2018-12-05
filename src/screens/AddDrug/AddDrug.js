@@ -11,18 +11,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDrug } from "../../redux/actions/drug";
 import moment from "moment";
-import { drawerIconStyle } from '../../constants/styles';
-import AddDrugIcon from "../../assets/07-Settings.png"
+import { drawerIconStyle } from "../../constants/styles";
+import AddDrugIcon from "../../assets/07-Settings.png";
 
 class AddDrugScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Add Drug",
-    drawerIcon: () => (
-      <Image 
-        source = {AddDrugIcon}
-        style = {drawerIconStyle}
-      />
-    )
+    drawerIcon: () => <Image source={AddDrugIcon} style={drawerIconStyle} />
   };
   constructor(props) {
     super(props);

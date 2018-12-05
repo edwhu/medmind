@@ -13,7 +13,7 @@ import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 
-const { width, height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
 const DrawerNavigation = createDrawerNavigator(
   {
@@ -63,13 +63,12 @@ const DrawerNavigation = createDrawerNavigator(
     drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {
       labelStyle: {
-        color: 'white',
+        color: "white",
         fontSize: 14,
-        marginLeft: '5.3%'
-      },
+        marginLeft: "5.3%"
+      }
     }
-  },
- 
+  }
 );
 
 const DrawerStack = createStackNavigator(
@@ -79,7 +78,7 @@ const DrawerStack = createStackNavigator(
   {
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
-      header: null,
+      header: null
     }),
     cardStyle: {
       shadowColor: "transparent"
