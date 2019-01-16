@@ -22,8 +22,8 @@ class DrugBar extends Component {
     drugInfo: PropTypes.objectOf(PropTypes.any),
     backgroundColor: PropTypes.string,
     beginningOfWeek: PropTypes.any,
-    endOfWeek: PropTypes.any
-  };
+    endOfWeek: PropTypes.any,
+  }
 
   static defaultProps = {
     backgroundColor: medmindBlue,
@@ -147,6 +147,11 @@ class DrugBar extends Component {
 
   render() {
     const barStyle = this.state.barStyle;
+    const { beginningOfWeek, endOfWeek, drugInfo } = this.props;
+    const { startDate, endDate } = drugInfo;
+
+    const hideDrugIcon = startDate > endOfWeek || endDate < beginningOfWeek;
+    console.log(hideDrugIcon);
     return (
       <TouchableOpacity
         onPress={this._openDrugInfo}
@@ -164,7 +169,7 @@ class DrugBar extends Component {
         >
           <View style={styles.barBackground}>
             <View style={styles.drugBarContainer}>
-              <DrugIcon color={this.props.backgroundColor} />
+              {!hideDrugIcon && <DrugIcon color={this.props.backgroundColor} />}
               <Text style={styles.drugText} numberOfLines={2}>
                 {this.props.drugInfo.name}
               </Text>

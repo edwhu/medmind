@@ -107,6 +107,7 @@ class CalendarWeek extends Component {
   render() {
     const dates = this._mapDates();
 
+    console.log(this.props.drugInfo);
     const drugBars = this.props.drugInfo.map((drug, index) => {
       return (
         <DrugBar
