@@ -24,7 +24,9 @@ class WeekSwiper extends Component {
 
   static defaultProps = {};
 
-  state = {};
+  state = {
+    loading: false,
+  };
 
   componentDidUpdate(prevProps) {
     if (
@@ -57,6 +59,9 @@ class WeekSwiper extends Component {
   };
 
   _getNewWeek = index => {
+    if (this.state.loading) return;
+    
+    this.setState({loading: true});
     if (index === 0) {
       // it is the edge week in the past, fetch the previous week
       const week = parseInt(this.props.currentWeek) - 1;
@@ -75,8 +80,8 @@ class WeekSwiper extends Component {
       );
     } else {
       this.props.updateCurrentWeek(this.props.pageTracker[index]);
-      return;
     }
+    this.setState({loading: false});
   };
 
   render() {
