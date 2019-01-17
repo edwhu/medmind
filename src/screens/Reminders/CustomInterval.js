@@ -37,9 +37,10 @@ export default class CustomIntervalScreen extends Component {
     }
 
     onOccurancePress = (button) => {
-        let newSelectedOccurance = button;
+        const selectedWeekday = this.state.selectedWeekday.slice();
+        selectedWeekday[weekday] = !this.state.selectedWeekday[weekday];
+        this.setState({ selectedWeekday });
         this.setState({selectedOccurance: newSelectedOccurance});
-        console.log("onOccurancePress called");
     }
 
     onIntervalPress = (interval) => {
