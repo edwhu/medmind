@@ -20,7 +20,7 @@ function getFadedFromHex(hexColor) {
   const blue = parseInt(hexColor.substring(3, 5), 16);
   const green = parseInt(hexColor.substring(5, 7), 16);
 
-  const fade = c => Math.floor((c + 255)/2);
+  const fade = c => Math.floor((5 * c + 11 * 255)/16);
   return `rgb(${fade(red)}, ${fade(blue)}, ${fade(green)})`;
 }
 
