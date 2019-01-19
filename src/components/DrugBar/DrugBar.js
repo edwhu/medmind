@@ -15,6 +15,15 @@ import DrugIcon from "../DrugIcon/DrugIcon";
 // import styles from './styles';
 import { medmindBlue } from "../../constants/styles";
 
+function getFadedFromHex(hexColor) {
+  const red = parseInt(hexColor.substring(1, 3), 16);
+  const blue = parseInt(hexColor.substring(3, 5), 16);
+  const green = parseInt(hexColor.substring(5, 7), 16);
+
+  const fade = c => Math.floor((5 * c + 11 * 255)/16);
+  return `rgb(${fade(red)}, ${fade(blue)}, ${fade(green)})`;
+}
+
 class DrugBar extends Component {
   static navigationOptions = {};
 
@@ -34,7 +43,7 @@ class DrugBar extends Component {
   // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color
   state = {
     barStyle: {
-      backgroundColor: this.props.backgroundColor + "50",
+      backgroundColor: getFadedFromHex(this.props.backgroundColor),
       width: 0,
       marginLeft: 0
     },
