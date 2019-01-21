@@ -42,83 +42,57 @@ class DrugBar extends Component {
 
   // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color
   state = {
-    barStyle: {
-      backgroundColor: getFadedFromHex(this.props.backgroundColor),
-      width: 0,
-      marginLeft: 0
-    },
     marginLeft: 0,
     width: 0
   };
 
-  componentWillMount() {
-    const { height, width } = Dimensions.get("window");
-    let numDays; // track the number of days should be populated in the week
-    let offset; // track what offset off of Monday the drug bar should be where 0 means it's Monday
+  _getBarStyle = () => {
+    const { width } = Dimensions.get('window');
     const { drugInfo, beginningOfWeek, endOfWeek } = this.props;
     const { startDate, endDate } = drugInfo;
 
-    let borderTopLeftRadius = 26;
-    let borderTopRightRadius = 26;
-    let borderBottomLeftRadius = 26;
-    let borderBottomRightRadius = 26;
+    const beginsInWeek = startDate.isBetween(beginningOfWeek, endOfWeek, 'day', '[]');
+    const endsInWeek = endDate.isBetween(beginningInWeek, endOfWeek, 'day', '[]');
+    const isInWeek = !(endDate.isBefore(beginningOfWeek, 'day') || startDate.isAfter(endOfWeek, 'day'));
 
-    if (startDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
-      // starting in this week
-      numDays = Math.abs(moment.duration(startDate.diff(endDate)).days()) + 1;
-      offset = Math.abs(moment.duration(beginningOfWeek.diff(startDate)).days());
+    const leftRadius = beginsInWeek ? 26 : 0;
+    const rightRadius = endsInWeek ? 26 : 0;
 
-      if (!endDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
-        borderTopRightRadius = 0;
-        borderBottomRightRadius = 0;
-      }
-    } else if (endDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
-      // otherwise check if maybe it ended in this week
-      numDays =
-        Math.abs(
-          moment.duration(beginningOfWeek.diff(endDate)).days()
-        ) + 1;
-      offset = 0;
-      borderBottomLeftRadius = 0;
-      borderTopLeftRadius = 0;
-    } else if (
-      endDate.isSameOrAfter(beginningOfWeek) &&
-      startDate.isSameOrBefore(beginningOfWeek)
-    ) {
-      // handles if both start date was before the week and end date is after this week
-      numDays = Math.abs(moment.duration(beginningOfWeek.diff(endDate)));
-      offset = 0;
-      borderBottomLeftRadius = 0;
-      borderBottomRightRadius = 0;
-      borderTopLeftRadius = 0;
-      borderTopRightRadius = 0;
-    } else {
-      // Shouldn't be in the week
-      return;
-    }
+    const beginningInWeek = moment.max(beginningOfWeek, startDate);
+    const endInWeek = moment.min(endOfWeek, endDate);
+
+    const numDays = moment.duration(endInWeek.diff(beginningInWeek)).days() + 1;
+    const offset = beginsInWeek ? moment
+          .duration(startDate.diff(beginningOfWeek))
+          .days() : 0;
 
     let dayWidth = (numDays / 7) * width;
-    let offsetWidth = offset * (width / 7);
+    let offsetWidth = (offset / 7) * width;
 
-    if (numDays + offset > 7) {
-      dayWidth = Math.abs(((offset - 7) / 7) * width);
-    }
+    console.log('\n-----------------------------');
+    console.log('drug:', drugInfo.name)
+    console.log('offset:', offset);
+    console.log('numDays:', numDays);
+    console.log('dayWidth:', dayWidth);
+    console.log('offsetWidth:', offsetWidth);
+    console.log('beginningOfWeek:', beginningOfWeek);
+    console.log('endOfWeek:', endOfWeek);
+    console.log('startDate:', startDate);
+    console.log('endDate:', endDate);
+    console.log('-----------------------------\n');
 
-    const barStyle = {
-      width: dayWidth,
-      marginLeft: offsetWidth,
-      borderBottomLeftRadius,
-      borderBottomRightRadius,
-      borderTopLeftRadius,
-      borderTopRightRadius
+    const barStyle = { 
+      width: isInWeek ? dayWidth : 0, 
+      marginLeft: offsetWidth, 
+      borderBottomLeftRadius: leftRadius, 
+      borderBottomRightRadius: rightRadius, 
+      borderTopLeftRadius: leftRadius, 
+      borderTopRightRadius: rightRadius,
+      backgroundColor: getFadedFromHex(this.props.backgroundColor),
     };
 
-    const newStyle = Object.assign({}, this.state.barStyle, barStyle);
+    return barStyle;
 
-    this.setState({
-      width,
-      barStyle: newStyle
-    });
   }
 
   _openDrugInfo = () => {
@@ -129,7 +103,7 @@ class DrugBar extends Component {
   };
 
   render() {
-    const barStyle = this.state.barStyle;
+    const barStyle = this._getBarStyle();
     const { backgroundColor, beginningOfWeek, endOfWeek, drugInfo } = this.props;
     const { name, startDate, endDate } = drugInfo;
 
@@ -145,13 +119,11 @@ class DrugBar extends Component {
         <View
           style={barStyle}
         >
-          <View style={styles.barBackground}>
-            <View style={styles.drugBarContainer}>
-              {!hideDrugIcon && <DrugIcon color={backgroundColor} />}
-              <Text style={styles.drugText} numberOfLines={2}>
-                {name}
-              </Text>
-            </View>
+          <View style={styles.drugBarContainer}>
+            {!hideDrugIcon && <DrugIcon color={backgroundColor} />}
+            <Text style={styles.drugText} numberOfLines={2}>
+              {name}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -173,7 +145,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10
   },
-  barBackground: {}
 });
 
 function mapStateToProps(state, props) {

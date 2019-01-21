@@ -88,6 +88,8 @@ export const testDrugs = [
   }
 ];
 
+console.log(testDrugs);
+
 export const testReminders = [
   {
     id: 1,
