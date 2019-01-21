@@ -15,7 +15,6 @@ import moment from "moment";
 class TimelineScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Timeline",
-
     drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />
   };
 
