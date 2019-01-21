@@ -8,11 +8,7 @@ import Swiper from "react-native-swiper";
 // Local
 import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
 import styles from "./styles";
-import {
-  updateMonth,
-  updateYear,
-  updateWeek,
-} from "../../../redux/actions/calendar";
+import { updateWeek } from "../../../redux/actions/calendar";
 
 // Given the beginning date of a week, returns an array 
 // containing data for that week, the week before, and the 
@@ -51,12 +47,7 @@ class WeekSwiper extends Component {
           showsButtons={false}
           showsPagination={false}
         >
-          {weeks.map(week => (
-            <CalendarWeek
-              week={week}
-              key={week.beginning.toString()}
-            />
-          ))}
+          {weeks.map(week => <CalendarWeek week={week} key={week.beginning.toString()} />)}
         </Swiper>
       </View>
     );
@@ -70,8 +61,6 @@ function mapStateToProps(state, props) {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      updateMonth,
-      updateYear,
       updateWeek,
     },
     dispatch
