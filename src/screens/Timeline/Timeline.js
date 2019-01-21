@@ -25,26 +25,12 @@ class TimelineScreen extends Component {
     calendarType: "week"
   };
 
-  state = {
-    title: `${MONTHS[this.props.currentMonth].toUpperCase()} ${
-      this.props.currentYear
-    }`
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.currentMonth && nextProps.currentYear) {
-      this.setState({
-        title: `${MONTHS[nextProps.currentMonth].toUpperCase()} ${
-          nextProps.currentYear
-        }`
-      });
-    }
-  }
-
   render() {
+    const { currentMonth, currentYear } = this.props;
+    const title = `${MONTHS[currentMonth].toUpperCase()} ${currentYear}`;
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
+        <ScreenHeader {...this.props} title={title} />
         <WeekSwiper />
       </View>
     );
@@ -52,10 +38,8 @@ class TimelineScreen extends Component {
 }
 
 function mapStateToProps(state, props) {
-  return {
-    currentMonth: state.timelineReducer.currentMonth,
-    currentYear: state.timelineReducer.currentYear
-  };
+  const { currentMonth, currentYear } = state.timelineReducer;
+  return { currentMonth, currentYear };
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
