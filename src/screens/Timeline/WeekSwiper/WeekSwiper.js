@@ -58,13 +58,7 @@ function mapStateToProps(state, props) {
   return state.timelineReducer;
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      updateWeek,
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators({ updateWeek }, dispatch);
 
 export default connect(
   mapStateToProps,
