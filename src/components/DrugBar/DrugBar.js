@@ -11,8 +11,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
 import DrugIcon from "../DrugIcon/DrugIcon";
-
-// import styles from './styles';
 import { medmindBlue } from "../../constants/styles";
 
 function getFadedFromHex(hexColor) {
@@ -69,18 +67,6 @@ class DrugBar extends Component {
     let dayWidth = (numDays / 7) * width;
     let offsetWidth = (offset / 7) * width;
 
-    console.log('\n-----------------------------');
-    console.log('drug:', drugInfo.name)
-    console.log('offset:', offset);
-    console.log('numDays:', numDays);
-    console.log('dayWidth:', dayWidth);
-    console.log('offsetWidth:', offsetWidth);
-    console.log('beginningOfWeek:', beginningOfWeek);
-    console.log('endOfWeek:', endOfWeek);
-    console.log('startDate:', startDate);
-    console.log('endDate:', endDate);
-    console.log('-----------------------------\n');
-
     const barStyle = { 
       width: isInWeek ? dayWidth : 0, 
       marginLeft: offsetWidth, 
@@ -114,11 +100,9 @@ class DrugBar extends Component {
       <TouchableOpacity
         onPress={this._openDrugInfo}
         activeOpacity={0.6}
-        style={[{ marginBottom: 1 }, barStyle, { backgroundColor: "transparent" }]}
+        style={[{ marginBottom: 1, backgroundColor: "transparent" }]}
       >
-        <View
-          style={barStyle}
-        >
+        <View style={barStyle}>
           <View style={styles.drugBarContainer}>
             {!hideDrugIcon && <DrugIcon color={backgroundColor} />}
             <Text style={styles.drugText} numberOfLines={2}>
