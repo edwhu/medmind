@@ -3,7 +3,7 @@
     "sdkVersion": "27.0.0",
     "privacy": "unlisted",
     "splash": {
-      "image": ".src//assets/medmind-logo-splash.png",
+      "image": "./src/assets/medmind-logo-splash.png",
       "backgroundColor": "#65c0be"
     }
   }

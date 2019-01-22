@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { Camera, Permissions } from "expo";
 import { getFDA } from "../../utilities/FDA";
 import { Ionicons } from "@expo/vector-icons";
-import drugData from "../../assets/Products.json";
+import drugData from "../../assets/Products-3.json";
 
 const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
@@ -15,17 +15,38 @@ export default class CameraScreen extends React.Component {
 
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.front
   };
 
   constructor(props) {
     super(props);
     this.takePicture = this.takePicture.bind(this);
     this.drugSet = new Set(drugData);
+
   }
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === "granted" });
+  }
+  async mockTakePicture() {
+    const mockData = ["Tylen0l", "Tylenol"];
+    const stringSimilarity = require('string-similarity');
+    for(let i = 0; i < mockData.length; i++) {
+      if(mockData[i].length <= 5) 
+        let j = 0;
+      else if(mockData[i].length <= 10) 
+        let j = 1;
+      else if(mockData[i].length <= 15) 
+        let j = 2;
+      else if(mockData[i].length <= 20) 
+        let j = 3;
+      else if(mockData[i].length <= 25) 
+        let j = 4;
+      else 
+        let j = 5;
+      const bestMatch = stringSimilarity.findBestMatch(mockData[i].toUpperCase(), drugSet[j]).bestMatch;
+      console.log('Found a matching drug: ', bestMatch.target);
+    }
   }
 
   async takePicture() {
@@ -88,6 +109,15 @@ export default class CameraScreen extends React.Component {
     }
   }
 
+  // async determineDrug(item) {
+  //   const stringSimilarity = require('string-similarity');
+  //   for(let i = 0; i < item.length; i++) {
+  //     const bestMatch = stringSimilarity.findBestMatch(item[i], drugSet).bestMatch;
+  //     Alert.alert('Found a matching drug: ', bestMatch.target);
+  //   }
+  //   //iterate over every string in array, using string similarity use find best match for drugSet, might be slow
+  // }
+
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -113,7 +143,7 @@ export default class CameraScreen extends React.Component {
             >
               <TouchableOpacity
                 style={styles.cameraCircle}
-                onPress={this.takePicture}
+                onPress={this.mockTakePicture}
               >
                 <View style={styles.cameraIcon}>
                   <Ionicons name="ios-camera" size={50} />
