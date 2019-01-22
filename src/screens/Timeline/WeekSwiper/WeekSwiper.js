@@ -10,18 +10,6 @@ import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
 import styles from "./styles";
 import { updateWeek } from "../../../redux/actions/calendar";
 
-// Given the beginning date of a week, returns an array 
-// containing data for that week, the week before, and the 
-// week after.
-const getSurroundingWeeks = middleWeekBegin => {
-  const middleWeekEnd = middleWeekBegin.clone().endOf("isoWeek");
-  const diffs = [-1, 0, 1]; // # of weeks different from this week
-  return diffs.map(diff => ({ 
-    beginning: middleWeekBegin.clone().add(diff, "week"),
-    end: middleWeekEnd.clone().add(diff, "week"),
-  }));
-};
-
 class WeekSwiper extends Component {
   static navigationOptions = {};
 
@@ -29,13 +17,27 @@ class WeekSwiper extends Component {
 
   static defaultProps = {};
 
+  // Given the beginning date of a week, returns an array
+  // containing data for that week, the week before, and the
+  // week after.
+  _getSurroundingWeeks = middleWeekBegin => {
+    const middleWeekEnd = middleWeekBegin.clone().endOf('isoWeek');
+    const diffs = [-1, 0, 1]; // # of weeks different from this week
+    return diffs.map(diff => ({
+      beginning: middleWeekBegin.clone().add(diff, 'week'),
+      end: middleWeekEnd.clone().add(diff, 'week'),
+    }));
+  };
+
   _onIndexChanged = index => {
-    this.props.updateWeek(this.props.currentWeek.clone().add(index - 1, "week"));
+    this.props.updateWeek(
+      this.props.currentWeek.clone().add(index - 1, 'week'),
+    );
   };
 
   render() {
     const { currentWeek } = this.props;
-    const weeks = getSurroundingWeeks(currentWeek);
+    const weeks = this._getSurroundingWeeks(currentWeek);
     return (
       <View style={styles.container}>
         <Swiper
@@ -47,7 +49,9 @@ class WeekSwiper extends Component {
           showsButtons={false}
           showsPagination={false}
         >
-          {weeks.map(week => <CalendarWeek week={week} key={week.beginning.toString()} />)}
+          {weeks.map(week => (
+            <CalendarWeek week={week} key={week.beginning.toString()} />
+          ))}
         </Swiper>
       </View>
     );
