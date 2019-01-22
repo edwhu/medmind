@@ -127,19 +127,30 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
+  deleteReminder = () => {
+
+  }
+
   render() {
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
-    const minusButton = (
+    {/*const minusButton = (
       <View style={styles.edit}>
-        <TouchableOpacity style={styles.minusButton}>
+        <TouchableOpacity style={styles.minusButton} onPress={this.deleteReminder}>
           <Text style={styles.minus}>-</Text>
         </TouchableOpacity>
       </View>
-    );
+    );*/}
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
+      const minusButton = (
+        <View style={styles.edit}>
+          <TouchableOpacity style={styles.minusButton} onPress={this.deleteReminder}>
+            <Text style={styles.minus}>-</Text>
+          </TouchableOpacity>
+        </View>
+      );
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -201,7 +212,7 @@ class ReminderScreen extends Component {
       <View style={styles.container}>
         <ScrollView>
           <TouchableOpacity onPress={this.onEditPress}>
-            <Text>{this.state.editMode ? "Save" : "Edit"}</Text>
+            <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
           </TouchableOpacity>
           {reminders}
         </ScrollView>
