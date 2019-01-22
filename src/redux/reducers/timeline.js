@@ -15,7 +15,7 @@ export default (timelineReducer = (state = timelineState, action) => {
     case UPDATE_WEEK:
       const { currentWeek } = action;
       state = Object.assign({}, state, { 
-        currentWeek: currentWeek,
+        currentWeek,
         currentMonth: currentWeek.month(),
         currentYear: currentWeek.year(),
       });
