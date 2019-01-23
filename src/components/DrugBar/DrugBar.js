@@ -98,7 +98,7 @@ class DrugBar extends Component {
 
     return (
       <TouchableOpacity
-        onPress={this._openDrugInfo}
+        // onPress={this._openDrugInfo}
         activeOpacity={0.6}
         style={[{ marginBottom: 1, backgroundColor: "transparent" }]}
       >

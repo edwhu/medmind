@@ -85,7 +85,7 @@ export const testDrugs = [
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
     color: "#990099"
-  }
+  },
 ];
 
 console.log(testDrugs);
