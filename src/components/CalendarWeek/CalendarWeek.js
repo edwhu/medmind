@@ -14,7 +14,6 @@ import moment from "moment";
 
 import styles from "./styles";
 import { DAYS } from "../../constants/constants";
-import DrugBar from "../DrugBar/DrugBar";
 import getRowsFromDrugInfo from "./getRowsFromDrugInfo";
 import DrugRow from '../DrugRow/DrugRow';
 const { height, width } = Dimensions.get("window");
@@ -108,18 +107,6 @@ class CalendarWeek extends Component {
 
   render() {
     const dates = this._mapDates();
-
-    // const drugBars = this.props.drugInfo.map((drug, index) => {
-    //   return (
-    //     <DrugBar
-    //       drugInfo={drug}
-    //       backgroundColor={drug.color}
-    //       beginningOfWeek={this.props.week.beginning}
-    //       endOfWeek={this.props.week.end}
-    //       key={index}
-    //     />
-    //   );
-    // });
 
     const drugBars = this.props.drugInfoTest.map((drugInfoList) => {
       return <DrugRow
