@@ -10,9 +10,19 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
+import DrugIcon from "../DrugIcon/DrugIcon";
 
 // import styles from './styles';
 import { medmindBlue } from "../../constants/styles";
+
+function getFadedFromHex(hexColor) {
+  const red = parseInt(hexColor.substring(1, 3), 16);
+  const blue = parseInt(hexColor.substring(3, 5), 16);
+  const green = parseInt(hexColor.substring(5, 7), 16);
+
+  const fade = c => Math.floor((5 * c + 11 * 255)/16);
+  return `rgb(${fade(red)}, ${fade(blue)}, ${fade(green)})`;
+}
 
 class DrugBar extends Component {
   static navigationOptions = {};
@@ -21,8 +31,8 @@ class DrugBar extends Component {
     drugInfo: PropTypes.objectOf(PropTypes.any),
     backgroundColor: PropTypes.string,
     beginningOfWeek: PropTypes.any,
-    endOfWeek: PropTypes.any
-  };
+    endOfWeek: PropTypes.any,
+  }
 
   static defaultProps = {
     backgroundColor: medmindBlue,
@@ -30,9 +40,10 @@ class DrugBar extends Component {
     width: 0
   };
 
+  // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color
   state = {
     barStyle: {
-      backgroundColor: this.props.backgroundColor,
+      backgroundColor: getFadedFromHex(this.props.backgroundColor),
       width: 0,
       marginLeft: 0
     },
@@ -44,63 +55,38 @@ class DrugBar extends Component {
     const { height, width } = Dimensions.get("window");
     let numDays; // track the number of days should be populated in the week
     let offset; // track what offset off of Monday the drug bar should be where 0 means it's Monday
-    const startDate = this.props.drugInfo.startDate;
-    const endDate = this.props.drugInfo.endDate;
+    const { drugInfo, beginningOfWeek, endOfWeek } = this.props;
+    const { startDate, endDate } = drugInfo;
 
-    let borderTopLeftRadius = 6,
-      borderTopRightRadius = 6,
-      borderBottomLeftRadius = 6,
-      borderBottomRightRadius = 6;
+    let borderTopLeftRadius = 26;
+    let borderTopRightRadius = 26;
+    let borderBottomLeftRadius = 26;
+    let borderBottomRightRadius = 26;
 
-    if (
-      startDate.isBetween(
-        this.props.beginningOfWeek,
-        this.props.endOfWeek,
-        null,
-        "[]"
-      )
-    ) {
+    if (startDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
       // starting in this week
       numDays = Math.abs(moment.duration(startDate.diff(endDate)).days()) + 1;
-      offset = Math.abs(
-        moment.duration(this.props.beginningOfWeek.diff(startDate)).days()
-      );
+      offset = Math.abs(moment.duration(beginningOfWeek.diff(startDate)).days());
 
-      if (
-        !endDate.isBetween(
-          this.props.beginningOfWeek,
-          this.props.endOfWeek,
-          null,
-          "[]"
-        )
-      ) {
+      if (!endDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
         borderTopRightRadius = 0;
         borderBottomRightRadius = 0;
       }
-    } else if (
-      endDate.isBetween(
-        this.props.beginningOfWeek,
-        this.props.endOfWeek,
-        null,
-        "[]"
-      )
-    ) {
+    } else if (endDate.isBetween(beginningOfWeek, endOfWeek, null, "[]")) {
       // otherwise check if maybe it ended in this week
       numDays =
         Math.abs(
-          moment.duration(this.props.beginningOfWeek.diff(endDate)).days()
+          moment.duration(beginningOfWeek.diff(endDate)).days()
         ) + 1;
       offset = 0;
       borderBottomLeftRadius = 0;
       borderTopLeftRadius = 0;
     } else if (
-      endDate.isSameOrAfter(this.props.beginningOfWeek) &&
-      startDate.isSameOrBefore(this.props.beginningOfWeek)
+      endDate.isSameOrAfter(beginningOfWeek) &&
+      startDate.isSameOrBefore(beginningOfWeek)
     ) {
       // handles if both start date was before the week and end date is after this week
-      numDays = Math.abs(
-        moment.duration(this.props.beginningOfWeek.diff(endDate))
-      );
+      numDays = Math.abs(moment.duration(beginningOfWeek.diff(endDate)));
       offset = 0;
       borderBottomLeftRadius = 0;
       borderBottomRightRadius = 0;
@@ -136,25 +122,36 @@ class DrugBar extends Component {
   }
 
   _openDrugInfo = () => {
+    const { name, startDate, endDate } = this.props.drugInfo;
     console.log(
-      `Label: ${
-        this.props.drugInfo.name
-      }, start: ${this.props.drugInfo.startDate.toDate()}, end: ${this.props.drugInfo.endDate.toDate()}`
+      `Label: ${name}, start: ${startDate.toDate()}, end: ${endDate.toDate()}`
     );
   };
 
   render() {
+    const barStyle = this.state.barStyle;
+    const { backgroundColor, beginningOfWeek, endOfWeek, drugInfo } = this.props;
+    const { name, startDate, endDate } = drugInfo;
+
+    // If the user is not taking this drug this week, don't show the pill icon
+    const hideDrugIcon = startDate > endOfWeek || endDate < beginningOfWeek;
+
     return (
       <TouchableOpacity
         onPress={this._openDrugInfo}
         activeOpacity={0.6}
-        style={[{ marginBottom: 1 }, this.state.barStyle]}
+        style={[{ marginBottom: 1 }, barStyle, { backgroundColor: "transparent" }]}
       >
-        <View>
-          <View style={styles.drugBarContainer}>
-            <Text style={styles.drugText} numberOfLines={2}>
-              {this.props.drugInfo.name}
-            </Text>
+        <View
+          style={barStyle}
+        >
+          <View style={styles.barBackground}>
+            <View style={styles.drugBarContainer}>
+              {!hideDrugIcon && <DrugIcon color={backgroundColor} />}
+              <Text style={styles.drugText} numberOfLines={2}>
+                {name}
+              </Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -166,14 +163,17 @@ const styles = StyleSheet.create({
   drugBarContainer: {
     height: 52,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    paddingRight: 50
   },
   drugText: {
-    color: "white",
+    color: "#5B6571",
     fontSize: 16,
     marginRight: 10,
     marginLeft: 10
-  }
+  },
+  barBackground: {}
 });
 
 function mapStateToProps(state, props) {

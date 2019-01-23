@@ -14,17 +14,16 @@ export default (styles = StyleSheet.create({
   drugName: {
     fontSize: 20,
     color: "black",
-    position: "absolute",
     left: 22
   },
   reminder: {
     height: 100,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    alignContent: "center"
   },
   info: {
-    position: "absolute",
-    left: 20
+    marginLeft: 20
   },
   timeContainer: {
     flexDirection: "row"
@@ -59,5 +58,45 @@ export default (styles = StyleSheet.create({
     position: "absolute",
     right: 32,
     transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
+  },
+  plusButton: {
+    backgroundColor: medmindBlue,
+    width: 74,
+    height: 74,
+    borderRadius: 37,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 24,
+    right: 30
+  },
+  plus: {
+    color: "white",
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200"
+  },
+  edit: {
+    marginLeft: 21
+  },
+  minusButton: {
+    backgroundColor: medmindBlue,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  minus: {
+    color: "white",
+    fontSize: 30,
+    fontWeight: "600",
+    bottom: 9
+  },
+  arrowButton: {
+    fontSize: 35,
+    color: "#BDBDBD",
+    position: "absolute",
+    right: 32
   }
 }));

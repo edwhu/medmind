@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import TermIcon from "../../assets/00-Day.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
@@ -8,7 +9,8 @@ import { medmindBlue } from "../../constants/styles";
 
 export default class TermsAndConditionsScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Terms and Conditions"
+    drawerLabel: "Terms and Conditions",
+    drawerIcon: () => <Image source={TermIcon} style={styles.imageStyle} />
   };
 
   static propTypes = {};

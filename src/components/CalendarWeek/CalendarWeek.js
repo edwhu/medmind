@@ -108,13 +108,10 @@ class CalendarWeek extends Component {
     const dates = this._mapDates();
 
     const drugBars = this.props.drugInfo.map((drug, index) => {
-      const color = this.props.drugColors[
-        this.props.drugColors.length - (index % 4) - 1
-      ];
       return (
         <DrugBar
           drugInfo={drug}
-          backgroundColor={color}
+          backgroundColor={drug.color}
           beginningOfWeek={this.props.week.beginning}
           endOfWeek={this.props.week.end}
           key={index}

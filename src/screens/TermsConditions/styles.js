@@ -49,5 +49,11 @@ export default (styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "System",
     padding: 8
+  },
+  imageStyle: {
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    marginLeft: "15.2%"
   }
 }));
