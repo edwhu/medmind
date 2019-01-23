@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableHighlight, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-
-import { Button } from 'react-native-elements';
 import { medmindBlue } from '../../constants/styles';
 import styles from './styles';
-
 export default class WeekdayButtons extends Component {
   static propTypes = {
     onPress: PropTypes.func,
