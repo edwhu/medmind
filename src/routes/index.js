@@ -1,3 +1,5 @@
+import CustomIntervalScreen from '../screens/Reminders/CustomInterval';
+import { medmindBlue } from '../constants/styles';
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import { Dimensions } from "react-native";
 import LoginScreen from "../screens/Login/Login";
@@ -126,7 +128,7 @@ const AppStackNavigator = createStackNavigator(
       screen: LoginScreen
     },
     drawerStack: {
-      screen: DrawerNavigation
+      screen: CustomIntervalScreen,
     }
   },
   {
