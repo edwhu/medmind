@@ -11,7 +11,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from "moment";
 import DrugIcon from "../DrugIcon/DrugIcon";
-import { medmindBlue } from "../../constants/styles";
 
 function getFadedFromHex(hexColor) {
   const red = parseInt(hexColor.substring(1, 3), 16);
@@ -36,13 +35,8 @@ class DrugWeek extends Component {
     width: 0,
   };
 
-  // TODO: Change backgroundColor to hex and set opacity to 50% compared to icon color
-  state = {
-    marginLeft: 0,
-    width: 0,
-  };
-
   _getBarStyle = drugInfo => {
+    const BORDER_RADIUS = 26;
     const { width } = Dimensions.get('window');
     const { beginningOfWeek, endOfWeek } = this.props;
     const { startDate, endDate } = drugInfo;
@@ -64,8 +58,8 @@ class DrugWeek extends Component {
       startDate.isAfter(endOfWeek, 'day')
     );
 
-    const leftRadius = beginsInWeek ? 26 : 0;
-    const rightRadius = endsInWeek ? 26 : 0;
+    const leftRadius = beginsInWeek ? BORDER_RADIUS : 0;
+    const rightRadius = endsInWeek ? BORDER_RADIUS : 0;
 
     const beginningInWeek = moment.max(beginningOfWeek, startDate);
     const endInWeek = moment.min(endOfWeek, endDate);
@@ -93,10 +87,10 @@ class DrugWeek extends Component {
   };
 
   _openDrugInfo = (drugInfo) => {
-    const { name, startDate, endDate } = drugInfo;
-    console.log(
-      `Label: ${name}, start: ${startDate.toDate()}, end: ${endDate.toDate()}`,
-    );
+    // const { name, startDate, endDate } = drugInfo;
+    // console.log(
+    //   `Label: ${name}, start: ${startDate.toDate()}, end: ${endDate.toDate()}`,
+    // );
   };
 
   _renderBar = drugInfo => {
