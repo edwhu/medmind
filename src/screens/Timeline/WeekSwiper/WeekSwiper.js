@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 // Extrenal Packages
@@ -8,6 +8,7 @@ import Swiper from "react-native-swiper";
 import moment from "moment";
 // Local
 import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
+import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import styles from "./styles";
 import {
   updateMonth,
@@ -99,6 +100,11 @@ class WeekSwiper extends Component {
         >
           {this._renderWeek()}
         </Swiper>
+        <TouchableOpacity 
+         style={styles.button}
+         onPress={() => this.props.navigation.navigate("cameraScreen")}>
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity> 
       </View>
     );
   }

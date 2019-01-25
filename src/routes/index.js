@@ -47,12 +47,6 @@ const DrawerNavigation = createDrawerNavigator(
     timelineScreen: {
       screen: TimelineScreen
     },
-    cameraScreen: {
-      screen: CameraScreen
-    },
-    addDrugScreen: {
-      screen: AddDrugScreen
-    },
     logout: {
       screen: LoginScreen
     },
@@ -127,7 +121,13 @@ const AppStackNavigator = createStackNavigator(
     },
     drawerStack: {
       screen: DrawerNavigation
-    }
+    },
+    addDrugScreen: {
+      screen: AddDrugScreen
+    },
+    cameraScreen: {
+      screen: CameraScreen
+    },
   },
   {
     headerMode: "none",
