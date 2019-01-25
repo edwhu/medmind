@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, ScrollView, StyleSheet, Text, Image, } from "react-native";
-import { View, Image } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
@@ -28,7 +27,7 @@ class TimelineScreen extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
+        <ScreenHeader {...this.props} title={'Medmind'} />
         <WeekSwiper navigation = {navigation}/>
       </View>
     );
