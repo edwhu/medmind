@@ -5,7 +5,13 @@ import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER } from "../../consta
 const initialState = {
   reminders: testReminders || [],
   remindersId: 30,
-  newReminder: {},
+  newReminder: {
+    repeatIntervalCount: 1,
+    repeatInterval: 'weeks',
+    selectedWeekdays: [false, false, false, false, false, false, false],
+    occurence: 'never',
+    endOccurenceCount: 1,
+  },
 };
 
 const remindersReducer = (state = initialState, action) => {

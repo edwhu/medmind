@@ -6,6 +6,9 @@ import {
   Text,
   Image
 } from 'react-native';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { updateNewReminder } from "../../redux/actions/reminder";
 import { medmindBlue } from '../../constants/styles';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
@@ -13,7 +16,7 @@ import RepeatPrompt from '../../components/RepeatPrompt/RepeatPrompt';
 import WeekdayButtons from '../../components/WeekdayButtons/WeekdayButtons';
 import EndMenu from '../../components/EndMenu/EndMenu';
 
-export default class CustomIntervalScreen extends Component {
+class CustomIntervalScreen extends Component {
     static propTypes = {
       title: PropTypes.string,
     };
@@ -30,29 +33,17 @@ export default class CustomIntervalScreen extends Component {
     };
 
     onWeekdayPress = (weekday) => {
-        const selectedWeekday = this.state.selectedWeekday.slice();
-        selectedWeekday[weekday] = !this.state.selectedWeekday[weekday];
-        this.setState({ selectedWeekday });
-        this.props.navigation.state.params.returnWeekdays(selectedWeekday);
+        const selectedWeekdays = this.props.newReminder.selectedWeekdays.slice();
+        selectedWeekdays[weekday] = !this.props.newReminder.selectedWeekdays[weekday];
+        this.props.updateNewReminder("selectedWeekdays", selectedWeekdays);
     }
 
     onOccurancePress = (occurence) => {
-        this.setState({ selectedOccurance: occurence });
-        console.log(this.state.endOccurenceCount);
-        console.log(this.state.endDate);
-        this.props.navigation.state.params.returnOccurence(
-            this.state.selectedOccurance,
-            this.state.endOccurenceCount, 
-            this.state.endDate
-        );
+        this.props.updateNewReminder("occurence", occurence);
     }
 
     onIntervalPress = (interval) => {
-        this.setState({repeatInterval: interval});
-        this.props.navigation.state.params.returnInterval(
-            this.state.repeatInterval, 
-            this.state.repeatIntervalCount
-        );
+        this.props.updateNewReminder("repeatInterval", interval);
     }
 
     render() {
@@ -62,27 +53,40 @@ export default class CustomIntervalScreen extends Component {
                 <View style={styles.repeatContainer}>
                     <RepeatPrompt 
                         onSelect={this.onIntervalPress} 
-                        selectedValue={this.state.repeatInterval}
-                        onChangeText={(repeatIntervalCount) => this.setState({repeatIntervalCount})}
+                        onChangeText={(repeatIntervalCount) => this.props.updateNewReminder("repeatIntervalCount", repeatIntervalCount)}
                     />
                 </View>
                 <View style={styles.weekdayContainer}>
                     <Text>Repeats On</Text>
                 <WeekdayButtons 
                     onPress={this.onWeekdayPress} 
-                    selectedButtonIndex={this.state.selectedWeekday}
+                    selectedButtonIndex={this.props.newReminder.selectedWeekdays}
                 />
                 </View>
                 <View style={styles.occuranceContainer}>
                     <Text>Ends</Text>
                     <EndMenu 
                         onPress={this.onOccurancePress} 
-                        selectedOccurance={this.state.selectedOccurance}
-                        onChangeTextCount={(endOccurenceCount) => this.setState({endOccurenceCount})}
-                        onChangeTextEndDate={(endDate) => this.setState({endDate})}
+                        onChangeTextCount={(endOccurenceCount) => this.props.updateNewReminder("endOccurenceCount", endOccurenceCount)}
+                        onChangeTextEndDate={(endDate) => this.props.updateNewReminder("endDate", endDate)}
                     />
                 </View>
             </View>
         );
     }
 }
+
+function mapStateToProps(state, props) {
+    return {
+        newReminder: state.remindersReducer.newReminder,
+    };
+}
+
+const mapDispatchToProps = dispatch => ({
+    updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CustomIntervalScreen);
