@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
-import { addReminder } from "../../redux/actions/reminder";
+import { addReminder, updateNewReminder } from "../../redux/actions/reminder";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import TimePicker from "../../components/TimePicker/TimePicker";
@@ -83,7 +83,7 @@ class ReminderFormScreen extends Component {
     // if (drug.length == 0) {
     //   return;
     // }
-    // if (typeof this.state.startDate == "undefined") {
+    // if (typeof this.props.newReminder.startDate == "undefined") {
     //   this.state.startDate = moment();
     // }
     // const newReminder = {
@@ -118,7 +118,7 @@ class ReminderFormScreen extends Component {
         <ScreenHeader {...this.props} title={this.state.title} />
         <TimePicker
           header="Time"
-          setDate={startDate => this.setState({ startDate })}
+          setDate={time => this.props.updateNewReminder("time", time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -144,7 +144,7 @@ class ReminderFormScreen extends Component {
         <View style={styles.row}>
           <Text style={styles.setting}>Dosage</Text>
           <Text style={styles.entry}>
-            {this.props.newReminder.dosage ? this.state.dosage : null}
+            {this.props.newReminder.dosage ? this.props.newReminder.dosage : null}
           </Text>
         </View>
         <View style={styles.horizontalLine} />
@@ -184,7 +184,8 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addReminder: bindActionCreators(addReminder, dispatch)
+  addReminder: bindActionCreators(addReminder, dispatch),
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 
 export default connect(
