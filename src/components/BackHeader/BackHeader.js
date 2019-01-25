@@ -27,26 +27,31 @@ export default class CameraHeader extends Component {
 
 
   openSettings = () => {
-    console.log("open settings");
+    //to be filled later
   };
 
+  onBackButtonPress = () => {
+  const {navigate} = this.props.navigation;
+  navigate('timelineScreen');
+  }
+
   render() {
-    const {navigate} = this.props.navigation;
+    const {title, hasMenu, hasSettings} = this.props;
     return (
       <View {...this.props} style={styles.container}>
         <StatusBarBackground />
         <View style={styles.appBar}>
-          {this.props.hasMenu && (
+          {hasMenu && (
              <RoundedButton
-             onPress={() => navigate('timelineScreen')}
+             onPress={() => this.onBackButtonPress()}
              name={"Back"}
              buttonStyle={styles.buttonStyle}
            />
           )}
-          {this.props.title && (
-            <Text style={styles.appBarTitle}>{this.props.title}</Text>
+          {title && (
+            <Text style={styles.appBarTitle}>{title}</Text>
           )}
-          {this.props.hasSettings && (
+          {hasSettings && (
             <TouchableOpacity
               style={styles.settingsWrapper}
               onPress={this.openSettings}

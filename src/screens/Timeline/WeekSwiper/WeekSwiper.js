@@ -36,6 +36,10 @@ class WeekSwiper extends Component {
     );
   };
 
+  onPlusButtonPress = () => {
+    this.props.navigation.navigate("cameraScreen")
+  }
+
   render() {
     const { currentWeek } = this.props;
     const weeks = this._getSurroundingWeeks(currentWeek);
@@ -56,7 +60,7 @@ class WeekSwiper extends Component {
         </Swiper>
         <TouchableOpacity 
          style={styles.button}
-         onPress={() => this.props.navigation.navigate("cameraScreen")}>
+         onPress={() => this.onPlusButtonPress()}>
           <Text style={styles.plus}>+</Text>
         </TouchableOpacity> 
       </View>

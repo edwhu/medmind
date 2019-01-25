@@ -38,7 +38,6 @@ export default class CameraScreen extends React.Component {
   }
 
   async takePicture() {
-    const {navigate} = this.props.navigation;
     if (!this.camera) {
       return;
     }
@@ -96,6 +95,7 @@ export default class CameraScreen extends React.Component {
     } catch (err) {
       console.error(err);
     }
+    const {navigate} = this.props.navigation;
     navigate('addDrugScreen');
   }
 

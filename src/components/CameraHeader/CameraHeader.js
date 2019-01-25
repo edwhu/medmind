@@ -25,16 +25,19 @@ export default class CameraHeader extends Component {
   state = {};
 
   openHamburger = () => {
-    console.log("open drawer");
     this.props.navigation.openDrawer();
   };
 
   openSettings = () => {
-    console.log("open settings");
+      //to be filled
   };
 
-  render() {
+  onSkipButtonPress = () => {
     const {navigate} = this.props.navigation;
+    navigate('addDrugScreen');
+  }
+  render() {
+    
     return (
       <View {...this.props} style={styles.container}>
         <StatusBarBackground />
@@ -43,7 +46,7 @@ export default class CameraHeader extends Component {
             <Text style={styles.appBarTitle}>{this.props.title}</Text>
           )}
           <RoundedButton
-            onPress={() => navigate('addDrugScreen')}
+            onPress={() => this.onSkipButtonPress()}
             name={"Skip"}
             buttonStyle={styles.buttonStyle}
           />

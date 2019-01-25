@@ -31,8 +31,13 @@ class AddDrugScreen extends Component {
     color: "#990099"
   };
 
-  render() {
+  onSubmit() {
     const {navigate} = this.props.navigation;
+    this.props.addDrug(this.state);
+    navigate("timelineScreen");
+  }
+
+  render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <BackHeader {...this.props} title={"Drug Entry"} />
@@ -87,7 +92,7 @@ class AddDrugScreen extends Component {
 
         <View style={styles.footerStyle}>
           <RoundedButton
-            onPress={() => {this.props.addDrug(this.state); navigate("timelineScreen")}}
+            onPress={() => this.onSubmit()}
             name={"Submit"}
             buttonStyle={styles.buttonStyle}
           />
