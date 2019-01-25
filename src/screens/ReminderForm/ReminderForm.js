@@ -27,7 +27,13 @@ class ReminderFormScreen extends Component {
 
   state = {
     title: this.props.title || "Reminder",
-    snooze: false
+    snooze: false,
+    repeatIntervalCount: 1,
+    repeatInterval: 'weeks',
+    weekdays: [false, false, false, false, false, false, false],
+    occurence: 'never',
+    endDate: "MM/DD",
+    endOccurenceCount: 1,
   };
 
   openDrugListPage = () => {
@@ -42,6 +48,9 @@ class ReminderFormScreen extends Component {
     this.props.navigation.navigate("repeatScreen", {
       showButton: true,
       returnRepeat: this.setRepeat.bind(this),
+      returnWeekdays: this.setWeekdays.bind(this),
+      returnOccurence: this.setOccurence.bind(this),
+      returnInterval: this.setInterval.bind(this),
       selectedRepeat: this.state.repeat
     });
   };
@@ -55,15 +64,27 @@ class ReminderFormScreen extends Component {
   };
 
   setDrug = (drug, dosage) => {
-    this.setState({ drug: drug, dosage: dosage });
+    this.setState({ drug, dosage });
   };
 
   setSound = sound => {
-    this.setState({ sound: sound });
+    this.setState({ sound });
   };
 
   setRepeat = repeat => {
-    this.setState({ repeat: repeat });
+    this.setState({ repeat });
+  };
+
+  setWeekdays = weekdays => {
+    this.setState({ weekdays });
+  };
+
+  setOccurence = (occurence, endOccurenceCount, endDate) => {
+    this.setState({ occurence, endOccurenceCount, endDate });
+  };
+
+  setInterval = (repeatInterval, repeatIntervalCount) => {
+    this.setState({ repeatInterval, repeatIntervalCount });
   };
 
   toggleSnooze = () => {
@@ -85,14 +106,16 @@ class ReminderFormScreen extends Component {
     if (typeof this.state.startDate == "undefined") {
       this.state.startDate = moment();
     }
-    this.props.addReminder(
-      drug[0].id,
-      drug[0].dosage,
-      this.state.sound,
-      this.state.repeat,
-      this.state.startDate,
-      this.state.snooze
-    );
+    const newReminder = {
+      drugId: drug[0].id,
+      dosage: drug[0].dosage,
+      sound: this.state.sound,
+      repeat: this.state.repeat,
+      time: this.state.startDate,
+      snooze: this.state.snooze
+    };
+    console.log(newReminder);
+    this.props.addReminder(newReminder);
     this.props.navigation.goBack();
   };
 

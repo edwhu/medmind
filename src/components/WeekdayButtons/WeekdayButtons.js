@@ -15,7 +15,7 @@ export default class WeekdayButtons extends Component {
             {
               ['S','M','T','W','T','F','S'].map((buttonTitle, index) => {
                 const buttonColor = this.props.selectedButtonIndex[index] === true ? medmindBlue : 'gray';
-                return <View style={styles.buttonHolder}>
+                return <View style={styles.buttonHolder} key={index}>
                 <TouchableOpacity 
                   style={[styles.Button, this.props.selectedButtonIndex[index] && styles.pressedButton]} 
                   key={index} backgroundColor={buttonColor} 

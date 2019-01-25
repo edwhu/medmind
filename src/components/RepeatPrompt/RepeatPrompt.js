@@ -9,6 +9,7 @@ export default class RepeatPrompt extends Component {
     static propTypes = {
       onSelect: PropTypes.func,
       selectedValue: PropTypes.string,
+      onChangeText: PropTypes.func,
     }
 
     render() {
@@ -17,7 +18,7 @@ export default class RepeatPrompt extends Component {
                 <Text>Repeats every </Text>
                 <TextInput
                     placeholder="1"
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText={this.props.onChangeText}
                     keyboardType="numeric"
                 />
                 <Picker

@@ -31,10 +31,44 @@ export default class RepeatScreen extends Component {
     title: this.props.title || "Repeat"
   };
 
+  openCustomIntervalPage = () => {
+    this.setRepeat("Custom");
+    this.props.navigation.navigate("customIntervalScreen", {
+      showButton: true,
+      returnWeekdays: this.setWeekdays.bind(this),
+      returnOccurence: this.setOccurence.bind(this),
+      returnInterval: this.setInterval.bind(this)
+    });
+  };
+
   setRepeat = repeat => {
     if (this.state.repeat != repeat) {
       this.setState({ repeat: repeat });
       this.props.navigation.state.params.returnRepeat(repeat);
+    }
+  };
+
+  setWeekdays = weekdays => {
+    if (this.state.weekdays != weekdays) {
+      this.setState({ weekdays: weekdays });
+      console.log("WEEKDAYS!!!!!!!!!!!!!: " + weekdays);
+      this.props.navigation.state.params.returnWeekdays(weekdays);
+    }
+  };
+
+  setOccurence = occurence => {
+    if (this.state.occurence != occurence) {
+      this.setState({ occurence: occurence });
+      console.log("OCCURENCE!!!!!!!!!!!!!!!" + occurence);
+      this.props.navigation.state.params.returnOccurence(occurence);
+    }
+  };
+
+  setInterval = interval => {
+    if (this.state.interval != interval) {
+      this.setState({ interval: interval });
+      console.log("INTERVAL__________________" + interval);
+      this.props.navigation.state.params.returnInterval(interval);
     }
   };
 
@@ -72,7 +106,10 @@ export default class RepeatScreen extends Component {
         <TouchableOpacity>
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+              style={styles.button}
+              onPress={() => this.openCustomIntervalPage()}
+            >
               <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
             </TouchableOpacity>
           </View>

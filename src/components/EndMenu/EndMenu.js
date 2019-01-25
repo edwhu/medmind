@@ -9,35 +9,42 @@ import styles from './styles';
 export default class EndMenu extends Component {
     static propTypes = {
         onPress: PropTypes.func,
-        selectedOccurance: PropTypes.number,
-
+        selectedOccurance: PropTypes.string,
+        onChangeTextEndDate: PropTypes.func,
+        onChangeTextCount: PropTypes.func,
     };
 
     render() {
         return (
             <View style={{flex:1, flexDirection: 'column'}}>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={this.props.selectedOccurance !== 0 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(0)}}>
+                    <TouchableOpacity 
+                        style={this.props.selectedOccurance !== 'never' ? styles.radioButton : styles.radioButtonActive} 
+                        onPress={() => {this.props.onPress('never')}}>
                     </TouchableOpacity>
                     <Text>  Never</Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={this.props.selectedOccurance !== 1 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(1)}}>
+                    <TouchableOpacity 
+                        style={this.props.selectedOccurance !== 'end date' ? styles.radioButton : styles.radioButtonActive} 
+                        onPress={() => {this.props.onPress('end date')}}>
                     </TouchableOpacity>
                     <Text>  On </Text>
                     <TextInput
                         placeholder="MM/DD"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={this.props.onChangeTextEndDate}
                         keyboardType="numeric"
                     />
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={this.props.selectedOccurance !== 2 ? styles.radioButton : styles.radioButtonActive} onPress={() => {this.props.onPress(2)}}>
+                <TouchableOpacity 
+                    style={this.props.selectedOccurance !== 'set number' ? styles.radioButton : styles.radioButtonActive}
+                    onPress={() => {this.props.onPress('set number')}}>
                 </TouchableOpacity>
                 <Text>  After </Text>
                     <TextInput
                         placeholder= "1"
-                        onChangeText={(text) => this.setState({text})}
+                        onChangeText={this.props.onChangeTextCount}
                         keyboardType="numeric"
                     /> 
                 <Text>occurences</Text>

@@ -1,4 +1,3 @@
-import CustomIntervalScreen from '../screens/Reminders/CustomInterval';
 import { medmindBlue } from '../constants/styles';
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 import { Dimensions } from "react-native";
@@ -11,6 +10,7 @@ import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
+import CustomIntervalScreen from '../screens/Reminders/CustomInterval';
 import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
 import SoundScreen from "../screens/SoundScreen/SoundScreen";
 import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
@@ -31,6 +31,9 @@ const ReminderStack = createStackNavigator(
     },
     repeatScreen: {
       screen: RepeatScreen
+    },
+    customIntervalScreen: {
+      screen: CustomIntervalScreen
     },
     soundScreen: {
       screen: SoundScreen
@@ -128,7 +131,7 @@ const AppStackNavigator = createStackNavigator(
       screen: LoginScreen
     },
     drawerStack: {
-      screen: CustomIntervalScreen,
+      screen: ReminderStack,
     }
   },
   {

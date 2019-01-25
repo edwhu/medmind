@@ -3,28 +3,25 @@ import store from "../store";
 
 let nextId = 9000;
 
-export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
+export function addReminder(reminder) {
   if (
-    typeof drugId !== "number" ||
-    typeof sound !== "string" ||
-    typeof repeat !== "string" ||
-    typeof dosage !== "string"
+    typeof reminder.drugId !== "number" ||
+    typeof reminder.sound !== "string" ||
+    typeof reminder.repeat !== "string" ||
+    typeof reminder.dosage !== "string"
   ) {
     console.warn("Required field left blank");
     return {};
   } else {
-    if (repeat[0] == "E") {
-      const words = repeat.split(" ");
-      repeat = words[1];
+    if (reminder.repeat[0] == "E") {
+      const words = reminder.repeat.split(" ");
+      reminder.repeat = words[1];
     }
     const newReminder = {
-      id: nextId++,
-      drugId: drugId,
-      time: startDate,
-      repeat: repeat,
-      dosage: dosage,
-      snooze: snooze
-    };
+      ...reminder,
+      id: nextId++
+    }
+    console.log("_______NEW REMINDER BEING ADDED: " + newReminder);
     return {
       type: ADD_REMINDER,
       reminder: newReminder
