@@ -39,83 +39,64 @@ class ReminderFormScreen extends Component {
   openDrugListPage = () => {
     this.props.navigation.navigate("chooseDrugScreen", {
       showButton: true,
-      returnDrug: this.setDrug.bind(this),
-      selectedDrug: this.state.drug
     });
   };
 
   openRepeatPage = () => {
     this.props.navigation.navigate("repeatScreen", {
       showButton: true,
-      returnRepeat: this.setRepeat.bind(this),
-      returnWeekdays: this.setWeekdays.bind(this),
-      returnOccurence: this.setOccurence.bind(this),
-      returnInterval: this.setInterval.bind(this),
-      selectedRepeat: this.state.repeat
+      // returnRepeat: this.setRepeat.bind(this),
+      // returnWeekdays: this.setWeekdays.bind(this),
+      // returnOccurence: this.setOccurence.bind(this),
+      // returnInterval: this.setInterval.bind(this),
+      // selectedRepeat: this.state.repeat
     });
   };
 
   openSoundPage = () => {
     this.props.navigation.navigate("soundScreen", {
       showButton: true,
-      returnSound: this.setSound.bind(this),
-      selectedSound: this.state.sound
     });
-  };
-
-  setDrug = (drug, dosage) => {
-    this.setState({ drug, dosage });
-  };
-
-  setSound = sound => {
-    this.setState({ sound });
   };
 
   setRepeat = repeat => {
     this.setState({ repeat });
   };
 
-  setWeekdays = weekdays => {
-    this.setState({ weekdays });
-  };
-
-  setOccurence = (occurence, endOccurenceCount, endDate) => {
-    this.setState({ occurence, endOccurenceCount, endDate });
-  };
-
-  setInterval = (repeatInterval, repeatIntervalCount) => {
-    this.setState({ repeatInterval, repeatIntervalCount });
-  };
-
   toggleSnooze = () => {
     this.setState({ snooze: !this.state.snooze });
   };
 
-  getDrugId = drugName => {
-    return this.props.drugs.filter(function(drug) {
-      return drug.name == drugName;
+  getDrugName = drugId => {
+    const drug = this.props.drugs.filter(function(drug) {
+      return drug.id == drugId;
     });
+    if (drug.length == 0) {
+      return;
+    }
+    return drug[0].name;
   };
 
   // Saves reminder to redux store
   saveReminder = () => {
-    const drug = this.getDrugId(this.state.drug);
-    if (drug.length == 0) {
-      return;
-    }
-    if (typeof this.state.startDate == "undefined") {
-      this.state.startDate = moment();
-    }
-    const newReminder = {
-      drugId: drug[0].id,
-      dosage: drug[0].dosage,
-      sound: this.state.sound,
-      repeat: this.state.repeat,
-      time: this.state.startDate,
-      snooze: this.state.snooze
-    };
-    console.log(newReminder);
-    this.props.addReminder(newReminder);
+    // const drug = this.getDrugId(this.state.drug);
+    // if (drug.length == 0) {
+    //   return;
+    // }
+    // if (typeof this.state.startDate == "undefined") {
+    //   this.state.startDate = moment();
+    // }
+    // const newReminder = {
+    //   drugId: drug[0].id,
+    //   dosage: drug[0].dosage,
+    //   sound: this.state.sound,
+    //   repeat: this.state.repeat,
+    //   time: this.state.startDate,
+    //   snooze: this.state.snooze
+    // };
+    // console.log(newReminder);
+    //this.props.addReminder(newReminder);
+    this.props.addReminder();
     this.props.navigation.goBack();
   };
 
@@ -124,13 +105,13 @@ class ReminderFormScreen extends Component {
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
     const soundText = (
-      <Text style={styles.selectedSetting}>{this.state.sound}</Text>
+      <Text style={styles.selectedSetting}>{this.props.newReminder.sound}</Text>
     );
     const repeatText = (
-      <Text style={styles.selectedSetting}>{this.state.repeat}</Text>
+      <Text style={styles.selectedSetting}>{this.props.newReminder.repeat}</Text>
     );
     const drugText = (
-      <Text style={styles.selectedSetting}>{this.state.drug}</Text>
+      <Text style={styles.selectedSetting}>{this.getDrugName(this.props.newReminder.drugId)}</Text>
     );
     return (
       <View style={styles.container}>
@@ -146,7 +127,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openDrugListPage()}
           >
-            {this.state.drug ? drugText : arrowButton}
+            {this.props.newReminder.drugId ? drugText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -156,14 +137,14 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openRepeatPage()}
           >
-            {this.state.repeat ? repeatText : arrowButton}
+            {this.props.newReminder.repeat ? repeatText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Dosage</Text>
           <Text style={styles.entry}>
-            {this.state.dosage ? this.state.dosage : null}
+            {this.props.newReminder.dosage ? this.state.dosage : null}
           </Text>
         </View>
         <View style={styles.horizontalLine} />
@@ -173,7 +154,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openSoundPage()}
           >
-            {this.state.sound ? soundText : arrowButton}
+            {this.props.newReminder.sound ? soundText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -197,7 +178,8 @@ class ReminderFormScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    drugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    newReminder: state.remindersReducer.newReminder,
   };
 }
 

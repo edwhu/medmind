@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { updateNewReminder } from "../../redux/actions/reminder";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
@@ -15,10 +16,6 @@ class ChooseDrugScreen extends Component {
 
   state = {};
 
-  componentWillMount() {
-    this.setState({ drug: this.props.navigation.state.params.selectedDrug });
-  }
-
   // callback for login errors
   onError = error => {
     console.log("Error", error);
@@ -28,15 +25,15 @@ class ChooseDrugScreen extends Component {
     title: this.props.title || "Drug Names"
   };
 
-  setDrug = (drug, dosage) => {
-    if (this.state.drug != drug) {
-      this.setState({ drug: drug });
-      this.props.navigation.state.params.returnDrug(drug, dosage);
+  setDrug = (drugId, dosage) => {
+    if (this.props.newReminder.drugId != drugId) {
+      this.props.updateNewReminder("drugId", drugId);
+      this.props.updateNewReminder("dosage", dosage);
     }
   };
 
-  checkSelected = drug => {
-    return this.state.drug == drug;
+  checkSelected = drugId => {
+    return this.props.newReminder.drugId == drugId;
   };
 
   render() {
@@ -46,8 +43,8 @@ class ChooseDrugScreen extends Component {
         <ListItem
           key={drug.id}
           label={drug.name}
-          onPress={() => this.setDrug(drug.name, drug.dosage)}
-          selected={this.checkSelected(drug.name)}
+          onPress={() => this.setDrug(drug.id, drug.dosage)}
+          selected={this.checkSelected(drug.id)}
         />
       );
     });
@@ -63,11 +60,14 @@ class ChooseDrugScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    drugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    newReminder: state.remindersReducer.newReminder,
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => ({
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+});
 
 export default connect(
   mapStateToProps,

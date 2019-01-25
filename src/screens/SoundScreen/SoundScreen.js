@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { updateNewReminder } from "../../redux/actions/reminder";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
 import { testSounds } from "../../constants/constants";
 import styles from "./styles";
 
-export default class SoundScreen extends Component {
+class SoundScreen extends Component {
   static propTypes = {};
 
   static defaultProps = {};
 
   state = {};
-
-  componentWillMount() {
-    this.setState({ sound: this.props.navigation.state.params.selectedSound });
-  }
 
   // callback for login errors
   onError = error => {
@@ -28,14 +27,11 @@ export default class SoundScreen extends Component {
   };
 
   setSound = sound => {
-    if (this.state.sound != sound) {
-      this.setState({ sound: sound });
-      this.props.navigation.state.params.returnSound(sound);
-    }
+    this.props.updateNewReminder("sound", sound);
   };
 
   checkSelected = sound => {
-    return this.state.sound == sound;
+    return this.props.newReminder.sound == sound;
   };
 
   render() {
@@ -58,3 +54,18 @@ export default class SoundScreen extends Component {
     );
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    newReminder: state.remindersReducer.newReminder,
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SoundScreen);

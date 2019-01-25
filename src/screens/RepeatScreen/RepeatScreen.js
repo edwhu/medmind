@@ -3,24 +3,19 @@ import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { updateNewReminder } from "../../redux/actions/reminder";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 
-export default class RepeatScreen extends Component {
+class RepeatScreen extends Component {
   static propTypes = {};
 
   static defaultProps = {};
 
   state = {};
-
-  componentWillMount() {
-    this.setState({
-      repeat: this.props.navigation.state.params.selectedRepeat
-    });
-  }
 
   // callback for login errors
   onError = error => {
@@ -35,44 +30,43 @@ export default class RepeatScreen extends Component {
     this.setRepeat("Custom");
     this.props.navigation.navigate("customIntervalScreen", {
       showButton: true,
-      returnWeekdays: this.setWeekdays.bind(this),
-      returnOccurence: this.setOccurence.bind(this),
-      returnInterval: this.setInterval.bind(this)
     });
   };
 
   setRepeat = repeat => {
     if (this.state.repeat != repeat) {
-      this.setState({ repeat: repeat });
-      this.props.navigation.state.params.returnRepeat(repeat);
+      this.props.updateNewReminder("repeat", repeat);
     }
   };
 
-  setWeekdays = weekdays => {
-    if (this.state.weekdays != weekdays) {
-      this.setState({ weekdays: weekdays });
-      console.log("WEEKDAYS!!!!!!!!!!!!!: " + weekdays);
-      this.props.navigation.state.params.returnWeekdays(weekdays);
-    }
-  };
+  // setWeekdays = weekdays => {
+  //   if (this.state.weekdays != weekdays) {
+  //     this.setState({ weekdays: weekdays });
+  //     console.log("WEEKDAYS!!!!!!!!!!!!!: " + weekdays);
+  //     this.props.navigation.state.params.returnWeekdays(weekdays);
+  //   }
+  // };
 
-  setOccurence = occurence => {
-    if (this.state.occurence != occurence) {
-      this.setState({ occurence: occurence });
-      console.log("OCCURENCE!!!!!!!!!!!!!!!" + occurence);
-      this.props.navigation.state.params.returnOccurence(occurence);
-    }
-  };
+  // setOccurence = occurence => {
+  //   if (this.state.occurence != occurence) {
+  //     this.setState({ occurence: occurence });
+  //     console.log("OCCURENCE!!!!!!!!!!!!!!!" + occurence);
+  //     this.props.navigation.state.params.returnOccurence(occurence);
+  //   }
+  // };
 
-  setInterval = interval => {
-    if (this.state.interval != interval) {
-      this.setState({ interval: interval });
-      console.log("INTERVAL__________________" + interval);
-      this.props.navigation.state.params.returnInterval(interval);
-    }
-  };
+  // setInterval = interval => {
+  //   if (this.state.interval != interval) {
+  //     this.setState({ interval: interval });
+  //     console.log("INTERVAL__________________" + interval);
+  //     this.props.navigation.state.params.returnInterval(interval);
+  //   }
+  // };
 
-  checkSelected = repeat => this.state.repeat == repeat;
+  checkSelected = repeat => {
+
+    return this.props.newReminder.repeat == repeat;
+  };
 
   render() {
     return (
@@ -80,28 +74,28 @@ export default class RepeatScreen extends Component {
         <ScreenHeader {...this.props} title={this.state.title} />
         <ListItem
           label="Does not repeat"
-          onPress={() => this.setRepeat("Does not repeat")}
-          selected={this.checkSelected("Does not repeat")}
+          onPress={() => this.setRepeat("does not repeat")}
+          selected={this.checkSelected("does not repeat")}
         />
         <ListItem
           label="Every day"
-          onPress={() => this.setRepeat("Every day")}
-          selected={this.checkSelected("Every day")}
+          onPress={() => this.setRepeat("every day")}
+          selected={this.checkSelected("every day")}
         />
         <ListItem
           label="Every week"
-          onPress={() => this.setRepeat("Every week")}
-          selected={this.checkSelected("Every week")}
+          onPress={() => this.setRepeat("every week")}
+          selected={this.checkSelected("every week")}
         />
         <ListItem
           label="Every month"
-          onPress={() => this.setRepeat("Every month")}
-          selected={this.checkSelected("Every month")}
+          onPress={() => this.setRepeat("every month")}
+          selected={this.checkSelected("every month")}
         />
         <ListItem
           label="Every year"
-          onPress={() => this.setRepeat("Every year")}
-          selected={this.checkSelected("Every year")}
+          onPress={() => this.setRepeat("every year")}
+          selected={this.checkSelected("every year")}
         />
         <TouchableOpacity>
           <View style={styles.row}>
@@ -119,3 +113,18 @@ export default class RepeatScreen extends Component {
     );
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    newReminder: state.remindersReducer.newReminder,
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RepeatScreen);
