@@ -24,16 +24,17 @@ class GlobalDrugListScreen extends Component {
   static defaultProps = {};
 
   state = {
-    atTopOfList: true
+    atTopOfList: true,
+    query: '',
   };
 
-  handleScroll(event) {
+  handleScroll = (event) => {
     this.setState({
       atTopOfList: event.nativeEvent.contentOffset.y <= 0
     });
   }
 
-  alphabetizeDrugs(drugs) {
+  alphabetizeDrugs = (drugs) => {
     const reducer = (dictionary, drug) => {
       let key = drug.name[0].toUpperCase();
       if (!dictionary[key]) {
@@ -48,7 +49,24 @@ class GlobalDrugListScreen extends Component {
     return drugsByAlphabet;
   }
 
-  render() {
+  renderFilteredDrugs = (query) => {
+    const sanitizedQuery = query.toLowerCase();
+    const drugs = this.props.testDrugs.filter(drug => {
+      const drugName = drug.name.toLowerCase();
+      console.log(drugName);
+      console.log(sanitizedQuery);
+      return drugName.startsWith(sanitizedQuery);
+    });
+    console.log(drugs);
+
+    return <FlatList
+      data={drugs}
+      keyExtractor={drug => drug.id}
+      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} />}
+    />;
+  }
+
+  renderAlphabetizedDrugs = () => {
     let alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
 
     let drugsComponent = [];
@@ -57,35 +75,36 @@ class GlobalDrugListScreen extends Component {
       if (alphabetizedDrugs[String.fromCharCode(65 + i)]) {
         const letter = String.fromCharCode(65 + i);
         const item = alphabetizedDrugs[letter];
-        let component = (
-          <View key={letter} style={styles.alphabetList}>
+        let component = <View key={letter} style={styles.alphabetList}>
             <View style={styles.alphabetSeparator}>
               <Text style={styles.alphabetSeparatorText}>{letter}</Text>
               <View style={styles.alphabetSeparatorLine} />
             </View>
-            <FlatList
-              data={item}
-              keyExtractor={drug => drug.id.toString()}
-              renderItem={({ item }) => <GlobalDrugListItem drug={item} />}
-              style={styles.flatList}
-            />
-          </View>
-        );
+            <FlatList data={item} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
+          </View>;
 
         drugsComponent.push(component);
       }
     }
 
+    return drugsComponent;
+  }
+
+  updateQuery = (query) => {
+    this.setState({query});
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
-        <SearchBar atTopOfList={this.state.atTopOfList} />
+        <SearchBar atTopOfList={this.state.atTopOfList} onChange={this.updateQuery} />
         {!this.state.atTopOfList && <View style={styles.separator} />}
         <ScrollView
           style={styles.scrollView}
           onScroll={this.handleScroll.bind(this)}
         >
-          {drugsComponent}
+          {this.state.query ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
         </ScrollView>
       </View>
     );
