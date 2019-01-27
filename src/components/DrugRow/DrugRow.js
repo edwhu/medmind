@@ -7,8 +7,6 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import moment from "moment";
 import DrugIcon from "../DrugIcon/DrugIcon";
 
@@ -87,10 +85,7 @@ class DrugWeek extends Component {
   };
 
   _openDrugInfo = (drugInfo) => {
-    // const { name, startDate, endDate } = drugInfo;
-    // console.log(
-    //   `Label: ${name}, start: ${startDate.toDate()}, end: ${endDate.toDate()}`,
-    // );
+    // TODO: implement / import function here
   };
 
   _renderBar = drugInfo => {
@@ -141,13 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state, props) {
-  return {};
-}
-
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DrugWeek);
+export default DrugWeek;
