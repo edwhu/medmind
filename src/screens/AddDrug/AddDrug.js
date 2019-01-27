@@ -6,7 +6,7 @@ import FormField from "../../components/FormField/FormField";
 import RoundedButton from "../../components/RoundedButton/RoundedButton";
 import { KeyboardAvoidingView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../utilities/styles";
+import { medmindBlue } from "../../constants/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDrug } from "../../redux/actions/drug";

@@ -85,8 +85,9 @@ export const testDrugs = [
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
     color: "#990099"
-  }
+  },
 ];
+
 
 export const testReminders = [
   {
@@ -149,3 +150,5 @@ export const testSounds = [
   "Play Time",
   "Radar"
 ];
+
+export const drugTypes = ["Anti-Cancer", "Side Effects", "Supplements", "Other"];
