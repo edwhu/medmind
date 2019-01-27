@@ -136,7 +136,6 @@ class CalendarWeek extends Component {
 const mapStateToProps = (state, props) => {
   state.drugInfoReducer.drugInfo.sort((a, b) => a.startDate - b.startDate);
   const drugInfoTest = getRowsFromDrugInfo(state.drugInfoReducer.drugInfo);
-  console.log(state.drugInfoReducer.drugInfoTest);
   return {
     currentMonth: state.timelineReducer.currentMonth,
     drugInfo: state.drugInfoReducer.drugInfo,
