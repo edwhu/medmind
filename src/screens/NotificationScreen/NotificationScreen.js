@@ -3,7 +3,7 @@ import { Image, View, Button } from "react-native";
 import { drawerIconStyle } from "../../constants/styles";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fireNotification } from "../../utils";
+import { fireNotification } from "../../utilities/notifications";
 import NotificationIcon from "../../assets/07-Settings.png";
 
 class NotificationScreen extends Component {
