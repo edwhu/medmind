@@ -43,7 +43,7 @@ class WeekSwiper extends Component {
         <Swiper
           style={styles.calendarSwiper}
           onIndexChanged={this._onIndexChanged}
-          key={currentWeek} // this prop is necessary for the component to reset its index to 1 each time
+          key={currentWeek.toString()} // this prop is necessary for the component to reset its index to 1 each time
           index={1} // the current week will always be the middle one in this array
           loop={false}
           showsButtons={false}
