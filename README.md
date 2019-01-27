@@ -1,14 +1,13 @@
 ## Setup
-- rm -rf node_modules && yarn install
-- yarn start
-- Windows version of `rm -rf node_modules`
-    - `rd /s /q node_modules`
-    - or powershell: `rd -r node_modules`
-- Use Expo XDE to build and serve project
+- Node 8, Yarn
+```
+rm -rf node_modules && yarn
+yarn global add expo-cli
+expo start
+```
+Follow these instructions to install expo on your phone.
+https://docs.expo.io/versions/latest/introduction/installation/
 
-[XDE Tutorial](https://docs.expo.io/versions/latest/introduction/xde-tour)
-
-[XDE download](https://github.com/expo/xde)
 ## Drug Schema
 Should be depth 1
 ```
