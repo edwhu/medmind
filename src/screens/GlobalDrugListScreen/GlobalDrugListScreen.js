@@ -64,27 +64,18 @@ class GlobalDrugListScreen extends Component {
   }
 
   renderAlphabetizedDrugs = () => {
-    let alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
-
-    let drugsComponent = [];
-
-    for (let i = 0; i < 26; i++) {
-      if (alphabetizedDrugs[String.fromCharCode(65 + i)]) {
-        const letter = String.fromCharCode(65 + i);
-        const item = alphabetizedDrugs[letter];
-        let component = <View key={letter} style={styles.alphabetList}>
-            <View style={styles.alphabetSeparator}>
-              <Text style={styles.alphabetSeparatorText}>{letter}</Text>
-              <View style={styles.alphabetSeparatorLine} />
-            </View>
-            <FlatList data={item} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
-          </View>;
-
-        drugsComponent.push(component);
-      }
-    }
-
-    return drugsComponent;
+    const alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
+    const letters = Object.keys(alphabetizedDrugs).sort();
+    return letters.map(letter => {
+      const drugs = alphabetizedDrugs[letter];
+      return <View key={letter} style={styles.alphabetList}>
+        <View style={styles.alphabetSeparator}>
+          <Text style={styles.alphabetSeparatorText}>{letter}</Text>
+          <View style={styles.alphabetSeparatorLine} />
+        </View>
+        <FlatList data={drugs} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
+      </View>;
+    });
   }
 
   updateQuery = (query) => {
