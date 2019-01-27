@@ -149,3 +149,5 @@ export const testSounds = [
   "Play Time",
   "Radar"
 ];
+
+export const drugTypes = ["Anti-Cancer", "Side Effects", "Supplements", "Other"];
