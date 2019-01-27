@@ -53,11 +53,8 @@ class GlobalDrugListScreen extends Component {
     const sanitizedQuery = query.toLowerCase();
     const drugs = this.props.testDrugs.filter(drug => {
       const drugName = drug.name.toLowerCase();
-      console.log(drugName);
-      console.log(sanitizedQuery);
       return drugName.startsWith(sanitizedQuery);
     });
-    console.log(drugs);
 
     return <FlatList
       data={drugs}
