@@ -50,7 +50,7 @@ class GlobalDrugListScreen extends Component {
   }
 
   renderFilteredDrugs = (query) => {
-    const sanitizedQuery = query.toLowerCase();
+    const sanitizedQuery = query.trim().toLowerCase();
     const drugs = this.props.testDrugs.filter(drug => {
       const drugName = drug.name.toLowerCase();
       return drugName.startsWith(sanitizedQuery);
@@ -92,7 +92,7 @@ class GlobalDrugListScreen extends Component {
           style={styles.scrollView}
           onScroll={this.handleScroll.bind(this)}
         >
-          {this.state.query ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
+          {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
         </ScrollView>
       </View>
     );

@@ -18,7 +18,7 @@ const SearchBar = ({ onChange }) => (
       color="#5B6571"
       style={styles.iconLeft}
     />
-    <TextInput style={styles.textInput} placeholder={"Search"} onChangeText={onChange} />
+    <TextInput style={styles.textInput} placeholder={"Search"} onChangeText={onChange} autoComplete="off" />
     <View style={styles.iconRight}>
       <MaterialIcons name="mic" size={20} color="#5D6570" />
     </View>
