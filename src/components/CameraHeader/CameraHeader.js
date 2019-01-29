@@ -4,9 +4,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import StatusBarBackground from "../StatusBarBackground/StatusBarBackground";
+import RoundedButton from "../RoundedButton/RoundedButton";
 import { medmindBlue } from "../../constants/styles";
 
-export default class ScreenHeader extends Component {
+export default class CameraHeader extends Component {
   static propTypes = {
     title: PropTypes.string,
     hasMenu: PropTypes.bool,
@@ -28,43 +29,27 @@ export default class ScreenHeader extends Component {
   };
 
   openSettings = () => {
+      //to be filled
   };
 
+  onSkipButtonPress = () => {
+    const {navigate} = this.props.navigation;
+    navigate('addDrugScreen');
+  }
   render() {
+    
     return (
       <View {...this.props} style={styles.container}>
         <StatusBarBackground />
         <View style={styles.appBar}>
-          {this.props.hasMenu && (
-            <TouchableOpacity
-              style={styles.hamburgerWrapper}
-              onPress={this.openHamburger}
-            >
-              <Ionicons
-                style={styles.hamburgerIcon}
-                name="md-menu"
-                size={32}
-                color="white"
-              />
-            </TouchableOpacity>
-          )}
           {this.props.title && (
             <Text style={styles.appBarTitle}>{this.props.title}</Text>
           )}
-          {this.props.hasSettings && (
-            <TouchableOpacity
-              style={styles.settingsWrapper}
-              onPress={this.openSettings}
-            >
-              <MaterialCommunityIcons
-                style={styles.settingsIcon}
-                name="dots-vertical"
-                size={30}
-                color="white"
-              />
-            </TouchableOpacity>
-          )}
-          
+          <RoundedButton
+            onPress={() => this.onSkipButtonPress()}
+            name={"Skip"}
+            buttonStyle={styles.buttonStyle}
+          />
         </View>
       </View>
     );
@@ -108,6 +93,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontSize: 24,
     flex: 8,
-    textAlign: "center"
-  }
+    textAlign: "center",
+    position: 'relative',
+    left: 20
+  },
+  buttonStyle: {
+    borderWidth: 2,
+    borderColor: "gray",
+    alignSelf: "center",
+    width: 50,
+    height: 37
+  },
 });
