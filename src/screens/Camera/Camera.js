@@ -24,7 +24,7 @@ export default class CameraScreen extends React.Component {
 
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.front
+    type: Camera.Constants.Type.back
   };
 
   constructor(props) {

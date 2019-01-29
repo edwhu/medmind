@@ -130,8 +130,11 @@ const AppStackNavigator = createStackNavigator(
     },
   },
   {
-    headerMode: "none",
-    initialRouteName: "drawerStack"
+    headerMode: "none", //to turn off
+    initialRouteName: "drawerStack",
+    defaultNavigationOptions: {
+
+    }
   }
 );
 
