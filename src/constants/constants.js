@@ -136,6 +136,14 @@ export const testReminders = [
   }
 ];
 
+export const defaultReminder = {
+  repeatIntervalCount: 1,
+  repeatInterval: "day",
+  selectedWeekdays: [false, false, false, false, false, false, false],
+  endOccurenceCount: 1,
+  endOccurence: "never",
+}
+
 export const testSounds = [
   "Beacon",
   "Bulletin",

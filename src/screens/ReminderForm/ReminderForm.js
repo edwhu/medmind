@@ -28,12 +28,6 @@ class ReminderFormScreen extends Component {
   state = {
     title: this.props.title || "Reminder",
     snooze: false,
-    repeatIntervalCount: 1,
-    repeatInterval: 'weeks',
-    weekdays: [false, false, false, false, false, false, false],
-    occurence: 'never',
-    endDate: "MM/DD",
-    endOccurenceCount: 1,
   };
 
   openDrugListPage = () => {
@@ -45,11 +39,6 @@ class ReminderFormScreen extends Component {
   openRepeatPage = () => {
     this.props.navigation.navigate("repeatScreen", {
       showButton: true,
-      // returnRepeat: this.setRepeat.bind(this),
-      // returnWeekdays: this.setWeekdays.bind(this),
-      // returnOccurence: this.setOccurence.bind(this),
-      // returnInterval: this.setInterval.bind(this),
-      // selectedRepeat: this.state.repeat
     });
   };
 
@@ -79,23 +68,6 @@ class ReminderFormScreen extends Component {
 
   // Saves reminder to redux store
   saveReminder = () => {
-    // const drug = this.getDrugId(this.state.drug);
-    // if (drug.length == 0) {
-    //   return;
-    // }
-    // if (typeof this.props.newReminder.startDate == "undefined") {
-    //   this.state.startDate = moment();
-    // }
-    // const newReminder = {
-    //   drugId: drug[0].id,
-    //   dosage: drug[0].dosage,
-    //   sound: this.state.sound,
-    //   repeat: this.state.repeat,
-    //   time: this.state.startDate,
-    //   snooze: this.state.snooze
-    // };
-    // console.log(newReminder);
-    //this.props.addReminder(newReminder);
     this.props.addReminder();
     this.props.navigation.goBack();
   };

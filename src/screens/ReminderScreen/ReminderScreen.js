@@ -106,17 +106,23 @@ class ReminderScreen extends Component {
   };
 
   displayRepeat = reminder => {
+    console.log(reminder);
     switch (reminder.repeat) {
-      case "every week":
+      case "week":
         return ", every " + reminder.time.format("dddd");
-      case "every day":
+      case "day":
         return ", every day";
-      case "every month":
+      case "month":
         return ", every month";
-      case "every year":
+      case "year":
         return ", every year";
-      case "custom":
-        return ", custom";
+      case "Custom":
+        if (reminder.repeatInterval === "weeks") {
+          return ", custom";
+        }
+        else {
+          return ", every " + reminder.repeatIntervalCount + " " + reminder.repeatInterval + "(s)";
+        }
       default:
         return "";
     }
@@ -229,6 +235,7 @@ class ReminderScreen extends Component {
 function mapStateToProps(state, props) {
   return {
     reminders: state.remindersReducer.reminders,
+    newReminder: state.remindersReducer.newReminder,
     drugs: state.drugInfoReducer.drugInfo
   };
 }
