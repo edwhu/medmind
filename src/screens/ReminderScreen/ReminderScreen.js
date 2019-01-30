@@ -110,12 +110,6 @@ class ReminderScreen extends Component {
     switch (reminder.repeat) {
       case "week":
         return ", every " + reminder.time.format("dddd");
-      case "day":
-        return ", every day";
-      case "month":
-        return ", every month";
-      case "year":
-        return ", every year";
       case "Custom":
         if (reminder.repeatInterval === "weeks") {
           return ", custom";
@@ -124,7 +118,7 @@ class ReminderScreen extends Component {
           return ", every " + reminder.repeatIntervalCount + " " + reminder.repeatInterval + "(s)";
         }
       default:
-        return "";
+        return ", every " + reminder.repeat;
     }
   };
 

@@ -17,8 +17,6 @@ const remindersReducer = (state = initialState, action) => {
         ...state.newReminder,
         id: action.id
       }
-      console.log("NEW REMINDER: ");
-      console.log(state.newReminder);
       state = Object.assign({}, state, { newReminder });
       newReminderList.push(state.newReminder);
       state = Object.assign({}, state, { reminders: newReminderList, newReminder: defaultReminder });

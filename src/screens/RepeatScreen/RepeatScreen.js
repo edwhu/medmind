@@ -39,30 +39,6 @@ class RepeatScreen extends Component {
     }
   };
 
-  // setWeekdays = weekdays => {
-  //   if (this.state.weekdays != weekdays) {
-  //     this.setState({ weekdays: weekdays });
-  //     console.log("WEEKDAYS!!!!!!!!!!!!!: " + weekdays);
-  //     this.props.navigation.state.params.returnWeekdays(weekdays);
-  //   }
-  // };
-
-  // setOccurence = occurence => {
-  //   if (this.state.occurence != occurence) {
-  //     this.setState({ occurence: occurence });
-  //     console.log("OCCURENCE!!!!!!!!!!!!!!!" + occurence);
-  //     this.props.navigation.state.params.returnOccurence(occurence);
-  //   }
-  // };
-
-  // setInterval = interval => {
-  //   if (this.state.interval != interval) {
-  //     this.setState({ interval: interval });
-  //     console.log("INTERVAL__________________" + interval);
-  //     this.props.navigation.state.params.returnInterval(interval);
-  //   }
-  // };
-
   checkSelected = repeat => {
 
     return this.props.newReminder.repeat == repeat;
@@ -74,28 +50,28 @@ class RepeatScreen extends Component {
         <ScreenHeader {...this.props} title={this.state.title} />
         <ListItem
           label="Does not repeat"
-          onPress={() => this.setRepeat("does not repeat")}
-          selected={this.checkSelected("does not repeat")}
+          onPress={() => this.setRepeat("Does not repeat")}
+          selected={this.checkSelected("Does not repeat")}
         />
         <ListItem
           label="Every day"
-          onPress={() => this.setRepeat("every day")}
-          selected={this.checkSelected("every day")}
+          onPress={() => this.setRepeat("Every day")}
+          selected={this.checkSelected("Every day")}
         />
         <ListItem
           label="Every week"
-          onPress={() => this.setRepeat("every week")}
-          selected={this.checkSelected("every week")}
+          onPress={() => this.setRepeat("Every week")}
+          selected={this.checkSelected("Every week")}
         />
         <ListItem
           label="Every month"
-          onPress={() => this.setRepeat("every month")}
-          selected={this.checkSelected("every month")}
+          onPress={() => this.setRepeat("Every month")}
+          selected={this.checkSelected("Every month")}
         />
         <ListItem
           label="Every year"
-          onPress={() => this.setRepeat("every year")}
-          selected={this.checkSelected("every year")}
+          onPress={() => this.setRepeat("Every year")}
+          selected={this.checkSelected("Every year")}
         />
         <TouchableOpacity>
           <View style={styles.row}>

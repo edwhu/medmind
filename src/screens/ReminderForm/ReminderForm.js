@@ -68,6 +68,13 @@ class ReminderFormScreen extends Component {
 
   // Saves reminder to redux store
   saveReminder = () => {
+    if (typeof this.props.newReminder.time === "undefined") {
+      this.props.updateNewReminder("time", moment());
+    }
+    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
+        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
+        this.props.updateNewReminder("repeat", newRepeat);
+    }
     this.props.addReminder();
     this.props.navigation.goBack();
   };
