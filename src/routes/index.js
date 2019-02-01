@@ -43,7 +43,7 @@ const ReminderStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "reminderScreen"
+    initialRouteName: "customIntervalScreen"
   }
 );
 

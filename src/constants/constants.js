@@ -142,6 +142,7 @@ export const defaultReminder = {
   selectedWeekdays: [false, false, false, false, false, false, false],
   endOccurenceCount: 1,
   endOccurence: "never",
+  endDate: moment().subtract(10, "days"),
 }
 
 export const testSounds = [

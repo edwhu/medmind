@@ -69,8 +69,7 @@ class CustomIntervalScreen extends Component {
                     <EndMenu 
                         onPress={this.onOccurancePress} 
                         onChangeTextCount={(endOccurenceCount) => this.props.updateNewReminder("endOccurenceCount", endOccurenceCount)}
-                        onChangeTextEndMonth={(endMonth) => this.props.updateNewReminder("endMonth", endMonth)}
-                        onChangeTextEndDay={(endDay) => this.props.updateNewReminder("endDay", endDay)}
+                        onSetDate={(endDate) => this.props.updateNewReminder("endDate", endDate)}
                     />
                 </View>
             </View>

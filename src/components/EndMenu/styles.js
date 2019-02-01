@@ -4,8 +4,8 @@ import { medmindBlue } from '../../constants/styles';
 export default styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row', 
-    height: 40, 
-    alignItems: 'center'
+    // height: 40, 
+    alignItems: 'flex-start',
   },
   radioButton: {
     height: 20,
@@ -29,5 +29,14 @@ export default styles = StyleSheet.create({
     color: '#5B6571',
     borderBottomColor: medmindBlue,
     borderBottomWidth: 1,
-  }
+  },
+  wrapper: {
+    flex:1, 
+    flexDirection: 'column',
+  },
+  dateLabel: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
