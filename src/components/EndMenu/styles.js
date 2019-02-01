@@ -12,7 +12,7 @@ export default styles = StyleSheet.create({
     width: 20,
     borderRadius: 20,
     backgroundColor: '#E5E5E5',
-    marginLeft: 10
+    marginLeft: 10,
   },
   radioButtonActive: {
     height: 20,
@@ -24,6 +24,7 @@ export default styles = StyleSheet.create({
   text: {
     color: '#333333',
     fontSize: 14,
+    marginLeft: 10,
   },
   lightText: {
     color: '#5B6571',
@@ -31,7 +32,7 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   wrapper: {
-    flex:1, 
+    flex: 1, 
     flexDirection: 'column',
   },
   dateLabel: {

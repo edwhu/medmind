@@ -4,19 +4,12 @@ import { medmindBlue } from '../../constants/styles';
 export default styles = StyleSheet.create({
   container: {
     flex: 1, 
-    flexDirection: 'row', 
+    flexDirection: 'column', 
     justifyContent: 'flex-start', 
-    alignItems: 'center', 
-    alignContent: 'center',
   },
   picker: {
     width: 100,
     marginLeft: 3,
-  },
-  downArrow: {
-    color: medmindBlue,
-    fontSize: 20,
-    marginLeft: 5,
   },
   text: {
     color: '#333333',
@@ -27,6 +20,29 @@ export default styles = StyleSheet.create({
     borderBottomColor: medmindBlue,
     borderBottomWidth: 1,
     fontSize: 15,
+  },
+  repeatButton: {
+    backgroundColor: '#E5E5E5',
+    width: 110,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20,
+    borderRadius: 30,
+    marginTop: 15,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  option: {
+    color: '#333333',
+    fontSize: 15,
+  },
+  pressedButton: {
+    backgroundColor: medmindBlue,
+  },
+  pressedText: {
+    color: 'white',
   },
 }
 ,);

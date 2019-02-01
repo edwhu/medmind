@@ -8,16 +8,15 @@ export default styles = StyleSheet.create({
   repeatContainer:{
     borderBottomColor: medmindBlue, 
     borderBottomWidth: 1, 
-    height: 50, 
+    height: 100, 
     marginHorizontal: 15, 
-    marginTop: 5,
+    marginTop: 20,
   },
   weekdayContainer: {
     borderBottomColor: 'lightgrey', 
     borderBottomWidth: 1, 
-    height:100, 
-    marginHorizontal: 15, 
-    marginTop: 15,
+    height: 100, 
+    marginHorizontal: 15,
   },
   occuranceContainer: {
     marginHorizontal: 15, 
@@ -27,8 +26,10 @@ export default styles = StyleSheet.create({
     height: 150,
   },
   text: {
+    marginTop: 10,
     color: '#333333',
     fontSize: 15,
+    marginBottom: 10,
   },
   logo: {
     width: 300,

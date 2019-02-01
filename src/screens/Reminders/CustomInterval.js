@@ -59,7 +59,7 @@ class CustomIntervalScreen extends Component {
                 <ScreenHeader title= { 'CUSTOM' } hasMenu = {false} hasSettings = {false} />
                 <View style={styles.repeatContainer}>
                     <RepeatPrompt 
-                        onSelect={this.onIntervalPress} 
+                        onPress={this.onIntervalPress} 
                         onChangeText={(repeatIntervalCount) => this.props.updateNewReminder("repeatIntervalCount", repeatIntervalCount)}
                     />
                 </View>
