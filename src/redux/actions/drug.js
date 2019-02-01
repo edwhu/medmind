@@ -6,3 +6,10 @@ export function addDrug(drug) {
     drug
   };
 }
+
+export function deleteDrugs(drugIds) {
+  return {
+    type: DELETE_DRUG,
+    drugIds
+  };
+}
