@@ -68,16 +68,14 @@ const DrawerNavigation = createDrawerNavigator(
     privacyPolicyScreen: {
       screen: PrivacyPolicyScreen
     },
-<<<<<<< HEAD
     reminderScreen: {
       screen: ReminderScreen
-=======
+    },
     reminderStack: {
       screen: ReminderStack
     },
     dayViewScreen: {
       screen: DayViewScreen
->>>>>>> 7663b82c395b52334d551aec9be4738e4dc66a13
     },
     dayViewScreen: {
       screen: DayViewScreen

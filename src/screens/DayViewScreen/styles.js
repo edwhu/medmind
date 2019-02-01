@@ -11,7 +11,7 @@ export default (styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    height: "auto"
+    height: "auto", 
   },
   dayVerticalList: {
     backgroundColor: "white",
@@ -19,7 +19,8 @@ export default (styles = StyleSheet.create({
     width: "auto",
     marginTop: 20,
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
+    borderTopRightRadius: 10,
+    paddingTop:20,
   },
   text: {
     margin: 10

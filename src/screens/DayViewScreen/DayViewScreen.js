@@ -65,14 +65,16 @@ const drugsByEvents = [
         key: "1",
         name: "Lorazepam",
         dosage: "2 mg",
-        color: "#123456"
+        color: "#123456", 
+        status: "SUCCESS", 
       },
       {
         id: 2,
         key: "2",
         name: "Lorazepam",
         dosage: "2 mg",
-        color: "#990099"
+        color: "#990099",
+        status: "SUCCESS", 
       }
     ]
   },
@@ -85,14 +87,16 @@ const drugsByEvents = [
         key: "1",
         name: "Lorazepam",
         dosage: "2 mg",
-        color: "#0000ff"
+        color: "#0000ff", 
+        status: "FAIL", 
       },
       {
         id: 2,
         key: "2",
         name: "Lorazepam",
         dosage: "2 mg",
-        color: "#0000ff"
+        color: "#0000ff", 
+        status: "FAIL", 
       }
     ]
   },
@@ -105,14 +109,16 @@ const drugsByEvents = [
         key: "1",
         name: "Tylenol",
         dosage: "2 mg",
-        color: "#0000ff"
+        color: "#0000ff", 
+        status: "PENDING", 
       },
       {
         id: 2,
         key: "2",
         name: "Lorazepam",
         dosage: "2 mg",
-        color: "#0000ff"
+        color: "#0000ff", 
+        status: "PENDING", 
       }
     ]
   }
@@ -133,13 +139,9 @@ export default class DayViewScreen extends Component {
   state = {};
 
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
-<<<<<<< HEAD
   organizeDrugsByEvent(){
 
   }
-=======
-  organizeDrugsByEvent() {}
->>>>>>> 7663b82c395b52334d551aec9be4738e4dc66a13
 
   render() {
     return (

@@ -19,7 +19,6 @@ const EventInDayView = ({ event }) => (
         style={styles.drugList}
       />
     </View>
-    <View style={styles.line} />
   </View>
 );
 
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   container: {
-    marginTop: 30,
     flexDirection: "row",
     // alignItems: "center",
     justifyContent: "center"
@@ -37,18 +35,12 @@ const styles = StyleSheet.create({
   drugList: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   text: {
     margin: 10,
     textAlign: "center"
   },
-  line: {
-    borderBottomColor: "#C4C4C4",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "95%",
-    marginTop: 25
-  }
 });
 
 export default EventInDayView;
