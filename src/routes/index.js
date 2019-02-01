@@ -43,7 +43,7 @@ const ReminderStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "customIntervalScreen"
+    initialRouteName: "reminderScreen"
   }
 );
 
@@ -131,7 +131,7 @@ const AppStackNavigator = createStackNavigator(
       screen: LoginScreen
     },
     drawerStack: {
-      screen: ReminderStack,
+      screen: TimelineScreen,
     }
   },
   {
