@@ -17,7 +17,7 @@ export default (drugInfoReducer = (state = drugState, action) => {
       const { drugIds } = action;
       return {
         ...state,
-        drugInfo: state.drugInfo.filter(drug => drugIds.includes(drug.id));
+        drugInfo: state.drugInfo.filter(drug => !drugIds.includes(drug.id));
       }
     default:
       return state;
