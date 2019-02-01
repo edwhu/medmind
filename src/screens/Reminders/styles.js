@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
 export default styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   repeatContainer:{
     borderBottomColor: medmindBlue, 
     borderBottomWidth: 1, 
@@ -23,8 +27,8 @@ export default styles = StyleSheet.create({
     height: 150,
   },
   text: {
-    textAlign: 'center',
-    color: 'black'
+    color: '#333333',
+    fontSize: 15,
   },
   logo: {
     width: 300,

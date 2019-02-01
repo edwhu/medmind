@@ -47,8 +47,15 @@ class CustomIntervalScreen extends Component {
     }
 
     render() {
+        const weekdayButtons = <View style={styles.weekdayContainer}>
+                                    <Text style={styles.text}>Repeats On</Text>
+                                    <WeekdayButtons 
+                                        onPress={this.onWeekdayPress} 
+                                        selectedButtonIndex={this.props.newReminder.selectedWeekdays}
+                                    />
+                                </View>
         return (
-            <View style={{flex: 1}}>
+            <View style={styles.container}>
                 <ScreenHeader title= { 'CUSTOM' } hasMenu = {false} hasSettings = {false} />
                 <View style={styles.repeatContainer}>
                     <RepeatPrompt 
@@ -56,19 +63,14 @@ class CustomIntervalScreen extends Component {
                         onChangeText={(repeatIntervalCount) => this.props.updateNewReminder("repeatIntervalCount", repeatIntervalCount)}
                     />
                 </View>
-                <View style={styles.weekdayContainer}>
-                    <Text>Repeats On</Text>
-                <WeekdayButtons 
-                    onPress={this.onWeekdayPress} 
-                    selectedButtonIndex={this.props.newReminder.selectedWeekdays}
-                />
-                </View>
+                {(this.props.newReminder.repeatInterval === "week") ? weekdayButtons : null}
                 <View style={styles.occuranceContainer}>
-                    <Text>Ends</Text>
+                    <Text style={styles.text}>Ends</Text>
                     <EndMenu 
                         onPress={this.onOccurancePress} 
                         onChangeTextCount={(endOccurenceCount) => this.props.updateNewReminder("endOccurenceCount", endOccurenceCount)}
-                        onChangeTextEndDate={(endDate) => this.props.updateNewReminder("endDate", endDate)}
+                        onChangeTextEndMonth={(endMonth) => this.props.updateNewReminder("endMonth", endMonth)}
+                        onChangeTextEndDay={(endDay) => this.props.updateNewReminder("endDay", endDay)}
                     />
                 </View>
             </View>

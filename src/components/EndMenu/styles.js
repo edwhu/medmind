@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 20,
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#E5E5E5',
     marginLeft: 10
   },
   radioButtonActive: {
@@ -20,5 +20,14 @@ export default styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: medmindBlue,
     marginLeft: 10
+  },
+  text: {
+    color: '#333333',
+    fontSize: 14,
+  },
+  lightText: {
+    color: '#5B6571',
+    borderBottomColor: medmindBlue,
+    borderBottomWidth: 1,
   }
 });

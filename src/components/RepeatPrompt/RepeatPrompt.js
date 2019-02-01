@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateNewReminder } from "../../redux/actions/reminder";
-import { Dimensions, View, Text, StyleSheet, Platform, TextInput, Picker } from 'react-native';
+import { Dimensions, View, Text, StyleSheet, Platform, TextInput, Picker, TouchableOpacity } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
+import { Ionicons } from "@expo/vector-icons";
 import styles from './styles';
 
 
@@ -17,23 +18,23 @@ class RepeatPrompt extends Component {
     render() {
         return (
             <View style={styles.container}> 
-                <Text>Repeats every </Text>
+                <Text style={styles.text}>Repeats every </Text>
                 <TextInput
                     placeholder="1"
                     value={String(this.props.newReminder.repeatIntervalCount)}
                     onChangeText={this.props.onChangeText}
                     keyboardType="numeric"
+                    style={styles.lightText}
                 />
                 <Picker
-                    mode="dropdown"
                     selectedValue={this.props.newReminder.repeatInterval}
                     style={styles.picker}
                     onValueChange={this.props.onSelect}>
                     <Picker.Item label="days" value="day" />
                     <Picker.Item label="weeks" value="week" />
                     <Picker.Item label="months" value="month" />
-                 </Picker>
-
+                </Picker>
+                <Ionicons name="md-arrow-dropdown" style={styles.downArrow} />
             </View>
         )
     }

@@ -111,7 +111,7 @@ class ReminderScreen extends Component {
       case "week":
         return ", every " + reminder.time.format("dddd");
       case "Custom":
-        if (reminder.repeatInterval === "weeks") {
+        if (reminder.repeatInterval === "week") {
           return ", custom";
         }
         else {
