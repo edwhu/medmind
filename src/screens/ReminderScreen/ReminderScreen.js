@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { updateReminder } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
+import MinusButton from "../../components/MinusButton/MinusButton";
 import { medmindBlue, drawerIconStyle } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -126,19 +127,34 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
+  deleteReminder = (reminderId) => {
+    const reminders = this.props.reminders.filter(item => {
+      return item.id !== reminderId;
+    });
+    this.props.updateReminder(reminders);
+  }
+
+  deleteRemindersByDrug = (drugName) => {
+    const drugId = this.getDrugId(drugName);
+    const reminders = this.props.reminders.filter(item => {
+      return item.drugId !== drugId;
+    });
+    this.props.updateReminder(reminders);
+  }
+
   render() {
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
-    const minusButton = (
-      <View style={styles.edit}>
-        <TouchableOpacity style={styles.minusButton}>
-          <Text style={styles.minus}>-</Text>
-        </TouchableOpacity>
-      </View>
-    );
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
+      // const drugMinusButton = (
+      //   <View style={styles.edit}>
+      //     <TouchableOpacity style={styles.minusButton} >
+      //       <Text style={styles.minus}>-</Text>
+      //     </TouchableOpacity>
+      //   </View>
+      // );
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -149,6 +165,13 @@ class ReminderScreen extends Component {
       );
       const drugReminders = dict[drug];
       const reminderList = drugReminders.map(reminder => {
+        // const reminderMinusButton = (
+        //   <View style={styles.edit}>
+        //     <TouchableOpacity style={styles.minusButton} >
+        //       <Text style={styles.minus}>-</Text>
+        //     </TouchableOpacity>
+        //   </View>
+        // );
         const switchReminder = (
           <Switch
             onTintColor={medmindBlue}
@@ -162,7 +185,7 @@ class ReminderScreen extends Component {
           <View key={reminder.id}>
             <View style={styles.horizontalLine} />
             <View style={styles.reminder}>
-              {this.state.editMode ? minusButton : null}
+              {this.state.editMode ? <MinusButton onPress={(id) => this.deleteReminder(reminder.id)} /> : null}
               <View style={styles.info}>
                 <View style={styles.timeContainer}>
                   <Text style={styles.timeLabel}>
@@ -188,7 +211,7 @@ class ReminderScreen extends Component {
       return (
         <View key={drug}>
           <View style={styles.drug}>
-            {this.state.editMode ? minusButton : null}
+            {this.state.editMode ? <MinusButton onPress={(drugName) => this.deleteRemindersByDrug(drug)} /> : null}
             <Text style={styles.drugName}>{drug}</Text>
             {this.state.editMode ? arrowButton : switchDrug}
           </View>
@@ -223,7 +246,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateReminder: bindActionCreators(updateReminder, dispatch)
+  updateReminder: bindActionCreators(updateReminder, dispatch),
 });
 
 export default connect(
