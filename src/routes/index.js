@@ -85,7 +85,7 @@ const DrawerNavigation = createDrawerNavigator(
     }
   },
   {
-    initialRouteName: "timelineScreen",
+    initialRouteName: "dayViewScreen",
     contentComponent: CustomDrawer,
     drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {
