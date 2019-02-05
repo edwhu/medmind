@@ -19,8 +19,6 @@ const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
-  static navigationOptions = {
-  };
 
   state = {
     hasCameraPermission: null,

@@ -123,11 +123,6 @@ export default class DayViewScreen extends Component {
     title: PropTypes.string
   };
 
-  static navigationOptions = {
-    drawerLabel: "Day View",
-    drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
-  };
-
   static defaultProps = {};
 
   state = {};

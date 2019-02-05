@@ -8,10 +8,6 @@ import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
 
 export default class PrivacyScreen extends Component {
-  static navigationOptions = {
-    drawerLabel: "Privacy Policy",
-    drawerIcon: () => <Image source={PrivacyIcon} style={styles.imageStyle} />
-  };
 
   static propTypes = {};
 

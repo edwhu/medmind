@@ -15,8 +15,6 @@ import { drawerIconStyle } from "../../constants/styles";
 import AddDrugIcon from "../../assets/07-Settings.png";
 
 class AddDrugScreen extends Component {
-  static navigationOptions = {
-  };
   constructor(props) {
     super(props);
   }

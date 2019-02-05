@@ -16,11 +16,6 @@ class GlobalDrugListScreen extends Component {
     title: PropTypes.string
   };
 
-  static navigationOptions = {
-    drawerLabel: "Drug List",
-    drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
-  };
-
   static defaultProps = {};
 
   state = {
