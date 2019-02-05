@@ -61,14 +61,12 @@ const ReminderStack = createStackNavigator(
   }
 );
 
-const withHeader = (screen, routeName, drawerNav) => 
-{
-  console.log(drawerNav);
+const withHeader = (screen, routeName) => 
   createStackNavigator(
     { [routeName]: { screen } },
     {
       headerMode: 'screen',
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         headerTitle: "Medmind",
         headerStyle: {
           backgroundColor: medmindBlue,
@@ -82,13 +80,13 @@ const withHeader = (screen, routeName, drawerNav) =>
           flex: 8,
           textAlign: "center"
         },
-        headerLeft: <HamburgerIcon onPress={drawerNav.navigation.toggleDrawer}/>,
-        
-        // header: <ScreenHeader />
-      }
+        headerLeft: <HamburgerIcon onPress={()=>{
+          navigation.dangerouslyGetParent().toggleDrawer()
+        }}/>,
+      })
     },
   );
-}
+
   
   
 const doNotAppearOnDrawer = {
@@ -102,7 +100,7 @@ const doNotAppearOnDrawer = {
 const DrawerNavigation = createDrawerNavigator(
   {
     timelineScreen: {
-      screen: ({navigation}) => withHeader(TimelineScreen,"timelineScreen", navigation),
+      screen: withHeader(TimelineScreen,"timelineScreen"),
       navigationOptions: {
         drawerLabel: "Timeline",
         drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
