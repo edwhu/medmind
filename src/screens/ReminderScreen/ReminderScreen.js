@@ -148,13 +148,6 @@ class ReminderScreen extends Component {
     );
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
-      // const drugMinusButton = (
-      //   <View style={styles.edit}>
-      //     <TouchableOpacity style={styles.minusButton} >
-      //       <Text style={styles.minus}>-</Text>
-      //     </TouchableOpacity>
-      //   </View>
-      // );
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -165,13 +158,6 @@ class ReminderScreen extends Component {
       );
       const drugReminders = dict[drug];
       const reminderList = drugReminders.map(reminder => {
-        // const reminderMinusButton = (
-        //   <View style={styles.edit}>
-        //     <TouchableOpacity style={styles.minusButton} >
-        //       <Text style={styles.minus}>-</Text>
-        //     </TouchableOpacity>
-        //   </View>
-        // );
         const switchReminder = (
           <Switch
             onTintColor={medmindBlue}
