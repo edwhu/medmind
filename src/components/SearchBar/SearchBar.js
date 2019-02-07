@@ -10,7 +10,7 @@ import {
 import LogoWhite from "../../assets/logo-white.png";
 import { SimpleLineIcons, MaterialIcons } from "@expo/vector-icons";
 
-const SearchBar = ({ onPress }) => (
+const SearchBar = ({ onChange }) => (
   <View style={styles.container}>
     <SimpleLineIcons
       name="magnifier"
@@ -18,7 +18,7 @@ const SearchBar = ({ onPress }) => (
       color="#5B6571"
       style={styles.iconLeft}
     />
-    <TextInput style={styles.textInput} placeholder={"Search"} />
+    <TextInput style={styles.textInput} placeholder={"Search"} onChangeText={onChange} autoComplete="off" />
     <View style={styles.iconRight}>
       <MaterialIcons name="mic" size={20} color="#5D6570" />
     </View>

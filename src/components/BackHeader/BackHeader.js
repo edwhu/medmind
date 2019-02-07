@@ -4,9 +4,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import StatusBarBackground from "../StatusBarBackground/StatusBarBackground";
+import RoundedButton from "../RoundedButton/RoundedButton";
 import { medmindBlue } from "../../constants/styles";
 
-export default class ScreenHeader extends Component {
+export default class CameraHeader extends Component {
   static propTypes = {
     title: PropTypes.string,
     hasMenu: PropTypes.bool,
@@ -23,35 +24,34 @@ export default class ScreenHeader extends Component {
 
   state = {};
 
-  openHamburger = () => {
-    this.props.navigation.openDrawer();
-  };
+
 
   openSettings = () => {
+    //to be filled later
   };
 
+  onBackButtonPress = () => {
+  const {navigate} = this.props.navigation;
+  navigate('timelineScreen');
+  }
+
   render() {
+    const {title, hasMenu, hasSettings} = this.props;
     return (
       <View {...this.props} style={styles.container}>
         <StatusBarBackground />
         <View style={styles.appBar}>
-          {this.props.hasMenu && (
-            <TouchableOpacity
-              style={styles.hamburgerWrapper}
-              onPress={this.openHamburger}
-            >
-              <Ionicons
-                style={styles.hamburgerIcon}
-                name="md-menu"
-                size={32}
-                color="white"
-              />
-            </TouchableOpacity>
+          {hasMenu && (
+             <RoundedButton
+             onPress={() => this.onBackButtonPress()}
+             name={"Back"}
+             buttonStyle={styles.buttonStyle}
+           />
           )}
-          {this.props.title && (
-            <Text style={styles.appBarTitle}>{this.props.title}</Text>
+          {title && (
+            <Text style={styles.appBarTitle}>{title}</Text>
           )}
-          {this.props.hasSettings && (
+          {hasSettings && (
             <TouchableOpacity
               style={styles.settingsWrapper}
               onPress={this.openSettings}
@@ -64,7 +64,6 @@ export default class ScreenHeader extends Component {
               />
             </TouchableOpacity>
           )}
-          
         </View>
       </View>
     );
@@ -108,6 +107,15 @@ const styles = StyleSheet.create({
     fontFamily: "System",
     fontSize: 24,
     flex: 8,
-    textAlign: "center"
-  }
+    textAlign: "center",
+    position: 'relative',
+    right: 7,
+  },
+  buttonStyle: {
+    borderWidth: 2,
+    borderColor: "gray",
+    alignSelf: "center",
+    width: 50,
+    height: 37
+  },
 });
