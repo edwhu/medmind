@@ -10,7 +10,7 @@ import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
-import CustomIntervalScreen from '../screens/Reminders/CustomInterval';
+import CustomIntervalScreen from '../screens/CustomIntervalScreen/CustomInterval';
 import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
 import SoundScreen from "../screens/SoundScreen/SoundScreen";
 import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
@@ -132,11 +132,14 @@ const AppStackNavigator = createStackNavigator(
     },
     drawerStack: {
       screen: TimelineScreen,
+    },
+    reminderStack: {
+      screen: ReminderStack
     }
   },
   {
     headerMode: "none",
-    initialRouteName: "drawerStack"
+    initialRouteName: "reminderStack"
   }
 );
 

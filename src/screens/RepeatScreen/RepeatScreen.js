@@ -40,8 +40,7 @@ class RepeatScreen extends Component {
   };
 
   checkSelected = repeat => {
-
-    return this.props.newReminder.repeat == repeat;
+    return this.props.newReminder.repeat === repeat;
   };
 
   render() {
@@ -78,7 +77,7 @@ class RepeatScreen extends Component {
             <Text style={styles.setting}>Custom</Text>
             <TouchableOpacity 
               style={styles.button}
-              onPress={() => this.openCustomIntervalPage()}
+              onPress={this.openCustomIntervalPage}
             >
               <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
             </TouchableOpacity>

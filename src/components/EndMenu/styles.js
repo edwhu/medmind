@@ -4,7 +4,6 @@ import { medmindBlue } from '../../constants/styles';
 export default styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row', 
-    // height: 40, 
     alignItems: 'flex-start',
   },
   radioButton: {

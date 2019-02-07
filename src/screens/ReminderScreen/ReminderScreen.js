@@ -106,7 +106,6 @@ class ReminderScreen extends Component {
   };
 
   displayRepeat = reminder => {
-    console.log(reminder);
     switch (reminder.repeat) {
       case "week":
         return ", every " + reminder.time.format("dddd");
@@ -115,7 +114,7 @@ class ReminderScreen extends Component {
           return ", custom";
         }
         else {
-          return ", every " + reminder.repeatIntervalCount + " " + reminder.repeatInterval + "(s)";
+          return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
         }
       default:
         return ", every " + reminder.repeat;
@@ -126,21 +125,10 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
-  deleteReminder = () => {
-
-  }
-
   render() {
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
-    {/*const minusButton = (
-      <View style={styles.edit}>
-        <TouchableOpacity style={styles.minusButton} onPress={this.deleteReminder}>
-          <Text style={styles.minus}>-</Text>
-        </TouchableOpacity>
-      </View>
-    );*/}
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
       const minusButton = (

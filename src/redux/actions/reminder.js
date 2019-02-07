@@ -4,7 +4,6 @@ import store from "../store";
 let nextId = 9000;
 
 export function updateNewReminder(field, value) {
-  console.log(field + " " + value);
   return {
     type: UPDATE_NEW_REMINDER,
     field,

@@ -12,15 +12,15 @@ const initialState = {
 const remindersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_REMINDER:
-      const newReminderList = state.reminders.slice(0);
       const newReminder = {
         ...state.newReminder,
         id: action.id
       }
-      state = Object.assign({}, state, { newReminder });
-      newReminderList.push(state.newReminder);
-      state = Object.assign({}, state, { reminders: newReminderList, newReminder: defaultReminder });
-      return state;
+      return {
+        ...state,
+         reminders: state.reminders.concat(newReminder),
+         newReminder: defaultReminder,
+      }
     case UPDATE_REMINDER:
       state = Object.assign({}, state, { reminders: action.reminders });
       return state;
