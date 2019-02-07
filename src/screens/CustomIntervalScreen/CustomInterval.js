@@ -38,11 +38,12 @@ class CustomIntervalScreen extends Component {
     }
 
     render() {
+      const { updateNewReminder, newReminder } = this.props;
       const weekdayButtons = <View style={styles.weekdayContainer}>
                                 <Text style={styles.text}>Repeats On</Text>
                                 <WeekdayButtons 
                                   onPress={this.onWeekdayPress} 
-                                  selectedButtonIndex={this.props.newReminder.selectedWeekdays}
+                                  selectedButtonIndex={newReminder.selectedWeekdays}
                                 />
                               </View>
     return (
@@ -51,16 +52,16 @@ class CustomIntervalScreen extends Component {
         <View style={styles.repeatContainer}>
           <RepeatPrompt 
             onPress={this.onIntervalPress} 
-            onChangeText={(repeatIntervalCount) => this.props.updateNewReminder("repeatIntervalCount", repeatIntervalCount)}
+            onChangeText={(repeatIntervalCount) => updateNewReminder("repeatIntervalCount", repeatIntervalCount)}
           />
         </View>
-        {(this.props.newReminder.repeatInterval === "week") ? weekdayButtons : null}
+        {(newReminder.repeatInterval === "week") ? weekdayButtons : null}
         <View style={styles.occuranceContainer}>
           <Text style={styles.text}>Ends</Text>
           <EndMenu 
             onPress={this.onOccurancePress} 
-            onChangeTextCount={(endOccurenceCount) => this.props.updateNewReminder("endOccurenceCount", endOccurenceCount)}
-            onSetDate={(endDate) => this.props.updateNewReminder("endDate", endDate)}
+            onChangeTextCount={(endOccurenceCount) => updateNewReminder("endOccurenceCount", endOccurenceCount)}
+            onSetDate={(endDate) => updateNewReminder("endDate", endDate)}
           />
         </View>
       </View>

@@ -37,7 +37,7 @@ class ReminderFormScreen extends Component {
   };
 
   openRepeatPage = () => {
-    this.props.navigation.navigate("repeatScreen", {
+   this.props.navigation.navigate("repeatScreen", {
       showButton: true,
     });
   };
@@ -80,24 +80,25 @@ class ReminderFormScreen extends Component {
   };
 
   render() {
+    const { newReminder, updateNewReminder, addReminder, drugs } = this.props;
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
     const soundText = (
-      <Text style={styles.selectedSetting}>{this.props.newReminder.sound}</Text>
+      <Text style={styles.selectedSetting}>{newReminder.sound}</Text>
     );
     const repeatText = (
-      <Text style={styles.selectedSetting}>{this.props.newReminder.repeat}</Text>
+      <Text style={styles.selectedSetting}>{newReminder.repeat}</Text>
     );
     const drugText = (
-      <Text style={styles.selectedSetting}>{this.getDrugName(this.props.newReminder.drugId)}</Text>
+      <Text style={styles.selectedSetting}>{this.getDrugName(newReminder.drugId)}</Text>
     );
     return (
       <View style={styles.container}>
         <ScreenHeader {...this.props} title={this.state.title} />
         <TimePicker
           header="Time"
-          setDate={time => this.props.updateNewReminder("time", time)}
+          setDate={time => updateNewReminder("time", time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -106,7 +107,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openDrugListPage()}
           >
-            {this.props.newReminder.drugId ? drugText : arrowButton}
+            {newReminder.drugId ? drugText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -116,14 +117,14 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openRepeatPage()}
           >
-            {this.props.newReminder.repeat ? repeatText : arrowButton}
+            {newReminder.repeat ? repeatText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Dosage</Text>
           <Text style={styles.entry}>
-            {this.props.newReminder.dosage ? this.props.newReminder.dosage : null}
+            {newReminder.dosage ? newReminder.dosage : null}
           </Text>
         </View>
         <View style={styles.horizontalLine} />
@@ -133,7 +134,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openSoundPage()}
           >
-            {this.props.newReminder.sound ? soundText : arrowButton}
+            {newReminder.sound ? soundText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
