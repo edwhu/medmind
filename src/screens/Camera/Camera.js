@@ -13,14 +13,13 @@ import { Ionicons } from "@expo/vector-icons";
 import drugData from "../../assets/Products.json";
 import { drawerIconStyle } from "../../constants/styles";
 import CameraIcon from "../../assets/07-Settings.png";
+import CameraHeader from "../../components/CameraHeader/CameraHeader.js";
 
 const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
   static navigationOptions = {
-    drawerLabel: "Camera Screen",
-    drawerIcon: () => <Image source={CameraIcon} style={drawerIconStyle} />
   };
 
   state = {
@@ -96,6 +95,8 @@ export default class CameraScreen extends React.Component {
     } catch (err) {
       console.error(err);
     }
+    const {navigate} = this.props.navigation.navigate;
+    navigate('addDrugScreen');
   }
 
   render() {
@@ -107,6 +108,7 @@ export default class CameraScreen extends React.Component {
     } else {
       return (
         <View style={styles.flex}>
+          <CameraHeader {...this.props} title={this.state.title} />
           <Camera
             style={styles.flex}
             type={this.state.type}

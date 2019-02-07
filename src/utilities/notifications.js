@@ -18,13 +18,8 @@ export function fireNotification(reminder, drug) {
     repeat: reminder.repeat
   };
 
-  console.log(localNotification);
-  console.log(schedulingOptions);
-
   Notifications.scheduleLocalNotificationAsync(
     localNotification,
     schedulingOptions
   );
-
-  console.log("successful?");
 }

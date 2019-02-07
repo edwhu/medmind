@@ -52,12 +52,6 @@ const DrawerNavigation = createDrawerNavigator(
     timelineScreen: {
       screen: TimelineScreen
     },
-    cameraScreen: {
-      screen: CameraScreen
-    },
-    addDrugScreen: {
-      screen: AddDrugScreen
-    },
     logout: {
       screen: LoginScreen
     },
@@ -131,15 +125,21 @@ const AppStackNavigator = createStackNavigator(
       screen: LoginScreen
     },
     drawerStack: {
-      screen: TimelineScreen,
+      screen: DrawerNavigation
     },
-    reminderStack: {
-      screen: ReminderStack
-    }
+    addDrugScreen: {
+      screen: AddDrugScreen
+    },
+    cameraScreen: {
+      screen: CameraScreen
+    },
   },
   {
-    headerMode: "none",
-    initialRouteName: "reminderStack"
+    headerMode: "none", //to turn off
+    initialRouteName: "drawerStack",
+    defaultNavigationOptions: {
+
+    }
   }
 );
 

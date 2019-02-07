@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Image, Text, View, StyleSheet } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import BackHeader from "../../components/BackHeader/BackHeader";
 import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
 import FormField from "../../components/FormField/FormField";
 import RoundedButton from "../../components/RoundedButton/RoundedButton";
 import { KeyboardAvoidingView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../utilities/styles";
+import { medmindBlue } from "../../constants/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDrug } from "../../redux/actions/drug";
@@ -16,8 +16,6 @@ import AddDrugIcon from "../../assets/07-Settings.png";
 
 class AddDrugScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Add Drug",
-    drawerIcon: () => <Image source={AddDrugIcon} style={drawerIconStyle} />
   };
   constructor(props) {
     super(props);
@@ -33,10 +31,16 @@ class AddDrugScreen extends Component {
     color: "#990099"
   };
 
+  onSubmit() {
+    const {navigate} = this.props.navigation;
+    this.props.addDrug(this.state);
+    navigate("timelineScreen");
+  }
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
-        <ScreenHeader {...this.props} title={"Drug Entry"} />
+        <BackHeader {...this.props} title={"Drug Entry"} />
         <FormField
           header="Drug Name"
           onChangeText={name => this.setState({ name })}
@@ -88,7 +92,7 @@ class AddDrugScreen extends Component {
 
         <View style={styles.footerStyle}>
           <RoundedButton
-            onPress={() => this.props.addDrug(this.state)}
+            onPress={() => this.onSubmit()}
             name={"Submit"}
             buttonStyle={styles.buttonStyle}
           />
