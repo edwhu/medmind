@@ -26,6 +26,7 @@ import DayIcon from "../assets/00-Day.png";
 import SettingsIcon from "../assets/07-Settings.png";
 import ExportIcon from "../assets/05-ExportSumm.png";
 import DrugIcon from "../assets/04-DrugList.png";
+import NotifIcon from "../assets/03-Notifs.png";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -58,7 +59,27 @@ const ReminderStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "reminderScreen"
+    initialRouteName: "reminderScreen",
+    navigationOptions: ({navigation}) => ({
+      headerTitle: "Medmind",
+      headerStyle: {
+        backgroundColor: medmindBlue,
+      },
+      headerTitleStyle: {
+        color: "white",
+        fontWeight: "500",
+        fontFamily: "System",
+        fontSize: 24,
+        flex: 1,
+        textAlign: "center",
+      },
+      headerLeft: <HamburgerIcon onPress={()=>{
+        navigation.dangerouslyGetParent().toggleDrawer()
+      }}/>,
+      headerRight: <SettingsButton onPress={()=>{
+        openSettings()
+      }}/>
+    }) 
   }
 );
 
@@ -105,11 +126,39 @@ const doNotAppearOnDrawer = {
 
 const DrawerNavigation = createDrawerNavigator(
   {
+    dayViewScreen: {
+      screen: withHeader(DayViewScreen, "dayViewScreen"),
+      navigationOptions: {
+        drawerLabel: "Day",
+        drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
+      }
+    },
     timelineScreen: {
       screen: withHeader(TimelineScreen,"timelineScreen"),
       navigationOptions: {
-        drawerLabel: "Timeline",
+        drawerLabel: "Week",
         drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
+      }
+    },
+    reminderStack: {
+      screen: ReminderStack,
+      navigationOptions: {
+        drawerLabel: "Notifications",
+        drawerIcon: ()=> <Image source={NotifIcon} style={styles.imageStyle} />
+      }
+    },
+    globalDrugListScreen: {
+      screen: withHeader(GlobalDrugListScreen,"globalDrugListScreen"),
+      navigationOptions: {
+        drawerLabel: "Global Drug List",
+        drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
+      }
+    },
+    shareDrugScreen: {
+      screen: withHeader(ShareDrugScreen,"shareDrugScreen"),
+      navigationOptions: {
+        drawerLabel: "Export Summary",
+        drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
       }
     },
     logout: {
@@ -129,30 +178,7 @@ const DrawerNavigation = createDrawerNavigator(
         drawerIcon: () => <Image source={SettingsIcon} style={styles.imageStyle} />
       },
     },
-    shareDrugScreen: {
-      screen: withHeader(ShareDrugScreen,"shareDrugScreen"),
-      navigationOptions: {
-        drawerLabel: "shareDrugScreen",
-        drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
-      }
-    },
-    reminderStack: {
-      screen: ReminderStack
-    },
-    dayViewScreen: {
-      screen: withHeader(DayViewScreen, "dayViewScreen"),
-      navigationOptions: {
-        drawerLabel: "Day View",
-        drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
-      }
-    },
-    globalDrugListScreen: {
-      screen: withHeader(GlobalDrugListScreen,"globalDrugListScreen"),
-      navigationOptions: {
-        drawerLabel: "Drug List",
-        drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
-      }
-    },
+    
     notificationScreen: {
       screen: NotificationScreen
     },

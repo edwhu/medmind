@@ -27,7 +27,6 @@ class TimelineScreen extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        {/* <ScreenHeader {...this.props} title={'Medmind'} /> */}
         <WeekSwiper navigation = {navigation}/>
       </View>
     );

@@ -52,7 +52,6 @@ export default class SoundScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <ScrollView>{soundList}</ScrollView>
       </View>
     );
