@@ -27,7 +27,6 @@ export default class PrivacyScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.title}>Privacy Policy</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>

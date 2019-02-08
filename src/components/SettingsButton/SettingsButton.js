@@ -9,17 +9,17 @@ import { medmindBlue } from "../../constants/styles";
 
 
 
-class HamburgerIcon extends Component {
+class SettingsButton extends Component {
     render() {
         return (
         <TouchableOpacity
             onPress={this.props.onPress}
-            style={styles.hamburgerWrapper}
+            style={styles.settingsWrapper}
         >
-            <Ionicons
-                style={styles.hamburgerIcon}
-                name="md-menu"
-                size={32}
+            <MaterialCommunityIcons
+                style={styles.settingsIcon}
+                name="dots-vertical"
+                size={30}
                 color="white"
             />
         </TouchableOpacity>
@@ -27,21 +27,20 @@ class HamburgerIcon extends Component {
     }
 }
 
-HamburgerIcon.propTypes = {
+SettingsButton.propTypes = {
     onPress: PropTypes.func.isRequired
   };
 const styles = StyleSheet.create({
-    hamburgerWrapper: {
-      width: 32,
-      height: 32,
-      alignItems: "center",
-      flex: 1,
-      margin: 15
-    },
-    hamburgerIcon: {
-      alignSelf: "flex-start"
-    },
+    settingsWrapper: {
+        width: 32,
+        height: 32,
+        alignItems: "center",
+        flex: 1
+      },
+      settingsIcon: {
+        alignSelf: "flex-end"
+      },
   });
 
 
-export default HamburgerIcon;
+export default SettingsButton;

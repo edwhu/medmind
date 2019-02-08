@@ -40,7 +40,6 @@ export default class TermsAndConditionsScreen extends Component {
     );
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.title}>Terms and Conditions</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>

@@ -19,6 +19,7 @@ import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import { medmindBlue } from "../constants/styles";
 import ScreenHeader from "../components/ScreenHeader/ScreenHeader";
 import HamburgerIcon from "../components/HamburgerIcon/HamburgerIcon";
+import SettingsButton from "../components/SettingsButton/SettingsButton";
 import React, { Component } from "react";
 import WeekIcon from "../assets/01-Week.png";
 import DayIcon from "../assets/00-Day.png";
@@ -61,6 +62,9 @@ const ReminderStack = createStackNavigator(
   }
 );
 
+openSettings = () => {
+};
+
 const withHeader = (screen, routeName) => 
   createStackNavigator(
     { [routeName]: { screen } },
@@ -70,19 +74,21 @@ const withHeader = (screen, routeName) =>
         headerTitle: "Medmind",
         headerStyle: {
           backgroundColor: medmindBlue,
-
         },
         headerTitleStyle: {
           color: "white",
           fontWeight: "500",
           fontFamily: "System",
           fontSize: 24,
-          flex: 8,
-          textAlign: "center"
+          flex: 1,
+          textAlign: "center",
         },
         headerLeft: <HamburgerIcon onPress={()=>{
           navigation.dangerouslyGetParent().toggleDrawer()
         }}/>,
+        headerRight: <SettingsButton onPress={()=>{
+          openSettings()
+        }}/>
       })
     },
   );
@@ -130,18 +136,11 @@ const DrawerNavigation = createDrawerNavigator(
         drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
       }
     },
-    privacyPolicyScreen: {
-      screen: withHeader(PrivacyPolicyScreen,"privacyPolicyScreen"),
-      navigationOptions: {
-        drawerLabel: "Privacy Policy",
-        drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
-      }
-    },
     reminderStack: {
       screen: ReminderStack
     },
     dayViewScreen: {
-      screen: DayViewScreen,
+      screen: withHeader(DayViewScreen, "dayViewScreen"),
       navigationOptions: {
         drawerLabel: "Day View",
         drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
@@ -158,11 +157,11 @@ const DrawerNavigation = createDrawerNavigator(
       screen: NotificationScreen
     },
     addDrugScreen: {
-      screen: AddDrugScreen,
+      screen: withHeader(AddDrugScreen, "addDrugScreen"),
       ...doNotAppearOnDrawer,
     },
     cameraScreen: {
-      screen: CameraScreen,
+      screen: withHeader(CameraScreen, "camerScreen"),
       ...doNotAppearOnDrawer,
     },
   },

@@ -11,6 +11,7 @@ import { Camera, Permissions } from "expo";
 import { getFDA } from "../../utilities/FDA";
 import { Ionicons } from "@expo/vector-icons";
 import drugData from "../../assets/Products.json";
+import RoundedButton from "../../components/RoundedButton/RoundedButton";
 import { drawerIconStyle } from "../../constants/styles";
 import CameraIcon from "../../assets/07-Settings.png";
 import CameraHeader from "../../components/CameraHeader/CameraHeader.js";
@@ -19,10 +20,27 @@ const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
-
+  static navigationOptions =({navigation})=> ({
+    headerTitle: "Camera",
+    headerTitleStyle: {
+      color: "white",
+      fontWeight: "500",
+      fontFamily: "System",
+      fontSize: 24,
+      flex: 1,
+      textAlign: "center",
+      marginLeft: "20.5%",
+    },
+    headerLeft: null,
+    headerRight: <RoundedButton
+                  onPress={() => navigation.dangerouslyGetParent().navigate("addDrugScreen")}
+                  name={"Skip"}
+                  buttonStyle={styles.buttonStyle}
+                />
+  });
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.front
   };
 
   constructor(props) {
@@ -30,6 +48,7 @@ export default class CameraScreen extends React.Component {
     this.takePicture = this.takePicture.bind(this);
     this.drugSet = new Set(drugData);
   }
+
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === "granted" });
@@ -106,7 +125,7 @@ export default class CameraScreen extends React.Component {
     } else {
       return (
         <View style={styles.flex}>
-          <CameraHeader {...this.props} title={this.state.title} />
+          {/* <CameraHeader {...this.props} title={this.state.title} /> */}
           <Camera
             style={styles.flex}
             type={this.state.type}
@@ -153,5 +172,13 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     marginBottom: 10
-  }
+  },
+  buttonStyle: {
+    borderWidth: 2,
+    borderColor: "gray",
+    alignSelf: "center",
+    width: 50,
+    height: 37,
+
+  },
 });

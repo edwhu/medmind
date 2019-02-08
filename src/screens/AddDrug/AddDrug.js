@@ -18,7 +18,24 @@ class AddDrugScreen extends Component {
   constructor(props) {
     super(props);
   }
-
+  static navigationOptions =({navigation})=> ({
+    headerTitle: "Enter Drug",
+    headerTitleStyle: {
+      color: "white",
+      fontWeight: "500",
+      fontFamily: "System",
+      fontSize: 24,
+      flex: 1,
+      textAlign: "center",
+      marginRight: "23%",
+    },
+    headerLeft: <RoundedButton
+                  onPress={() => navigation.dangerouslyGetParent().navigate("timelineScreen")}
+                  name={"Back"}
+                  buttonStyle={styles.button}
+                />,
+    headerRight: null
+  });
   state = {
     name: "Bevacizumab",
     dosage: "500mg",
@@ -38,7 +55,6 @@ class AddDrugScreen extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
-        <BackHeader {...this.props} title={"Drug Entry"} />
         <FormField
           header="Drug Name"
           onChangeText={name => this.setState({ name })}
@@ -119,6 +135,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 200,
     height: 40
+  },
+  button: {
+    borderWidth: 2,
+    borderColor: "gray",
+    alignSelf: "center",
+    width: 50,
+    height: 37
   },
   footerStyle: {
     flex: 1,

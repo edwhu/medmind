@@ -72,7 +72,6 @@ class ShareDrugScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.dateStyle}>
           Downloaded:
           {moment().format("MM/DD/YYYY")}
