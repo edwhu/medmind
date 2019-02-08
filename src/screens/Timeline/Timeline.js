@@ -14,7 +14,7 @@ import RoundedButton from "../../components/RoundedButton/RoundedButton";
 class TimelineScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Timeline",
-    drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />
+    drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
   };
 
   static propTypes = {};
@@ -27,7 +27,6 @@ class TimelineScreen extends Component {
     const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={'Medmind'} />
         <WeekSwiper navigation = {navigation}/>
       </View>
     );

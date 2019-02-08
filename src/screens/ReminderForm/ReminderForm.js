@@ -111,7 +111,6 @@ class ReminderFormScreen extends Component {
     );
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <TimePicker
           header="Time"
           setDate={startDate => this.setState({ startDate })}

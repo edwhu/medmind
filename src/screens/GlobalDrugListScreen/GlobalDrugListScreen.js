@@ -16,11 +16,6 @@ class GlobalDrugListScreen extends Component {
     title: PropTypes.string
   };
 
-  static navigationOptions = {
-    drawerLabel: "Drug List",
-    drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
-  };
-
   static defaultProps = {};
 
   state = {
@@ -85,7 +80,6 @@ class GlobalDrugListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <SearchBar atTopOfList={this.state.atTopOfList} onChange={this.updateQuery} />
         {!this.state.atTopOfList && <View style={styles.separator} />}
         <ScrollView

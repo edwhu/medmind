@@ -43,7 +43,6 @@ export default class RepeatScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <ListItem
           label="Does not repeat"
           onPress={() => this.setRepeat("Does not repeat")}
