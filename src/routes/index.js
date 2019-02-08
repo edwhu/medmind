@@ -210,26 +210,4 @@ const DrawerNavigation = createDrawerNavigator(
   }
 );
 
-const AppStackNavigator = createStackNavigator(
-  {
-    loginStack: {
-      screen: LoginScreen
-    },
-    drawerStack: {
-      screen: DrawerNavigation
-    },
-    addDrugScreen: {
-      screen: AddDrugScreen
-    },
-    cameraScreen: {
-      screen: CameraScreen
-    },
-  },
-  {
-    headerMode: "null", //to turn off
-    initialRouteName: "drawerStack",
-   
-  }
-);
-
 export default DrawerNavigation;
