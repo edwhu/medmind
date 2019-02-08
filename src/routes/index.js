@@ -43,7 +43,12 @@ const styles = StyleSheet.create(
 const ReminderStack = createStackNavigator(
   {
     reminderScreen: {
-      screen: ReminderScreen
+      screen: ReminderScreen,
+      navigationOptions: {
+        headerLeft: <HamburgerIcon onPress={()=>{
+            navigation.dangerouslyGetParent().toggleDrawer()
+        }}/>,
+      }
     },
     reminderFormScreen: {
       screen: ReminderFormScreen
@@ -65,6 +70,7 @@ const ReminderStack = createStackNavigator(
       headerStyle: {
         backgroundColor: medmindBlue,
       },
+      headerTintColor: "white",
       headerTitleStyle: {
         color: "white",
         fontWeight: "500",
@@ -73,9 +79,6 @@ const ReminderStack = createStackNavigator(
         flex: 1,
         textAlign: "center",
       },
-      headerLeft: <HamburgerIcon onPress={()=>{
-        navigation.dangerouslyGetParent().toggleDrawer()
-      }}/>,
       headerRight: <SettingsButton onPress={()=>{
         openSettings()
       }}/>
