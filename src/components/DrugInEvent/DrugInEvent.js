@@ -207,7 +207,7 @@ class DrugInEvent extends Component{
                         <View style={styles.iconTextView}>
                           <Text style={styles.iconText}
                                 numberOfLines={2}> 
-                                Scheduled for 9:30 AM adfkhakjsdhfj kahsdjkfhakjsh dfjkhaskjdh fkashdfkh askdfjh</Text>
+                                Scheduled for 9:30 AM on Oct 8 (Hardcoded)</Text>
                         </View>
                       </View>
 
