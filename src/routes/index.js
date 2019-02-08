@@ -17,8 +17,7 @@ import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
 import { medmindBlue } from "../constants/styles";
-import ScreenHeader from "../components/ScreenHeader/ScreenHeader";
-import HamburgerIcon from "../components/HamburgerIcon/HamburgerIcon";
+import DrawerIcon from "../components/DrawerIcon/DrawerIcon";
 import SettingsButton from "../components/SettingsButton/SettingsButton";
 import React, { Component } from "react";
 import WeekIcon from "../assets/01-Week.png";
@@ -45,7 +44,7 @@ const ReminderStack = createStackNavigator(
     reminderScreen: {
       screen: ReminderScreen,
       navigationOptions: {
-        headerLeft: <HamburgerIcon onPress={()=>{
+        headerLeft: <DrawerIcon onPress={()=>{
             navigation.dangerouslyGetParent().toggleDrawer()
         }}/>,
       }
@@ -107,7 +106,7 @@ const withHeader = (screen, routeName) =>
           flex: 1,
           textAlign: "center",
         },
-        headerLeft: <HamburgerIcon onPress={()=>{
+        headerLeft: <DrawerIcon onPress={()=>{
           navigation.dangerouslyGetParent().toggleDrawer()
         }}/>,
         headerRight: <SettingsButton onPress={()=>{

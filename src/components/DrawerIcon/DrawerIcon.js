@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import {NavigationActions} from "react-navigation";
 import PropTypes from "prop-types";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-
-import StatusBarBackground from "../StatusBarBackground/StatusBarBackground";
-import { medmindBlue } from "../../constants/styles";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons,} from "@expo/vector-icons";
 
 
 
-class HamburgerIcon extends Component {
+class DrawerIcon extends Component {
     render() {
         return (
         <TouchableOpacity
@@ -17,7 +13,7 @@ class HamburgerIcon extends Component {
             style={styles.hamburgerWrapper}
         >
             <Ionicons
-                style={styles.hamburgerIcon}
+                style={styles.drawerIcon}
                 name="md-menu"
                 size={32}
                 color="white"
@@ -27,7 +23,7 @@ class HamburgerIcon extends Component {
     }
 }
 
-HamburgerIcon.propTypes = {
+DrawerIcon.propTypes = {
     onPress: PropTypes.func.isRequired
   };
 const styles = StyleSheet.create({
@@ -38,10 +34,10 @@ const styles = StyleSheet.create({
       flex: 1,
       margin: 15
     },
-    hamburgerIcon: {
+    drawerIcon: {
       alignSelf: "flex-start"
     },
   });
 
 
-export default HamburgerIcon;
+export default DrawerIcon;

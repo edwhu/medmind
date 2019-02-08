@@ -40,7 +40,7 @@ export default class CameraScreen extends React.Component {
   });
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.front
+    type: Camera.Constants.Type.back
   };
 
   constructor(props) {
@@ -125,7 +125,6 @@ export default class CameraScreen extends React.Component {
     } else {
       return (
         <View style={styles.flex}>
-          {/* <CameraHeader {...this.props} title={this.state.title} /> */}
           <Camera
             style={styles.flex}
             type={this.state.type}
