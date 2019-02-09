@@ -18,7 +18,7 @@ export default (styles = StyleSheet.create({
     position: 'absolute',
     width: 74,
     height: 74,
-    borderRadius: 74,
+    borderRadius: 37,
     bottom: 24,
     right:30,
     backgroundColor: medmindBlue,
@@ -31,10 +31,9 @@ export default (styles = StyleSheet.create({
     elevation: 10, // Android
   },
   plus: {
-    position: 'relative',
-    color: 'white',
-    fontSize: 30,
-    fontWeight: '100',
-    bottom: 2.5
+    color: "white",
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200"
   }
 }));

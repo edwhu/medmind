@@ -8,10 +8,6 @@ import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
 
 export default class PrivacyScreen extends Component {
-  static navigationOptions = {
-    drawerLabel: "Privacy Policy",
-    drawerIcon: () => <Image source={PrivacyIcon} style={styles.imageStyle} />
-  };
 
   static propTypes = {};
 
@@ -31,7 +27,6 @@ export default class PrivacyScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.title}>Privacy Policy</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>

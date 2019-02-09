@@ -8,10 +8,6 @@ import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
 
 export default class TermsAndConditionsScreen extends Component {
-  static navigationOptions = {
-    drawerLabel: "Terms and Conditions",
-    drawerIcon: () => <Image source={TermIcon} style={styles.imageStyle} />
-  };
 
   static propTypes = {};
 
@@ -44,7 +40,6 @@ export default class TermsAndConditionsScreen extends Component {
     );
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.title}>Terms and Conditions</Text>
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>
