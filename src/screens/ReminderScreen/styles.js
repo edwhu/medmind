@@ -14,11 +14,17 @@ export default (styles = StyleSheet.create({
   drugName: {
     fontSize: 20,
     color: "black",
+    position: "absolute",
     left: 22
   },
   reminder: {
     height: 100,
     flexDirection: "row",
+    alignItems: "center"
+  },
+  info: {
+    position: "absolute",
+    left: 20,
     alignItems: "center",
     alignContent: "center"
   },
@@ -64,6 +70,9 @@ export default (styles = StyleSheet.create({
     width: 74,
     height: 74,
     borderRadius: 37,
+    justifyContent: 'center',
+    alignItems:'center',
+    position: 'absolute',
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
@@ -71,6 +80,10 @@ export default (styles = StyleSheet.create({
     right: 30
   },
   plus: {
+    color:'white',
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200",
     color: "white",
     fontSize: 55,
     marginBottom: 6,

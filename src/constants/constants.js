@@ -137,6 +137,15 @@ export const testReminders = [
   }
 ];
 
+export const defaultReminder = {
+  repeatIntervalCount: 1,
+  repeatInterval: "week",
+  selectedWeekdays: [false, false, false, false, false, false, false],
+  endOccurenceCount: 1,
+  endOccurence: "never",
+  endDate: moment().subtract(10, "days"),
+}
+
 export const testSounds = [
   "Beacon",
   "Bulletin",

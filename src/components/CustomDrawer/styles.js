@@ -28,10 +28,10 @@ export default (styles = StyleSheet.create({
     height: 70
   },
   text: {
-    // textAlign: "center",
     color: "white",
     fontWeight: "600",
-    fontSize: 14
+    fontSize: 14,
+    marginBottom: 5,
   },
   drawerBackground: {
     backgroundColor: "#65C0BE",

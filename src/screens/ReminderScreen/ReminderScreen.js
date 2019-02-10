@@ -109,16 +109,15 @@ class ReminderScreen extends Component {
     switch (reminder.repeat) {
       case "week":
         return ", every " + reminder.time.format("dddd");
-      case "day":
-        return ", every day";
-      case "hour":
-        return ", every hour";
-      case "month":
-        return ", monthly";
-      case "year":
-        return ", yearly";
+      case "Custom":
+        if (reminder.repeatInterval === "week") {
+          return ", custom";
+        }
+        else {
+          return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
+        }
       default:
-        return "";
+        return ", every " + reminder.repeat;
     }
   };
 
@@ -130,15 +129,15 @@ class ReminderScreen extends Component {
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
-    const minusButton = (
-      <View style={styles.edit}>
-        <TouchableOpacity style={styles.minusButton}>
-          <Text style={styles.minus}>-</Text>
-        </TouchableOpacity>
-      </View>
-    );
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
+      const minusButton = (
+        <View style={styles.edit}>
+          <TouchableOpacity style={styles.minusButton} onPress={this.deleteReminder}>
+            <Text style={styles.minus}>-</Text>
+          </TouchableOpacity>
+        </View>
+      );
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -200,7 +199,7 @@ class ReminderScreen extends Component {
       <View style={styles.container}>
         <ScrollView>
           <TouchableOpacity onPress={this.onEditPress}>
-            <Text>{this.state.editMode ? "Save" : "Edit"}</Text>
+            <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
           </TouchableOpacity>
           {reminders}
         </ScrollView>
@@ -218,6 +217,7 @@ class ReminderScreen extends Component {
 function mapStateToProps(state, props) {
   return {
     reminders: state.remindersReducer.reminders,
+    newReminder: state.remindersReducer.newReminder,
     drugs: state.drugInfoReducer.drugInfo
   };
 }
