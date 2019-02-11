@@ -3,24 +3,19 @@ import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { updateNewReminder } from "../../redux/actions/reminder";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import ListItem from "../../components/ListItem/ListItem";
 import { medmindBlue } from "../../constants/styles";
 import styles from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 
-export default class RepeatScreen extends Component {
+class RepeatScreen extends Component {
   static propTypes = {};
 
   static defaultProps = {};
 
   state = {};
-
-  componentWillMount() {
-    this.setState({
-      repeat: this.props.navigation.state.params.selectedRepeat
-    });
-  }
 
   // callback for login errors
   onError = error => {
@@ -31,14 +26,22 @@ export default class RepeatScreen extends Component {
     title: this.props.title || "Repeat"
   };
 
+  openCustomIntervalPage = () => {
+    this.setRepeat("Custom");
+    this.props.navigation.navigate("customIntervalScreen", {
+      showButton: true,
+    });
+  };
+
   setRepeat = repeat => {
     if (this.state.repeat != repeat) {
-      this.setState({ repeat: repeat });
-      this.props.navigation.state.params.returnRepeat(repeat);
+      this.props.updateNewReminder("repeat", repeat);
     }
   };
 
-  checkSelected = repeat => this.state.repeat == repeat;
+  checkSelected = repeat => {
+    return this.props.newReminder.repeat === repeat;
+  };
 
   render() {
     return (
@@ -71,7 +74,10 @@ export default class RepeatScreen extends Component {
         <TouchableOpacity>
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+              style={styles.button}
+              onPress={this.openCustomIntervalPage}
+            >
               <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
             </TouchableOpacity>
           </View>
@@ -81,3 +87,18 @@ export default class RepeatScreen extends Component {
     );
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    newReminder: state.remindersReducer.newReminder,
+  };
+}
+
+const mapDispatchToProps = dispatch => ({
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RepeatScreen);

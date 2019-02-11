@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
-import { addReminder } from "../../redux/actions/reminder";
+import { addReminder, updateNewReminder } from "../../redux/actions/reminder";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import TimePicker from "../../components/TimePicker/TimePicker";
@@ -27,53 +27,43 @@ class ReminderFormScreen extends Component {
 
   state = {
     title: this.props.title || "Reminder",
-    snooze: false
+    snooze: false,
   };
 
   openDrugListPage = () => {
     this.props.navigation.navigate("chooseDrugScreen", {
       showButton: true,
-      returnDrug: this.setDrug.bind(this),
-      selectedDrug: this.state.drug
     });
   };
 
   openRepeatPage = () => {
-    this.props.navigation.navigate("repeatScreen", {
+   this.props.navigation.navigate("repeatScreen", {
       showButton: true,
-      returnRepeat: this.setRepeat.bind(this),
-      selectedRepeat: this.state.repeat
     });
   };
 
   openSoundPage = () => {
     this.props.navigation.navigate("soundScreen", {
       showButton: true,
-      returnSound: this.setSound.bind(this),
-      selectedSound: this.state.sound
     });
   };
 
-  setDrug = (drug, dosage) => {
-    this.setState({ drug: drug, dosage: dosage });
-  };
-
-  setSound = sound => {
-    this.setState({ sound: sound });
-  };
-
   setRepeat = repeat => {
-    this.setState({ repeat: repeat });
+    this.setState({ repeat });
   };
 
   toggleSnooze = () => {
     this.setState({ snooze: !this.state.snooze });
   };
 
-  getDrugId = drugName => {
-    return this.props.drugs.filter(function(drug) {
-      return drug.name == drugName;
+  getDrugName = drugId => {
+    const drug = this.props.drugs.filter(function(drug) {
+      return drug.id === drugId;
     });
+    if (drug.length == 0) {
+      return;
+    }
+    return drug[0].name;
   };
 
   // Saves reminder to redux store
@@ -91,38 +81,36 @@ class ReminderFormScreen extends Component {
     if (drug.length == 0) {
       return;
     }
-    if (typeof this.state.startDate == "undefined") {
-      this.state.startDate = moment();
+    if (typeof this.props.newReminder.time === "undefined") {
+      this.props.updateNewReminder("time", moment());
     }
-    this.props.addReminder(
-      drug[0].id,
-      drug[0].dosage,
-      this.state.sound,
-      this.state.repeat,
-      this.state.startDate,
-      this.state.snooze
-    );
+    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
+        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
+        this.props.updateNewReminder("repeat", newRepeat);
+    }
+    this.props.addReminder();
     this.props.navigation.goBack();
   };
 
   render() {
+    const { newReminder, updateNewReminder, addReminder, drugs } = this.props;
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
     const soundText = (
-      <Text style={styles.selectedSetting}>{this.state.sound}</Text>
+      <Text style={styles.selectedSetting}>{newReminder.sound}</Text>
     );
     const repeatText = (
-      <Text style={styles.selectedSetting}>{this.state.repeat}</Text>
+      <Text style={styles.selectedSetting}>{newReminder.repeat}</Text>
     );
     const drugText = (
-      <Text style={styles.selectedSetting}>{this.state.drug}</Text>
+      <Text style={styles.selectedSetting}>{this.getDrugName(newReminder.drugId)}</Text>
     );
     return (
       <View style={styles.container}>
         <TimePicker
           header="Time"
-          setDate={startDate => this.setState({ startDate })}
+          setDate={time => updateNewReminder("time", time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -131,7 +119,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openDrugListPage()}
           >
-            {this.state.drug ? drugText : arrowButton}
+            {newReminder.drugId ? drugText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -141,14 +129,14 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openRepeatPage()}
           >
-            {this.state.repeat ? repeatText : arrowButton}
+            {newReminder.repeat ? repeatText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
           <Text style={styles.setting}>Dosage</Text>
           <Text style={styles.entry}>
-            {this.state.dosage ? this.state.dosage : null}
+            {newReminder.dosage ? newReminder.dosage : null}
           </Text>
         </View>
         <View style={styles.horizontalLine} />
@@ -158,7 +146,7 @@ class ReminderFormScreen extends Component {
             style={styles.button}
             onPress={() => this.openSoundPage()}
           >
-            {this.state.sound ? soundText : arrowButton}
+            {newReminder.sound ? soundText : arrowButton}
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
@@ -182,12 +170,14 @@ class ReminderFormScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    drugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    newReminder: state.remindersReducer.newReminder,
   };
 }
 
 const mapDispatchToProps = dispatch => ({
-  addReminder: bindActionCreators(addReminder, dispatch)
+  addReminder: bindActionCreators(addReminder, dispatch),
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 
 export default connect(

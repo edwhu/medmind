@@ -9,6 +9,7 @@ import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
 import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
 import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
 import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
+import CustomIntervalScreen from '../screens/CustomIntervalScreen/CustomInterval';
 import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
 import SoundScreen from "../screens/SoundScreen/SoundScreen";
 import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
@@ -54,6 +55,9 @@ const ReminderStack = createStackNavigator(
     },
     repeatScreen: {
       screen: RepeatScreen
+    },
+    customIntervalScreen: {
+      screen: CustomIntervalScreen
     },
     soundScreen: {
       screen: SoundScreen
