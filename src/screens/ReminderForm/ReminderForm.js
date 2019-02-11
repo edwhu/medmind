@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
-import { addReminder, updateNewReminder } from "../../redux/actions/reminder";
+import { addReminder, updateNewReminder, updateReminder, setNewReminder } from "../../redux/actions/reminder";
+import { defaultReminder } from "../../constants/constants";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import TimePicker from "../../components/TimePicker/TimePicker";
@@ -27,7 +28,6 @@ class ReminderFormScreen extends Component {
 
   state = {
     title: this.props.title || "Reminder",
-    snooze: false,
   };
 
   openDrugListPage = () => {
@@ -48,14 +48,6 @@ class ReminderFormScreen extends Component {
     });
   };
 
-  setRepeat = repeat => {
-    this.setState({ repeat });
-  };
-
-  toggleSnooze = () => {
-    this.setState({ snooze: !this.state.snooze });
-  };
-
   getDrugName = drugId => {
     const drug = this.props.drugs.filter(function(drug) {
       return drug.id === drugId;
@@ -66,29 +58,36 @@ class ReminderFormScreen extends Component {
     return drug[0].name;
   };
 
-  // Saves reminder to redux store
-  saveReminder = () => {
-    if (this.navigation.props.updateOnly === true) {
-      // only call this.props.updateReminder()
-      // must change the reminder in the list to match
-      // this.state.newReminder and then set newReminder
-      // to be defaultReminder
-    }
-    else {
-      // call this.props.addReminder
-    }
-    const drug = this.getDrugId(this.state.drug);
-    if (drug.length == 0) {
-      return;
-    }
-    if (typeof this.props.newReminder.time === "undefined") {
+  updateReminder = () => {
+    const newReminder = this.props.newReminder;
+    const reminders = this.props.reminders.map(item => {
+      return (item.id === newReminder.id ? newReminder : item);
+    });
+    this.props.updateReminder(reminders);
+  }
+
+  addReminder = () => {
+    const newReminder = this.props.newReminder;
+    if (typeof newReminder.time === "undefined") {
       this.props.updateNewReminder("time", moment());
     }
-    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
-        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
+    if (typeof newReminder.repeat !== "undefined" && newReminder.repeat[0] === "E") {
+        const newRepeat = newReminder.repeat.split(" ")[1];
         this.props.updateNewReminder("repeat", newRepeat);
     }
     this.props.addReminder();
+  }
+
+  saveReminder = () => {
+    // Modifying existing reminder
+    if (this.props.navigation.state.params.updateOnly === true) {
+      this.updateReminder();
+      this.props.setNewReminder(defaultReminder);
+    }
+    // Adding new reminder
+    else {
+      this.addReminder();
+    }
     this.props.navigation.goBack();
   };
 
@@ -155,8 +154,8 @@ class ReminderFormScreen extends Component {
           <Switch
             onTintColor={medmindBlue}
             style={styles.switchButton}
-            onValueChange={() => this.toggleSnooze()}
-            value={this.state.snooze}
+            onValueChange={() => updateNewReminder("snooze", newReminder.snooze)}
+            value={newReminder.snooze}
           />
         </View>
         <View style={styles.horizontalLine} />
@@ -170,6 +169,7 @@ class ReminderFormScreen extends Component {
 
 function mapStateToProps(state, props) {
   return {
+    reminders: state.remindersReducer.reminders,
     drugs: state.drugInfoReducer.drugInfo,
     newReminder: state.remindersReducer.newReminder,
   };
@@ -177,7 +177,9 @@ function mapStateToProps(state, props) {
 
 const mapDispatchToProps = dispatch => ({
   addReminder: bindActionCreators(addReminder, dispatch),
-  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+  updateReminder: bindActionCreators(updateReminder, dispatch),
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
+  setNewReminder: bindActionCreators(setNewReminder, dispatch)
 });
 
 export default connect(

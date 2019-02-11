@@ -128,11 +128,11 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
-  openReminderFormPage = (id) => {
+  openReminderFormPageForEdit = (id) => {
     const reminder = this.props.reminders.filter(item => {
       return item.id === id;
     });
-    this.props.setNewReminder(reminder);
+    this.props.setNewReminder(reminder[0]);
     this.props.navigation.navigate("reminderFormScreen", {
       updateOnly: true,
     });
@@ -191,7 +191,7 @@ class ReminderScreen extends Component {
                   </Text>
                 </View>
               </View>
-              {this.state.editMode ?<EditButton onPress={(id) => this.openReminderFormPage(reminder.id)} /> : switchReminder}
+              {this.state.editMode ?<EditButton onPress={(id) => this.openReminderFormPageForEdit(reminder.id)} /> : switchReminder}
             </View>
             <View style={styles.horizontalLine} />
           </View>

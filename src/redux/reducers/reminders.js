@@ -24,6 +24,8 @@ const remindersReducer = (state = initialState, action) => {
       state = Object.assign({}, state, { reminders: action.reminders });
       return state;
     case SET_NEW_REMINDER:
+      console.log("in redux state");
+      console.log(action.reminder);
       state = Object.assign({}, state, { newReminder: action.reminder });
       return state;
     case UPDATE_NEW_REMINDER:
