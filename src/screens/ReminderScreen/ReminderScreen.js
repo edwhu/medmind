@@ -10,9 +10,10 @@ import {
 } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateReminder } from "../../redux/actions/reminder";
+import { updateReminder, setNewReminder } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
+import EditButton from "../../components/EditButton/EditButton";
 import { medmindBlue, drawerIconStyle } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -38,7 +39,9 @@ class ReminderScreen extends Component {
   };
 
   openReminderFormPage = () => {
-    this.props.navigation.navigate("reminderFormScreen");
+    this.props.navigation.navigate("reminderFormScreen", {
+      updateOnly: false
+    });
   };
 
   getDrugById = id => {
@@ -126,6 +129,16 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
+  openReminderFormPage = (id) => {
+    const reminder = this.props.reminders.filter(item => {
+      return item.id === id;
+    });
+    this.props.setNewReminder(reminder);
+    this.props.navigation.navigate("reminderFormScreen", {
+      updateOnly: true,
+    });
+  };
+
   render() {
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
@@ -179,7 +192,7 @@ class ReminderScreen extends Component {
                   </Text>
                 </View>
               </View>
-              {this.state.editMode ? arrowButton : switchReminder}
+              {this.state.editMode ?<EditButton onPress={(id) => this.openReminderFormPage(reminder.id)} /> : switchReminder}
             </View>
             <View style={styles.horizontalLine} />
           </View>
@@ -190,7 +203,7 @@ class ReminderScreen extends Component {
           <View style={styles.drug}>
             {this.state.editMode ? minusButton : null}
             <Text style={styles.drugName}>{drug}</Text>
-            {this.state.editMode ? arrowButton : switchDrug}
+            {switchDrug}
           </View>
           {reminderList}
         </View>
@@ -223,7 +236,8 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateReminder: bindActionCreators(updateReminder, dispatch)
+  updateReminder: bindActionCreators(updateReminder, dispatch),
+  setNewReminder: bindActionCreators(setNewReminder, dispatch)
 });
 
 export default connect(

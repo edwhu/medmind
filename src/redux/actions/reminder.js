@@ -1,4 +1,4 @@
-import { ADD_REMINDER, UPDATE_REMINDER } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER, SET_NEW_REMINDER } from "../../constants/action-types";
 import store from "../store";
 
 let nextId = 9000;
@@ -40,6 +40,19 @@ export function updateReminder(reminders) {
     return {
       type: UPDATE_REMINDER,
       reminders: reminders
+    };
+  }
+}
+
+
+export function setNewReminder(reminder) {
+  if (typeof reminder === "undefined") {
+    console.warn("Required field left blank");
+    return {};
+  } else {
+    return {
+      type: SET_NEW_REMINDER,
+      reminder,
     };
   }
 }

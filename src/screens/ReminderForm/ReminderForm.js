@@ -78,6 +78,15 @@ class ReminderFormScreen extends Component {
 
   // Saves reminder to redux store
   saveReminder = () => {
+    if (this.navigation.props.updateOnly === true) {
+      // only call this.props.updateReminder()
+      // must change the reminder in the list to match
+      // this.state.newReminder and then set newReminder
+      // to be defaultReminder
+    }
+    else {
+      // call this.props.addReminder
+    }
     const drug = this.getDrugId(this.state.drug);
     if (drug.length == 0) {
       return;
