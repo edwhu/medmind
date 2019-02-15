@@ -197,7 +197,7 @@ class ReminderScreen extends Component {
       return (
         <View key={drug}>
           <View style={styles.drug}>
-            {this.state.editMode ? <MinusButton onPress={(drugName) => this.deleteRemindersByDrug(drug)} /> : null}
+            {this.state.editMode && <MinusButton onPress={(drugName) => this.deleteRemindersByDrug(drug)} />
             <Text style={styles.drugName}>{drug}</Text>
             {this.state.editMode ? arrowButton : switchDrug}
           </View>
