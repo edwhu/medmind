@@ -145,12 +145,12 @@ export default class DayViewScreen extends Component {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={asNeededDrugs}
-            renderItem={({ item }) => <DrugItemInDayView drug={item} />}
+            renderItem={({ item }) => <DrugItemInDayView drug={item}/>}
           />
           <View style={styles.dayVerticalListWrapper}>
             <FlatList
               data={drugsByEvents}
-              renderItem={({ item }) => <EventInDayView event={item} />}
+              renderItem={({ item }) => <EventInDayView event={item} navigation={this.props.navigation}/>}
               style={styles.dayVerticalList}
             />
           </View>

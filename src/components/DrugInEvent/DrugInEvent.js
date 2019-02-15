@@ -162,7 +162,6 @@ class DrugInEvent extends Component{
     const { drug } = this.props;
     const { styles, modalVisible } = this.state;
     const color = drug.color;
-    const {navigate} = this.props.navigation;
 
     return (
         <View>
