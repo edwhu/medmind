@@ -162,6 +162,7 @@ class DrugInEvent extends Component{
     const { drug } = this.props;
     const { styles, modalVisible } = this.state;
     const color = drug.color;
+    const {navigate} = this.props.navigation;
 
     return (
         <View>
@@ -182,7 +183,8 @@ class DrugInEvent extends Component{
 
                       <TouchableHighlight
                           onPress={() => {
-                            this.setEditFormVisible(true);
+                            // this.setModalVisible(false);
+                            this.props.navigation.navigate('editDrugScreen');
                           }}>
                           <Image source={EditIcon} style={styles.imageStyle} />
                       </TouchableHighlight>

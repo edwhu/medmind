@@ -16,6 +16,7 @@ import CameraScreen from "../screens/Camera/Camera";
 import AddDrugScreen from "../screens/AddDrug/AddDrug";
 import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
 import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
+import EditDrugScreen from "../screens/EditDrug/EditDrug.js"
 
 const { width, height } = Dimensions.get("screen");
 
@@ -52,6 +53,9 @@ const DrawerNavigation = createDrawerNavigator(
     },
     addDrugScreen: {
       screen: AddDrugScreen
+    },
+    editDrugScreen: {
+      screen: EditDrugScreen
     },
     logout: {
       screen: LoginScreen
