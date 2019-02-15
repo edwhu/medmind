@@ -44,11 +44,11 @@ const ReminderStack = createStackNavigator(
   {
     reminderScreen: {
       screen: ReminderScreen,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         headerLeft: <DrawerIcon onPress={()=>{
             navigation.dangerouslyGetParent().toggleDrawer()
         }}/>,
-      }
+      })
     },
     reminderFormScreen: {
       screen: ReminderFormScreen
