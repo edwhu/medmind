@@ -183,7 +183,7 @@ class DrugInEvent extends Component{
                       <TouchableHighlight
                           onPress={() => {
                             // this.setModalVisible(false);
-                            this.props.navigation.navigate('editDrugScreen');
+                            this.props.navigation.navigate('editDrugScreen', {drug: drug});
                           }}>
                           <Image source={EditIcon} style={styles.imageStyle} />
                       </TouchableHighlight>

@@ -34,32 +34,34 @@ class EditDrugScreen extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const drug = navigation.getParam('drug', 'No ID');
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScreenHeader {...this.props} title={"Drug Entry"} />
         <FormField
           header="Drug Name"
           onChangeText={name => this.setState({ name })}
-          value={this.state.name}
-          placeholder={this.state.name}
+          value={drug.name}
+          placeholder={drug.name}
         />
         <FormField
           header="Dosage"
           onChangeText={dosage => this.setState({ dosage })}
-          value={this.state.dosage}
-          placeholder={this.state.dosage}
+          value={drug.dosage}
+          placeholder={drug.dosage}
         />
         <FormField
           header="Doctor"
           onChangeText={doctor => this.setState({ doctor })}
-          value={this.state.doctor}
-          placeholder={this.state.dosage}
+          value={drug.doctor}
+          placeholder={drug.doctor}
         />
         <FormField
           header="Frequency"
           onChangeText={frequency => this.setState({ frequency })}
-          value={this.state.frequency}
-          placeholder={this.state.frequency}
+          value={drug.frequency}
+          placeholder={drug.frequency}
         />
         <CollapsibleDatePicker
           header="Start Date"
