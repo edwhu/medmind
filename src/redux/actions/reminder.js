@@ -11,11 +11,17 @@ export function updateNewReminder(field, value) {
   }
 }
 
-export function addReminder() {
-  return {
-    type: ADD_REMINDER,
-    id: nextId++
-  };
+export function addReminder(drug) {
+   if (typeof drug === "undefined") {
+    console.warn("Required field left blank");
+    return {};
+  } else {
+    return {
+      type: ADD_REMINDER,
+      id: nextId++,
+      drug
+    };
+  }
 }
 
 export function updateReminder(reminders) {

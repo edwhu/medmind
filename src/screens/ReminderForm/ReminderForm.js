@@ -66,6 +66,13 @@ class ReminderFormScreen extends Component {
     return drug[0].name;
   };
 
+  getDrugById = id => {
+    const drug = this.props.drugs.filter(function(drug) {
+      return drug.id == id;
+    });
+    return drug[0];
+  };
+
   // Saves reminder to redux store
   saveReminder = () => {
     if (typeof this.props.newReminder.time === "undefined") {
@@ -75,7 +82,8 @@ class ReminderFormScreen extends Component {
         const newRepeat = this.props.newReminder.repeat.split(" ")[1];
         this.props.updateNewReminder("repeat", newRepeat);
     }
-    this.props.addReminder();
+    const drug = this.getDrugById(this.props.newReminder.drugId);
+    this.props.addReminder(drug);
     this.props.navigation.goBack();
   };
 
