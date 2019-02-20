@@ -1,11 +1,12 @@
 import moment from "moment";
 import { testReminders, defaultReminder } from "../../constants/constants";
-import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER, SET_NEW_REMINDER } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER, SET_NEW_REMINDER, SET_UPDATE_FLAG } from "../../constants/action-types";
 
 const initialState = {
   reminders: testReminders || [],
   remindersId: 30,
   newReminder: defaultReminder || {},
+  updateFlag: false,
 };
 
 const remindersReducer = (state = initialState, action) => {
@@ -21,18 +22,33 @@ const remindersReducer = (state = initialState, action) => {
          newReminder: defaultReminder,
       }
     case UPDATE_REMINDER:
-      state = Object.assign({}, state, { reminders: action.reminders });
-      return state;
+      const updatedReminders = state.reminders.map(item => {
+        return (item.id === action.reminder.id ? action.reminder : item);
+      });
+      console.log(updatedReminders);
+      return {
+        ...state,
+        reminders: updatedReminders,
+      }
     case SET_NEW_REMINDER:
-      state = Object.assign({}, state, { newReminder: action.reminder });
-      return state;
+      return {
+        ...state,
+        newReminder: action.reminder,
+      }
     case UPDATE_NEW_REMINDER:
       const updatedReminder = {
         ...state.newReminder,
         [action.field]: action.value,
       }
-      state = Object.assign({}, state, { newReminder: updatedReminder });
-      return state;
+      return {
+        ...state,
+        newReminder: updatedReminder,
+      }
+    case SET_UPDATE_FLAG: 
+      return {
+        ...state,
+        updateFlag: action.flag,
+      }
     default:
       return state;
   }

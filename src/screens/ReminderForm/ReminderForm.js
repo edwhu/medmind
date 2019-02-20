@@ -71,6 +71,7 @@ class ReminderFormScreen extends Component {
     if (typeof newReminder.time === "undefined") {
       this.props.updateNewReminder("time", moment());
     }
+    // Trimming the repeat selection down to one word ('Every week' => 'week')
     if (typeof newReminder.repeat !== "undefined" && newReminder.repeat[0] === "E") {
         const newRepeat = newReminder.repeat.split(" ")[1];
         this.props.updateNewReminder("repeat", newRepeat);
@@ -80,7 +81,7 @@ class ReminderFormScreen extends Component {
 
   saveReminder = () => {
     // Modifying existing reminder
-    if (this.props.navigation.state.params.updateOnly === true) {
+    if (this.props.updateOnly) {
       this.updateReminder();
       this.props.setNewReminder(defaultReminder);
     }
@@ -172,6 +173,7 @@ function mapStateToProps(state, props) {
     reminders: state.remindersReducer.reminders,
     drugs: state.drugInfoReducer.drugInfo,
     newReminder: state.remindersReducer.newReminder,
+    updateOnly: state.remindersReducer.updateOnly,
   };
 }
 

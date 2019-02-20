@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateReminder, setNewReminder } from "../../redux/actions/reminder";
+import { updateReminder, setNewReminder, setUpdateFlag } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import EditButton from "../../components/EditButton/EditButton";
@@ -39,9 +39,8 @@ class ReminderScreen extends Component {
   };
 
   openReminderFormPage = () => {
-    this.props.navigation.navigate("reminderFormScreen", {
-      updateOnly: false
-    });
+    this.props.setUpdateFlag(false);
+    this.props.navigation.navigate("reminderFormScreen");
   };
 
   getDrugById = id => {
@@ -133,9 +132,8 @@ class ReminderScreen extends Component {
       return item.id === id;
     });
     this.props.setNewReminder(reminder[0]);
-    this.props.navigation.navigate("reminderFormScreen", {
-      updateOnly: true,
-    });
+    this.props.setUpdateFlag(true);
+    this.props.navigation.navigate("reminderFormScreen");
   };
 
   render() {
@@ -231,13 +229,15 @@ function mapStateToProps(state, props) {
   return {
     reminders: state.remindersReducer.reminders,
     newReminder: state.remindersReducer.newReminder,
-    drugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    updateOnly: state.remindersReducer.updateOnly,
   };
 }
 
 const mapDispatchToProps = dispatch => ({
   updateReminder: bindActionCreators(updateReminder, dispatch),
-  setNewReminder: bindActionCreators(setNewReminder, dispatch)
+  setNewReminder: bindActionCreators(setNewReminder, dispatch),
+  setUpdateFlag: bindActionCreators(setUpdateFlag, dispatch),
 });
 
 export default connect(
