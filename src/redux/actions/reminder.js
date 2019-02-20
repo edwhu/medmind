@@ -30,7 +30,6 @@ export function updateReminder(reminder) {
   }
 }
 
-
 export function setNewReminder(reminder) {
   if (typeof reminder === "undefined") {
     console.warn("Reminder object undefined");
