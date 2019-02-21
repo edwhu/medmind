@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag } from "../../redux/actions/reminder";
+import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import EditButton from "../../components/EditButton/EditButton";
@@ -74,42 +74,16 @@ class ReminderScreen extends Component {
   };
 
   toggleSnooze = id => {
-    // const reminders = this.props.reminders.map(item => {
-    //   if (item.id === id) {
-    //     return {
-    //       ...item,
-    //       snooze: !item.snooze
-    //     };
-    //   } else {
-    //     return item;
-    //   }
-    // });
-    const reminder = this.props.reminders.reduce((acc, currentValue) => {
-      if (currentValue.id === id) {
-        return {
-          ...currentValue,
-          snooze: !currentValue.snooze
-        };
-      }
+    const reminder = this.props.reminders.find(item => {
+      return (item.id === id);
     });
-    console.log(reminder);
+    reminder.snooze = !reminder.snooze;
     this.props.updateReminder(reminder);
   };
 
   toggleDrugSnooze = drugName => {
     const drugId = this.getDrugId(drugName);
-    const reminders = this.props.reminders.map(item => {
-      if (item.drugId === drugId) {
-        return {
-          ...item,
-          snooze: !item.snoozeDrug,
-          snoozeDrug: !item.snoozeDrug
-        };
-      } else {
-        return item;
-      }
-    });
-    this.props.updateReminder(reminders);
+    this.props.toggleDrugSnooze(drugId);
   };
 
   getSnooze = drugName => {
@@ -139,10 +113,10 @@ class ReminderScreen extends Component {
   };
 
   openReminderFormPageForEdit = (id) => {
-    const reminder = this.props.reminders.filter(item => {
+    const reminder = this.props.reminders.find(item => {
       return item.id === id;
     });
-    this.props.setNewReminder(reminder[0]);
+    this.props.setNewReminder(reminder);
     this.props.setUpdateFlag(true);
     this.props.navigation.navigate("reminderFormScreen");
   };
@@ -243,7 +217,7 @@ function mapStateToProps(state, props) {
     reminders: state.remindersReducer.reminders,
     newReminder: state.remindersReducer.newReminder,
     drugs: state.drugInfoReducer.drugInfo,
-    updateOnly: state.remindersReducer.updateOnly,
+    updateFlag: state.remindersReducer.updateFlag,
   };
 }
 
@@ -252,6 +226,7 @@ const mapDispatchToProps = dispatch => ({
   deleteReminder: bindActionCreators(deleteReminder, dispatch),
   setNewReminder: bindActionCreators(setNewReminder, dispatch),
   setUpdateFlag: bindActionCreators(setUpdateFlag, dispatch),
+  toggleDrugSnooze: bindActionCreators(toggleDrugSnooze, dispatch),
 });
 
 export default connect(

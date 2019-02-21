@@ -59,10 +59,7 @@ class ReminderFormScreen extends Component {
   };
 
   updateReminder = () => {
-    // const newReminder = this.props.newReminder;
-    // const reminders = this.props.reminders.map(item => {
-    //   return (item.id === newReminder.id ? newReminder : item);
-    // });
+    console.log(this.props.newReminder);
     this.props.updateReminder(this.props.newReminder);
   }
 
@@ -71,17 +68,17 @@ class ReminderFormScreen extends Component {
     if (typeof newReminder.time === "undefined") {
       this.props.updateNewReminder("time", moment());
     }
-    // Trimming the repeat selection down to one word ('Every week' => 'week')
-    if (typeof newReminder.repeat !== "undefined" && newReminder.repeat[0] === "E") {
-        const newRepeat = newReminder.repeat.split(" ")[1];
-        this.props.updateNewReminder("repeat", newRepeat);
-    }
     this.props.addReminder();
   }
 
   saveReminder = () => {
+    // Trimming the repeat selection down to one word ('Every week' => 'week')
+    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
+        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
+        this.props.updateNewReminder("repeat", newRepeat);
+    }
     // Modifying existing reminder
-    if (this.props.updateOnly) {
+    if (this.props.updateFlag) {
       this.updateReminder();
       this.props.setNewReminder(defaultReminder);
     }
@@ -173,7 +170,7 @@ function mapStateToProps(state, props) {
     reminders: state.remindersReducer.reminders,
     drugs: state.drugInfoReducer.drugInfo,
     newReminder: state.remindersReducer.newReminder,
-    updateOnly: state.remindersReducer.updateOnly,
+    updateFlag: state.remindersReducer.updateFlag,
   };
 }
 

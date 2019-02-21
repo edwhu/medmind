@@ -4,6 +4,8 @@ import store from "../store";
 let nextId = 9000;
 
 export function updateNewReminder(field, value) {
+  console.log("calling update new reminder action");
+  console.log(field + " " + value);
   return {
     type: UPDATE_NEW_REMINDER,
     field,
@@ -19,6 +21,7 @@ export function addReminder() {
 }
 
 export function updateReminder(reminder) {
+  console.log("calling update reminder action");
   if (typeof reminder === "undefined") {
     console.warn("Reminder object undefined");
     return {};
