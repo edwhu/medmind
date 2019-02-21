@@ -32,7 +32,7 @@ export function updateReminder(reminder) {
 
 export function toggleDrugSnooze(drugId) {
   return {
-    type: TOGGLE_DRUG_SNOOZE
+    type: TOGGLE_DRUG_SNOOZE,
     drugId
   }
 }
