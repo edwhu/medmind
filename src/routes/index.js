@@ -1,4 +1,4 @@
-import { createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
+import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
 import { Dimensions, Image, StyleSheet} from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
@@ -68,7 +68,7 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: "reminderScreen",
-    navigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({navigation}) => ({
       headerTitle: "Medmind",
       headerStyle: {
         backgroundColor: medmindBlue,
@@ -97,7 +97,7 @@ const withHeader = (screen, routeName) =>
     { [routeName]: { screen } },
     {
       headerMode: 'screen',
-      navigationOptions: ({navigation}) => ({
+      defaultNavigationOptions: ({navigation}) => ({
         headerTitle: "Medmind",
         headerStyle: {
           backgroundColor: medmindBlue,
@@ -214,4 +214,4 @@ const DrawerNavigation = createDrawerNavigator(
   }
 );
 
-export default DrawerNavigation;
+export default createAppContainer(DrawerNavigation);
