@@ -1,4 +1,4 @@
-import { ADD_REMINDER, UPDATE_REMINDER, SET_NEW_REMINDER, UPDATE_NEW_REMINDER, SET_UPDATE_FLAG } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER, DELETE_REMINDER, SET_NEW_REMINDER, UPDATE_NEW_REMINDER, SET_UPDATE_FLAG, TOGGLE_DRUG_SNOOZE } from "../../constants/action-types";
 import store from "../store";
 
 let nextId = 9000;
@@ -30,9 +30,24 @@ export function updateReminder(reminder) {
   }
 }
 
+export function toggleDrugSnooze(drugId) {
+  return {
+    type: TOGGLE_DRUG_SNOOZE
+    drugId
+  }
+}
+
+export function deleteReminder(idType, id) {
+  return {
+    type: DELETE_REMINDER,
+    idType,
+    id
+  }
+}
+
 export function setNewReminder(reminder) {
   if (typeof reminder === "undefined") {
-    console.warn("Reminder object undefined");
+    console.warn("Reminder object undefined in setNewReminder action");
     return {};
   } else {
     return {

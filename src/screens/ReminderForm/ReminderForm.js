@@ -59,11 +59,11 @@ class ReminderFormScreen extends Component {
   };
 
   updateReminder = () => {
-    const newReminder = this.props.newReminder;
-    const reminders = this.props.reminders.map(item => {
-      return (item.id === newReminder.id ? newReminder : item);
-    });
-    this.props.updateReminder(reminders);
+    // const newReminder = this.props.newReminder;
+    // const reminders = this.props.reminders.map(item => {
+    //   return (item.id === newReminder.id ? newReminder : item);
+    // });
+    this.props.updateReminder(this.props.newReminder);
   }
 
   addReminder = () => {

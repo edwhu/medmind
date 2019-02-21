@@ -14,19 +14,12 @@ export default (styles = StyleSheet.create({
   drugName: {
     fontSize: 20,
     color: "black",
-    position: "absolute",
     left: 22
   },
   reminder: {
     height: 100,
     flexDirection: "row",
     alignItems: "center"
-  },
-  info: {
-    position: "absolute",
-    left: 20,
-    alignItems: "center",
-    alignContent: "center"
   },
   info: {
     marginLeft: 20

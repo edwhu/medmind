@@ -1,6 +1,6 @@
 import moment from "moment";
 import { testReminders, defaultReminder } from "../../constants/constants";
-import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER, SET_NEW_REMINDER, SET_UPDATE_FLAG } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER, DELETE_REMINDER, UPDATE_NEW_REMINDER, SET_NEW_REMINDER, SET_UPDATE_FLAG } from "../../constants/action-types";
 
 const initialState = {
   reminders: testReminders || [],
@@ -25,10 +25,17 @@ const remindersReducer = (state = initialState, action) => {
       const updatedReminders = state.reminders.map(item => {
         return (item.id === action.reminder.id ? action.reminder : item);
       });
-      console.log(updatedReminders);
       return {
         ...state,
         reminders: updatedReminders,
+      }
+    case DELETE_REMINDER:
+      const newReminders = state.reminders.filter(item => {
+        return item[action.idType] !== action.id;
+      });
+      return {
+        ...state,
+        reminders: newReminders,
       }
     case SET_NEW_REMINDER:
       return {
