@@ -40,7 +40,7 @@ class AddDrugScreen extends Component {
     name: "Bevacizumab",
     dosage: "500mg",
     doctor: "Dr. Who",
-    frequency: "5x a day",
+    frequency: "5x a day", 
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
     color: "#990099"
