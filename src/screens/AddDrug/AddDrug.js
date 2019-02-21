@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Image, Text, View, StyleSheet } from "react-native";
-import BackHeader from "../../components/BackHeader/BackHeader";
+import { Image, Modal, TouchableOpacity, Text, View, StyleSheet } from "react-native";
 import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
 import FormField from "../../components/FormField/FormField";
 import RoundedButton from "../../components/RoundedButton/RoundedButton";
@@ -11,8 +10,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDrug } from "../../redux/actions/drug";
 import moment from "moment";
-import { drawerIconStyle } from "../../constants/styles";
-import AddDrugIcon from "../../assets/07-Settings.png";
+import ColorPicker from "../../components/ColorPicker/ColorPicker";
+
 
 class AddDrugScreen extends Component {
   constructor(props) {
@@ -43,8 +42,13 @@ class AddDrugScreen extends Component {
     frequency: "5x a day", 
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
-    color: "#990099"
+    color: "#990099",
+    modalVisible: false
   };
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
   onSubmit() {
     const {navigate} = this.props.navigation;
@@ -93,9 +97,44 @@ class AddDrugScreen extends Component {
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Colors</Text>
-            <Ionicons name="ios-arrow-forward" size={16} />
+            <TouchableOpacity
+              onPress = {() => {
+                this.setModalVisible(true)
+              }}
+              hitSlop={{left: 100}}
+              >
+                <Ionicons name="ios-arrow-forward" size={16} />
+              </TouchableOpacity>
+            
           </View>
         </View>
+
+        <Modal
+          visible={this.state.modalVisible}
+          onRequestClose = {() => {this.setModalVisible(false)}}
+          transparent={true}
+          style = {styles.modalContainer}
+          >
+          <View elevation = {5} style = {styles.container2}>
+            <ColorPicker/>
+            <View style = {styles.container3}>
+              <TouchableOpacity
+                  onPress={() => {
+                    this.setModalVisible(false);
+                  }}
+              >
+                <Text style = {styles.textStyle}>CANCEL</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                  onPress={() => {
+                    this.setModalVisible(false);
+                  }}
+              >
+                <Text style = {styles.textStyle}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
 
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
@@ -111,6 +150,7 @@ class AddDrugScreen extends Component {
             buttonStyle={styles.buttonStyle}
           />
         </View>
+        
       </KeyboardAvoidingView>
     );
   }
@@ -130,6 +170,30 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "stretch",
     backgroundColor: "white"
+  },
+  modalContainer: {
+  },
+  container2: {
+    flex: 0.50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    width: '85%',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    top: '25%',
+    left: '7.5%',
+  },
+  container3: {
+    flex: 0.15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '35%',
+    left: '23%',
+  },
+  textStyle: {
+    color: medmindBlue,
+    fontSize: 14
   },
   buttonStyle: {
     alignSelf: "center",
