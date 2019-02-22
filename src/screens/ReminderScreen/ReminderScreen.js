@@ -74,9 +74,7 @@ class ReminderScreen extends Component {
   };
 
   toggleSnooze = id => {
-    const reminder = this.props.reminders.find(item => {
-      return (item.id === id);
-    });
+    const reminder = this.props.reminders.find(item => item.id === id);
     reminder.snooze = !reminder.snooze;
     this.props.updateReminder(reminder);
   };
