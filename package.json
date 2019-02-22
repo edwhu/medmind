@@ -22,7 +22,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest",
-    "format": "prettier --write \"./src/**/*.js\""
+    "format": "./node_modules/.bin/eslint 'src/**/*.js'"
   },
   "jest": {
     "preset": "jest-expo"
