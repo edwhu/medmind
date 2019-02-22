@@ -2,7 +2,7 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
 } from "react-native";
 import Svg, {
@@ -19,10 +19,10 @@ const checkbox = <Svg width="15" height="15" viewBox="0 0 13 13" fill="none" xml
 </Svg>;
 
 
-const GlobalDrugListItem = ({ onPress, drug, editing = true, selected = true }) => {
+const GlobalDrugListItem = ({ onPress, drug, editing, selected }) => {
   let styles = createStyles(drug.color, selected);
   return (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         { editing && <View style={styles.checkboxContainer}>
           {selected && checkbox}
@@ -33,7 +33,7 @@ const GlobalDrugListItem = ({ onPress, drug, editing = true, selected = true }) 
         </View>
         <Text style={styles.drugName}>{drug.name}</Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 

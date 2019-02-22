@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { toggleDrugEdit } from '../../redux/actions/drug';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const styles = StyleSheet.create({
   text: {
@@ -16,9 +19,23 @@ class HeaderRight extends React.Component {
 
   render() {
     return (
-      <View><Text style={styles.text}>Edit</Text></View>
+      <TouchableOpacity onPress={this.props.toggleDrugEdit}>
+        <View>
+          <Text style={styles.text}>
+            {this.props.editing ? 'Delete' : 'Edit'}
+          </Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
-export default HeaderRight;
+const mapStateToProps = (state) => ({
+  editing: state.drugInfoReducer.editing,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleDrugEdit: bindActionCreators(toggleDrugEdit, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderRight);

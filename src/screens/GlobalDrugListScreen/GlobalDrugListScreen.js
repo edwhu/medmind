@@ -5,7 +5,7 @@ import styles from "./styles";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
-
+import { toggleDrugToDelete } from "../../redux/actions/drug";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -42,6 +42,15 @@ class GlobalDrugListScreen extends Component {
     return drugsByAlphabet;
   }
 
+  renderDrugListItem = ({item: drug}) => {
+    return <GlobalDrugListItem
+      drug={drug}
+      editing={this.props.editing}
+      selected={this.props.drugIdsToDelete.includes(drug.id)}
+      onPress={() => this.props.toggleDrugToDelete(drug.id)}
+    />;
+  }
+
   renderFilteredDrugs = (query) => {
     const sanitizedQuery = query.trim().toLowerCase();
     const drugs = this.props.drugs.filter(drug => {
@@ -52,7 +61,7 @@ class GlobalDrugListScreen extends Component {
     return <FlatList
       data={drugs}
       keyExtractor={drug => drug.id}
-      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} editing={this.props.editing}/>}
+      renderItem={this.renderDrugListItem}
     />;
   }
 
@@ -66,7 +75,11 @@ class GlobalDrugListScreen extends Component {
           <Text style={styles.alphabetSeparatorText}>{letter}</Text>
           <View style={styles.alphabetSeparatorLine} />
         </View>
-        <FlatList data={drugs} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
+        <FlatList 
+          data={drugs} 
+          keyExtractor={drug => drug.id.toString()} 
+          renderItem={this.renderDrugListItem} 
+          style={styles.flatList} />
       </View>;
     });
   }
@@ -95,10 +108,11 @@ const mapStateToProps = (state) => {
   return {
     drugs: state.drugInfoReducer.drugInfo,
     editing: state.drugInfoReducer.editing,
+    drugIdsToDelete: state.drugInfoReducer.drugIdsToDelete,
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ toggleDrugToDelete }, dispatch);
 
 export default connect(
   mapStateToProps,

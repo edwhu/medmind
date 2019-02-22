@@ -1,4 +1,9 @@
-import { ADD_DRUG, DELETE_DRUGS, TOGGLE_DRUG_EDIT } from "../../constants/action-types";
+import { 
+  ADD_DRUG, 
+  DELETE_DRUGS, 
+  TOGGLE_DRUG_EDIT, 
+  TOGGLE_DRUG_TO_DELETE,
+} from "../../constants/action-types";
 
 export function addDrug(drug) {
   return {
@@ -17,5 +22,12 @@ export function deleteDrugs(drugIds) {
 export function toggleDrugEdit() {
   return {
     type: TOGGLE_DRUG_EDIT,
+  };
+}
+
+export function toggleDrugToDelete(drugId) {
+  return {
+    type: TOGGLE_DRUG_TO_DELETE,
+    drugId,
   };
 }
