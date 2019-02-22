@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import { View, Text } from "react-native";
 import styles from "./styles";
-import DrugIcon from "../../assets/04-DrugList.png";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
-
+import { toggleDrugToDelete } from "../../redux/actions/drug";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -44,9 +42,18 @@ class GlobalDrugListScreen extends Component {
     return drugsByAlphabet;
   }
 
+  renderDrugListItem = ({item: drug}) => {
+    return <GlobalDrugListItem
+      drug={drug}
+      editing={this.props.editing}
+      selected={this.props.drugIdsToDelete.includes(drug.id)}
+      onPress={() => this.props.toggleDrugToDelete(drug.id)}
+    />;
+  }
+
   renderFilteredDrugs = (query) => {
     const sanitizedQuery = query.trim().toLowerCase();
-    const drugs = this.props.testDrugs.filter(drug => {
+    const drugs = this.props.drugs.filter(drug => {
       const drugName = drug.name.toLowerCase();
       return drugName.startsWith(sanitizedQuery);
     });
@@ -54,12 +61,12 @@ class GlobalDrugListScreen extends Component {
     return <FlatList
       data={drugs}
       keyExtractor={drug => drug.id}
-      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} />}
+      renderItem={this.renderDrugListItem}
     />;
   }
 
   renderAlphabetizedDrugs = () => {
-    const alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
+    const alphabetizedDrugs = this.alphabetizeDrugs(this.props.drugs);
     const letters = Object.keys(alphabetizedDrugs).sort();
     return letters.map(letter => {
       const drugs = alphabetizedDrugs[letter];
@@ -68,7 +75,11 @@ class GlobalDrugListScreen extends Component {
           <Text style={styles.alphabetSeparatorText}>{letter}</Text>
           <View style={styles.alphabetSeparatorLine} />
         </View>
-        <FlatList data={drugs} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
+        <FlatList 
+          data={drugs} 
+          keyExtractor={drug => drug.id.toString()} 
+          renderItem={this.renderDrugListItem} 
+          style={styles.flatList} />
       </View>;
     });
   }
@@ -92,13 +103,16 @@ class GlobalDrugListScreen extends Component {
     );
   }
 }
-function mapStateToProps(state, props) {
+
+const mapStateToProps = (state) => {
   return {
-    testDrugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    editing: state.drugInfoReducer.editing,
+    drugIdsToDelete: state.drugInfoReducer.drugIdsToDelete,
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ toggleDrugToDelete }, dispatch);
 
 export default connect(
   mapStateToProps,
