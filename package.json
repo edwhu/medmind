@@ -11,7 +11,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "jest-expo": "~27.0.0",
-    "prettier": "1.14.2",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
