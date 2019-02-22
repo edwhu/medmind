@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Switch, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
-import { addReminder, updateNewReminder, updateReminder, setNewReminder } from "../../redux/actions/reminder";
+import { addReminder, updateNewReminder, updateReminder, setNewReminder, saveNewReminder } from "../../redux/actions/reminder";
 import { defaultReminder } from "../../constants/constants";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
@@ -59,8 +59,7 @@ class ReminderFormScreen extends Component {
   };
 
   updateReminder = () => {
-    console.log(this.props.newReminder);
-    this.props.updateReminder(this.props.newReminder);
+    this.props.saveNewReminder();
   }
 
   addReminder = () => {
@@ -178,7 +177,8 @@ const mapDispatchToProps = dispatch => ({
   addReminder: bindActionCreators(addReminder, dispatch),
   updateReminder: bindActionCreators(updateReminder, dispatch),
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
-  setNewReminder: bindActionCreators(setNewReminder, dispatch)
+  setNewReminder: bindActionCreators(setNewReminder, dispatch),
+  saveNewReminder: bindActionCreators(saveNewReminder, dispatch),
 });
 
 export default connect(
