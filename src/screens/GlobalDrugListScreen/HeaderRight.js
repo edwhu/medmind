@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { toggleDrugEdit } from '../../redux/actions/drug';
+import { toggleDrugEdit, deleteDrugs } from '../../redux/actions/drug';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -17,9 +17,17 @@ class HeaderRight extends React.Component {
     super(props);
   }
 
+  onPress = () => {
+    if (this.props.editing) {
+      this.props.deleteDrugs();
+    }
+    this.props.toggleDrugEdit();
+  }
+
   render() {
+
     return (
-      <TouchableOpacity onPress={this.props.toggleDrugEdit}>
+      <TouchableOpacity onPress={this.onPress}>
         <View>
           <Text style={styles.text}>
             {this.props.editing ? 'Delete' : 'Edit'}
@@ -34,8 +42,9 @@ const mapStateToProps = (state) => ({
   editing: state.drugInfoReducer.editing,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleDrugEdit: bindActionCreators(toggleDrugEdit, dispatch)
-});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  toggleDrugEdit,
+  deleteDrugs,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderRight);

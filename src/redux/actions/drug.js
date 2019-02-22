@@ -12,10 +12,10 @@ export function addDrug(drug) {
   };
 }
 
-export function deleteDrugs(drugIds) {
+export function deleteDrugs() {
+  // these are stored in redux, so there's no need to send them with the action
   return {
     type: DELETE_DRUGS,
-    drugIds
   };
 }
 
