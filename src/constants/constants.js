@@ -138,6 +138,7 @@ export const testReminders = [
 ];
 
 export const defaultReminder = {
+  snooze: false,
   repeatIntervalCount: 1,
   repeatInterval: "week",
   selectedWeekdays: [false, false, false, false, false, false, false],
