@@ -4,3 +4,4 @@ export const UPDATE_REMINDER = "UPDATE_REMINDER";
 export const UPDATE_NEW_REMINDER = "UPDATE_NEW_REMINDER";
 export const ADD_DRUG = "ADD_DRUG";
 export const DELETE_DRUGS = "DELETE_DRUGS";
+export const TOGGLE_DRUG_EDIT = "TOGGLE_DRUG_EDIT";

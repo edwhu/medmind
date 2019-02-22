@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import { View, Text } from "react-native";
 import styles from "./styles";
-import DrugIcon from "../../assets/04-DrugList.png";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -46,7 +44,7 @@ class GlobalDrugListScreen extends Component {
 
   renderFilteredDrugs = (query) => {
     const sanitizedQuery = query.trim().toLowerCase();
-    const drugs = this.props.testDrugs.filter(drug => {
+    const drugs = this.props.drugs.filter(drug => {
       const drugName = drug.name.toLowerCase();
       return drugName.startsWith(sanitizedQuery);
     });
@@ -54,12 +52,12 @@ class GlobalDrugListScreen extends Component {
     return <FlatList
       data={drugs}
       keyExtractor={drug => drug.id}
-      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} />}
+      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} editing={this.props.editing}/>}
     />;
   }
 
   renderAlphabetizedDrugs = () => {
-    const alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
+    const alphabetizedDrugs = this.alphabetizeDrugs(this.props.drugs);
     const letters = Object.keys(alphabetizedDrugs).sort();
     return letters.map(letter => {
       const drugs = alphabetizedDrugs[letter];
@@ -92,9 +90,11 @@ class GlobalDrugListScreen extends Component {
     );
   }
 }
-function mapStateToProps(state, props) {
+
+const mapStateToProps = (state) => {
   return {
-    testDrugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    editing: state.drugInfoReducer.editing,
   };
 }
 
