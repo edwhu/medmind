@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
 import DrugIcon from "../../assets/04-DrugList.png";
@@ -77,6 +77,10 @@ class GlobalDrugListScreen extends Component {
     this.setState({query});
   }
 
+  onPlusButtonPress = () => {
+    this.props.navigation.navigate("cameraScreen")
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -88,6 +92,11 @@ class GlobalDrugListScreen extends Component {
         >
           {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
         </ScrollView>
+        <TouchableOpacity 
+         style={styles.button}
+         onPress={() => this.onPlusButtonPress()}>
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity> 
       </View>
     );
   }
