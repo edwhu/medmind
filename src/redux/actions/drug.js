@@ -14,9 +14,8 @@ export function deleteDrugs(drugIds) {
   };
 }
 
-export function deleteDrug(drugId) {
+export function toggleDrugEdit() {
   return {
-    type: DELETE_DRUGS,
-    drugIds: [drugId],
+    type: TOGGLE_DRUG_EDIT,
   };
 }
