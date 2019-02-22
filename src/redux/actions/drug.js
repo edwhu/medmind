@@ -1,16 +1,16 @@
-import { ADD_DRUG, DELETE_DRUGS } from "../../constants/action-types";
+import { ADD_DRUG, DELETE_DRUGS } from '../../constants/action-types';
 
 export function addDrug(drug) {
   return {
     type: ADD_DRUG,
-    drug
+    drug,
   };
 }
 
 export function deleteDrugs(drugIds) {
   return {
     type: DELETE_DRUGS,
-    drugIds
+    drugIds,
   };
 }
 

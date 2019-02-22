@@ -1,7 +1,10 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
+import React, { Component } from 'react';
+import {
+  StyleSheet, View, TouchableHighlight, Text,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { medmindBlue } from '../../constants/styles';
+
 export default class RoundedButton extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +14,7 @@ export default class RoundedButton extends Component {
     name: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
     buttonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-    textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number])
+    textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
   };
 
   static defaultProps = {};
@@ -34,15 +37,15 @@ export default class RoundedButton extends Component {
 
 const styles = StyleSheet.create({
   loginButton: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: medmindBlue,
-    borderRadius: 8
+    borderRadius: 8,
   },
   loginButtonText: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
-  }
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+  },
 });

@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ListItem from "../../components/ListItem/ListItem";
-import { medmindBlue } from "../../constants/styles";
-import styles from "./styles";
-import { Ionicons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, Text, Switch, TouchableOpacity,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import ListItem from '../../components/ListItem/ListItem';
+import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 class RepeatScreen extends Component {
   static propTypes = {};
@@ -18,63 +20,61 @@ class RepeatScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
-    console.log("Error", error);
+  onError = (error) => {
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Repeat"
+    title: this.props.title || 'Repeat',
   };
 
   openCustomIntervalPage = () => {
-    this.setRepeat("Custom");
-    this.props.navigation.navigate("customIntervalScreen", {
+    this.setRepeat('Custom');
+    this.props.navigation.navigate('customIntervalScreen', {
       showButton: true,
     });
   };
 
-  setRepeat = repeat => {
+  setRepeat = (repeat) => {
     if (this.state.repeat != repeat) {
-      this.props.updateNewReminder("repeat", repeat);
+      this.props.updateNewReminder('repeat', repeat);
     }
   };
 
-  checkSelected = repeat => {
-    return this.props.newReminder.repeat === repeat;
-  };
+  checkSelected = repeat => this.props.newReminder.repeat === repeat;
 
   render() {
     return (
       <View style={styles.container}>
         <ListItem
           label="Does not repeat"
-          onPress={() => this.setRepeat("Does not repeat")}
-          selected={this.checkSelected("Does not repeat")}
+          onPress={() => this.setRepeat('Does not repeat')}
+          selected={this.checkSelected('Does not repeat')}
         />
         <ListItem
           label="Every day"
-          onPress={() => this.setRepeat("Every day")}
-          selected={this.checkSelected("Every day")}
+          onPress={() => this.setRepeat('Every day')}
+          selected={this.checkSelected('Every day')}
         />
         <ListItem
           label="Every week"
-          onPress={() => this.setRepeat("Every week")}
-          selected={this.checkSelected("Every week")}
+          onPress={() => this.setRepeat('Every week')}
+          selected={this.checkSelected('Every week')}
         />
         <ListItem
           label="Every month"
-          onPress={() => this.setRepeat("Every month")}
-          selected={this.checkSelected("Every month")}
+          onPress={() => this.setRepeat('Every month')}
+          selected={this.checkSelected('Every month')}
         />
         <ListItem
           label="Every year"
-          onPress={() => this.setRepeat("Every year")}
-          selected={this.checkSelected("Every year")}
+          onPress={() => this.setRepeat('Every year')}
+          selected={this.checkSelected('Every year')}
         />
         <TouchableOpacity>
           <View style={styles.row}>
             <Text style={styles.setting}>Custom</Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.button}
               onPress={this.openCustomIntervalPage}
             >
@@ -95,7 +95,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
 });
 
 export default connect(

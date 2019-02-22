@@ -1,55 +1,59 @@
-import React, { Component } from "react";
-import { Image, Text, View, StyleSheet } from "react-native";
-import BackHeader from "../../components/BackHeader/BackHeader";
-import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
-import FormField from "../../components/FormField/FormField";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
-import { KeyboardAvoidingView } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../constants/styles";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addDrug } from "../../redux/actions/drug";
-import moment from "moment";
-import { drawerIconStyle } from "../../constants/styles";
-import AddDrugIcon from "../../assets/07-Settings.png";
+import React, { Component } from 'react';
+import {
+  Image, Text, View, StyleSheet,
+} from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import moment from 'moment';
+import BackHeader from '../../components/BackHeader/BackHeader';
+import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
+import FormField from '../../components/FormField/FormField';
+import RoundedButton from '../../components/RoundedButton/RoundedButton';
+import { medmindBlue } from '../../constants/styles';
+import { addDrug } from '../../redux/actions/drug';
+import { drawerIconStyle } from '../../constants/styles';
+import AddDrugIcon from '../../assets/07-Settings.png';
 
 class AddDrugScreen extends Component {
   constructor(props) {
     super(props);
   }
-  static navigationOptions =({navigation})=> ({
-    headerTitle: "Enter Drug",
+
+  static navigationOptions =({ navigation }) => ({
+    headerTitle: 'Enter Drug',
     headerTitleStyle: {
-      color: "white",
-      fontWeight: "500",
-      fontFamily: "System",
+      color: 'white',
+      fontWeight: '500',
+      fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: "center",
-      marginRight: "23%",
+      textAlign: 'center',
+      marginRight: '23%',
     },
     headerLeft: <RoundedButton
-                  onPress={() => navigation.dangerouslyGetParent().navigate("timelineScreen")}
-                  name={"Back"}
-                  buttonStyle={styles.button}
-                />,
-    headerRight: null
+      onPress={() => navigation.dangerouslyGetParent().navigate('timelineScreen')}
+      name="Back"
+      buttonStyle={styles.button}
+    />,
+    headerRight: null,
   });
+
   state = {
-    name: "Bevacizumab",
-    dosage: "500mg",
-    doctor: "Dr. Who",
-    frequency: "5x a day",
-    startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days"),
-    color: "#990099"
+    name: 'Bevacizumab',
+    dosage: '500mg',
+    doctor: 'Dr. Who',
+    frequency: '5x a day',
+    startDate: moment().subtract(10, 'days'),
+    endDate: moment().add(10, 'days'),
+    color: '#990099',
   };
 
   onSubmit() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     this.props.addDrug(this.state);
-    navigate("timelineScreen");
+    navigate('timelineScreen');
   }
 
   render() {
@@ -107,7 +111,7 @@ class AddDrugScreen extends Component {
         <View style={styles.footerStyle}>
           <RoundedButton
             onPress={() => this.onSubmit()}
-            name={"Submit"}
+            name="Submit"
             buttonStyle={styles.buttonStyle}
           />
         </View>
@@ -116,8 +120,7 @@ class AddDrugScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addDrug }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ addDrug }, dispatch);
 
 export default connect(
   null,
@@ -127,21 +130,21 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-    backgroundColor: "white"
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    backgroundColor: 'white',
   },
   buttonStyle: {
-    alignSelf: "center",
+    alignSelf: 'center',
     width: 200,
-    height: 40
+    height: 40,
   },
   button: {
     borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
+    borderColor: 'gray',
+    alignSelf: 'center',
     width: 50,
-    height: 37
+    height: 37,
   },
   footerStyle: {
     flex: 1,
@@ -149,18 +152,18 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     height: 80,
     flexGrow: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   form: {
     height: 40,
     borderColor: medmindBlue,
     borderBottomWidth: 1,
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   fieldContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });

@@ -1,16 +1,16 @@
-import { StyleSheet } from "react-native";
-import { medmindBlue } from "../../constants/styles";
+import { StyleSheet } from 'react-native';
+import { medmindBlue } from '../../constants/styles';
 
 export default (styles = StyleSheet.create({
   container: {
     backgroundColor: medmindBlue,
-    height: "100%",
+    height: '100%',
     // flex: 1,
-    zIndex: -1
+    zIndex: -1,
   },
   text: {
-    textAlign: "center",
-    color: "black"
+    textAlign: 'center',
+    color: 'black',
   },
   calendarSwiper: {
     // backgroundColor: 'blue',
@@ -19,7 +19,7 @@ export default (styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 5,
-    marginLeft: "15.2%"
+    marginLeft: '15.2%',
   },
   button: {
     position: 'absolute',
@@ -27,7 +27,7 @@ export default (styles = StyleSheet.create({
     height: 74,
     borderRadius: 74,
     bottom: 80,
-    right:80,
+    right: 80,
     backgroundColor: medmindBlue,
   },
 }));

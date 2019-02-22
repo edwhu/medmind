@@ -1,12 +1,14 @@
-import { Notifications } from "expo";
+import { Notifications } from 'expo';
 
 export function fireNotification(reminder, drug) {
-  let notificationTitle = "Time to take " + drug["name"];
+  const notificationTitle = `Time to take ${drug.name}`;
 
   const localNotification = {
     title: notificationTitle,
-    body: "done!", //We can add more detailed description based on the object we pass
-    data: { title: notificationTitle, body: "done!", reminder, drug }
+    body: 'done!', // We can add more detailed description based on the object we pass
+    data: {
+      title: notificationTitle, body: 'done!', reminder, drug,
+    },
     /*
               Can add more attributes
             */
@@ -15,7 +17,7 @@ export function fireNotification(reminder, drug) {
   const schedulingOptions = {
     time: reminder.time /* Specify time needed to get notifications */,
     // This repeat key only takes in parameters like 'day', 'week', doesn't support custom
-    repeat: reminder.repeat
+    repeat: reminder.repeat,
   };
 
   Notifications.scheduleLocalNotificationAsync(

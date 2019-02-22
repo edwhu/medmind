@@ -1,28 +1,29 @@
 import { StyleSheet } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
+
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  repeatContainer:{
-    borderBottomColor: medmindBlue, 
-    borderBottomWidth: 1, 
-    height: 100, 
-    marginHorizontal: 15, 
+  repeatContainer: {
+    borderBottomColor: medmindBlue,
+    borderBottomWidth: 1,
+    height: 100,
+    marginHorizontal: 15,
     marginTop: 20,
   },
   weekdayContainer: {
-    borderBottomColor: 'lightgrey', 
-    borderBottomWidth: 1, 
-    height: 100, 
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 1,
+    height: 100,
     marginHorizontal: 15,
   },
   occuranceContainer: {
-    marginHorizontal: 15, 
-    marginTop: 15, 
-    borderBottomColor: 'lightgrey', 
-    borderBottomWidth: 1, 
+    marginHorizontal: 15,
+    marginTop: 15,
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 1,
     height: 150,
   },
   text: {
@@ -33,18 +34,18 @@ export default styles = StyleSheet.create({
   },
   logo: {
     width: 300,
-    height: 300
+    height: 300,
   },
   link: {
     textDecorationLine: 'underline',
-    color: 'blue'
+    color: 'blue',
   },
   Button: {
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
     width: 20,
     height: 20,
-    borderColor: "transparent",
+    borderColor: 'transparent',
     borderWidth: 0,
-    borderRadius: 20
-  }}
-,);
+    borderRadius: 20,
+  },
+});

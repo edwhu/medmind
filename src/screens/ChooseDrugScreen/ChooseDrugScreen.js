@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ListItem from "../../components/ListItem/ListItem";
-import { medmindBlue } from "../../constants/styles";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, Text, Switch, TouchableOpacity, ScrollView,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import ListItem from '../../components/ListItem/ListItem';
+import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 class ChooseDrugScreen extends Component {
   static propTypes = {};
@@ -17,37 +19,33 @@ class ChooseDrugScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
-    console.log("Error", error);
+  onError = (error) => {
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Drug Names"
+    title: this.props.title || 'Drug Names',
   };
 
   setDrug = (drugId, dosage) => {
     if (this.props.newReminder.drugId != drugId) {
-      this.props.updateNewReminder("drugId", drugId);
-      this.props.updateNewReminder("dosage", dosage);
+      this.props.updateNewReminder('drugId', drugId);
+      this.props.updateNewReminder('dosage', dosage);
     }
   };
 
-  checkSelected = drugId => {
-    return this.props.newReminder.drugId == drugId;
-  };
+  checkSelected = drugId => this.props.newReminder.drugId == drugId;
 
   render() {
-    let sortedDrugs = this.props.drugs.sort();
-    const drugList = sortedDrugs.map(drug => {
-      return (
-        <ListItem
-          key={drug.id}
-          label={drug.name}
-          onPress={() => this.setDrug(drug.id, drug.dosage)}
-          selected={this.checkSelected(drug.id)}
-        />
-      );
-    });
+    const sortedDrugs = this.props.drugs.sort();
+    const drugList = sortedDrugs.map(drug => (
+      <ListItem
+        key={drug.id}
+        label={drug.name}
+        onPress={() => this.setDrug(drug.id, drug.dosage)}
+        selected={this.checkSelected(drug.id)}
+      />
+    ));
 
     return (
       <View style={styles.container}>
@@ -65,7 +63,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
 });
 
 export default connect(

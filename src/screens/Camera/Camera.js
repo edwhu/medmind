@@ -1,46 +1,47 @@
-import React from "react";
+import React from 'react';
 import {
   Image,
   Text,
   View,
   TouchableOpacity,
   Alert,
-  StyleSheet
-} from "react-native";
-import { Camera, Permissions } from "expo";
-import { getFDA } from "../../utilities/FDA";
-import { Ionicons } from "@expo/vector-icons";
-import drugData from "../../assets/Products.json";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
-import { drawerIconStyle } from "../../constants/styles";
-import CameraIcon from "../../assets/07-Settings.png";
-import CameraHeader from "../../components/CameraHeader/CameraHeader.js";
+  StyleSheet,
+} from 'react-native';
+import { Camera, Permissions } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+import { getFDA } from '../../utilities/FDA';
+import drugData from '../../assets/Products.json';
+import RoundedButton from '../../components/RoundedButton/RoundedButton';
+import { drawerIconStyle } from '../../constants/styles';
+import CameraIcon from '../../assets/07-Settings.png';
+import CameraHeader from '../../components/CameraHeader/CameraHeader.js';
 
-const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
+const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
-  static navigationOptions =({navigation})=> ({
-    headerTitle: "Camera",
+  static navigationOptions =({ navigation }) => ({
+    headerTitle: 'Camera',
     headerTitleStyle: {
-      color: "white",
-      fontWeight: "500",
-      fontFamily: "System",
+      color: 'white',
+      fontWeight: '500',
+      fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: "center",
-      marginLeft: "20.5%",
+      textAlign: 'center',
+      marginLeft: '20.5%',
     },
     headerLeft: null,
     headerRight: <RoundedButton
-                  onPress={() => navigation.dangerouslyGetParent().navigate("addDrugScreen")}
-                  name={"Skip"}
-                  buttonStyle={styles.buttonStyle}
-                />
+      onPress={() => navigation.dangerouslyGetParent().navigate('addDrugScreen')}
+      name="Skip"
+      buttonStyle={styles.buttonStyle}
+    />,
   });
+
   state = {
     hasCameraPermission: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.back,
   };
 
   constructor(props) {
@@ -51,40 +52,40 @@ export default class CameraScreen extends React.Component {
 
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === "granted" });
+    this.setState({ hasCameraPermission: status === 'granted' });
   }
 
   async takePicture() {
     if (!this.camera) {
       return;
     }
-    console.warn("takePicture");
+    console.warn('takePicture');
     const photo = await this.camera.takePictureAsync({
       quality: 0,
-      base64: true
+      base64: true,
     });
-    console.warn("base64 Photo taken");
+    console.warn('base64 Photo taken');
     // // Google OCR request
     const body = JSON.stringify({
       requests: [
         {
           image: {
-            content: photo.base64
+            content: photo.base64,
           },
-          features: [{ type: "TEXT_DETECTION" }]
-        }
-      ]
+          features: [{ type: 'TEXT_DETECTION' }],
+        },
+      ],
     });
-    console.warn("base64 body created, sending to google");
+    console.warn('base64 body created, sending to google');
     try {
-      const res = await fetch(GOOGLE_API_URL, { method: "POST", body });
-      console.warn("response gotten!");
+      const res = await fetch(GOOGLE_API_URL, { method: 'POST', body });
+      console.warn('response gotten!');
       const json = await res.json();
       // console.warn(JSON.stringify(json));
-      const responses = json.responses;
+      const { responses } = json;
       for (let rI = 0; rI < responses.length; rI++) {
-        let response = responses[rI];
-        const textAnnotations = response.textAnnotations;
+        const response = responses[rI];
+        const { textAnnotations } = response;
         if (textAnnotations == undefined) {
           break;
         }
@@ -92,18 +93,18 @@ export default class CameraScreen extends React.Component {
           const txt = textAnnotations[i];
           const desc = txt.description.toUpperCase();
           if (this.drugSet.has(desc)) {
-            Alert.alert(`Found a drug name`, desc);
+            Alert.alert('Found a drug name', desc);
             const fdaDrug = await getFDA(desc);
-            console.log("fda drug", fdaDrug);
+            console.log('fda drug', fdaDrug);
             if (fdaDrug.error) {
               throw new Error(fdaDrug.error.message);
             }
-            const results = fdaDrug.results;
+            const { results } = fdaDrug;
             if (results.length == 0) {
-              throw new Error("no FDA results");
+              throw new Error('no FDA results');
             }
             const firstDrug = results[0];
-            console.warn("Drug Found: " + firstDrug.openfda.brand_name[0]);
+            console.warn(`Drug Found: ${firstDrug.openfda.brand_name[0]}`);
             // navigateToDrugFormScreen(this.props, desc, firstDrug);
             return;
           }
@@ -112,7 +113,7 @@ export default class CameraScreen extends React.Component {
     } catch (err) {
       console.error(err);
     }
-    const {navigate} = this.props.navigation.navigate;
+    const { navigate } = this.props.navigation.navigate;
     navigate('addDrugScreen');
   }
 
@@ -120,38 +121,37 @@ export default class CameraScreen extends React.Component {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
-    } else if (hasCameraPermission === false) {
+    } if (hasCameraPermission === false) {
       return <Text>No access to camera</Text>;
-    } else {
-      return (
-        <View style={styles.flex}>
-          <Camera
-            style={styles.flex}
-            type={this.state.type}
-            ref={ref => {
-              this.camera = ref;
+    }
+    return (
+      <View style={styles.flex}>
+        <Camera
+          style={styles.flex}
+          type={this.state.type}
+          ref={(ref) => {
+            this.camera = ref;
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: 'transparent',
+              flexDirection: 'row',
             }}
           >
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
-              }}
+            <TouchableOpacity
+              style={styles.cameraCircle}
+              onPress={this.takePicture}
             >
-              <TouchableOpacity
-                style={styles.cameraCircle}
-                onPress={this.takePicture}
-              >
-                <View style={styles.cameraIcon}>
-                  <Ionicons name="ios-camera" size={50} />
-                </View>
-              </TouchableOpacity>
-            </View>
-          </Camera>
-        </View>
-      );
-    }
+              <View style={styles.cameraIcon}>
+                <Ionicons name="ios-camera" size={50} />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </Camera>
+      </View>
+    );
   }
 }
 
@@ -159,23 +159,23 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   cameraCircle: {
     flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center"
+    alignSelf: 'flex-end',
+    alignItems: 'center',
   },
   cameraIcon: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginBottom: 10
+    marginBottom: 10,
   },
   buttonStyle: {
     borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
+    borderColor: 'gray',
+    alignSelf: 'center',
     width: 50,
     height: 37,
 

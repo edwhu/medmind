@@ -3,7 +3,7 @@ import { medmindBlue } from '../../constants/styles';
 
 export default styles = StyleSheet.create({
   buttonContainer: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     alignItems: 'flex-start',
   },
   radioButton: {
@@ -18,7 +18,7 @@ export default styles = StyleSheet.create({
     width: 20,
     borderRadius: 20,
     backgroundColor: medmindBlue,
-    marginLeft: 10
+    marginLeft: 10,
   },
   text: {
     color: '#333333',
@@ -31,7 +31,7 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   wrapper: {
-    flex: 1, 
+    flex: 1,
     flexDirection: 'column',
   },
   dateLabel: {

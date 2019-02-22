@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   FlatList,
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
-  Image
-} from "react-native";
-import DrugInEvent from "../DrugInEvent/DrugInEvent";
+  Image,
+} from 'react-native';
+import DrugInEvent from '../DrugInEvent/DrugInEvent';
 
 const EventInDayView = ({ event }) => (
   <View style={styles.column}>
@@ -25,30 +25,30 @@ const EventInDayView = ({ event }) => (
 
 const styles = StyleSheet.create({
   column: {
-    flexDirection: "column",
-    alignItems: "center"
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   container: {
     marginTop: 30,
-    flexDirection: "row",
+    flexDirection: 'row',
     // alignItems: "center",
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   drugList: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "flex-end"
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   },
   text: {
     margin: 10,
-    textAlign: "center"
+    textAlign: 'center',
   },
   line: {
-    borderBottomColor: "#C4C4C4",
+    borderBottomColor: '#C4C4C4',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "95%",
-    marginTop: 25
-  }
+    width: '95%',
+    marginTop: 25,
+  },
 });
 
 export default EventInDayView;

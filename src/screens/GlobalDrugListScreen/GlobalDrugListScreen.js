@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import styles from "./styles";
-import DrugIcon from "../../assets/04-DrugList.png";
-import { ScrollView, FlatList } from "react-native";
-import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, StyleSheet, Text, Image,
+} from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import styles from './styles';
+import DrugIcon from '../../assets/04-DrugList.png';
+import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 
 class GlobalDrugListScreen extends Component {
   static propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
   };
 
   static defaultProps = {};
@@ -25,13 +27,13 @@ class GlobalDrugListScreen extends Component {
 
   handleScroll = (event) => {
     this.setState({
-      atTopOfList: event.nativeEvent.contentOffset.y <= 0
+      atTopOfList: event.nativeEvent.contentOffset.y <= 0,
     });
   }
 
   alphabetizeDrugs = (drugs) => {
     const reducer = (dictionary, drug) => {
-      let key = drug.name[0].toUpperCase();
+      const key = drug.name[0].toUpperCase();
       if (!dictionary[key]) {
         dictionary[key] = [];
       }
@@ -46,35 +48,39 @@ class GlobalDrugListScreen extends Component {
 
   renderFilteredDrugs = (query) => {
     const sanitizedQuery = query.trim().toLowerCase();
-    const drugs = this.props.testDrugs.filter(drug => {
+    const drugs = this.props.testDrugs.filter((drug) => {
       const drugName = drug.name.toLowerCase();
       return drugName.startsWith(sanitizedQuery);
     });
 
-    return <FlatList
-      data={drugs}
-      keyExtractor={drug => drug.id}
-      renderItem={({item: drug}) => <GlobalDrugListItem drug={drug} />}
-    />;
+    return (
+      <FlatList
+        data={drugs}
+        keyExtractor={drug => drug.id}
+        renderItem={({ item: drug }) => <GlobalDrugListItem drug={drug} />}
+      />
+    );
   }
 
   renderAlphabetizedDrugs = () => {
     const alphabetizedDrugs = this.alphabetizeDrugs(this.props.testDrugs);
     const letters = Object.keys(alphabetizedDrugs).sort();
-    return letters.map(letter => {
+    return letters.map((letter) => {
       const drugs = alphabetizedDrugs[letter];
-      return <View key={letter} style={styles.alphabetList}>
-        <View style={styles.alphabetSeparator}>
-          <Text style={styles.alphabetSeparatorText}>{letter}</Text>
-          <View style={styles.alphabetSeparatorLine} />
+      return (
+        <View key={letter} style={styles.alphabetList}>
+          <View style={styles.alphabetSeparator}>
+            <Text style={styles.alphabetSeparatorText}>{letter}</Text>
+            <View style={styles.alphabetSeparatorLine} />
+          </View>
+          <FlatList data={drugs} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
         </View>
-        <FlatList data={drugs} keyExtractor={drug => drug.id.toString()} renderItem={({ item }) => <GlobalDrugListItem drug={item} />} style={styles.flatList} />
-      </View>;
+      );
     });
   }
 
   updateQuery = (query) => {
-    this.setState({query});
+    this.setState({ query });
   }
 
   render() {
@@ -94,7 +100,7 @@ class GlobalDrugListScreen extends Component {
 }
 function mapStateToProps(state, props) {
   return {
-    testDrugs: state.drugInfoReducer.drugInfo
+    testDrugs: state.drugInfoReducer.drugInfo,
   };
 }
 

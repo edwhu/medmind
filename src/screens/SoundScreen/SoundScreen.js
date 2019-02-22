@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ListItem from "../../components/ListItem/ListItem";
-import { medmindBlue } from "../../constants/styles";
-import { testSounds } from "../../constants/constants";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, Text, Switch, TouchableOpacity, ScrollView,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import ListItem from '../../components/ListItem/ListItem';
+import { medmindBlue } from '../../constants/styles';
+import { testSounds } from '../../constants/constants';
+import styles from './styles';
 
 class SoundScreen extends Component {
   static propTypes = {};
@@ -18,33 +20,29 @@ class SoundScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
-    console.log("Error", error);
+  onError = (error) => {
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Sound"
+    title: this.props.title || 'Sound',
   };
 
-  setSound = sound => {
-    this.props.updateNewReminder("sound", sound);
+  setSound = (sound) => {
+    this.props.updateNewReminder('sound', sound);
   };
 
-  checkSelected = sound => {
-    return this.props.newReminder.sound == sound;
-  };
+  checkSelected = sound => this.props.newReminder.sound == sound;
 
   render() {
-    soundList = testSounds.map(sound => {
-      return (
-        <ListItem
-          key={sound}
-          label={sound}
-          onPress={() => this.setSound(sound)}
-          selected={this.checkSelected(sound)}
-        />
-      );
-    });
+    soundList = testSounds.map(sound => (
+      <ListItem
+        key={sound}
+        label={sound}
+        onPress={() => this.setSound(sound)}
+        selected={this.checkSelected(sound)}
+      />
+    ));
 
     return (
       <View style={styles.container}>
@@ -61,7 +59,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
 });
 
 export default connect(

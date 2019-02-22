@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, StyleSheet, Text, Image, TouchableOpacity,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 // Extrenal Packages
-import Swiper from "react-native-swiper";
+import Swiper from 'react-native-swiper';
 // Local
-import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
-import RoundedButton from "../../../components/RoundedButton/RoundedButton";
-import styles from "./styles";
-import { updateWeek } from "../../../redux/actions/calendar";
+import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
+import RoundedButton from '../../../components/RoundedButton/RoundedButton';
+import styles from './styles';
+import { updateWeek } from '../../../redux/actions/calendar';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -21,7 +23,7 @@ class WeekSwiper extends Component {
   // Given the beginning date of a week, returns an array
   // containing data for that week, the week before, and the
   // week after.
-  _getSurroundingWeeks = middleWeekBegin => {
+  _getSurroundingWeeks = (middleWeekBegin) => {
     const middleWeekEnd = middleWeekBegin.clone().endOf('isoWeek');
     const diffs = [-1, 0, 1]; // # of weeks different from this week
     return diffs.map(diff => ({
@@ -30,14 +32,14 @@ class WeekSwiper extends Component {
     }));
   };
 
-  _onIndexChanged = index => {
+  _onIndexChanged = (index) => {
     this.props.updateWeek(
-      this.props.currentWeek.clone().add(index - 1, 'week'),
+      this.props.currentWeek.clone().add(index - 1, 'week')
     );
   };
 
   onPlusButtonPress = () => {
-    this.props.navigation.navigate("cameraScreen")
+    this.props.navigation.navigate('cameraScreen');
   }
 
   render() {
@@ -58,11 +60,12 @@ class WeekSwiper extends Component {
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
-        <TouchableOpacity 
-         style={styles.button}
-         onPress={() => this.onPlusButtonPress()}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.onPlusButtonPress()}
+        >
           <Text style={styles.plus}>+</Text>
-        </TouchableOpacity> 
+        </TouchableOpacity>
       </View>
     );
   }

@@ -3,9 +3,9 @@ import { medmindBlue } from '../../constants/styles';
 
 export default styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    flexDirection: 'column', 
-    justifyContent: 'flex-start', 
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
   picker: {
     width: 100,
@@ -44,5 +44,4 @@ export default styles = StyleSheet.create({
   pressedText: {
     color: 'white',
   },
-}
-,);
+});

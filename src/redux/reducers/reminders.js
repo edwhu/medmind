@@ -1,7 +1,7 @@
-import moment from "moment";
-import { testReminders } from "../../constants/constants";
-import { defaultReminder } from "../../constants/constants";
-import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER } from "../../constants/action-types";
+import moment from 'moment';
+import { testReminders } from '../../constants/constants';
+import { defaultReminder } from '../../constants/constants';
+import { ADD_REMINDER, UPDATE_REMINDER, UPDATE_NEW_REMINDER } from '../../constants/action-types';
 
 const initialState = {
   reminders: testReminders || [],
@@ -14,13 +14,13 @@ const remindersReducer = (state = initialState, action) => {
     case ADD_REMINDER:
       const newReminder = {
         ...state.newReminder,
-        id: action.id
-      }
+        id: action.id,
+      };
       return {
         ...state,
-         reminders: state.reminders.concat(newReminder),
-         newReminder: defaultReminder,
-      }
+        reminders: state.reminders.concat(newReminder),
+        newReminder: defaultReminder,
+      };
     case UPDATE_REMINDER:
       state = Object.assign({}, state, { reminders: action.reminders });
       return state;
@@ -28,7 +28,7 @@ const remindersReducer = (state = initialState, action) => {
       const updatedReminder = {
         ...state.newReminder,
         [action.field]: action.value,
-      }
+      };
       state = Object.assign({}, state, { newReminder: updatedReminder });
       return state;
     default:

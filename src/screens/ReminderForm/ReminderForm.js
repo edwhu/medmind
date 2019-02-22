@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
-import { bindActionCreators } from "redux";
-import { addReminder, updateNewReminder } from "../../redux/actions/reminder";
-import { connect } from "react-redux";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import TimePicker from "../../components/TimePicker/TimePicker";
-import { Ionicons } from "@expo/vector-icons";
-import { medmindBlue } from "../../constants/styles";
-import moment from "moment";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+  View, Text, Switch, TouchableOpacity,
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment';
+import { addReminder, updateNewReminder } from '../../redux/actions/reminder';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import TimePicker from '../../components/TimePicker/TimePicker';
+import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 class ReminderFormScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "New Reminder"
+    drawerLabel: 'New Reminder',
   };
 
   static propTypes = {};
@@ -21,34 +23,34 @@ class ReminderFormScreen extends Component {
   static defaultProps = {};
 
   // callback for login errors
-  onError = error => {
-    console.log("Error", error);
+  onError = (error) => {
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Reminder",
+    title: this.props.title || 'Reminder',
     snooze: false,
   };
 
   openDrugListPage = () => {
-    this.props.navigation.navigate("chooseDrugScreen", {
+    this.props.navigation.navigate('chooseDrugScreen', {
       showButton: true,
     });
   };
 
   openRepeatPage = () => {
-   this.props.navigation.navigate("repeatScreen", {
+    this.props.navigation.navigate('repeatScreen', {
       showButton: true,
     });
   };
 
   openSoundPage = () => {
-    this.props.navigation.navigate("soundScreen", {
+    this.props.navigation.navigate('soundScreen', {
       showButton: true,
     });
   };
 
-  setRepeat = repeat => {
+  setRepeat = (repeat) => {
     this.setState({ repeat });
   };
 
@@ -56,10 +58,8 @@ class ReminderFormScreen extends Component {
     this.setState({ snooze: !this.state.snooze });
   };
 
-  getDrugName = drugId => {
-    const drug = this.props.drugs.filter(function(drug) {
-      return drug.id === drugId;
-    });
+  getDrugName = (drugId) => {
+    const drug = this.props.drugs.filter(drug => drug.id === drugId);
     if (drug.length == 0) {
       return;
     }
@@ -68,19 +68,21 @@ class ReminderFormScreen extends Component {
 
   // Saves reminder to redux store
   saveReminder = () => {
-    if (typeof this.props.newReminder.time === "undefined") {
-      this.props.updateNewReminder("time", moment());
+    if (typeof this.props.newReminder.time === 'undefined') {
+      this.props.updateNewReminder('time', moment());
     }
-    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
-        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
-        this.props.updateNewReminder("repeat", newRepeat);
+    if (typeof this.props.newReminder.repeat !== 'undefined' && this.props.newReminder.repeat[0] === 'E') {
+      const newRepeat = this.props.newReminder.repeat.split(' ')[1];
+      this.props.updateNewReminder('repeat', newRepeat);
     }
     this.props.addReminder();
     this.props.navigation.goBack();
   };
 
   render() {
-    const { newReminder, updateNewReminder, addReminder, drugs } = this.props;
+    const {
+      newReminder, updateNewReminder, addReminder, drugs,
+    } = this.props;
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
@@ -97,7 +99,7 @@ class ReminderFormScreen extends Component {
       <View style={styles.container}>
         <TimePicker
           header="Time"
-          setDate={time => updateNewReminder("time", time)}
+          setDate={time => updateNewReminder('time', time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -164,7 +166,7 @@ function mapStateToProps(state, props) {
 
 const mapDispatchToProps = dispatch => ({
   addReminder: bindActionCreators(addReminder, dispatch),
-  updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
+  updateNewReminder: bindActionCreators(updateNewReminder, dispatch),
 });
 
 export default connect(

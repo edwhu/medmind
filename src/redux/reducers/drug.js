@@ -1,9 +1,9 @@
-import { ADD_DRUG, DELETE_DRUGS } from "../../constants/action-types";
-import { testDrugs } from "../../constants/constants";
+import { ADD_DRUG, DELETE_DRUGS } from '../../constants/action-types';
+import { testDrugs } from '../../constants/constants';
 
-let drugState = {
+const drugState = {
   drugInfo: testDrugs || [],
-  drugId: 30
+  drugId: 30,
 };
 
 export default (drugInfoReducer = (state = drugState, action) => {
@@ -17,8 +17,8 @@ export default (drugInfoReducer = (state = drugState, action) => {
       const { drugIds } = action;
       return {
         ...state,
-        drugInfo: state.drugInfo.filter(drug => !drugIds.includes(drug.id))
-      }
+        drugInfo: state.drugInfo.filter(drug => !drugIds.includes(drug.id)),
+      };
     default:
       return state;
   }

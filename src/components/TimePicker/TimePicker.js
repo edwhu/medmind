@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   DatePickerIOS,
-  Text
-} from "react-native";
-import PropTypes from "prop-types";
-import moment from "moment";
-import { medmindBlue } from "../../constants/styles";
+  Text,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+import { medmindBlue } from '../../constants/styles';
 
 export default class TimePicker extends Component {
   static propTypes = {
-    setDate: PropTypes.func.isRequired
+    setDate: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -20,7 +20,7 @@ export default class TimePicker extends Component {
     this.state = { collapsed: true, chosenDate: moment() };
   }
 
-  setDate = newDate => {
+  setDate = (newDate) => {
     const date = moment(newDate);
     this.setState({ chosenDate: date });
     this.props.setDate(date);
@@ -42,8 +42,8 @@ export default class TimePicker extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });

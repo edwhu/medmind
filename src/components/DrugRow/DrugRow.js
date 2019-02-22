@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dimensions,
   View,
   StyleSheet,
   Text,
-  TouchableOpacity
-} from "react-native";
-import moment from "moment";
-import DrugIcon from "../DrugIcon/DrugIcon";
-import { getFadedFromHex } from "../../utilities/helpers";
+  TouchableOpacity,
+} from 'react-native';
+import moment from 'moment';
+import DrugIcon from '../DrugIcon/DrugIcon';
+import { getFadedFromHex } from '../../utilities/helpers';
 
 
 class DrugWeek extends Component {
@@ -26,7 +26,7 @@ class DrugWeek extends Component {
     width: 0,
   };
 
-  _getBarStyle = drugInfo => {
+  _getBarStyle = (drugInfo) => {
     const BORDER_RADIUS = 26;
     const { width } = Dimensions.get('window');
     const { beginningOfWeek, endOfWeek } = this.props;
@@ -36,17 +36,17 @@ class DrugWeek extends Component {
       beginningOfWeek,
       endOfWeek,
       'day',
-      '[]',
+      '[]'
     );
     const endsInWeek = endDate.isBetween(
       beginningInWeek,
       endOfWeek,
       'day',
-      '[]',
+      '[]'
     );
     const isInWeek = !(
-      endDate.isBefore(beginningOfWeek, 'day') ||
-      startDate.isAfter(endOfWeek, 'day')
+      endDate.isBefore(beginningOfWeek, 'day')
+      || startDate.isAfter(endOfWeek, 'day')
     );
 
     const leftRadius = beginsInWeek ? BORDER_RADIUS : 0;
@@ -60,8 +60,8 @@ class DrugWeek extends Component {
       ? moment.duration(startDate.diff(beginningOfWeek)).days()
       : 0;
 
-    let dayWidth = (numDays / 7) * width;
-    let offsetWidth = (offset / 7) * width;
+    const dayWidth = (numDays / 7) * width;
+    const offsetWidth = (offset / 7) * width;
 
     const barStyle = {
       width: isInWeek ? dayWidth : 0,
@@ -81,19 +81,23 @@ class DrugWeek extends Component {
     // TODO: implement / import function here
   };
 
-  _renderBar = drugInfo => {
+  _renderBar = (drugInfo) => {
     const barStyle = this._getBarStyle(drugInfo);
-    const { id, name, startDate, endDate } = drugInfo;
+    const {
+      id, name, startDate, endDate,
+    } = drugInfo;
     const { endOfWeek, beginningOfWeek } = this.props;
     const hideDrugIcon = startDate > endOfWeek || endDate < beginningOfWeek;
-    return <TouchableOpacity key={id} style={barStyle} activeOpacity={0.6} onPress={() => this._openDrugInfo(drugInfo)}>
+    return (
+      <TouchableOpacity key={id} style={barStyle} activeOpacity={0.6} onPress={() => this._openDrugInfo(drugInfo)}>
         <View style={styles.drugBarContainer}>
           {!hideDrugIcon && <DrugIcon color={drugInfo.color} />}
           <Text style={styles.drugText} numberOfLines={2}>
             {name}
           </Text>
         </View>
-      </TouchableOpacity>;
+      </TouchableOpacity>
+    );
   };
 
   render() {

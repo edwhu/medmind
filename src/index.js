@@ -1,25 +1,28 @@
-import React from "react";
-import { Alert, StatusBar, View, YellowBox } from "react-native";
-import { Provider } from "react-redux";
+import React from 'react';
+import {
+  Alert, StatusBar, View, YellowBox,
+} from 'react-native';
+import { Provider } from 'react-redux';
 
-import AppNavigator from "./routes";
-import store from "./redux/store";
-YellowBox.ignoreWarnings(["Remote debugger"]); // ignore image loader warning
-import { Constants, Notifications, Permissions } from "expo";
-import { fireNotification } from "./utilities/notifications";
+import { Constants, Notifications, Permissions } from 'expo';
+import AppNavigator from './routes';
+import store from './redux/store'; // ignore image loader warning
+import { fireNotification } from './utilities/notifications';
+
+YellowBox.ignoreWarnings(['Remote debugger']);
 
 export default class App extends React.Component {
   handleNotification = ({ origin, data, remote }) => {
-    console.warn("Got Notification!");
-    console.log("origin: ", origin);
-    console.log("data: ", data);
-    Alert.alert("Notification!", JSON.stringify(data));
+    console.warn('Got Notification!');
+    console.log('origin: ', origin);
+    console.log('data: ', data);
+    Alert.alert('Notification!', JSON.stringify(data));
   };
 
   async componentDidMount() {
     // We need to ask for Notification permissions for ios devices
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    if (status !== "granted") {
+    if (status !== 'granted') {
       await Permissions.askAsync(Permissions.NOTIFICATIONS);
     }
 
@@ -35,7 +38,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{ height: "100%" }}>
+      <View style={{ height: '100%' }}>
         <StatusBar barStyle="light-content" />
         <Provider store={store}>
           <AppNavigator />

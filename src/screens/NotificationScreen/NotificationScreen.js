@@ -1,44 +1,44 @@
-import React, { Component } from "react";
-import { Image, View, Button } from "react-native";
-import { drawerIconStyle } from "../../constants/styles";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { fireNotification } from "../../utilities/notifications";
-import NotificationIcon from "../../assets/07-Settings.png";
+import React, { Component } from 'react';
+import { Image, View, Button } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { drawerIconStyle } from '../../constants/styles';
+import { fireNotification } from '../../utilities/notifications';
+import NotificationIcon from '../../assets/07-Settings.png';
 
 class NotificationScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Notification List",
+    drawerLabel: 'Notification List',
     drawerIcon: () => (
       <Image source={NotificationIcon} style={drawerIconStyle} />
-    )
+    ),
   };
 
-  onSubmit = e => {
-    console.log("Inside onSubmit");
-    let drugs = this.props.testDrugs;
-    let reminders = this.props.testReminders;
+  onSubmit = (e) => {
+    console.log('Inside onSubmit');
+    const drugs = this.props.testDrugs;
+    const reminders = this.props.testReminders;
     // console.log(drugs)
-    let firstReminder = reminders[0];
+    const firstReminder = reminders[0];
 
     // get drug object
-    let drug = drugs.filter(drug => drug.id == firstReminder.drugId)[0];
+    const drug = drugs.filter(drug => drug.id == firstReminder.drugId)[0];
 
     fireNotification(firstReminder, drug);
   };
 
   static propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
   };
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Button
           icon={{
-            name: "arrow-right",
+            name: 'arrow-right',
             size: 15,
-            color: "blue"
+            color: 'blue',
           }}
           title="Get Notification"
           onPress={this.onSubmit}
@@ -51,7 +51,7 @@ class NotificationScreen extends Component {
 function mapStateToProps(state, props) {
   return {
     testDrugs: state.drugInfoReducer.drugInfo,
-    testReminders: state.remindersReducer.reminders
+    testReminders: state.remindersReducer.reminders,
   };
 }
 

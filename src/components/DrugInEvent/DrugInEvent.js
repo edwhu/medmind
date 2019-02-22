@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
-  Image
-} from "react-native";
-import DrugIcon from "../DrugIcon/DrugIcon";
+  Image,
+} from 'react-native';
+import DrugIcon from '../DrugIcon/DrugIcon';
+
 const DrugInEvent = ({ onPress, drug }) => {
-  let styles = createStyles(drug.color);
+  const styles = createStyles(drug.color);
   return (
     <TouchableHighlight onPress={onPress}>
       <View style={styles.container}>
@@ -22,33 +23,31 @@ const DrugInEvent = ({ onPress, drug }) => {
   );
 };
 
-const createStyles = drugColor => {
-  return StyleSheet.create({
-    container: {
-      width: 300,
-      height: 75,
-      borderTopLeftRadius: 37,
-      borderBottomLeftRadius: 37,
-      backgroundColor: drugColor + "50",
-      marginBottom: 10,
-      flexDirection: "row",
-      paddingLeft: 20,
-      paddingTop: 5,
-      paddingBottom: 5,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.3,
-      shadowRadius: 2
-    },
-    textWrapper: {
-      marginLeft: 10
-    },
-    drugName: {
-      fontWeight: "bold"
-    },
-    drugDosage: {}
-  });
-};
+const createStyles = drugColor => StyleSheet.create({
+  container: {
+    width: 300,
+    height: 75,
+    borderTopLeftRadius: 37,
+    borderBottomLeftRadius: 37,
+    backgroundColor: `${drugColor}50`,
+    marginBottom: 10,
+    flexDirection: 'row',
+    paddingLeft: 20,
+    paddingTop: 5,
+    paddingBottom: 5,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+  },
+  textWrapper: {
+    marginLeft: 10,
+  },
+  drugName: {
+    fontWeight: 'bold',
+  },
+  drugDosage: {},
+});
 
 export default DrugInEvent;
