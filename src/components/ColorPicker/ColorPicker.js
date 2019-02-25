@@ -7,7 +7,6 @@ export default class ColorPicker extends Component {
     render() {
         return (
             <ColorPalette
-            onChange={color => alert(`Color selected: ${color}`)}
             defaultColor={'#AD2452'}
             colors={['#AD2452', '#EC4125', '#E1C750', '#39854B', '#4645B1', '#9122A5',
                      '#D82F5A', '#ED662B', '#BECF4A', '#42998A', '#7C80C7', '#785448',
@@ -15,7 +14,6 @@ export default class ColorPicker extends Component {
                      '#E57670', '#F4C142', '#53BC81', '#4E7BF0', '#9F60AB', '#CDCDCD']}
             title={"Color"}
             scaleToWindow={true}
-            
           />
         );
     }

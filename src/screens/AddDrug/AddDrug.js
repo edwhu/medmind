@@ -46,8 +46,11 @@ class AddDrugScreen extends Component {
     modalVisible: false
   };
 
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  hideModal() {
+    this.setState({modalVisible: false});
+  }
+  showModal() {
+    this.setState({modalVisible: true});
   }
 
   onSubmit() {
@@ -99,7 +102,7 @@ class AddDrugScreen extends Component {
             <Text>Colors</Text>
             <TouchableOpacity
               onPress = {() => {
-                this.setModalVisible(true)
+                this.showModal()
               }}
               hitSlop={{left: 100}}
               >
@@ -111,7 +114,7 @@ class AddDrugScreen extends Component {
 
         <Modal
           visible={this.state.modalVisible}
-          onRequestClose = {() => {this.setModalVisible(false)}}
+          onRequestClose = {() => {this.hideModal()}}
           transparent={true}
           style = {styles.modalContainer}
           >
@@ -120,14 +123,14 @@ class AddDrugScreen extends Component {
             <View style = {styles.container3}>
               <TouchableOpacity
                   onPress={() => {
-                    this.setModalVisible(false);
+                    this.hideModal();
                   }}
               >
                 <Text style = {styles.textStyle}>CANCEL</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   onPress={() => {
-                    this.setModalVisible(false);
+                    this.hideModal();
                   }}
               >
                 <Text style = {styles.textStyle}>OK</Text>
