@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Swiper from "react-native-swiper";
 // Local
 import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
-import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import OptionButton from "../../../components/OptionButton/OptionButton";
 import styles from "./styles";
 import { updateWeek } from "../../../redux/actions/calendar";
 
@@ -36,8 +36,11 @@ class WeekSwiper extends Component {
     );
   };
 
-  onPlusButtonPress = () => {
+  navigateCamera = () => {
     this.props.navigation.navigate("cameraScreen")
+  }
+  navigateAddDrug = () => {
+    this.props.navigation.navigate("addDrugScreen")
   }
 
   render() {
@@ -58,11 +61,9 @@ class WeekSwiper extends Component {
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
-        <TouchableOpacity 
-         style={styles.button}
-         onPress={() => this.onPlusButtonPress()}>
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity> 
+        <OptionButton
+         cameraOnPress={() => this.navigateCamera()} 
+         drugOnPress={() => this.navigateAddDrug()} />
       </View>
     );
   }
