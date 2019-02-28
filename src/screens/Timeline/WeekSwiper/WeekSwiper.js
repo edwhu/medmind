@@ -62,8 +62,8 @@ class WeekSwiper extends Component {
           ))}
         </Swiper>
         <OptionButton
-         cameraOnPress={() => this.navigateCamera()} 
-         drugOnPress={() => this.navigateAddDrug()} />
+         cameraOnPress={this.navigateCamera} 
+         drugOnPress={this.navigateAddDrug} />
       </View>
     );
   }
