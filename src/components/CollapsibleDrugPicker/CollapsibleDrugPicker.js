@@ -8,8 +8,8 @@ import {
 } from "react-native";
 import Collapsible from "react-native-collapsible";
 import PropTypes from "prop-types";
-import { drugTypes } from "../../utilities/drugs";
-import { medmindBlue } from "../../utilities/styles";
+import { drugTypes } from "../../constants/constants";
+import { medmindBlue } from "../../constants/styles";
 
 export default class CollapsibleDatePicker extends Component {
   static propTypes = {

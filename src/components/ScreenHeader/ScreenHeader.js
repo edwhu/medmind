@@ -24,12 +24,10 @@ export default class ScreenHeader extends Component {
   state = {};
 
   openHamburger = () => {
-    console.log("open drawer");
     this.props.navigation.openDrawer();
   };
 
   openSettings = () => {
-    console.log("open settings");
   };
 
   render() {
@@ -66,6 +64,7 @@ export default class ScreenHeader extends Component {
               />
             </TouchableOpacity>
           )}
+          
         </View>
       </View>
     );

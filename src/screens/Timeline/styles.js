@@ -20,5 +20,14 @@ export default (styles = StyleSheet.create({
     height: 20,
     borderRadius: 5,
     marginLeft: "15.2%"
-  }
+  },
+  button: {
+    position: 'absolute',
+    width: 74,
+    height: 74,
+    borderRadius: 74,
+    bottom: 80,
+    right:80,
+    backgroundColor: medmindBlue,
+  },
 }));

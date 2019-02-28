@@ -9,7 +9,7 @@ import {
 import Collapsible from "react-native-collapsible";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { medmindBlue } from "../../utilities/styles";
+import { medmindBlue } from "../../constants/styles";
 
 export default class CollapsibleDatePicker extends Component {
   static propTypes = {

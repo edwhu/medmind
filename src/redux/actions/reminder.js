@@ -1,45 +1,71 @@
-import { ADD_REMINDER, UPDATE_REMINDER } from "../../constants/action-types";
+import { ADD_REMINDER, UPDATE_REMINDER, DELETE_REMINDER, SAVE_NEW_REMINDER, SET_NEW_REMINDER, UPDATE_NEW_REMINDER, SET_UPDATE_FLAG, TOGGLE_DRUG_SNOOZE } from "../../constants/action-types";
 import store from "../store";
 
 let nextId = 9000;
 
-export function addReminder(drugId, dosage, sound, repeat, startDate, snooze) {
-  if (
-    typeof drugId !== "number" ||
-    typeof sound !== "string" ||
-    typeof repeat !== "string" ||
-    typeof dosage !== "string"
-  ) {
-    console.warn("Required field left blank");
-    return {};
-  } else {
-    if (repeat[0] == "E") {
-      const words = repeat.split(" ");
-      repeat = words[1];
-    }
-    const newReminder = {
-      id: nextId++,
-      drugId: drugId,
-      time: startDate,
-      repeat: repeat,
-      dosage: dosage,
-      snooze: snooze
-    };
-    return {
-      type: ADD_REMINDER,
-      reminder: newReminder
-    };
+export function updateNewReminder(field, value) {
+  return {
+    type: UPDATE_NEW_REMINDER,
+    field,
+    value
   }
 }
 
-export function updateReminder(reminders) {
-  if (typeof reminders === "undefined") {
-    console.warn("Required field left blank");
+export function addReminder() {
+  return {
+    type: ADD_REMINDER,
+    id: nextId++
+  };
+}
+
+export function updateReminder(reminder) {
+  if (typeof reminder === "undefined") {
+    console.warn("Reminder object undefined");
     return {};
   } else {
     return {
       type: UPDATE_REMINDER,
-      reminders: reminders
+      reminder
     };
+  }
+}
+
+export function toggleDrugSnooze(drugId) {
+  return {
+    type: TOGGLE_DRUG_SNOOZE,
+    drugId
+  }
+}
+
+export function deleteReminder(idType, id) {
+  return {
+    type: DELETE_REMINDER,
+    idType,
+    id
+  }
+}
+
+export function saveNewReminder() {
+  return {
+    type: SAVE_NEW_REMINDER
+  }
+}
+
+export function setNewReminder(reminder) {
+  if (typeof reminder === "undefined") {
+    console.warn("Reminder object undefined in setNewReminder action");
+    return {};
+  } else {
+    return {
+      type: SET_NEW_REMINDER,
+      reminder,
+    };
+  }
+}
+
+export function setUpdateFlag(flag) {
+  return {
+    type: SET_UPDATE_FLAG,
+    flag,
   }
 }

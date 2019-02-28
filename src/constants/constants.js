@@ -85,8 +85,9 @@ export const testDrugs = [
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
     color: "#990099"
-  }
+  },
 ];
+
 
 export const testReminders = [
   {
@@ -136,6 +137,16 @@ export const testReminders = [
   }
 ];
 
+export const defaultReminder = {
+  snooze: false,
+  repeatIntervalCount: 1,
+  repeatInterval: "week",
+  selectedWeekdays: [false, false, false, false, false, false, false],
+  endOccurenceCount: 1,
+  endOccurence: "never",
+  endDate: moment().subtract(10, "days"),
+}
+
 export const testSounds = [
   "Beacon",
   "Bulletin",
@@ -149,3 +160,5 @@ export const testSounds = [
   "Play Time",
   "Radar"
 ];
+
+export const drugTypes = ["Anti-Cancer", "Side Effects", "Supplements", "Other"];

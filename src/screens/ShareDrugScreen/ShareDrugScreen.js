@@ -15,9 +15,6 @@ import { connect } from "react-redux";
 // or any pure javascript modules available in npm
 
 class ShareDrugScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: "Share Drug"
-  };
 
   onSharePress() {
     Share.share(
@@ -38,11 +35,6 @@ class ShareDrugScreen extends React.Component {
 
   static propTypes = {
     title: PropTypes.string
-  };
-
-  static navigationOptions = {
-    drawerLabel: "shareDrugScreen",
-    drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
   };
 
   static defaultProps = {};
@@ -80,7 +72,6 @@ class ShareDrugScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={this.state.title} />
         <Text style={styles.dateStyle}>
           Downloaded:
           {moment().format("MM/DD/YYYY")}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 import PropTypes from "prop-types";
-import { medmindBlue } from "../../utilities/styles";
+import { medmindBlue } from "../../constants/styles";
 export default class RoundedButton extends Component {
   constructor(props) {
     super(props);

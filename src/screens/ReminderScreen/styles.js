@@ -19,8 +19,7 @@ export default (styles = StyleSheet.create({
   reminder: {
     height: 100,
     flexDirection: "row",
-    alignItems: "center",
-    alignContent: "center"
+    alignItems: "center"
   },
   info: {
     marginLeft: 20
@@ -64,6 +63,9 @@ export default (styles = StyleSheet.create({
     width: 74,
     height: 74,
     borderRadius: 37,
+    justifyContent: 'center',
+    alignItems:'center',
+    position: 'absolute',
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
@@ -71,6 +73,10 @@ export default (styles = StyleSheet.create({
     right: 30
   },
   plus: {
+    color:'white',
+    fontSize: 55,
+    marginBottom: 6,
+    fontWeight: "200",
     color: "white",
     fontSize: 55,
     marginBottom: 6,
