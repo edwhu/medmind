@@ -53,7 +53,7 @@ class AddDrugScreen extends Component {
           header="Doctor"
           onChangeText={doctor => this.setState({ doctor })}
           value={this.state.doctor}
-          placeholder={this.state.dosage}
+          placeholder={this.state.doctor}
         />
         <FormField
           header="Frequency"

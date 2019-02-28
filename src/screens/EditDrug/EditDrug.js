@@ -9,21 +9,20 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { medmindBlue } from "../../utilities/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addDrug } from "../../redux/actions/drug";
+import { editDrug } from "../../redux/actions/drug";
 import moment from "moment";
 import { drawerIconStyle } from "../../constants/styles";
 import AddDrugIcon from "../../assets/07-Settings.png";
 
 class EditDrugScreen extends Component {
+
   static navigationOptions = {
     drawerLabel: "Edit Drug",
     drawerIcon: () => <Image source={AddDrugIcon} style={drawerIconStyle} />
   };
-  constructor(props) {
-    super(props);
-  }
 
   state = {
+    id: 1, // take from drug
     name: "Bevacizumab",
     dosage: "500mg",
     doctor: "Dr. Who",
@@ -33,9 +32,32 @@ class EditDrugScreen extends Component {
     color: "#990099"
   };
 
+  constructor(props) {
+    super(props);
+
+    const { navigation } = this.props;
+    const drug = navigation.getParam('drug');
+    this.state = {
+      id: drug.id, 
+      name: drug.name, 
+      dosage: drug.dosage,
+      doctor: drug.doctor,
+      frequency: drug.frequency,
+      startDate: drug.startDate,
+      endDate: drug.endDate,
+      color: "#FFDF00"
+    };
+    // this.setState({
+    //   id: drug.id,
+    //   name: drug.name,
+    //   dosage: drug.dosage
+    // });
+  }
+
   render() {
     const { navigation } = this.props;
-    const drug = navigation.getParam('drug', 'No ID');
+    const drug = navigation.getParam('drug');
+
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScreenHeader {...this.props} title={"Drug Entry"} />
@@ -90,7 +112,10 @@ class EditDrugScreen extends Component {
 
         <View style={styles.footerStyle}>
           <RoundedButton
-            onPress={() => this.props.addDrug(this.state)}
+            onPress={() => {
+              console.log(this.state);
+              this.props.editDrug(this.state);
+            }}
             name={"Submit"}
             buttonStyle={styles.buttonStyle}
           />
@@ -101,7 +126,7 @@ class EditDrugScreen extends Component {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addDrug }, dispatch);
+  bindActionCreators({ editDrug }, dispatch);
 
 export default connect(
   null,
