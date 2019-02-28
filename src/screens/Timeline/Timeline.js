@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Image } from "react-native";
+import { View, ScrollView, StyleSheet, Text, Image, } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
@@ -8,11 +8,13 @@ import WeekIcon from "../../assets/01-Week.png";
 import WeekSwiper from "./WeekSwiper/WeekSwiper";
 import { MONTHS } from "../../constants/constants";
 import styles from "./styles";
+import moment from "moment";
+import RoundedButton from "../../components/RoundedButton/RoundedButton";
 
 class TimelineScreen extends Component {
   static navigationOptions = {
     drawerLabel: "Timeline",
-    drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />
+    drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
   };
 
   static propTypes = {};
@@ -22,12 +24,10 @@ class TimelineScreen extends Component {
   };
 
   render() {
-    const { currentMonth, currentYear } = this.props;
-    const title = `${MONTHS[currentMonth].toUpperCase()} ${currentYear}`;
+    const {navigation} = this.props;
     return (
       <View style={styles.container}>
-        <ScreenHeader {...this.props} title={title} />
-        <WeekSwiper />
+        <WeekSwiper navigation = {navigation}/>
       </View>
     );
   }

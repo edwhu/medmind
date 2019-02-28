@@ -64,6 +64,7 @@ export default class ScreenHeader extends Component {
               />
             </TouchableOpacity>
           )}
+          
         </View>
       </View>
     );

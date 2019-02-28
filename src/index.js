@@ -6,7 +6,7 @@ import AppNavigator from "./routes";
 import store from "./redux/store";
 YellowBox.ignoreWarnings(["Remote debugger"]); // ignore image loader warning
 import { Constants, Notifications, Permissions } from "expo";
-import { fireNotification } from "./utils";
+import { fireNotification } from "./utilities/notifications";
 
 export default class App extends React.Component {
   handleNotification = ({ origin, data, remote }) => {
