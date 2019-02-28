@@ -7,6 +7,7 @@ import DayIcon from "../../assets/00-Day.png";
 import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
+import PlusButton from "../../components/PlusButton/PlusButton";
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -153,11 +154,7 @@ export default class DayViewScreen extends Component {
             />
           </View>
         </ScrollView>
-        <TouchableOpacity 
-         style={styles.button}
-         onPress={() => this.onPlusButtonPress()}>
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity> 
+        <PlusButton onPress={this.onPlusButtonPress}/>
       </View>
     );
   }

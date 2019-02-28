@@ -7,6 +7,7 @@ import DrugIcon from "../../assets/04-DrugList.png";
 import { ScrollView, FlatList } from "react-native";
 import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import PlusButton from "../../components/PlusButton/PlusButton";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -92,11 +93,7 @@ class GlobalDrugListScreen extends Component {
         >
           {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
         </ScrollView>
-        <TouchableOpacity 
-         style={styles.button}
-         onPress={() => this.onPlusButtonPress()}>
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity> 
+        <PlusButton onPress={this.onPlusButtonPress}/>
       </View>
     );
   }

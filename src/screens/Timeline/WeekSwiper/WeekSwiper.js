@@ -10,6 +10,7 @@ import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import styles from "./styles";
 import { updateWeek } from "../../../redux/actions/calendar";
+import PlusButton from "../../../components/PlusButton/PlusButton";
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -58,11 +59,7 @@ class WeekSwiper extends Component {
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
-        <TouchableOpacity 
-         style={styles.button}
-         onPress={() => this.onPlusButtonPress()}>
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity> 
+        <PlusButton onPress={this.onPlusButtonPress}/>
       </View>
     );
   }
