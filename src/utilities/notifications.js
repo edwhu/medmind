@@ -1,8 +1,8 @@
 import { Notifications } from "expo";
 
 export function fireNotification(reminder, drug) {
-  let notificationTitle = "Time to take " + drug["name"];
-  const text = `Reminder to take ${reminder.dosage} of ${drug["name"]}`;
+  let notificationTitle = "Time to take " + drug.name;
+  const text = `Reminder to take ${reminder.dosage} of ${drug.name}`;
   const localNotification = {
     title: notificationTitle,
     body: text, //We can add more detailed description based on the object we pass
