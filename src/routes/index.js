@@ -1,5 +1,5 @@
-import { createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
-import { Dimensions, Image, StyleSheet} from "react-native";
+import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
+import { Dimensions, Image, StyleSheet } from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
@@ -27,6 +27,7 @@ import SettingsIcon from "../assets/07-Settings.png";
 import ExportIcon from "../assets/05-ExportSumm.png";
 import DrugIcon from "../assets/04-DrugList.png";
 import NotifIcon from "../assets/03-Notifs.png";
+import GlobalDrugListHeaderRight from "../screens/GlobalDrugListScreen/HeaderRight";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -68,7 +69,7 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: "reminderScreen",
-    navigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({navigation}) => ({
       headerTitle: "Medmind",
       headerStyle: {
         backgroundColor: medmindBlue,
@@ -92,12 +93,12 @@ const ReminderStack = createStackNavigator(
 openSettings = () => {
 };
 
-const withHeader = (screen, routeName) => 
+const withHeader = (screen, routeName, overrides = {}) => 
   createStackNavigator(
     { [routeName]: { screen } },
     {
       headerMode: 'screen',
-      navigationOptions: ({navigation}) => ({
+      defaultNavigationOptions: ({navigation}) => ({
         headerTitle: "Medmind",
         headerStyle: {
           backgroundColor: medmindBlue,
@@ -115,7 +116,8 @@ const withHeader = (screen, routeName) =>
         }}/>,
         headerRight: <SettingsButton onPress={()=>{
           openSettings()
-        }}/>
+        }}/>,
+        ...overrides,
       })
     },
   );
@@ -154,7 +156,9 @@ const DrawerNavigation = createDrawerNavigator(
       }
     },
     globalDrugListScreen: {
-      screen: withHeader(GlobalDrugListScreen,"globalDrugListScreen"),
+      screen: withHeader(GlobalDrugListScreen,"globalDrugListScreen", {
+        headerRight: <GlobalDrugListHeaderRight />
+      }),
       navigationOptions: {
         drawerLabel: "Global Drug List",
         drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
@@ -214,4 +218,4 @@ const DrawerNavigation = createDrawerNavigator(
   }
 );
 
-export default DrawerNavigation;
+export default createAppContainer(DrawerNavigation);

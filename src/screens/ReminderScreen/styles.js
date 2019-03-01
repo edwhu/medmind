@@ -22,12 +22,6 @@ export default (styles = StyleSheet.create({
     alignItems: "center"
   },
   info: {
-    position: "absolute",
-    left: 20,
-    alignItems: "center",
-    alignContent: "center"
-  },
-  info: {
     marginLeft: 20
   },
   timeContainer: {
