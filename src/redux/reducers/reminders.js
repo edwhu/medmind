@@ -1,5 +1,6 @@
 import moment from "moment";
-import { testReminders, defaultReminder } from "../../constants/constants";
+import { fireNotification } from "../../utilities/notifications";
+import { testReminders, defaultReminder, testDrugs } from "../../constants/constants";
 import { ADD_REMINDER, UPDATE_REMINDER, DELETE_REMINDER, SAVE_NEW_REMINDER, UPDATE_NEW_REMINDER, SET_NEW_REMINDER, SET_UPDATE_FLAG, TOGGLE_DRUG_SNOOZE } from "../../constants/action-types";
 
 const initialState = {
@@ -16,6 +17,7 @@ const remindersReducer = (state = initialState, action) => {
         ...state.newReminder,
         id: action.id
       }
+      fireNotification(newReminder, action.drug);
       return {
         ...state,
          reminders: state.reminders.concat(newReminder),

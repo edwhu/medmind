@@ -13,7 +13,7 @@ export default class App extends React.Component {
     console.warn("Got Notification!");
     console.log("origin: ", origin);
     console.log("data: ", data);
-    Alert.alert("Notification!", JSON.stringify(data));
+    Alert.alert(JSON.stringify(data.notificationTitle, null, 2), JSON.stringify(data.body, null, 2));
   };
 
   async componentDidMount() {
