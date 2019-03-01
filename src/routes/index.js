@@ -135,7 +135,9 @@ const doNotAppearOnDrawer = {
 const DrawerNavigation = createDrawerNavigator(
   {
     dayViewScreen: {
-      screen: withHeader(DayViewScreen, "dayViewScreen"),
+      screen: withHeader(DayViewScreen, "dayViewScreen", {
+        headerTitle: "Day"
+      }),
       navigationOptions: {
         drawerLabel: "Day",
         drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
@@ -194,18 +196,12 @@ const DrawerNavigation = createDrawerNavigator(
     reminderStack: {
       screen: ReminderStack
     },
-    dayViewScreen: {
-      screen: DayViewScreen
-    },
     notificationScreen: {
       screen: NotificationScreen
     },
     addDrugScreen: {
       screen: withHeader(AddDrugScreen, "addDrugScreen"),
       ...doNotAppearOnDrawer,
-    },
-    globalDrugListScreen: {
-      screen: GlobalDrugListScreen,
     },
     cameraScreen: {
       screen: withHeader(CameraScreen, "camerScreen"),
