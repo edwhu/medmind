@@ -14,7 +14,6 @@ export default (styles = StyleSheet.create({
   drugName: {
     fontSize: 20,
     color: "black",
-    position: "absolute",
     left: 22
   },
   reminder: {

@@ -12,26 +12,24 @@ export function updateNewReminder(field, value) {
 }
 
 export function addReminder(drug) {
-   if (typeof drug === "undefined") {
+  if (typeof drug === "undefined") {
     console.warn("Required field left blank");
     return {};
-  } else {
-    return {
-      type: ADD_REMINDER,
-      id: nextId++,
-      drug
-    };
   }
+  return {
+    type: ADD_REMINDER,
+    id: nextId++,
+    drug
+  };
 }
 
 export function updateReminder(reminders) {
   if (typeof reminders === "undefined") {
     console.warn("Required field left blank");
     return {};
-  } else {
-    return {
-      type: UPDATE_REMINDER,
-      reminders: reminders
-    };
   }
+  return {
+    type: UPDATE_REMINDER,
+    reminders: reminders
+  };
 }
