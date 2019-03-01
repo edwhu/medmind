@@ -3,24 +3,26 @@ import {
   FlatList,
   StyleSheet,
   View,
-  TouchableHighlight,
   Text,
-  Image
 } from "react-native";
 import DrugInEvent from "../DrugInEvent/DrugInEvent";
 
-const EventInDayView = ({ event }) => (
-  <View style={styles.column}>
+const EventInDayView = ({ event }) => {
+  const [hour, ampm] = event.time.split(' ');
+  return <View style={styles.column}>
     <View style={styles.container}>
-      <Text style={styles.text}>{event.time}</Text>
+      <View style={styles.time}>
+        <Text style={styles.text}>{hour}</Text>
+        <Text style={styles.text}>{ampm}</Text>
+      </View>
       <FlatList
         data={event.drugs}
-        renderItem={({ item }) => <DrugInEvent drug={item} />}
+        renderItem={({ item, index }) => <DrugInEvent drug={item} last={index === event.drugs.length - 1} />}
         style={styles.drugList}
       />
     </View>
-  </View>
-);
+  </View>;
+}
 
 const styles = StyleSheet.create({
   column: {
@@ -29,8 +31,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    // alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    // paddingTop: 50,
   },
   drugList: {
     flex: 1,
@@ -38,8 +40,12 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   text: {
-    margin: 10,
-    textAlign: "center"
+    fontSize: 15,
+    textAlign: "center",
+    fontFamily: "System",
+  },
+  time: {
+    width: '20%',
   },
 });
 
