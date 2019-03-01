@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "center",
-    // paddingTop: 50,
   },
   drugList: {
     flex: 1,

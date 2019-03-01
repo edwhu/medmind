@@ -83,7 +83,7 @@ const createStyles = (drugColor, drugStatus) => {
       marginRight: "auto",
       marginLeft: "auto",
       marginTop: 1,
-      borderStyle: drugStatus == "PENDING" ? "dotted" : "solid",
+      borderStyle: drugStatus === "PENDING" ? "dotted" : "solid",
       zIndex: -1,
     },
     longVerticalLine: {
@@ -94,7 +94,7 @@ const createStyles = (drugColor, drugStatus) => {
       marginRight: "auto",
       marginLeft: "auto",
       marginTop: 1,
-      borderStyle: drugStatus == "PENDING" ? "dotted" : "solid",
+      borderStyle: drugStatus === "PENDING" ? "dotted" : "solid",
     },
   });
 };
