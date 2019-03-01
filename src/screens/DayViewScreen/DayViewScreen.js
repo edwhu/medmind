@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import { View, Text } from "react-native";
 import styles from "./styles";
-import DayIcon from "../../assets/00-Day.png";
 import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
+import { DRUG_STATUSES } from '../../constants/constants';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -66,7 +65,7 @@ const drugsByEvents = [
         name: "Lorazepam",
         dosage: "2 mg",
         color: "#123456", 
-        status: "SUCCESS", 
+        status: DRUG_STATUSES.SUCCESS, 
       },
       {
         id: 2,
@@ -74,7 +73,7 @@ const drugsByEvents = [
         name: "Lorazepam",
         dosage: "2 mg",
         color: "#990099",
-        status: "SUCCESS", 
+        status: DRUG_STATUSES.SUCCESS, 
       }
     ]
   },
@@ -88,7 +87,7 @@ const drugsByEvents = [
         name: "Lorazepam",
         dosage: "2 mg",
         color: "#0000ff", 
-        status: "FAIL", 
+        status: DRUG_STATUSES.FAILURE, 
       },
       {
         id: 2,
@@ -96,7 +95,7 @@ const drugsByEvents = [
         name: "Lorazepam",
         dosage: "2 mg",
         color: "#0000ff", 
-        status: "FAIL", 
+        status: DRUG_STATUSES.FAILURE, 
       }
     ]
   },
@@ -110,7 +109,7 @@ const drugsByEvents = [
         name: "Tylenol",
         dosage: "2 mg",
         color: "#0000ff", 
-        status: "PENDING", 
+        status: DRUG_STATUSES.PENDING, 
       },
       {
         id: 2,
@@ -118,7 +117,7 @@ const drugsByEvents = [
         name: "Lorazepam",
         dosage: "2 mg",
         color: "#0000ff", 
-        status: "PENDING", 
+        status: DRUG_STATUSES.PENDING, 
       }
     ]
   }

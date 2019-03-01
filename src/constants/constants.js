@@ -88,6 +88,11 @@ export const testDrugs = [
   },
 ];
 
+export const DRUG_STATUSES = {
+  SUCCESS: "SUCCESS",
+  FAILURE: "FAILURE",
+  PENDING: "PENDING",
+};
 
 export const testReminders = [
   {

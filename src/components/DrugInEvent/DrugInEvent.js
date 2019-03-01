@@ -11,7 +11,6 @@ import DayViewSuccess from "../../assets/DayView-Success.png";
 import DayViewFail from "../../assets/DayView-Fail.png";
 import DayViewPending from "../../assets/DayView-Pending.png";
 
-// TODO: status should be SUCCESS, FAIL, or PENDING 
 const DrugInEvent = ({ onPress, drug, last }) => {
   const styles = createStyles(drug.color, drug.status);
   const statusIcon = drug.status == "SUCCESS" ? DayViewSuccess : drug.status == "FAIL" ? DayViewFail : DayViewPending;
@@ -39,7 +38,6 @@ const createStyles = (drugColor, drugStatus) => {
   return StyleSheet.create({
     container: {
       width: 300,
-      // height: 75,
       borderTopLeftRadius: 37,
       borderBottomLeftRadius: 37,
       backgroundColor: drugColor + "50",
