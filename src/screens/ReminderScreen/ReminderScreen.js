@@ -101,6 +101,8 @@ class ReminderScreen extends Component {
         else {
           return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
         }
+      case "Does not repeat": 
+        return "";
       default:
         return ", every " + reminder.repeat;
     }

@@ -22,12 +22,11 @@ export function updateReminder(reminder) {
   if (typeof reminder === "undefined") {
     console.warn("Reminder object undefined");
     return {};
-  } else {
-    return {
-      type: UPDATE_REMINDER,
-      reminder
-    };
   }
+  return {
+    type: UPDATE_REMINDER,
+    reminder
+  };
 }
 
 export function toggleDrugSnooze(drugId) {
@@ -55,12 +54,11 @@ export function setNewReminder(reminder) {
   if (typeof reminder === "undefined") {
     console.warn("Reminder object undefined in setNewReminder action");
     return {};
-  } else {
-    return {
-      type: SET_NEW_REMINDER,
-      reminder,
-    };
   }
+  return {
+    type: SET_NEW_REMINDER,
+    reminder,
+  };
 }
 
 export function setUpdateFlag(flag) {

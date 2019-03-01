@@ -49,13 +49,8 @@ class ReminderFormScreen extends Component {
   };
 
   getDrugName = drugId => {
-    const drug = this.props.drugs.filter(function(drug) {
-      return drug.id === drugId;
-    });
-    if (drug.length == 0) {
-      return;
-    }
-    return drug[0].name;
+    const drug = this.props.drugs.find(drug => drug.id === drugId);
+    return drug.name;
   };
 
   updateReminder = () => {
