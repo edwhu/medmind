@@ -50,14 +50,13 @@ class ReminderFormScreen extends Component {
 
   getDrugName = drugId => {
     const drug = this.props.drugs.find(drug => drug.id === drugId);
-    return drug.name;
+    if (typeof drug !== "undefined") {
+      return drug.name;
+    }
   };
 
   getDrugById = id => {
-    const drug = this.props.drugs.filter(function(drug) {
-      return drug.id == id;
-    });
-    return drug[0];
+    return this.props.drugs.find(drug => drug.id === id);
   };
 
   updateReminder = () => {
@@ -69,7 +68,8 @@ class ReminderFormScreen extends Component {
     if (typeof newReminder.time === "undefined") {
       this.props.updateNewReminder("time", moment());
     }
-    this.props.addReminder();
+    const drug = this.getDrugById(this.props.newReminder.drugId);
+    this.props.addReminder(drug);
   }
 
   saveReminder = () => {
@@ -85,7 +85,8 @@ class ReminderFormScreen extends Component {
     }
     // Adding new reminder
     else {
-      this.addReminder();
+      const drug = this.getDrugById(this.props.newReminder.drugId);
+      this.addReminder(drug);
     }
     this.props.navigation.goBack();
   };

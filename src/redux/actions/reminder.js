@@ -12,10 +12,6 @@ export function updateNewReminder(field, value) {
 }
 
 export function addReminder(drug) {
-  if (typeof drug === "undefined") {
-    console.warn("Required field left blank");
-    return {};
-  }
   return {
     type: ADD_REMINDER,
     id: nextId++,
