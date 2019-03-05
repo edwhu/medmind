@@ -11,10 +11,11 @@ export function updateNewReminder(field, value) {
   }
 }
 
-export function addReminder() {
+export function addReminder(drug) {
   return {
     type: ADD_REMINDER,
-    id: nextId++
+    id: nextId++,
+    drug
   };
 }
 
@@ -22,12 +23,11 @@ export function updateReminder(reminder) {
   if (typeof reminder === "undefined") {
     console.warn("Reminder object undefined");
     return {};
-  } else {
-    return {
-      type: UPDATE_REMINDER,
-      reminder
-    };
   }
+  return {
+    type: UPDATE_REMINDER,
+    reminder
+  };
 }
 
 export function toggleDrugSnooze(drugId) {

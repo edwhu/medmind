@@ -46,29 +46,24 @@ class ReminderScreen extends Component {
   };
 
   getDrugById = id => {
-    return this.props.drugs.filter(function(drug) {
-      return drug.id == id;
-    });
+    return this.props.drugs.find(drug => drug.id === id);
   };
 
   getDrugId = drugName => {
-    const drugId = this.props.drugs.filter(function(drug) {
-      return drug.name == drugName;
-    });
-    return drugId[0].id;
+    const drug = this.props.drugs.find(drug => drug.name === drugName);
+    if (typeof drug !== "undefined") {
+      return drug.id;
+    }
   };
 
   groupReminders = () => {
     var dict = {};
     this.props.reminders.forEach(item => {
       var drug = this.getDrugById(item.drugId);
-      if (drug.length == 0) {
-        return;
+      if (!dict[drug.name]) {
+        dict[drug.name] = [];
       }
-      if (!dict[drug[0].name]) {
-        dict[drug[0].name] = [];
-      }
-      dict[drug[0].name].push(item);
+      dict[drug.name].push(item);
     });
     return dict;
   };
@@ -101,6 +96,8 @@ class ReminderScreen extends Component {
         else {
           return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
         }
+      case "Does not repeat": 
+        return "";
       default:
         return ", every " + reminder.repeat;
     }
