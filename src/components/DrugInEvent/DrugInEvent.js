@@ -18,15 +18,8 @@ import DosageIcon from "../../assets/icon-dosage.jpg";
 import TimeIcon from "../../assets/icon-time.png";
 import NotesIcon from "../../assets/icon-notes.jpg";
 import EditIcon from "../../assets/icon-edit2.png"
+import { getFadedFromHex } from "../../utilities/helpers";
 
-function getFadedFromHex(hexColor) {
-  const red = parseInt(hexColor.substring(1, 3), 16);
-  const blue = parseInt(hexColor.substring(3, 5), 16);
-  const green = parseInt(hexColor.substring(5, 7), 16);
-
-  const fade = c => Math.floor((5 * c + 11 * 255) / 16);
-  return `rgb(${fade(red)}, ${fade(blue)}, ${fade(green)})`;
-}
 
 const createStyles = drugColor => {
   const lighterColor = getFadedFromHex(drugColor);
