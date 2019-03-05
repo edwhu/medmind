@@ -7,119 +7,12 @@ import DayIcon from "../../assets/00-Day.png";
 import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
-import {asNeededDrugs, drugsByEvents} from "../../constants/constants";
+// import {asNeededDrugs, drugsByEvents, testRemindersUnsorted} from "../../constants/constants";
+import { connect } from "react-redux";
+import moment from "moment";
 
-// Temp schema for as needed drugs
-// const asNeededDrugs = [
-//   {
-//     id: 1,
-//     key: "1",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#FFDF00"
-//   },
-//   {
-//     id: 2,
-//     key: "2",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#0000ff"
-//   },
-//   {
-//     id: 3,
-//     key: "3",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#009900"
-//   },
-//   {
-//     id: 4,
-//     key: "4",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#090990"
-//   },
-//   {
-//     id: 5,
-//     key: "5",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#123456"
-//   },
-//   {
-//     id: 6,
-//     key: "6",
-//     name: "Lorazepam",
-//     dosage: "2 mg",
-//     color: "#990099"
-//   }
-// ];
 
-// // Temp schema for drugs by events
-// const drugsByEvents = [
-//   {
-//     time: "7:00 PM",
-//     key: "1",
-//     drugs: [
-//       {
-//         id: 1,
-//         key: "1",
-//         name: "Lorazepam",
-//         dosage: "2 mg",
-//         color: "#123456"
-//       },
-//       {
-//         id: 2,
-//         key: "2",
-//         name: "Lorazepam",
-//         dosage: "2 mg",
-//         color: "#990099"
-//       }
-//     ]
-//   },
-//   {
-//     time: "8:00 PM",
-//     key: "2",
-//     drugs: [
-//       {
-//         id: 1,
-//         key: "1",
-//         name: "Lorazepam",
-//         dosage: "2 mg",
-//         color: "#0000ff"
-//       },
-//       {
-//         id: 2,
-//         key: "2",
-//         name: "Lorazepam",
-//         dosage: "2 mg",
-//         color: "#0000ff"
-//       }
-//     ]
-//   },
-//   {
-//     time: "9:00 PM",
-//     key: "3",
-//     drugs: [
-//       {
-//         id: 1,
-//         key: "1",
-//         name: "Tylenol",
-//         dosage: "2 mg",
-//         color: "#0000ff"
-//       },
-//       {
-//         id: 2,
-//         key: "2",
-//         name: "Lorazepam",
-//         dosage: "2 mg",
-//         color: "#0000ff"
-//       }
-//     ]
-//   }
-// ];
-
-export default class DayViewScreen extends Component {
+class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
@@ -128,10 +21,62 @@ export default class DayViewScreen extends Component {
 
   state = {};
 
+
+  getDrug = (drugId) => {
+    const drugs = this.props.drugs;
+    let targetDrug = drugs.filter(drug => drug.id == drugId);
+    if(targetDrug.length != 0){
+      console.log("target drug:");
+      console.log(targetDrug[0]);
+      return targetDrug[0];
+    }
+    else 
+      return null;
+  }
+
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
-  organizeDrugsByEvent() {}
+  organizeDrugsByEvent = (reminders) => {
+    // Sort by time 
+    reminders.sort((left, right) => left.time.diff(right.time));
+    // Convert it into drugsByEvent schema
+    let key = -1;
+    let drugsByEvent = [];
+    let currentTimeDict = {time: null, key: key, drugs: []};
+    let currentTime = moment(); //null moment object
+    reminders.forEach(reminder => {
+      const drugId = reminder['drugId'];
+      let reminderTime = reminder['time'];
+      let reminderTimeString = reminder['time'].format("HH:mm");
+      let currentTimeString = currentTime.format("HH:mm");
+      if(currentTimeString != reminderTimeString){
+        key++;
+        currentTimeDict = {time: reminderTime, key: key, drugs: []};
+        // Find corresponding drug given drugId
+        let drug = this.getDrug(drugId);
+        if(drug !== null){
+          currentTimeDict['drugs'].push(drug);
+        }
+        currentTime = reminder['time'];
+        drugsByEvent.push(currentTimeDict);
+
+      }
+      else {
+        let drug = this.getDrug(drugId);
+        if(drug !== null){
+          currentTimeDict['drugs'].push(drug);
+        }
+      }
+
+      console.log("Printing drugsbyEvent")
+      console.log(drugsByEvent);
+
+    });
+    return drugsByEvent;
+  };
 
   render() {
+    const reminders = this.props.reminders;
+    const drugs = this.props.drugs;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -139,14 +84,18 @@ export default class DayViewScreen extends Component {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={asNeededDrugs}
-            renderItem={({ item }) => <DrugItemInDayView drug={item}/>}
+            data={drugs}
+            renderItem={({ item }) => <DrugItemInDayView drug={item}/>
+          }
+            keyExtractor={(item, index) => item.id.toString()}
           />
           <View style={styles.dayVerticalListWrapper}>
             <FlatList
-              data={drugsByEvents}
+              data={this.organizeDrugsByEvent(reminders)}
+              // data={drugsByEvents}
               renderItem={({ item }) => <EventInDayView event={item} navigation={this.props.navigation}/>}
               style={styles.dayVerticalList}
+              keyExtractor={(item, index) => item.key.toString()}
             />
           </View>
         </ScrollView>
@@ -154,3 +103,15 @@ export default class DayViewScreen extends Component {
     );
   }
 }
+
+function mapStateToProps(state, props){
+  return {
+    reminders: state.remindersReducer.reminders,
+    drugs: state.drugInfoReducer.drugInfo 
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(DayViewScreen);

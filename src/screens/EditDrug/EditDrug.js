@@ -6,7 +6,7 @@ import FormField from "../../components/FormField/FormField";
 import RoundedButton from "../../components/RoundedButton/RoundedButton";
 import { KeyboardAvoidingView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../utilities/styles";
+import { medmindBlue } from "../../constants/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { editDrug } from "../../redux/actions/drug";
@@ -47,11 +47,7 @@ class EditDrugScreen extends Component {
       endDate: drug.endDate,
       color: "#FFDF00"
     };
-    // this.setState({
-    //   id: drug.id,
-    //   name: drug.name,
-    //   dosage: drug.dosage
-    // });
+
   }
 
   render() {
@@ -115,6 +111,7 @@ class EditDrugScreen extends Component {
             onPress={() => {
               console.log(this.state);
               this.props.editDrug(this.state);
+              navigation.navigate('dayViewScreen');
             }}
             name={"Submit"}
             buttonStyle={styles.buttonStyle}

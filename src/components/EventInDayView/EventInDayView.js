@@ -12,11 +12,12 @@ import DrugInEvent from "../DrugInEvent/DrugInEvent";
 const EventInDayView = ({ event, navigation}) => (
   <View style={styles.column}>
     <View style={styles.container}>
-      <Text style={styles.text}>{event.time}</Text>
+      <Text style={styles.text}>{event.time.format("HH:mm")}</Text>
       <FlatList
         data={event.drugs}
         renderItem={({ item }) => <DrugInEvent drug={item} navigation={navigation}/>}
         style={styles.drugList}
+        keyExtractor={(item, index) => item.id.toString()}
       />
     </View>
     <View style={styles.line} />

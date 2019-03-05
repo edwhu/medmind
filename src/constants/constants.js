@@ -164,7 +164,7 @@ export const testDrugs = [
     dosage: "500mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment().subtract(3, "days"),
+    startDate: moment("19:00", "HH:mm"),
     endDate: moment(),
     color: "#FFDF00"
   },
@@ -174,7 +174,7 @@ export const testDrugs = [
     dosage: "200mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment().subtract(7, "days"),
+    startDate: moment("19:00", "HH:mm"),
     endDate: moment(),
     color: "#0000ff"
   },
@@ -184,7 +184,7 @@ export const testDrugs = [
     dosage: "300mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment().add(3, "days"),
+    startDate: moment("19:00", "HH:mm"),
     endDate: moment().add(7, "days"),
     color: "#009900"
   },
@@ -194,7 +194,7 @@ export const testDrugs = [
     dosage: "400mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment(),
+    startDate: moment("21:00", "HH:mm"),
     endDate: moment().add(2, "days"),
     color: "#090990"
   },
@@ -204,7 +204,7 @@ export const testDrugs = [
     dosage: "100mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment().subtract(7, "days"),
+    startDate: moment("21:00", "HH:mm"),
     endDate: moment().endOf("isoWeek"),
     color: "#123456"
   },
@@ -214,7 +214,7 @@ export const testDrugs = [
     dosage: "500mg",
     doctor: "Dr. Who",
     frequency: "5x a day",
-    startDate: moment().subtract(10, "days"),
+    startDate: moment("21:00", "HH:mm"),
     endDate: moment().add(10, "days"),
     color: "#990099"
   },
@@ -225,7 +225,7 @@ export const testReminders = [
   {
     id: 1,
     drugId: 1,
-    time: moment().add(2000),
+    time: moment("19:00", "HH:mm"),
     repeat: "week",
     dosage: "500mg",
     snooze: false,
@@ -234,7 +234,7 @@ export const testReminders = [
   {
     id: 2,
     drugId: 2,
-    time: moment(),
+    time: moment("19:00", "HH:mm"),
     repeat: "week",
     dosage: "200mg",
     snooze: false,
@@ -242,8 +242,8 @@ export const testReminders = [
   },
   {
     id: 3,
-    drugId: 2,
-    time: moment(),
+    drugId: 3,
+    time: moment("19:00", "HH:mm"),
     repeat: "week",
     dosage: "700mg",
     snooze: false,
@@ -251,8 +251,8 @@ export const testReminders = [
   },
   {
     id: 4,
-    drugId: 3,
-    time: moment(),
+    drugId: 4,
+    time: moment("21:00", "HH:mm"),
     repeat: "day",
     dosage: "400mg",
     snooze: true,
@@ -260,8 +260,56 @@ export const testReminders = [
   },
   {
     id: 5,
+    drugId: 5,
+    time: moment("21:00", "HH:mm"),
+    repeat: "day",
+    dosage: "100mg",
+    snooze: false,
+    snoozeDrug: true
+  }
+];
+
+export const testRemindersUnsorted = [
+  {
+    id: 1,
+    drugId: 1,
+    time: moment("19:00", "HH:mm"),
+    repeat: "week",
+    dosage: "500mg",
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 2,
+    drugId: 2,
+    time: moment("21:00", "HH:mm"),
+    repeat: "week",
+    dosage: "200mg",
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 3,
+    drugId: 3,
+    time: moment("21:00", "HH:mm"),
+    repeat: "week",
+    dosage: "700mg",
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 4,
     drugId: 4,
-    time: moment(),
+    time: moment("19:00", "HH:mm"),
+    repeat: "day",
+    dosage: "400mg",
+    snooze: true,
+    snoozeDrug: true
+  },
+  {
+    id: 5,
+    drugId: 5,
+    time: moment("21:00", "HH:mm"),
     repeat: "day",
     dosage: "100mg",
     snooze: false,
