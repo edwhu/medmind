@@ -12,9 +12,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
+import EmptyReminderIcon from "../../assets/empty-reminder.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import EditButton from "../../components/EditButton/EditButton";
 import MinusButton from "../../components/MinusButton/MinusButton";
+import EmptyReminderScreen from "../../components/MinusButton/MinusButton";
 import { medmindBlue, drawerIconStyle } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -188,13 +190,27 @@ class ReminderScreen extends Component {
         </View>
       );
     });
+    const editButton = (
+      <TouchableOpacity onPress={this.onEditPress}>
+        <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+      </TouchableOpacity>
+    );
+    const emptyReminderPage = (
+      <View style={styles.iconContainer}>
+        <Image source={EmptyReminderIcon} style={styles.icon} />
+        <Text style={styles.iconText}>No Reminders</Text>
+        <Text style={styles.iconTextBody}>
+          There are no reminders right now.{"\n"}
+          Use the <Text style={styles.smallPlus}> + </Text> 
+          button to add reminders.
+        </Text>
+      </View>
+    );
     return (
       <View style={styles.container}>
         <ScrollView>
-          <TouchableOpacity onPress={this.onEditPress}>
-            <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
-          </TouchableOpacity>
-          {reminders}
+          {this.props.reminders.length !== 0 ? editButton : null}
+          {this.props.reminders.length !== 0 ? reminders : emptyReminderPage}
         </ScrollView>
         <TouchableOpacity
           style={styles.plusButton}
