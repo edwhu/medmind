@@ -45,7 +45,7 @@ export default class CameraScreen extends React.Component {
     this.drugSet = new Set(drugData);
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
   }
@@ -99,6 +99,7 @@ export default class CameraScreen extends React.Component {
         }
       }
     } catch (err) {
+      // TODO
     }
     const {navigate} = this.props.navigation.navigate;
     navigate('addDrugScreen');

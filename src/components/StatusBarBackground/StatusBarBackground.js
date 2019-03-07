@@ -8,33 +8,22 @@ export default class StatusBarBackground extends Component {
     isIphonePlus: false
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const { height, width } = Dimensions.get('window');
-    const aspectRatio = height / width;
-
-    // check platform version
-    if (Platform.OS === 'ios') {
-      if (height === 812 || width === 812) {
-        // iphone X
-        this.setState({
-          isIphoneX: true
-        });
-      } else {
-        // iphone or iphone plus
-      }
+    if (Platform.OS === 'ios' && height === 812 && width === 812) {
+      this.state = {
+        platform: 'ios',
+        isIphoneX: true,
+        isIphonePlus: false,
+      };
     } else {
-      // android
-      // console.log('Android device');
-    }
-
-    // also check tablet vs phone, works for most android tablets/phones as well
-    if (aspectRatio > 1.6) {
-      // iPhone
-      // console.log('Not an ipad');
-    } else {
-      // iPad
-      // console.log('ipad');
-    }
+      this.state = {
+        platform: 'ios',
+        isIphoneX: false,
+        isIphonePlus: false,
+      };
+    } 
   }
 
   render() {
