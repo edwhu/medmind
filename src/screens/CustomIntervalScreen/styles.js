@@ -40,11 +40,11 @@ export default styles = StyleSheet.create({
     color: 'blue'
   },
   Button: {
-    backgroundColor: "blue",
+    backgroundColor: 'blue',
     width: 20,
     height: 20,
-    borderColor: "transparent",
+    borderColor: 'transparent',
     borderWidth: 0,
     borderRadius: 20
   }}
-,);
+  ,);

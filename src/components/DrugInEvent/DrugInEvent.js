@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
   Image
-} from "react-native";
-import DrugIcon from "../DrugIcon/DrugIcon";
+} from 'react-native';
+import DrugIcon from '../DrugIcon/DrugIcon';
 const DrugInEvent = ({ onPress, drug }) => {
   let styles = createStyles(drug.color);
   return (
@@ -29,14 +29,14 @@ const createStyles = drugColor => {
       height: 75,
       borderTopLeftRadius: 37,
       borderBottomLeftRadius: 37,
-      backgroundColor: drugColor + "50",
+      backgroundColor: drugColor + '50',
       marginBottom: 10,
-      flexDirection: "row",
+      flexDirection: 'row',
       paddingLeft: 20,
       paddingTop: 5,
       paddingBottom: 5,
-      alignItems: "center",
-      shadowColor: "#000",
+      alignItems: 'center',
+      shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 2
@@ -45,7 +45,7 @@ const createStyles = drugColor => {
       marginLeft: 10
     },
     drugName: {
-      fontWeight: "bold"
+      fontWeight: 'bold'
     },
     drugDosage: {}
   });

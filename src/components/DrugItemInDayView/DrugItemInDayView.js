@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
   Image
-} from "react-native";
-import DrugIcon from "../../components/DrugIcon/DrugIcon";
+} from 'react-native';
+import DrugIcon from '../../components/DrugIcon/DrugIcon';
 
 const DrugItemInDayView = ({ onPress, drug }) => {
   let styles = createStyles(drug.color);
@@ -30,20 +30,20 @@ const createStyles = drugColor => {
       marginBottom: 10,
       width: 140,
       height: 110,
-      backgroundColor: "#E2E2E2",
+      backgroundColor: '#E2E2E2',
       borderRadius: 20,
       flex: 1,
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      shadowColor: "#000",
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 2
     },
     drugName: {
       marginTop: 25,
-      fontWeight: "bold"
+      fontWeight: 'bold'
     },
     drugDosage: {
       marginTop: 5

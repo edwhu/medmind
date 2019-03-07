@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
   Image
-} from "react-native";
+} from 'react-native';
 
 const DrugIcon = ({ color, scale = 1 }) => {
   let styles = createStyles(color, scale);
@@ -20,10 +20,10 @@ const DrugIcon = ({ color, scale = 1 }) => {
 const createStyles = (drugColor, scale) => {
   return StyleSheet.create({
     pillIconContainer: {
-      transform: [{ rotate: "-70deg" }],
-      flexDirection: "row",
-      margin: "auto",
-      shadowColor: "#000",
+      transform: [{ rotate: '-70deg' }],
+      flexDirection: 'row',
+      margin: 'auto',
+      shadowColor: '#000',
       shadowOffset: { width: -2, height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 2
@@ -33,7 +33,7 @@ const createStyles = (drugColor, scale) => {
       width: 15.6 * scale,
       borderTopRightRadius: 7.0 * scale,
       borderBottomRightRadius: 7.0 * scale,
-      backgroundColor: "#FFFFFF"
+      backgroundColor: '#FFFFFF'
     },
     pillColorSide: {
       height: 12.0 * scale,

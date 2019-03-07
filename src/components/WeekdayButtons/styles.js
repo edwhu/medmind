@@ -27,10 +27,10 @@ export default styles = StyleSheet.create({
   Button: {
     width: 30,
     height: 30,
-    borderColor: "transparent",
+    borderColor: 'transparent',
     borderWidth: 0,
     borderRadius: 30,
-    backgroundColor: "lightgrey",
+    backgroundColor: 'lightgrey',
     marginLeft: 5,
     justifyContent: 'center', 
     alignItems: 'center',
@@ -43,7 +43,7 @@ export default styles = StyleSheet.create({
   unpressedIcon: {
     width: 20,
     height: 20,
-    backgroundColor: "lightgrey",
+    backgroundColor: 'lightgrey',
     borderRadius: 20
   },
 
@@ -55,4 +55,4 @@ export default styles = StyleSheet.create({
 
   }
 }
-,);
+  ,);

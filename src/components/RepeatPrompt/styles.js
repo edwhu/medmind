@@ -45,4 +45,4 @@ export default styles = StyleSheet.create({
     color: 'white',
   },
 }
-,);
+  ,);
