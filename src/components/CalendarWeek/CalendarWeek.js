@@ -29,13 +29,8 @@ class CalendarWeek extends Component {
     screenWidth: Dimensions.get('window')
   };
 
-  state = {
-    dateOfMonth: 1,
-    theWeek: [],
-    weekMonth: []
-  };
-
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     const now = moment();
     const month = now.month();
     const dateOfMonth = now.date(); // 1-31
@@ -50,12 +45,12 @@ class CalendarWeek extends Component {
       temp.add(1, 'day');
     }
 
-    this.setState({
+    this.state = {
       month,
       dateOfMonth,
       theWeek,
-      weekMonth
-    });
+      weekMonth,
+    };
   }
 
   _mapDates = () => {
