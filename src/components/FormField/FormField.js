@@ -32,7 +32,6 @@ export default class FormField extends Component {
         break;
       }
 
-       case 'text':
       default: {
         content = <TextInput
           onChangeText={this.props.onChange}
