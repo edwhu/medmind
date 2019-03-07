@@ -99,6 +99,7 @@ export default class CameraScreen extends React.Component {
         }
       }
     } catch (err) {
+      // TODO
     }
     const {navigate} = this.props.navigation.navigate;
     navigate('addDrugScreen');
