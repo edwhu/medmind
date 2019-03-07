@@ -46,7 +46,12 @@ class AddDrugScreen extends Component {
     modalVisible: false,
     colorPicked: false,
   };
-
+  resetColor() {
+    this.setState({
+      color: '#AD2452',
+      colorPicked: false,
+    });
+  }
   hideModal() {
     this.setState({modalVisible: false});
   }
@@ -54,6 +59,7 @@ class AddDrugScreen extends Component {
     this.setState({modalVisible: true});
   }
   onSubmit() {
+    this.resetColor();
     const {navigate} = this.props.navigation;
     this.props.addDrug(this.state);
     navigate("timelineScreen");

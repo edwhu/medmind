@@ -38,12 +38,3 @@ export default class ColorPicker extends Component {
     }
 
 }
-
-const styles = StyleSheet.create({
-    titleStyles: {
-        color: 'black',
-        fontWeight: 'bold',
-        marginLeft: 20,
-        marginVertical: 20,
-    }
-});
