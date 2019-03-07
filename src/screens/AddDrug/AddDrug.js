@@ -37,6 +37,7 @@ class AddDrugScreen extends Component {
   });
   state = {
     name: "Bevacizumab",
+    asNeeded: false,
     dosage: "500mg",
     doctor: "Dr. Who",
     frequency: "5x a day", 
@@ -64,38 +65,44 @@ class AddDrugScreen extends Component {
       <KeyboardAvoidingView style={styles.container}>
         <FormField
           header="Drug Name"
-          onChangeText={name => this.setState({ name })}
+          onChange={name => this.setState({ name })}
           value={this.state.name}
           placeholder={this.state.name}
         />
         <FormField
           header="Dosage"
-          onChangeText={dosage => this.setState({ dosage })}
+          onChange={dosage => this.setState({ dosage })}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Doctor"
-          onChangeText={doctor => this.setState({ doctor })}
+          onChange={doctor => this.setState({ doctor })}
           value={this.state.doctor}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Frequency"
-          onChangeText={frequency => this.setState({ frequency })}
+          onChange={frequency => this.setState({ frequency })}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
-        <CollapsibleDatePicker
+        <FormField 
+          header="As Needed"
+          value={this.state.asNeeded}
+          onChange={asNeeded => this.setState({ asNeeded })}
+          type="checkbox"
+        />
+        { !this.state.asNeeded && <CollapsibleDatePicker
           header="Start Date"
           setDate={startDate => this.setState({ startDate })}
           date={this.state.startDate}
-        />
-        <CollapsibleDatePicker
+        /> }
+        { !this.state.asNeeded && <CollapsibleDatePicker
           header="End Date"
           setDate={endDate => this.setState({ endDate })}
           date={this.state.endDate}
-        />
+        /> }
 
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
