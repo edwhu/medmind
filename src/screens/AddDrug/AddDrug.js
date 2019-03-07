@@ -42,8 +42,9 @@ class AddDrugScreen extends Component {
     frequency: "5x a day", 
     startDate: moment().subtract(10, "days"),
     endDate: moment().add(10, "days"),
-    color: "#990099",
-    modalVisible: false
+    color: '#AD2452',
+    modalVisible: false,
+    colorPicked: false,
   };
 
   hideModal() {
@@ -52,14 +53,18 @@ class AddDrugScreen extends Component {
   showModal() {
     this.setState({modalVisible: true});
   }
-
   onSubmit() {
     const {navigate} = this.props.navigation;
     this.props.addDrug(this.state);
     navigate("timelineScreen");
   }
-
+  onOK(selectedColor) {
+    this.setState({colorPicked: true});
+    this.setState({color: selectedColor});
+    this.hideModal();
+  }
   render() {
+    const color = {backgroundColor: this.state.color};
     return (
       <KeyboardAvoidingView style={styles.container}>
         <FormField
@@ -100,6 +105,7 @@ class AddDrugScreen extends Component {
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Colors</Text>
+            {!this.state.colorPicked && (
             <TouchableOpacity
               onPress = {() => {
                 this.showModal()
@@ -107,8 +113,17 @@ class AddDrugScreen extends Component {
               hitSlop={{left: 100}}
               >
                 <Ionicons name="ios-arrow-forward" size={16} />
-              </TouchableOpacity>
-            
+            </TouchableOpacity>
+            )}
+            {this.state.colorPicked && (
+              <TouchableOpacity
+                onPress = {() => {
+                  this.showModal()
+                }}
+                hitSlop={{left: 100}}
+                style={[styles.colorButton, color]}
+              />
+            )}
           </View>
         </View>
 
@@ -119,7 +134,10 @@ class AddDrugScreen extends Component {
           style = {styles.modalContainer}
           >
           <View elevation = {5} style = {styles.container2}>
-            <ColorPicker/>
+            <ColorPicker
+              defaultColor={this.state.color}
+              ref={'colorpicker'}
+            />
             <View style = {styles.container3}>
               <TouchableOpacity
                   onPress={() => {
@@ -130,7 +148,7 @@ class AddDrugScreen extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                   onPress={() => {
-                    this.hideModal();
+                    this.onOK(this.refs['colorpicker'].state.value);
                   }}
               >
                 <Text style = {styles.textStyle}>OK</Text>
@@ -209,6 +227,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 50,
     height: 37
+  },
+  colorButton: {
+    borderWidth:1,
+    borderColor:'rgba(0,0,0,0.2)',
+    width:30,
+    height:30,
+    borderRadius:15,
   },
   footerStyle: {
     flex: 1,
