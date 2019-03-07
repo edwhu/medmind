@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, TouchableHighlight, Text, Image, TouchableOpacity, TextInput } from 'react-native';
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
 import PropTypes from 'prop-types';
-import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
-import { medmindBlue } from '../../constants/styles';
+import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
 import styles from './styles';
 
 class EndMenu extends Component {
@@ -22,7 +21,7 @@ class EndMenu extends Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={newReminder.occurence !== 'never' ? styles.radioButton : styles.radioButtonActive} 
-            onPress={() => {onPress('never')}}>
+            onPress={() => {onPress('never');}}>
           </TouchableOpacity>
           <Text style={styles.text}>Never</Text>
         </View>
@@ -30,7 +29,7 @@ class EndMenu extends Component {
           <View style={styles.dateLabel} > 
             <TouchableOpacity 
               style={newReminder.occurence !== 'end date' ? styles.radioButton : styles.radioButtonActive} 
-              onPress={() => {onPress('end date')}}>
+              onPress={() => {onPress('end date');}}>
             </TouchableOpacity>
             <Text style={styles.text}>On </Text> 
           </View>
@@ -42,24 +41,24 @@ class EndMenu extends Component {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             style={newReminder.occurence !== 'set number' ? styles.radioButton : styles.radioButtonActive}
-            onPress={() => {onPress('set number')}}>
+            onPress={() => {onPress('set number');}}>
           </TouchableOpacity>
           <Text style={styles.text}>After </Text>
-            <TextInput
-              placeholder= "1"
-              onChangeText={onChangeTextCount}
-              value={String(newReminder.endOccurenceCount)}
-              keyboardType="numeric"
-              style={styles.lightText}
-            /> 
+          <TextInput
+            placeholder= "1"
+            onChangeText={onChangeTextCount}
+            value={String(newReminder.endOccurenceCount)}
+            keyboardType="numeric"
+            style={styles.lightText}
+          /> 
           <Text style={styles.text}>occurences</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     newReminder: state.remindersReducer.newReminder,
   };

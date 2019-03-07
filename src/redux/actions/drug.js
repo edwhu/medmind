@@ -3,7 +3,7 @@ import {
   DELETE_DRUGS, 
   TOGGLE_DRUG_EDIT, 
   TOGGLE_DRUG_TO_DELETE,
-} from "../../constants/action-types";
+} from '../../constants/action-types';
 
 export function addDrug(drug) {
   return {
