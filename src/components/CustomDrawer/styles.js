@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   outerBorder: {
     width: 76,
     height: 76,
@@ -44,4 +44,4 @@ export default (styles = StyleSheet.create({
   pad: {
     padding: '1.5%'
   }
-}));
+});

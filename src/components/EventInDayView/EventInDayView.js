@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   FlatList,
   StyleSheet,
   View,
-  TouchableHighlight,
   Text,
-  Image
 } from 'react-native';
 import DrugInEvent from '../DrugInEvent/DrugInEvent';
 

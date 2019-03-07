@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
-  TouchableHighlight,
-  Text,
-  Image,
   TextInput
 } from 'react-native';
-import LogoWhite from '../../assets/logo-white.png';
 import { SimpleLineIcons, MaterialIcons } from '@expo/vector-icons';
 
 const SearchBar = ({ onChange }) => (
@@ -39,7 +35,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
     flexDirection: 'row',

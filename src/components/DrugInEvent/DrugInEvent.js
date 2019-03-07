@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
-  Image
 } from 'react-native';
 import DrugIcon from '../DrugIcon/DrugIcon';
 const DrugInEvent = ({ onPress, drug }) => {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ColorPalette from 'react-native-color-palette';
-import { white } from 'ansi-colors';
 
 export default class ColorPicker extends Component {
 

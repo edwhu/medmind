@@ -8,7 +8,7 @@ let drugState = {
   drugIdsToDelete: [],
 };
 
-export default (drugInfoReducer = (state = drugState, action) => {
+export default (state = drugState, action) => {
   switch (action.type) {
   case ADD_DRUG:
     const drug = { ...action.drug, id: state.drugId++ };
@@ -47,4 +47,4 @@ export default (drugInfoReducer = (state = drugState, action) => {
   default:
     return state;
   }
-});
+};

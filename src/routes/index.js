@@ -1,4 +1,5 @@
-import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from 'react-navigation';
+/* eslint-disable react/display-name */
+import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
@@ -20,7 +21,7 @@ import ShareDrugScreen from '../screens/ShareDrugScreen/ShareDrugScreen';
 import { medmindBlue } from '../constants/styles';
 import DrawerIcon from '../components/DrawerIcon/DrawerIcon';
 import SettingsButton from '../components/SettingsButton/SettingsButton';
-import React, { Component } from 'react';
+import React from 'react';
 import WeekIcon from '../assets/01-Week.png';
 import DayIcon from '../assets/00-Day.png';
 import SettingsIcon from '../assets/07-Settings.png';
@@ -69,7 +70,7 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: 'reminderScreen',
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: () => ({
       headerTitle: 'Medmind',
       headerStyle: {
         backgroundColor: medmindBlue,
@@ -90,8 +91,7 @@ const ReminderStack = createStackNavigator(
   }
 );
 
-openSettings = () => {
-};
+const openSettings = () => {};
 
 const withHeader = (screen, routeName, overrides = {}) => 
   createStackNavigator(

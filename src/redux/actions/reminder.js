@@ -1,5 +1,4 @@
 import { ADD_REMINDER, UPDATE_REMINDER, DELETE_REMINDER, SAVE_NEW_REMINDER, SET_NEW_REMINDER, UPDATE_NEW_REMINDER, SET_UPDATE_FLAG, TOGGLE_DRUG_SNOOZE } from '../../constants/action-types';
-import store from '../store';
 
 let nextId = 9000;
 
@@ -21,6 +20,7 @@ export function addReminder(drug) {
 
 export function updateReminder(reminder) {
   if (typeof reminder === 'undefined') {
+    // eslint-disable-next-line no-console
     console.warn('Reminder object undefined');
     return {};
   }
@@ -53,6 +53,7 @@ export function saveNewReminder() {
 
 export function setNewReminder(reminder) {
   if (typeof reminder === 'undefined') {
+    // eslint-disable-next-line no-console
     console.warn('Reminder object undefined in setNewReminder action');
     return {};
   } else {

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { medmindBlue } from '../../constants/styles';
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
     height: '100%',
@@ -42,11 +42,6 @@ export default (styles = StyleSheet.create({
   link: {
     textDecorationLine: 'underline',
     color: 'blue'
-  },
-
-  greyHeader: {
-    color: 'grey',
-    margin: 5
   },
 
   greyHeader: {
@@ -95,4 +90,4 @@ export default (styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: '15.2%'
   }
-}));
+});

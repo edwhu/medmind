@@ -10,7 +10,7 @@ let timelineState = {
   currentWeek: start,
 };
 
-export default (timelineReducer = (state = timelineState, action) => {
+export default  (state = timelineState, action) => {
   switch (action.type) {
   case UPDATE_WEEK:
     const { currentWeek } = action;
@@ -23,4 +23,4 @@ export default (timelineReducer = (state = timelineState, action) => {
   default:
     return state;
   }
-});
+};

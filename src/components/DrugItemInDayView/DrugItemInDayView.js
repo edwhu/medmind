@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
   TouchableHighlight,
   Text,
-  Image
 } from 'react-native';
 import DrugIcon from '../../components/DrugIcon/DrugIcon';
 
@@ -21,7 +20,7 @@ const DrugItemInDayView = ({ onPress, drug }) => {
   );
 };
 
-const createStyles = drugColor => {
+const createStyles = () => {
   return StyleSheet.create({
     container: {
       marginRight: 10,

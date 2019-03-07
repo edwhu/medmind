@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     zIndex: 1,
@@ -46,4 +46,4 @@ export default (styles = StyleSheet.create({
   barBackground: {
     backgroundColor: 'white'
   }
-}));
+});

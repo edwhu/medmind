@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import {NavigationActions} from 'react-navigation';
 import PropTypes from 'prop-types';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-
-import StatusBarBackground from '../StatusBarBackground/StatusBarBackground';
-import { medmindBlue } from '../../constants/styles';
-
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 class SettingsButton extends Component {

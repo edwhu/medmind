@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
-  TouchableHighlight,
-  Text,
-  Image
 } from 'react-native';
 
 const DrugIcon = ({ color, scale = 1 }) => {
@@ -44,4 +41,5 @@ const createStyles = (drugColor, scale) => {
     }
   });
 };
+
 export default DrugIcon;

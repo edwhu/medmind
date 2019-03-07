@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   Image,
   View,
@@ -9,7 +8,6 @@ import {
 } from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 
-import { medmindBlue } from '../../constants/styles';
 import ProfilePicturePlaceholder from '../../assets/profile_picture_placeholder.png';
 import styles from './styles';
 
