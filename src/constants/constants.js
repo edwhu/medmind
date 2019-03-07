@@ -29,6 +29,7 @@ export const testDrugs = [
   {
     id: 1,
     name: 'Abemaciclib',
+    asNeeded: false,
     dosage: '500mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
@@ -39,6 +40,7 @@ export const testDrugs = [
   {
     id: 2,
     name: 'Abraxane',
+    asNeeded: false,
     dosage: '200mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
@@ -49,6 +51,7 @@ export const testDrugs = [
   {
     id: 3,
     name: 'Actemra',
+    asNeeded: false,
     dosage: '300mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
@@ -59,6 +62,7 @@ export const testDrugs = [
   {
     id: 4,
     name: 'Ado-Trastuzumab Emtansine',
+    asNeeded: false,
     dosage: '400mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
@@ -69,6 +73,7 @@ export const testDrugs = [
   {
     id: 5,
     name: 'Aminolevulinic Acid',
+    asNeeded: false,
     dosage: '100mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
@@ -79,6 +84,7 @@ export const testDrugs = [
   {
     id: 6,
     name: 'Bevacizumab',
+    asNeeded: false,
     dosage: '500mg',
     doctor: 'Dr. Who',
     frequency: '5x a day',
