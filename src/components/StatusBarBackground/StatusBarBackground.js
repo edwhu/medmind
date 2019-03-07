@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { Dimensions, View, Text, StyleSheet, Platform } from "react-native";
+import React, { Component } from 'react';
+import { Dimensions, View, StyleSheet, Platform } from 'react-native';
 
 export default class StatusBarBackground extends Component {
   state = {
-    platform: "ios",
+    platform: 'ios',
     isIphoneX: false,
     isIphonePlus: false
   };
 
   componentWillMount() {
-    const { height, width } = Dimensions.get("window");
+    const { height, width } = Dimensions.get('window');
     const aspectRatio = height / width;
 
     // check platform version
-    if (Platform.OS === "ios") {
+    if (Platform.OS === 'ios') {
       if (height === 812 || width === 812) {
         // iphone X
         this.setState({
@@ -45,7 +45,7 @@ export default class StatusBarBackground extends Component {
           this.props.style || {},
           {
             height:
-              this.state.platform === "ios"
+              this.state.platform === 'ios'
                 ? this.state.isIphoneX
                   ? 30
                   : 0
@@ -59,7 +59,7 @@ export default class StatusBarBackground extends Component {
 
 const styles = StyleSheet.create({
   statusBarBackground: {
-    width: "100%",
+    width: '100%',
     zIndex: 5
   }
 });

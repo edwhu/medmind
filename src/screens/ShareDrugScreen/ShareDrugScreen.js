@@ -1,15 +1,12 @@
-import * as React from "react";
-import { Text, View, StyleSheet, Share, Button, Image } from "react-native";
-import { Constants, FileSystem } from "expo";
-import moment from "moment";
-import { medmindBlue } from "../../constants/styles";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ExportIcon from "../../assets/05-ExportSumm.png";
-import PropTypes from "prop-types";
-import { ScrollView, FlatList } from "react-native-gesture-handler";
-import { testDrugs } from "../../constants/constants";
-import styles from "./styles";
-import { connect } from "react-redux";
+import * as React from 'react';
+import { Text, View, Share, Button } from 'react-native';
+import { FileSystem } from 'expo';
+import moment from 'moment';
+import { medmindBlue } from '../../constants/styles';
+import PropTypes from 'prop-types';
+import { ScrollView } from 'react-native-gesture-handler';
+import styles from './styles';
+import { connect } from 'react-redux';
 // You can import from local files
 
 // or any pure javascript modules available in npm
@@ -20,15 +17,15 @@ class ShareDrugScreen extends React.Component {
     Share.share(
       {
         message:
-          "BAM: we're helping your business with awesome React Native apps",
-        url: FileSystem.getInfoAsync(FileSystem.documentDirectory + "Test.pdf"),
-        title: "Wow, did you see that?"
+          'BAM: we\'re helping your business with awesome React Native apps',
+        url: FileSystem.getInfoAsync(FileSystem.documentDirectory + 'Test.pdf'),
+        title: 'Wow, did you see that?'
       },
       {
         // Android only:
-        dialogTitle: "Share BAM goodness",
+        dialogTitle: 'Share BAM goodness',
         // iOS only:
-        excludedActivityTypes: ["com.apple.UIKit.activity.PostToTwitter"]
+        excludedActivityTypes: ['com.apple.UIKit.activity.PostToTwitter']
       }
     );
   }
@@ -40,7 +37,7 @@ class ShareDrugScreen extends React.Component {
   static defaultProps = {};
 
   state = {
-    title: this.props.title || "Export Summary"
+    title: this.props.title || 'Export Summary'
   };
 
   render() {
@@ -55,7 +52,7 @@ class ShareDrugScreen extends React.Component {
 
           <View style={styles.columnContainer}>
             <Text style={styles.dataStyle}>
-              {item.startDate.format("DD/MM/YYYY")}
+              {item.startDate.format('DD/MM/YYYY')}
             </Text>
           </View>
 
@@ -63,7 +60,7 @@ class ShareDrugScreen extends React.Component {
 
           <View style={styles.columnContainer}>
             <Text style={styles.dataStyle}>
-              {item.endDate.format("DD/MM/YYYY")}
+              {item.endDate.format('DD/MM/YYYY')}
             </Text>
           </View>
         </View>
@@ -74,16 +71,16 @@ class ShareDrugScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.dateStyle}>
           Downloaded:
-          {moment().format("MM/DD/YYYY")}
+          {moment().format('MM/DD/YYYY')}
         </Text>
 
-        <Text style={styles.nameStyle}>Jane Smith {"\n"}</Text>
+        <Text style={styles.nameStyle}>Jane Smith {'\n'}</Text>
 
         <View style={styles.horBorder} />
 
         <Text style={styles.patientData}>
-          Diagnosis {"\n"}
-          Diagnosis Date {"\n"}
+          Diagnosis {'\n'}
+          Diagnosis Date {'\n'}
           Diagnosis Status
         </Text>
 
@@ -154,7 +151,7 @@ class ShareDrugScreen extends React.Component {
           </ScrollView>
           <View
             style={{
-              alignItems: "center"
+              alignItems: 'center'
             }}
           >
             <View style={styles.button}>
@@ -182,7 +179,7 @@ class ShareDrugScreen extends React.Component {
         </ScrollView>
         <View
           style={{
-            alignItems: "center"
+            alignItems: 'center'
           }}
         >
           <View style={styles.button}>
@@ -199,7 +196,7 @@ class ShareDrugScreen extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     testDrugs: state.drugInfoReducer.drugInfo
   };

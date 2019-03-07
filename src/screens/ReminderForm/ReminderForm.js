@@ -1,20 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
-import { bindActionCreators } from "redux";
-import { addReminder, updateNewReminder, updateReminder, setNewReminder, saveNewReminder } from "../../redux/actions/reminder";
-import { defaultReminder } from "../../constants/constants";
-import { connect } from "react-redux";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import TimePicker from "../../components/TimePicker/TimePicker";
-import { Ionicons } from "@expo/vector-icons";
-import { medmindBlue } from "../../constants/styles";
-import moment from "moment";
-import styles from "./styles";
+import React, { Component } from 'react';
+import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { addReminder, updateNewReminder, updateReminder, setNewReminder, saveNewReminder } from '../../redux/actions/reminder';
+import { defaultReminder } from '../../constants/constants';
+import { connect } from 'react-redux';
+import TimePicker from '../../components/TimePicker/TimePicker';
+import { Ionicons } from '@expo/vector-icons';
+import { medmindBlue } from '../../constants/styles';
+import moment from 'moment';
+import styles from './styles';
 
 class ReminderFormScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "New Reminder"
+    drawerLabel: 'New Reminder'
   };
 
   static propTypes = {};
@@ -23,34 +21,35 @@ class ReminderFormScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Reminder",
+    title: this.props.title || 'Reminder',
   };
 
   openDrugListPage = () => {
-    this.props.navigation.navigate("chooseDrugScreen", {
+    this.props.navigation.navigate('chooseDrugScreen', {
       showButton: true,
     });
   };
 
   openRepeatPage = () => {
-   this.props.navigation.navigate("repeatScreen", {
+    this.props.navigation.navigate('repeatScreen', {
       showButton: true,
     });
   };
 
   openSoundPage = () => {
-    this.props.navigation.navigate("soundScreen", {
+    this.props.navigation.navigate('soundScreen', {
       showButton: true,
     });
   };
 
   getDrugName = drugId => {
     const drug = this.props.drugs.find(drug => drug.id === drugId);
-    if (typeof drug !== "undefined") {
+    if (typeof drug !== 'undefined') {
       return drug.name;
     }
   };
@@ -65,8 +64,8 @@ class ReminderFormScreen extends Component {
 
   addReminder = () => {
     const newReminder = this.props.newReminder;
-    if (typeof newReminder.time === "undefined") {
-      this.props.updateNewReminder("time", moment());
+    if (typeof newReminder.time === 'undefined') {
+      this.props.updateNewReminder('time', moment());
     }
     const drug = this.getDrugById(this.props.newReminder.drugId);
     this.props.addReminder(drug);
@@ -74,9 +73,9 @@ class ReminderFormScreen extends Component {
 
   saveReminder = () => {
     // Trimming the repeat selection down to one word ('Every week' => 'week')
-    if (typeof this.props.newReminder.repeat !== "undefined" && this.props.newReminder.repeat[0] === "E") {
-        const newRepeat = this.props.newReminder.repeat.split(" ")[1];
-        this.props.updateNewReminder("repeat", newRepeat);
+    if (typeof this.props.newReminder.repeat !== 'undefined' && this.props.newReminder.repeat[0] === 'E') {
+      const newRepeat = this.props.newReminder.repeat.split(' ')[1];
+      this.props.updateNewReminder('repeat', newRepeat);
     }
     // Modifying existing reminder
     if (this.props.updateFlag) {
@@ -92,7 +91,7 @@ class ReminderFormScreen extends Component {
   };
 
   render() {
-    const { newReminder, updateNewReminder, addReminder, drugs } = this.props;
+    const { newReminder, updateNewReminder } = this.props;
     const arrowButton = (
       <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
     );
@@ -109,7 +108,7 @@ class ReminderFormScreen extends Component {
       <View style={styles.container}>
         <TimePicker
           header="Time"
-          setDate={time => updateNewReminder("time", time)}
+          setDate={time => updateNewReminder('time', time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -154,7 +153,7 @@ class ReminderFormScreen extends Component {
           <Switch
             onTintColor={medmindBlue}
             style={styles.switchButton}
-            onValueChange={() => updateNewReminder("snooze", newReminder.snooze)}
+            onValueChange={() => updateNewReminder('snooze', newReminder.snooze)}
             value={newReminder.snooze}
           />
         </View>
@@ -167,7 +166,7 @@ class ReminderFormScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     reminders: state.remindersReducer.reminders,
     drugs: state.drugInfoReducer.drugInfo,
