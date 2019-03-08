@@ -47,7 +47,18 @@ class EditDrugScreen extends Component {
       endDate: drug.endDate,
       color: "#FFDF00"
     };
+    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))]
 
+  }
+
+  componentDidFocus(payload) {
+    const { navigation } = this.props;
+    const drug = navigation.getParam('drug');
+    this.setState(drug);
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(sub => sub.remove());
   }
 
   render() {
@@ -109,7 +120,7 @@ class EditDrugScreen extends Component {
         <View style={styles.footerStyle}>
           <RoundedButton
             onPress={() => {
-              console.log(this.state);
+              //console.log(this.state);
               this.props.editDrug(this.state);
               navigation.navigate('dayViewScreen');
             }}
