@@ -47,7 +47,6 @@ const createStyles = drugColor => {
     drugName: {
       fontWeight: "bold"
     },
-    drugDosage: {},
     modalContainer: {
       justifyContent: 'space-between',
       backgroundColor: 'white',
@@ -96,7 +95,6 @@ const createStyles = drugColor => {
       borderBottomLeftRadius: 20, 
       borderBottomRightRadius: 20,
       padding: 20
-      // borderWidth: 2,
     },
     imageStyle: {
       width: 40,
@@ -108,7 +106,6 @@ const createStyles = drugColor => {
       justifyContent: 'space-between',
     },
     iconStyle: {
-      // borderWidth: 1,
       width: 40,
       height: 40,
       marginLeft: 20,
@@ -140,7 +137,6 @@ const createStyles = drugColor => {
 };
 
 class DrugInEvent extends Component{
-  // let styles = createStyles(drug.color);
   state = {
     modalVisible: false,
     editFormVisible: false,

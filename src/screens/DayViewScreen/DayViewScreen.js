@@ -7,7 +7,6 @@ import DayIcon from "../../assets/00-Day.png";
 import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
-// import {asNeededDrugs, drugsByEvents, testRemindersUnsorted} from "../../constants/constants";
 import { connect } from "react-redux";
 import moment from "moment";
 
@@ -26,8 +25,6 @@ class DayViewScreen extends Component {
     const drugs = this.props.drugs;
     let targetDrug = drugs.filter(drug => drug.id == drugId);
     if(targetDrug.length != 0){
-      console.log("target drug:");
-      console.log(targetDrug[0]);
       return targetDrug[0];
     }
     else 
@@ -38,21 +35,23 @@ class DayViewScreen extends Component {
   organizeDrugsByEvent = (reminders) => {
     // Sort by time 
     reminders.sort((left, right) => left.time.diff(right.time));
-    // Convert it into drugsByEvent schema
+    // Convert information from reminders and drugs into drugsByEvent schema
     let key = -1;
     let drugsByEvent = [];
     let currentTimeDict = {time: null, key: key, drugs: []};
-    let currentTime = moment(); //null moment object
+    let currentTime = null; 
+
     reminders.forEach(reminder => {
       const drugId = reminder['drugId'];
-      let reminderTime = reminder['time'];
-      let reminderTimeString = reminder['time'].format("HH:mm");
-      let currentTimeString = currentTime.format("HH:mm");
+      let drug = this.getDrug(drugId);
+      const reminderTime = reminder['time'];
+      const reminderTimeString = reminder['time'].format("HH:mm");
+      const currentTimeString = (currentTime != null) ? currentTime.format("HH:mm") : null;
+      // If we find a new time segment to take drugs, create a new entry
       if(currentTimeString != reminderTimeString){
         key++;
         currentTimeDict = {time: reminderTime, key: key, drugs: []};
         // Find corresponding drug given drugId
-        let drug = this.getDrug(drugId);
         if(drug !== null){
           currentTimeDict['drugs'].push(drug);
         }
@@ -60,17 +59,14 @@ class DayViewScreen extends Component {
         drugsByEvent.push(currentTimeDict);
 
       }
+      // Otherwise, we append the current drug into the current time segment's array
       else {
-        let drug = this.getDrug(drugId);
         if(drug !== null){
           currentTimeDict['drugs'].push(drug);
         }
       }
-
-      console.log("Printing drugsbyEvent")
-      console.log(drugsByEvent);
-
     });
+
     return drugsByEvent;
   };
 
@@ -92,7 +88,6 @@ class DayViewScreen extends Component {
           <View style={styles.dayVerticalListWrapper}>
             <FlatList
               data={this.organizeDrugsByEvent(reminders)}
-              // data={drugsByEvents}
               renderItem={({ item }) => <EventInDayView event={item} navigation={this.props.navigation}/>}
               style={styles.dayVerticalList}
               keyExtractor={(item, index) => item.key.toString()}

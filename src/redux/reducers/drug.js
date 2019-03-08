@@ -53,6 +53,5 @@ export default (drugInfoReducer = (state = drugState, action) => {
 
     default:
       return state;
-
   }
 });
