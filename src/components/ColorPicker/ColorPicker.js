@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import {StyleSheet} from "react-native";
-import ColorPalette from 'react-native-color-palette';
+import ColorPalette from '../ColorPalette/ColorPalette';
 
 export default class ColorPicker extends Component {
     constructor(props) {
