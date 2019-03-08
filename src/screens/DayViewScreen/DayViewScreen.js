@@ -34,7 +34,7 @@ class DayViewScreen extends Component {
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
   organizeDrugsByEvent = (reminders) => {
     // Sort by time 
-    reminders.sort((left, right) => left.time.diff(right.time));
+    reminders.sort((left, right) => left.time.minutes() + left.time.hours() * 60 > right.time.minutes() + right.time.hours() * 60 );
     // Convert information from reminders and drugs into drugsByEvent schema
     let key = -1;
     let drugsByEvent = [];
