@@ -32,11 +32,16 @@ export default class CameraScreen extends React.Component {
       marginLeft: "20.5%",
     },
     headerLeft: null,
-    headerRight: <RoundedButton
+    headerRight:<TouchableOpacity 
                   onPress={() => navigation.dangerouslyGetParent().navigate("addDrugScreen")}
-                  name={"Skip"}
-                  buttonStyle={styles.buttonStyle}
-                />
+                  style={styles.back}
+                >
+                  <View>
+                    <Text style={styles.text}>
+                      Skip
+                    </Text>
+                  </View>
+                </TouchableOpacity>
   });
   state = {
     hasCameraPermission: null,
@@ -178,6 +183,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 50,
     height: 37,
-
   },
+  text: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  back: {
+    marginRight: 10,
+  }
 });

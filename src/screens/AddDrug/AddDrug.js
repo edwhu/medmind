@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Modal, TouchableOpacity, Text, View, StyleSheet } from "react-native";
+import { Image, Modal, TouchableOpacity, Text, View, StyleSheet, Button } from "react-native";
 import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
 import FormField from "../../components/FormField/FormField";
 import RoundedButton from "../../components/RoundedButton/RoundedButton";
@@ -27,12 +27,17 @@ class AddDrugScreen extends Component {
       flex: 1,
       textAlign: "center",
       marginRight: "23%",
-    },
-    headerLeft: <RoundedButton
+    },  
+    headerLeft: <TouchableOpacity 
                   onPress={() => navigation.dangerouslyGetParent().navigate("timelineScreen")}
-                  name={"Back"}
-                  buttonStyle={styles.button}
-                />,
+                  style={styles.back}
+                >
+                  <View>
+                    <Text style={styles.text}>
+                      Back
+                    </Text>
+                  </View>
+                </TouchableOpacity>,
     headerRight: null
   });
   state = {
@@ -227,12 +232,12 @@ const styles = StyleSheet.create({
     width: 200,
     height: 40
   },
-  button: {
-    borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
-    width: 50,
-    height: 37
+  text: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  back: {
+    marginLeft: 10,
   },
   colorButton: {
     borderWidth:1,
