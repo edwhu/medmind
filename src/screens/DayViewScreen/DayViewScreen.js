@@ -42,10 +42,10 @@ class DayViewScreen extends Component {
     let currentTime = null; 
 
     reminders.forEach(reminder => {
-      const drugId = reminder['drugId'];
+      const drugId = reminder.drugId;
       let drug = this.getDrug(drugId);
-      const reminderTime = reminder['time'];
-      const reminderTimeString = reminder['time'].format("HH:mm");
+      const reminderTime = reminder.time;
+      const reminderTimeString = reminder.time.format("HH:mm");
       const currentTimeString = (currentTime != null) ? currentTime.format("HH:mm") : null;
       // If we find a new time segment to take drugs, create a new entry
       if(currentTimeString != reminderTimeString){
