@@ -1,7 +1,7 @@
-import { Notifications } from "expo";
+import { Notifications } from 'expo';
 
 export function fireNotification(reminder, drug) {
-  let notificationTitle = "Time to take " + drug.name;
+  let notificationTitle = 'Time to take ' + drug.name;
   const text = `Reminder to take ${reminder.dosage} of ${drug.name}`;
   const localNotification = {
     title: notificationTitle,

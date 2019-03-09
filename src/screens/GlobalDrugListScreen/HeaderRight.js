@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 10,
   }
-})
+});
 
 class HeaderRight extends React.Component {
   constructor(props) {

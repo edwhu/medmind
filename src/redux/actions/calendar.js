@@ -1,4 +1,4 @@
-import { UPDATE_WEEK } from "../../constants/action-types";
+import { UPDATE_WEEK } from '../../constants/action-types';
 
 export function updateWeek(currentWeek) {
   return {

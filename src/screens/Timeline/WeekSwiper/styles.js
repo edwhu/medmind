@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
-import { medmindBlue } from "../../../constants/styles";
-export default (styles = StyleSheet.create({
+import { StyleSheet } from 'react-native';
+import { medmindBlue } from '../../../constants/styles';
+export default StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: 'row',
     zIndex: 1,
     flex: 1,
-    backgroundColor: "white",
-    position: "relative",
+    backgroundColor: 'white',
+    position: 'relative',
     top: 0,
     marginBottom: 30
     // bottom: 20,
@@ -31,9 +31,9 @@ export default (styles = StyleSheet.create({
     elevation: 10, // Android
   },
   plus: {
-    color: "white",
+    color: 'white',
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200"
+    fontWeight: '200'
   }
-}));
+});

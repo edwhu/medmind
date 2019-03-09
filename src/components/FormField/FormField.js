@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TextInput, Text } from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
+import React, { Component } from 'react';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { medmindBlue } from '../../constants/styles';
 import CheckboxInput from './CheckboxInput';
 
 export default class FormField extends Component {
@@ -56,9 +56,9 @@ export default class FormField extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
 
   form: {
