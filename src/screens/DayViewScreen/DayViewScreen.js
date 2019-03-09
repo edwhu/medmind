@@ -8,7 +8,6 @@ import { ScrollView, FlatList } from "react-native";
 import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
 import EventInDayView from "../../components/EventInDayView/EventInDayView";
 import PlusButton from "../../components/PlusButton/PlusButton";
-import StartingComponent from "../../components/StartingComponent/StartingComponent";
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [

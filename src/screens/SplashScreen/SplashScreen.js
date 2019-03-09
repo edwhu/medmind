@@ -6,7 +6,6 @@ import DayIcon from "../../assets/00-Day.png";
 import { medmindBlue } from "../../constants/styles";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
-import StartingComponent from "../../components/StartingComponent/StartingComponent";
 
 export default class SplashScreen extends Component {
   static navigationOptions = {
