@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image, AsyncStorage } from "react-native";
 import TermIcon from "../../assets/00-Day.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
+import AcceptButton from "../../components/AcceptButton/AcceptButton";
 
 export default class TermsAndConditionsScreen extends Component {
 
@@ -25,6 +26,10 @@ export default class TermsAndConditionsScreen extends Component {
     showButton: false
   };
 
+  onAcceptButtonPress = () => {
+    this.props.navigation.navigate("privacyPolicyScreen")
+  }
+
   render() {
     const { navigation } = this.props;
     const showButton = navigation.getParam("showButton", false);
@@ -38,6 +43,7 @@ export default class TermsAndConditionsScreen extends Component {
         </TouchableOpacity>
       </View>
     );
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Terms and Conditions</Text>
@@ -77,6 +83,7 @@ export default class TermsAndConditionsScreen extends Component {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
           </ScrollView>
+          <AcceptButton onPress={this.onAcceptButtonPress}/>
         </View>
         {showButton ? button : null}
       </View>

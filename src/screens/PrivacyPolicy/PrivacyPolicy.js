@@ -6,6 +6,7 @@ import StatusBarBackground from "../../components/StatusBarBackground/StatusBarB
 import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
 import styles from "./styles";
 import { medmindBlue } from "../../constants/styles";
+import AcceptButton from "../../components/AcceptButton/AcceptButton";
 
 export default class PrivacyScreen extends Component {
 
@@ -23,6 +24,10 @@ export default class PrivacyScreen extends Component {
   state = {
     title: this.props.title || "Medmind"
   };
+
+  onAcceptButtonPress = () => {
+    this.props.navigation.navigate("dayViewScreen");
+  }
 
   render() {
     return (
@@ -64,6 +69,7 @@ export default class PrivacyScreen extends Component {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
           </ScrollView>
+          <AcceptButton onPress={this.onAcceptButtonPress}/>
         </View>
       </View>
     );

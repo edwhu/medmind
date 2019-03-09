@@ -1,5 +1,5 @@
 import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
-import { Dimensions, Image, StyleSheet} from "react-native";
+import { Dimensions, Image, StyleSheet, AsyncStorage} from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
@@ -27,6 +27,8 @@ import SettingsIcon from "../assets/07-Settings.png";
 import ExportIcon from "../assets/05-ExportSumm.png";
 import DrugIcon from "../assets/04-DrugList.png";
 import NotifIcon from "../assets/03-Notifs.png";
+
+
 
 const { width, height } = Dimensions.get("screen");
 
