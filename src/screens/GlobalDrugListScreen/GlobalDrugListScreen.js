@@ -128,7 +128,7 @@ const mapStateToProps = (state) => {
     editing: state.drugInfoReducer.editing,
     drugIdsToDelete: state.drugInfoReducer.drugIdsToDelete,
   };
-}
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 

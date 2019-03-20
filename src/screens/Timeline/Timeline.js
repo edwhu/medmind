@@ -14,14 +14,14 @@ import RoundedButton from "../../components/RoundedButton/RoundedButton";
 
 class TimelineScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Timeline",
+    drawerLabel: 'Timeline',
     drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
   };
 
   static propTypes = {};
 
   static defaultProps = {
-    calendarType: "week"
+    calendarType: 'week'
   };
 
   navigateCamera = () => {
@@ -50,7 +50,7 @@ class TimelineScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { currentMonth, currentYear } = state.timelineReducer;
   const { drugInfo } = state.drugInfoReducer;
   return { currentMonth, currentYear, drugInfo };

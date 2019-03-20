@@ -15,107 +15,107 @@ import { bindActionCreators } from "redux";
 const asNeededDrugs = [
   {
     id: 1,
-    key: "1",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#FFDF00"
+    key: '1',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#FFDF00'
   },
   {
     id: 2,
-    key: "2",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#0000ff"
+    key: '2',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#0000ff'
   },
   {
     id: 3,
-    key: "3",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#009900"
+    key: '3',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#009900'
   },
   {
     id: 4,
-    key: "4",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#090990"
+    key: '4',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#090990'
   },
   {
     id: 5,
-    key: "5",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#123456"
+    key: '5',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#123456'
   },
   {
     id: 6,
-    key: "6",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#990099"
+    key: '6',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#990099'
   }
 ];
 
 // Temp schema for drugs by events
 const drugsByEvents = [
   {
-    time: "7:00 PM",
-    key: "1",
+    time: '7:00 PM',
+    key: '1',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        color: "#123456"
+        key: '1',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        color: '#123456'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        color: "#990099"
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        color: '#990099'
       }
     ]
   },
   {
-    time: "8:00 PM",
-    key: "2",
+    time: '8:00 PM',
+    key: '2',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
+        key: '1',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        color: '#0000ff'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        color: '#0000ff'
       }
     ]
   },
   {
-    time: "9:00 PM",
-    key: "3",
+    time: '9:00 PM',
+    key: '3',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Tylenol",
-        dosage: "2 mg",
-        color: "#0000ff"
+        key: '1',
+        name: 'Tylenol',
+        dosage: '2 mg',
+        color: '#0000ff'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        color: "#0000ff"
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        color: '#0000ff'
       }
     ]
   }

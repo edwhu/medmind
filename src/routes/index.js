@@ -1,35 +1,36 @@
-import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
-import { Dimensions, Image, StyleSheet } from "react-native";
-import LoginScreen from "../screens/Login/Login";
-import TimelineScreen from "../screens/Timeline/Timeline";
-import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
-import TermsAndConditionsScreen from "../screens/TermsConditions/TermsConditions";
-import PrivacyPolicyScreen from "../screens/PrivacyPolicy/PrivacyPolicy";
-import ReminderScreen from "../screens/ReminderScreen/ReminderScreen";
-import DayViewScreen from "../screens/DayViewScreen/DayViewScreen";
-import GlobalDrugListScreen from "../screens/GlobalDrugListScreen/GlobalDrugListScreen";
-import ReminderFormScreen from "../screens/ReminderForm/ReminderForm";
+/* eslint-disable react/display-name */
+import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { Dimensions, Image, StyleSheet } from 'react-native';
+import LoginScreen from '../screens/Login/Login';
+import TimelineScreen from '../screens/Timeline/Timeline';
+import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
+import TermsAndConditionsScreen from '../screens/TermsConditions/TermsConditions';
+import PrivacyPolicyScreen from '../screens/PrivacyPolicy/PrivacyPolicy';
+import ReminderScreen from '../screens/ReminderScreen/ReminderScreen';
+import DayViewScreen from '../screens/DayViewScreen/DayViewScreen';
+import GlobalDrugListScreen from '../screens/GlobalDrugListScreen/GlobalDrugListScreen';
+import ReminderFormScreen from '../screens/ReminderForm/ReminderForm';
 import CustomIntervalScreen from '../screens/CustomIntervalScreen/CustomInterval';
-import RepeatScreen from "../screens/RepeatScreen/RepeatScreen";
-import SoundScreen from "../screens/SoundScreen/SoundScreen";
-import ChooseDrugScreen from "../screens/ChooseDrugScreen/ChooseDrugScreen";
-import CameraScreen from "../screens/Camera/Camera";
-import AddDrugScreen from "../screens/AddDrug/AddDrug";
-import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
-import ShareDrugScreen from "../screens/ShareDrugScreen/ShareDrugScreen";
-import { medmindBlue } from "../constants/styles";
-import DrawerIcon from "../components/DrawerIcon/DrawerIcon";
-import SettingsButton from "../components/SettingsButton/SettingsButton";
-import React, { Component } from "react";
-import WeekIcon from "../assets/01-Week.png";
-import DayIcon from "../assets/00-Day.png";
-import SettingsIcon from "../assets/07-Settings.png";
-import ExportIcon from "../assets/05-ExportSumm.png";
-import DrugIcon from "../assets/04-DrugList.png";
-import NotifIcon from "../assets/03-Notifs.png";
-import GlobalDrugListHeaderRight from "../screens/GlobalDrugListScreen/HeaderRight";
+import RepeatScreen from '../screens/RepeatScreen/RepeatScreen';
+import SoundScreen from '../screens/SoundScreen/SoundScreen';
+import ChooseDrugScreen from '../screens/ChooseDrugScreen/ChooseDrugScreen';
+import CameraScreen from '../screens/Camera/Camera';
+import AddDrugScreen from '../screens/AddDrug/AddDrug';
+import NotificationScreen from '../screens/NotificationScreen/NotificationScreen';
+import ShareDrugScreen from '../screens/ShareDrugScreen/ShareDrugScreen';
+import { medmindBlue } from '../constants/styles';
+import DrawerIcon from '../components/DrawerIcon/DrawerIcon';
+import SettingsButton from '../components/SettingsButton/SettingsButton';
+import React from 'react';
+import WeekIcon from '../assets/01-Week.png';
+import DayIcon from '../assets/00-Day.png';
+import SettingsIcon from '../assets/07-Settings.png';
+import ExportIcon from '../assets/05-ExportSumm.png';
+import DrugIcon from '../assets/04-DrugList.png';
+import NotifIcon from '../assets/03-Notifs.png';
+import GlobalDrugListHeaderRight from '../screens/GlobalDrugListScreen/HeaderRight';
 
-const { width, height } = Dimensions.get("screen");
+const { width, height } = Dimensions.get('screen');
 
 const styles = StyleSheet.create(
   {
@@ -37,17 +38,17 @@ const styles = StyleSheet.create(
       width: 20,
       height: 20,
       borderRadius: 5,
-      marginLeft: "15.2%"
+      marginLeft: '15.2%'
     },
   }
-)
+);
 const ReminderStack = createStackNavigator(
   {
     reminderScreen: {
       screen: ReminderScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <DrawerIcon onPress={()=>{
-            navigation.dangerouslyGetParent().toggleDrawer()
+          navigation.dangerouslyGetParent().toggleDrawer();
         }}/>,
       })
     },
@@ -68,30 +69,29 @@ const ReminderStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: "reminderScreen",
-    defaultNavigationOptions: ({navigation}) => ({
-      headerTitle: "Medmind",
+    initialRouteName: 'reminderScreen',
+    defaultNavigationOptions: () => ({
+      headerTitle: 'Medmind',
       headerStyle: {
         backgroundColor: medmindBlue,
       },
-      headerTintColor: "white",
+      headerTintColor: 'white',
       headerTitleStyle: {
-        color: "white",
-        fontWeight: "500",
-        fontFamily: "System",
+        color: 'white',
+        fontWeight: '500',
+        fontFamily: 'System',
         fontSize: 24,
         flex: 1,
-        textAlign: "center",
+        textAlign: 'center',
       },
       headerRight: <SettingsButton onPress={()=>{
-        openSettings()
+        openSettings();
       }}/>
     }) 
   }
 );
 
-openSettings = () => {
-};
+const openSettings = () => {};
 
 const withHeader = (screen, routeName, overrides = {}) => 
   createStackNavigator(
@@ -99,23 +99,23 @@ const withHeader = (screen, routeName, overrides = {}) =>
     {
       headerMode: 'screen',
       defaultNavigationOptions: ({navigation}) => ({
-        headerTitle: "Medmind",
+        headerTitle: 'Medmind',
         headerStyle: {
           backgroundColor: medmindBlue,
         },
         headerTitleStyle: {
-          color: "white",
-          fontWeight: "500",
-          fontFamily: "System",
+          color: 'white',
+          fontWeight: '500',
+          fontFamily: 'System',
           fontSize: 24,
           flex: 1,
-          textAlign: "center",
+          textAlign: 'center',
         },
         headerLeft: <DrawerIcon onPress={()=>{
-          navigation.dangerouslyGetParent().toggleDrawer()
+          navigation.dangerouslyGetParent().toggleDrawer();
         }}/>,
         headerRight: <SettingsButton onPress={()=>{
-          openSettings()
+          openSettings();
         }}/>,
         ...overrides,
       })
@@ -135,39 +135,39 @@ const doNotAppearOnDrawer = {
 const DrawerNavigation = createDrawerNavigator(
   {
     dayViewScreen: {
-      screen: withHeader(DayViewScreen, "dayViewScreen"),
+      screen: withHeader(DayViewScreen, 'dayViewScreen'),
       navigationOptions: {
-        drawerLabel: "Day",
+        drawerLabel: 'Day',
         drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
       }
     },
     timelineScreen: {
-      screen: withHeader(TimelineScreen,"timelineScreen"),
+      screen: withHeader(TimelineScreen,'timelineScreen'),
       navigationOptions: {
-        drawerLabel: "Week",
+        drawerLabel: 'Week',
         drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
       }
     },
     reminderStack: {
       screen: ReminderStack,
       navigationOptions: {
-        drawerLabel: "Notifications",
+        drawerLabel: 'Notifications',
         drawerIcon: ()=> <Image source={NotifIcon} style={styles.imageStyle} />
       }
     },
     globalDrugListScreen: {
-      screen: withHeader(GlobalDrugListScreen,"globalDrugListScreen", {
+      screen: withHeader(GlobalDrugListScreen,'globalDrugListScreen', {
         headerRight: <GlobalDrugListHeaderRight />
       }),
       navigationOptions: {
-        drawerLabel: "Global Drug List",
+        drawerLabel: 'Global Drug List',
         drawerIcon: () => <Image source={DrugIcon} style={styles.imageStyle} />
       }
     },
     shareDrugScreen: {
-      screen: withHeader(ShareDrugScreen,"shareDrugScreen"),
+      screen: withHeader(ShareDrugScreen,'shareDrugScreen'),
       navigationOptions: {
-        drawerLabel: "Export Summary",
+        drawerLabel: 'Export Summary',
         drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
       }
     },
@@ -175,16 +175,16 @@ const DrawerNavigation = createDrawerNavigator(
       screen: LoginScreen,
     },
     termsAndConditionsScreen: {
-      screen: withHeader(TermsAndConditionsScreen,"termsAndConditionsScreen"),
+      screen: withHeader(TermsAndConditionsScreen,'termsAndConditionsScreen'),
       navigationOptions: {
-        drawerLabel: "Terms and Conditions",
+        drawerLabel: 'Terms and Conditions',
         drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
       }
     },
     privacyPolicyScreen: {
-      screen: withHeader(PrivacyPolicyScreen,"privacyPolicyScreen"),
+      screen: withHeader(PrivacyPolicyScreen,'privacyPolicyScreen'),
       navigationOptions: {
-        drawerLabel: "Privacy Policy",
+        drawerLabel: 'Privacy Policy',
         drawerIcon: () => <Image source={SettingsIcon} style={styles.imageStyle} />
       },
     },
@@ -193,27 +193,27 @@ const DrawerNavigation = createDrawerNavigator(
       screen: NotificationScreen
     },
     addDrugScreen: {
-      screen: withHeader(AddDrugScreen, "addDrugScreen"),
+      screen: withHeader(AddDrugScreen, 'addDrugScreen'),
       ...doNotAppearOnDrawer,
     },
     cameraScreen: {
-      screen: withHeader(CameraScreen, "camerScreen"),
+      screen: withHeader(CameraScreen, 'camerScreen'),
       ...doNotAppearOnDrawer,
     },
   },
   {
-    initialRouteName: "timelineScreen",
+    initialRouteName: 'timelineScreen',
     contentComponent: CustomDrawer,
     drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {
       labelStyle: {
-        color: "white",
+        color: 'white',
         fontSize: 14,
-        marginLeft: "5.3%"
+        marginLeft: '5.3%'
       }
     },
     cardStyle: {
-      shadowColor: "transparent"
+      shadowColor: 'transparent'
     }
   }
 );

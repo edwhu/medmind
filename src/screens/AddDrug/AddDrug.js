@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Image, Modal, TouchableOpacity, Text, View, StyleSheet } from "react-native";
-import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
-import FormField from "../../components/FormField/FormField";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
-import { KeyboardAvoidingView } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../constants/styles";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addDrug } from "../../redux/actions/drug";
-import moment from "moment";
-import ColorPicker from "../../components/ColorPicker/ColorPicker";
+import React, { Component } from 'react';
+import { Modal, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
+import FormField from '../../components/FormField/FormField';
+import RoundedButton from '../../components/RoundedButton/RoundedButton';
+import { KeyboardAvoidingView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { medmindBlue } from '../../constants/styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addDrug } from '../../redux/actions/drug';
+import moment from 'moment';
+import ColorPicker from '../../components/ColorPicker/ColorPicker';
 
 
 class AddDrugScreen extends Component {
@@ -18,31 +18,32 @@ class AddDrugScreen extends Component {
     super(props);
   }
   static navigationOptions =({navigation})=> ({
-    headerTitle: "Enter Drug",
+    headerTitle: 'Enter Drug',
     headerTitleStyle: {
-      color: "white",
-      fontWeight: "500",
-      fontFamily: "System",
+      color: 'white',
+      fontWeight: '500',
+      fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: "center",
-      marginRight: "23%",
+      textAlign: 'center',
+      marginRight: '23%',
     },
     headerLeft: <RoundedButton
-                  onPress={() => navigation.dangerouslyGetParent().navigate("timelineScreen")}
-                  name={"Back"}
-                  buttonStyle={styles.button}
-                />,
+      onPress={() => navigation.dangerouslyGetParent().navigate('timelineScreen')}
+      name={'Back'}
+      buttonStyle={styles.button}
+    />,
     headerRight: null
   });
   state = {
-    name: "Bevacizumab",
-    dosage: "500mg",
-    doctor: "Dr. Who",
-    frequency: "5x a day", 
-    startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days"),
-    color: "#990099",
+    asNeeded: false,
+    name: 'Bevacizumab',
+    dosage: '500mg',
+    doctor: 'Dr. Who',
+    frequency: '5x a day', 
+    startDate: moment().subtract(10, 'days'),
+    endDate: moment().add(10, 'days'),
+    color: '#990099',
     modalVisible: false
   };
 
@@ -56,7 +57,7 @@ class AddDrugScreen extends Component {
   onSubmit() {
     const {navigate} = this.props.navigation;
     this.props.addDrug(this.state);
-    navigate("timelineScreen");
+    navigate('timelineScreen');
   }
 
   render() {
@@ -64,74 +65,80 @@ class AddDrugScreen extends Component {
       <KeyboardAvoidingView style={styles.container}>
         <FormField
           header="Drug Name"
-          onChangeText={name => this.setState({ name })}
+          onChange={name => this.setState({ name })}
           value={this.state.name}
           placeholder={this.state.name}
         />
         <FormField
           header="Dosage"
-          onChangeText={dosage => this.setState({ dosage })}
+          onChange={dosage => this.setState({ dosage })}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Doctor"
-          onChangeText={doctor => this.setState({ doctor })}
+          onChange={doctor => this.setState({ doctor })}
           value={this.state.doctor}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Frequency"
-          onChangeText={frequency => this.setState({ frequency })}
+          onChange={frequency => this.setState({ frequency })}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
-        <CollapsibleDatePicker
-          header="Start Date"
-          setDate={startDate => this.setState({ startDate })}
-          date={this.state.startDate}
+        <FormField 
+          header="As Needed"
+          value={this.state.asNeeded}
+          onChange={asNeeded => this.setState({ asNeeded })}
+          type="checkbox"
         />
-        <CollapsibleDatePicker
-          header="End Date"
-          setDate={endDate => this.setState({ endDate })}
-          date={this.state.endDate}
-        />
+        { !this.state.asNeeded && <CollapsibleDatePicker
+            header="Start Date"
+            setDate={startDate => this.setState({ startDate })}
+            date={this.state.startDate}
+          /> }
+        { !this.state.asNeeded && <CollapsibleDatePicker
+            header="End Date"
+            setDate={endDate => this.setState({ endDate })}
+            date={this.state.endDate}
+          /> }
 
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Colors</Text>
             <TouchableOpacity
               onPress = {() => {
-                this.showModal()
+                this.showModal();
               }}
               hitSlop={{left: 100}}
-              >
-                <Ionicons name="ios-arrow-forward" size={16} />
-              </TouchableOpacity>
+            >
+              <Ionicons name="ios-arrow-forward" size={16} />
+            </TouchableOpacity>
             
           </View>
         </View>
 
         <Modal
           visible={this.state.modalVisible}
-          onRequestClose = {() => {this.hideModal()}}
+          onRequestClose = {() => {this.hideModal();}}
           transparent={true}
           style = {styles.modalContainer}
-          >
+        >
           <View elevation = {5} style = {styles.container2}>
             <ColorPicker/>
             <View style = {styles.container3}>
               <TouchableOpacity
-                  onPress={() => {
-                    this.hideModal();
-                  }}
+                onPress={() => {
+                  this.hideModal();
+                }}
               >
                 <Text style = {styles.textStyle}>CANCEL</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                  onPress={() => {
-                    this.hideModal();
-                  }}
+                onPress={() => {
+                  this.hideModal();
+                }}
               >
                 <Text style = {styles.textStyle}>OK</Text>
               </TouchableOpacity>
@@ -149,7 +156,7 @@ class AddDrugScreen extends Component {
         <View style={styles.footerStyle}>
           <RoundedButton
             onPress={() => this.onSubmit()}
-            name={"Submit"}
+            name={'Submit'}
             buttonStyle={styles.buttonStyle}
           />
         </View>
@@ -170,9 +177,9 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-    backgroundColor: "white"
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    backgroundColor: 'white'
   },
   modalContainer: {
   },
@@ -199,14 +206,14 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   buttonStyle: {
-    alignSelf: "center",
+    alignSelf: 'center',
     width: 200,
     height: 40
   },
   button: {
     borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
+    borderColor: 'gray',
+    alignSelf: 'center',
     width: 50,
     height: 37
   },
@@ -216,7 +223,7 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     height: 80,
     flexGrow: 1,
-    justifyContent: "center"
+    justifyContent: 'center'
   },
   form: {
     height: 40,
@@ -226,8 +233,8 @@ const styles = StyleSheet.create({
   },
   fieldContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });
