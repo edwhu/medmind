@@ -12,7 +12,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from "../../redux/actions/reminder";
 import ReminderIcon from "../../assets/03-Notifs.png";
-import EmptyReminderIcon from "../../assets/empty-reminder.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import EditButton from "../../components/EditButton/EditButton";
 import MinusButton from "../../components/MinusButton/MinusButton";
@@ -197,7 +196,7 @@ class ReminderScreen extends Component {
       </TouchableOpacity>
     );
 
-    if (this.props.reminders.length === 0) {
+    if (this.props.reminders.length !== 0) {
       return (
         <View>
           <EmptyReminderScreen
