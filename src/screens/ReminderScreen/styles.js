@@ -108,7 +108,7 @@ export default (styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
+    height: "100%", // can make this exact screen height
   },
   icon: {
     flexDirection: "row",

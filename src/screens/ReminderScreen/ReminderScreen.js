@@ -16,7 +16,8 @@ import EmptyReminderIcon from "../../assets/empty-reminder.png";
 import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
 import EditButton from "../../components/EditButton/EditButton";
 import MinusButton from "../../components/MinusButton/MinusButton";
-import EmptyReminderScreen from "../../components/MinusButton/MinusButton";
+import PlusButton from "../../components/PlusButton/PlusButton";
+import EmptyReminderScreen from "../EmptyScreens/EmptyReminderScreen";
 import { medmindBlue, drawerIconStyle } from "../../constants/styles";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -195,31 +196,32 @@ class ReminderScreen extends Component {
         <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
       </TouchableOpacity>
     );
-    const emptyReminderPage = (
-      <View style={styles.iconContainer}>
-        <Image source={EmptyReminderIcon} style={styles.icon} />
-        <Text style={styles.iconText}>No Reminders</Text>
-        <Text style={styles.iconTextBody}>
-          There are no reminders right now.{"\n"}
-          Use the <Text style={styles.smallPlus}> + </Text> 
-          button to add reminders.
-        </Text>
-      </View>
-    );
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          {this.props.reminders.length !== 0 ? editButton : null}
-          {this.props.reminders.length !== 0 ? reminders : emptyReminderPage}
-        </ScrollView>
-        <TouchableOpacity
-          style={styles.plusButton}
-          onPress={this.openReminderFormPage}
-        >
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity>
-      </View>
-    );
+
+    if (this.props.reminders.length === 0) {
+      return (
+        <View>
+          <EmptyReminderScreen
+            onPress={this.openReminderFormPage}/>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <ScrollView>
+            <TouchableOpacity onPress={this.onEditPress}>
+              <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+            </TouchableOpacity>
+            {reminders}
+          </ScrollView>
+          <TouchableOpacity
+            style={styles.plusButton}
+            onPress={this.openReminderFormPage}
+          >
+            <Text style={styles.plus}>+</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 
