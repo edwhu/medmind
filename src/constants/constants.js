@@ -162,3 +162,38 @@ export const testSounds = [
 ];
 
 export const drugTypes = ['Anti-Cancer', 'Side Effects', 'Supplements', 'Other'];
+
+export const EVENT_STATUSES = {
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE',
+  PENDING: 'PENDING',
+};
+
+export const testEvents = (
+  () => {
+    const ret = [];
+    const dayDifference = [-3, -2, -1, 0, 1, 2, 3];
+
+    dayDifference.forEach((difference) => {
+      testDrugs.forEach((drug, index) => {
+        const time = moment().startOf('day').add(dayDifference, 'days').add(index + difference, 'hours');
+        const isPast = moment().diff(time) > 0;
+        let status = EVENT_STATUSES.PENDING;
+        if (isPast) {
+          status = [EVENT_STATUSES.SUCCESS, EVENT_STATUSES.FAILURE][index % 2];
+        }
+
+        ret.push({
+          time,
+          status,
+          drugId: drug.id,
+        });
+      });
+    });
+
+
+    return ret;
+  }
+)();
+
+console.log('testEvents:', testEvents);
