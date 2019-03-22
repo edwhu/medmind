@@ -142,15 +142,9 @@ export default class DayViewScreen extends Component {
   componentDidMount(){
     AsyncStorage.getItem("alreadyLaunched").then(value => {
         if(value == null){
-            console.log("value was null");
-             AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
-             this.setState({firstLaunch: true});
+             AsyncStorage.setItem('alreadyLaunched', 'true');
              this.props.navigation.navigate("termsAndConditionsScreen");
-        }
-        else{
-            console.log("value was not null");
-             this.setState({firstLaunch: false});
-        }}) // Add some error handling, also you can simply do this.setState({fistLaunch: value == null})
+        }})
   }
 
   render() {
