@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 
- export default class CheckboxInput extends Component {
+export default class CheckboxInput extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.bool.isRequired,
   };
 
-   render() {
+  render() {
     const { onChange, value } = this.props;
     return <TouchableOpacity
       onPress={() => onChange(!value)}
     >
       <View style={ value ? styles.checked : styles.unchecked } />
-    </TouchableOpacity>
+    </TouchableOpacity>;
   }
-};
+}
 
  const styles = StyleSheet.create({
   checked: {

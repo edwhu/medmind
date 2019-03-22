@@ -173,10 +173,10 @@ export const testEvents = (
   () => {
     const ret = [];
     const dayDifference = [-3, -2, -1, 0, 1, 2, 3];
-
+    let id = 0;
     dayDifference.forEach((difference) => {
       testDrugs.forEach((drug, index) => {
-        const time = moment().startOf('day').add(dayDifference, 'days').add(index + difference, 'hours');
+        const time = moment().startOf('day').add(difference, 'days').add(index, 'hours');
         const isPast = moment().diff(time) > 0;
         let status = EVENT_STATUSES.PENDING;
         if (isPast) {
@@ -186,7 +186,12 @@ export const testEvents = (
         ret.push({
           time,
           status,
+          // TODO: pull the following properties by drugId instead of putting them in this data model
           drugId: drug.id,
+          name: drug.name,
+          dosage: drug.dosage,
+          color: drug.color,
+          id: id++,
         });
       });
     });
@@ -195,5 +200,3 @@ export const testEvents = (
     return ret;
   }
 )();
-
-console.log('testEvents:', testEvents);

@@ -5,6 +5,8 @@ import styles from './styles';
 import { ScrollView, FlatList } from 'react-native';
 import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
+import moment from 'moment';
+import { connect } from 'react-redux';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -116,7 +118,7 @@ const drugsByEvents = [
   }
 ];
 
-export default class DayViewScreen extends Component {
+class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
@@ -141,7 +143,7 @@ export default class DayViewScreen extends Component {
           />
           <View style={styles.dayVerticalListWrapper}>
             <FlatList
-              data={drugsByEvents}
+              data={this.props.drugs}
               renderItem={({ item }) => <EventInDayView event={item} />}
               style={styles.dayVerticalList}
             />
@@ -151,3 +153,18 @@ export default class DayViewScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const todayString = moment().format('YYYY/MM/DD');
+  const events = state.eventsReducer.byDay[todayString] || [];
+  const orderedTimes = Object.keys(events).sort();
+  return {
+    drugs: orderedTimes.map(time => ({
+      time: moment(time, 'HH:mm').format('hh:mm a'),
+      key: time,
+      drugs: events[time],
+    })),
+  };
+};
+
+export default connect(mapStateToProps)(DayViewScreen);
