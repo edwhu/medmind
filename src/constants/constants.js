@@ -28,130 +28,130 @@ export const DAYS = {
 export const asNeededDrugs = [
   {
     id: 1,
-    key: "1",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#FFDF00"
+    key: '1',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#FFDF00'
   },
   {
     id: 2,
-    key: "2",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#0000ff"
+    key: '2',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#0000ff'
   },
   {
     id: 3,
-    key: "3",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#009900"
+    key: '3',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#009900'
   },
   {
     id: 4,
-    key: "4",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#090990"
+    key: '4',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#090990'
   },
   {
     id: 5,
-    key: "5",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#123456"
+    key: '5',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#123456'
   },
   {
     id: 6,
-    key: "6",
-    name: "Lorazepam",
-    dosage: "2 mg",
-    color: "#990099"
+    key: '6',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#990099'
   }
 ];
 
 export const drugsByEvents = [
   {
-    time: "7:00 PM",
-    key: "1",
+    time: '7:00 PM',
+    key: '1',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '1',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#123456"
+        color: '#123456'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#990099"
+        color: '#990099'
       }
     ]
   },
   {
-    time: "8:00 PM",
-    key: "2",
+    time: '8:00 PM',
+    key: '2',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '1',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#0000ff"
+        color: '#0000ff'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#0000ff"
+        color: '#0000ff'
       }
     ]
   },
   {
-    time: "9:00 PM",
-    key: "3",
+    time: '9:00 PM',
+    key: '3',
     drugs: [
       {
         id: 1,
-        key: "1",
-        name: "Tylenol",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '1',
+        name: 'Tylenol',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#0000ff"
+        color: '#0000ff'
       },
       {
         id: 2,
-        key: "2",
-        name: "Lorazepam",
-        dosage: "2 mg",
-        doctor: "Dr. Who",
-        frequency: "5x a day",
-        startDate: moment().subtract(3, "days"),
+        key: '2',
+        name: 'Lorazepam',
+        dosage: '2 mg',
+        doctor: 'Dr. Who',
+        frequency: '5x a day',
+        startDate: moment().subtract(3, 'days'),
         endDate: moment(),
-        color: "#0000ff"
+        color: '#0000ff'
       }
     ]
   }
@@ -225,45 +225,54 @@ export const testReminders = [
   {
     id: 1,
     drugId: 1,
-    time: moment("19:00", "HH:mm"),
-    repeat: "week",
-    dosage: "500mg",
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '500mg',
     snooze: false,
     snoozeDrug: false
   },
   {
     id: 2,
     drugId: 2,
-    time: moment("19:00", "HH:mm"),
-    repeat: "week",
-    dosage: "200mg",
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '200mg',
     snooze: false,
     snoozeDrug: false
   },
   {
     id: 3,
     drugId: 3,
-    time: moment("19:00", "HH:mm"),
-    repeat: "week",
-    dosage: "700mg",
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '700mg',
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 6,
+    drugId: 3,
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '700mg',
     snooze: false,
     snoozeDrug: false
   },
   {
     id: 4,
     drugId: 4,
-    time: moment("21:00", "HH:mm"),
-    repeat: "day",
-    dosage: "400mg",
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'day',
+    dosage: '400mg',
     snooze: true,
     snoozeDrug: true
   },
   {
     id: 5,
     drugId: 5,
-    time: moment("21:00", "HH:mm"),
-    repeat: "day",
-    dosage: "100mg",
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'day',
+    dosage: '100mg',
     snooze: false,
     snoozeDrug: true
   }
@@ -273,27 +282,27 @@ export const testRemindersUnsorted = [
   {
     id: 1,
     drugId: 1,
-    time: moment("19:00", "HH:mm"),
-    repeat: "week",
-    dosage: "500mg",
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '500mg',
     snooze: false,
     snoozeDrug: false
   },
   {
     id: 2,
     drugId: 2,
-    time: moment("21:00", "HH:mm"),
-    repeat: "week",
-    dosage: "200mg",
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '200mg',
     snooze: false,
     snoozeDrug: false
   },
   {
     id: 3,
     drugId: 3,
-    time: moment("21:00", "HH:mm"),
-    repeat: "week",
-    dosage: "700mg",
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '700mg',
     snooze: false,
     snoozeDrug: false
   },

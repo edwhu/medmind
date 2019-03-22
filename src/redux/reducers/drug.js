@@ -1,5 +1,5 @@
 import { ADD_DRUG, DELETE_DRUGS, TOGGLE_DRUG_EDIT, TOGGLE_DRUG_TO_DELETE, EDIT_DRUG } from '../../constants/action-types';
-import { testDrugs, drugsByEvents } from '../../constants/constants';
+import { testDrugs } from '../../constants/constants';
 
 
 let drugState = {
@@ -44,12 +44,12 @@ export default (state = drugState, action) => {
       ...state,
       drugIdsToDelete: [...state.drugIdsToDelete, drugId],
     };
-    case EDIT_DRUG:
-      const editedDrug = action.drug;
-      const updatedDrugInfo = [...state.drugInfo.filter(drug => drug.id !== editedDrug.id), 
-                            Object.assign({}, editedDrug)];
-      state = {...state, drugInfo: updatedDrugInfo};
-      return state;
+  case EDIT_DRUG:
+    const editedDrug = action.drug;
+    const updatedDrugInfo = [...state.drugInfo.filter(drug => drug.id !== editedDrug.id), 
+      Object.assign({}, editedDrug)];
+    state = {...state, drugInfo: updatedDrugInfo};
+    return state;
   default:
     return state;
   }

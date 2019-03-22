@@ -1,35 +1,35 @@
-import React, { Component } from "react";
-import { Image, Text, View, StyleSheet } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import CollapsibleDatePicker from "../../components/CollapsibleDatePicker/CollapsibleDatePicker";
-import FormField from "../../components/FormField/FormField";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
-import { KeyboardAvoidingView } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { medmindBlue } from "../../constants/styles";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { editDrug } from "../../redux/actions/drug";
-import moment from "moment";
-import { drawerIconStyle } from "../../constants/styles";
-import AddDrugIcon from "../../assets/07-Settings.png";
+import React, { Component } from 'react';
+import { Image, Text, View, StyleSheet } from 'react-native';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
+import FormField from '../../components/FormField/FormField';
+import RoundedButton from '../../components/RoundedButton/RoundedButton';
+import { KeyboardAvoidingView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { medmindBlue } from '../../constants/styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { editDrug } from '../../redux/actions/drug';
+import moment from 'moment';
+import { drawerIconStyle } from '../../constants/styles';
+import AddDrugIcon from '../../assets/07-Settings.png';
 
 class EditDrugScreen extends Component {
 
   static navigationOptions = {
-    drawerLabel: "Edit Drug",
+    drawerLabel: 'Edit Drug',
     drawerIcon: () => <Image source={AddDrugIcon} style={drawerIconStyle} />
   };
 
   state = {
     id: 1, // take from drug
-    name: "Bevacizumab",
-    dosage: "500mg",
-    doctor: "Dr. Who",
-    frequency: "5x a day",
-    startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days"),
-    color: "#990099"
+    name: 'Bevacizumab',
+    dosage: '500mg',
+    doctor: 'Dr. Who',
+    frequency: '5x a day',
+    startDate: moment().subtract(10, 'days'),
+    endDate: moment().add(10, 'days'),
+    color: '#990099'
   };
 
   constructor(props) {
@@ -45,13 +45,13 @@ class EditDrugScreen extends Component {
       frequency: drug.frequency,
       startDate: drug.startDate,
       endDate: drug.endDate,
-      color: "#FFDF00"
+      color: '#FFDF00'
     };
-    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))]
+    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
 
   }
 
-  componentDidFocus(payload) {
+  componentDidFocus() {
     const { navigation } = this.props;
     const drug = navigation.getParam('drug');
     this.setState(drug);
@@ -67,7 +67,7 @@ class EditDrugScreen extends Component {
 
     return (
       <KeyboardAvoidingView style={styles.container}>
-        <ScreenHeader {...this.props} title={"Drug Entry"} />
+        <ScreenHeader {...this.props} title={'Drug Entry'} />
         <FormField
           header="Drug Name"
           onChange={name => this.setState({ name })}
@@ -124,7 +124,7 @@ class EditDrugScreen extends Component {
               this.props.editDrug(this.state);
               navigation.navigate('dayViewScreen');
             }}
-            name={"Submit"}
+            name={'Submit'}
             buttonStyle={styles.buttonStyle}
           />
         </View>
@@ -144,12 +144,12 @@ export default connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "stretch",
-    backgroundColor: "white"
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    backgroundColor: 'white'
   },
   buttonStyle: {
-    alignSelf: "center",
+    alignSelf: 'center',
     width: 200,
     height: 40
   },
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     height: 80,
     flexGrow: 1,
-    justifyContent: "center"
+    justifyContent: 'center'
   },
   form: {
     height: 40,
@@ -169,8 +169,8 @@ const styles = StyleSheet.create({
   },
   fieldContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });

@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import styles from "./styles";
-import DayIcon from "../../assets/00-Day.png";
-import { ScrollView, FlatList } from "react-native";
-import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
-import EventInDayView from "../../components/EventInDayView/EventInDayView";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, Text } from 'react-native';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import styles from './styles';
+import { ScrollView, FlatList } from 'react-native';
+import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
+import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
-import { connect } from "react-redux";
-import moment from "moment";
+import { connect } from 'react-redux';
+import moment from 'moment';
 
 class DayViewScreen extends Component {
   static propTypes = {
@@ -42,8 +41,8 @@ class DayViewScreen extends Component {
       const drugId = reminder.drugId;
       let drug = this.getDrug(drugId);
       const reminderTime = reminder.time;
-      const reminderTimeString = reminder.time.format("HH:mm");
-      const currentTimeString = (currentTime != null) ? currentTime.format("HH:mm") : null;
+      const reminderTimeString = reminder.time.format('HH:mm');
+      const currentTimeString = (currentTime != null) ? currentTime.format('HH:mm') : null;
       // If we find a new time segment to take drugs, create a new entry
       if(currentTimeString != reminderTimeString){
         key++;
@@ -95,7 +94,7 @@ class DayViewScreen extends Component {
               showsHorizontalScrollIndicator={false}
               data={drugs}
               renderItem={({ item }) => <DrugItemInDayView drug={item}/>}
-              keyExtractor={(item, index) => item.id.toString()}
+              keyExtractor={(item) => item.id.toString()}
             />
             <View style={styles.dayVerticalListWrapper}>
               <FlatList
