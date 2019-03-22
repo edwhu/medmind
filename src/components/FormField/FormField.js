@@ -23,22 +23,22 @@ export default class FormField extends Component {
   render() {
     let content;
 
-     switch(this.props.type) {
-      case 'checkbox': {
-        content = <CheckboxInput
-          onChange={this.props.onChange}
-          value={this.props.value}
-        />;
-        break;
-      }
+    switch(this.props.type) {
+    case 'checkbox': {
+      content = <CheckboxInput
+        onChange={this.props.onChange}
+        value={this.props.value}
+      />;
+      break;
+    }
 
-      default: {
-        content = <TextInput
-          onChangeText={this.props.onChange}
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-        />;
-      }
+    default: {
+      content = <TextInput
+        onChangeText={this.props.onChange}
+        value={this.props.value}
+        placeholder={this.props.placeholder}
+      />;
+    }
     }
 
 

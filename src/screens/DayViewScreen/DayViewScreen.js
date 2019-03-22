@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import styles from './styles';
+import DayIcon from '../../assets/00-Day.png';
 import { ScrollView, FlatList } from 'react-native';
 import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
+import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -116,7 +121,7 @@ const drugsByEvents = [
   }
 ];
 
-export default class DayViewScreen extends Component {
+class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
@@ -128,26 +133,55 @@ export default class DayViewScreen extends Component {
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
   organizeDrugsByEvent() {}
 
+  navigateCamera = () => {
+    this.props.navigation.navigate('cameraScreen');
+  }
+  navigateAddDrug = () => {
+    this.props.navigation.navigate('addDrugScreen');
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Text style={styles.text}>As Needed</Text>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={asNeededDrugs}
-            renderItem={({ item }) => <DrugItemInDayView drug={item} />}
-          />
-          <View style={styles.dayVerticalListWrapper}>
+    if (this.props.drugs.length === 0) {
+      return (
+        <View>
+          <EmptyDrugScreen 
+            cameraOnPress={this.navigateCamera} 
+            drugOnPress={this.navigateAddDrug} />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <ScrollView>
+            <Text style={styles.text}>As Needed</Text>
             <FlatList
-              data={drugsByEvents}
-              renderItem={({ item }) => <EventInDayView event={item} />}
-              style={styles.dayVerticalList}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              data={asNeededDrugs}
+              renderItem={({ item }) => <DrugItemInDayView drug={item} />}
             />
-          </View>
-        </ScrollView>
-      </View>
-    );
+            <View style={styles.dayVerticalListWrapper}>
+              <FlatList
+                data={drugsByEvents}
+                renderItem={({ item }) => <EventInDayView event={item} />}
+                style={styles.dayVerticalList}
+              />
+            </View>
+          </ScrollView>
+        </View>
+      );
+    }
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    drugs: state.drugInfoReducer.drugInfo,
+  };
+};
+
+
+export default connect(
+  mapStateToProps,
+  null,
+)(DayViewScreen);
