@@ -37,12 +37,12 @@ class AddDrugScreen extends Component {
   });
   state = {
     asNeeded: false,
-    name: "Bevacizumab",
-    dosage: "500mg",
-    doctor: "Dr. Who",
-    frequency: "5x a day", 
-    startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days"),
+    name: 'Bevacizumab',
+    dosage: '500mg',
+    doctor: 'Dr. Who',
+    frequency: '5x a day', 
+    startDate: moment().subtract(10, 'days'),
+    endDate: moment().add(10, 'days'),
     color: '#AD2452',
     modalVisible: false,
     colorPicked: false,
@@ -106,32 +106,32 @@ class AddDrugScreen extends Component {
           type="checkbox"
         />
         { !this.state.asNeeded && <CollapsibleDatePicker
-            header="Start Date"
-            setDate={startDate => this.setState({ startDate })}
-            date={this.state.startDate}
-          /> }
+          header="Start Date"
+          setDate={startDate => this.setState({ startDate })}
+          date={this.state.startDate}
+        /> }
         { !this.state.asNeeded && <CollapsibleDatePicker
-            header="End Date"
-            setDate={endDate => this.setState({ endDate })}
-            date={this.state.endDate}
-          /> }
+          header="End Date"
+          setDate={endDate => this.setState({ endDate })}
+          date={this.state.endDate}
+        /> }
 
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Colors</Text>
             {!this.state.colorPicked && (
-            <TouchableOpacity
-              onPress = {() => {
-                this.showModal();
-              }}
-              hitSlop={{left: 100}}
+              <TouchableOpacity
+                onPress = {() => {
+                  this.showModal();
+                }}
+                hitSlop={{left: 100}}
               >
                 <Ionicons name="ios-arrow-forward" size={16} />
-            </TouchableOpacity>
+              </TouchableOpacity>
             )}
             {this.state.colorPicked && (
               <TouchableOpacity
-                onPress = {this.showModal()}
+                onPress = {this.showModal}
                 hitSlop={{left: 100}}
                 style={[styles.colorButton, color]}
               />
@@ -152,16 +152,14 @@ class AddDrugScreen extends Component {
             />
             <View style = {styles.container3}>
               <TouchableOpacity
-                onPress={() => {
-                  this.hideModal();
-                }}
+                onPress={this.hideModal}
               >
                 <Text style = {styles.textStyle}>CANCEL</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                  onPress={() => {
-                    this.onOK(this.refs['colorpicker'].state.value);
-                  }}
+                onPress={() => {
+                  this.onOK(this.refs['colorpicker'].state.value);
+                }}
               >
                 <Text style = {styles.textStyle}>OK</Text>
               </TouchableOpacity>
