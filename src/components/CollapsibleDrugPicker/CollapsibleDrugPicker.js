@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   PickerIOS,
   Text
-} from "react-native";
-import Collapsible from "react-native-collapsible";
-import PropTypes from "prop-types";
-import { drugTypes } from "../../constants/constants";
-import { medmindBlue } from "../../constants/styles";
+} from 'react-native';
+import Collapsible from 'react-native-collapsible';
+import PropTypes from 'prop-types';
+import { drugTypes } from '../../constants/constants';
+import { medmindBlue } from '../../constants/styles';
 
 export default class CollapsibleDatePicker extends Component {
   static propTypes = {
@@ -59,9 +59,9 @@ export default class CollapsibleDatePicker extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
 
   form: {

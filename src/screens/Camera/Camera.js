@@ -1,35 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
-  Image,
   Text,
   View,
   TouchableOpacity,
   Alert,
   StyleSheet
-} from "react-native";
-import { Camera, Permissions } from "expo";
-import { getFDA } from "../../utilities/FDA";
-import { Ionicons } from "@expo/vector-icons";
-import drugData from "../../assets/Products.json";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
-import { drawerIconStyle } from "../../constants/styles";
-import CameraIcon from "../../assets/07-Settings.png";
-import CameraHeader from "../../components/CameraHeader/CameraHeader.js";
+} from 'react-native';
+import { Camera, Permissions } from 'expo';
+import { getFDA } from '../../utilities/FDA';
+import { Ionicons } from '@expo/vector-icons';
+import drugData from '../../assets/Products.json';
+import RoundedButton from '../../components/RoundedButton/RoundedButton';
 
-const GOOGLE_API_KEY = "AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo";
+const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
 export default class CameraScreen extends React.Component {
   static navigationOptions =({navigation})=> ({
-    headerTitle: "Camera",
+    headerTitle: 'Camera',
     headerTitleStyle: {
-      color: "white",
-      fontWeight: "500",
-      fontFamily: "System",
+      color: 'white',
+      fontWeight: '500',
+      fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: "center",
-      marginLeft: "20.5%",
+      textAlign: 'center',
+      marginLeft: '20.5%',
     },
     headerLeft: null,
     headerRight:<TouchableOpacity 
@@ -54,21 +50,19 @@ export default class CameraScreen extends React.Component {
     this.drugSet = new Set(drugData);
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ hasCameraPermission: status === "granted" });
+    this.setState({ hasCameraPermission: status === 'granted' });
   }
 
   async takePicture() {
     if (!this.camera) {
       return;
     }
-    console.warn("takePicture");
     const photo = await this.camera.takePictureAsync({
       quality: 0,
       base64: true
     });
-    console.warn("base64 Photo taken");
     // // Google OCR request
     const body = JSON.stringify({
       requests: [
@@ -76,16 +70,13 @@ export default class CameraScreen extends React.Component {
           image: {
             content: photo.base64
           },
-          features: [{ type: "TEXT_DETECTION" }]
+          features: [{ type: 'TEXT_DETECTION' }]
         }
       ]
     });
-    console.warn("base64 body created, sending to google");
     try {
-      const res = await fetch(GOOGLE_API_URL, { method: "POST", body });
-      console.warn("response gotten!");
+      const res = await fetch(GOOGLE_API_URL, { method: 'POST', body });
       const json = await res.json();
-      // console.warn(JSON.stringify(json));
       const responses = json.responses;
       for (let rI = 0; rI < responses.length; rI++) {
         let response = responses[rI];
@@ -97,25 +88,23 @@ export default class CameraScreen extends React.Component {
           const txt = textAnnotations[i];
           const desc = txt.description.toUpperCase();
           if (this.drugSet.has(desc)) {
-            Alert.alert(`Found a drug name`, desc);
+            Alert.alert('Found a drug name', desc);
             const fdaDrug = await getFDA(desc);
-            console.log("fda drug", fdaDrug);
             if (fdaDrug.error) {
               throw new Error(fdaDrug.error.message);
             }
             const results = fdaDrug.results;
             if (results.length == 0) {
-              throw new Error("no FDA results");
+              throw new Error('no FDA results');
             }
-            const firstDrug = results[0];
-            console.warn("Drug Found: " + firstDrug.openfda.brand_name[0]);
+            // const firstDrug = results[0];
             // navigateToDrugFormScreen(this.props, desc, firstDrug);
             return;
           }
         }
       }
     } catch (err) {
-      console.error(err);
+      // TODO
     }
     const {navigate} = this.props.navigation.navigate;
     navigate('addDrugScreen');
@@ -140,8 +129,8 @@ export default class CameraScreen extends React.Component {
             <View
               style={{
                 flex: 1,
-                backgroundColor: "transparent",
-                flexDirection: "row"
+                backgroundColor: 'transparent',
+                flexDirection: 'row'
               }}
             >
               <TouchableOpacity
@@ -164,14 +153,14 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   cameraCircle: {
     flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center"
+    alignSelf: 'flex-end',
+    alignItems: 'center'
   },
   cameraIcon: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -179,8 +168,8 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
+    borderColor: 'gray',
+    alignSelf: 'center',
     width: 50,
     height: 37,
   },

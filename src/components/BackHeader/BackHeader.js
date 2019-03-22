@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import StatusBarBackground from "../StatusBarBackground/StatusBarBackground";
-import RoundedButton from "../RoundedButton/RoundedButton";
-import { medmindBlue } from "../../constants/styles";
+import StatusBarBackground from '../StatusBarBackground/StatusBarBackground';
+import RoundedButton from '../RoundedButton/RoundedButton';
+import { medmindBlue } from '../../constants/styles';
 
 export default class CameraHeader extends Component {
   static propTypes = {
@@ -31,8 +31,8 @@ export default class CameraHeader extends Component {
   };
 
   onBackButtonPress = () => {
-  const {navigate} = this.props.navigation;
-  navigate('timelineScreen');
+    const {navigate} = this.props.navigation;
+    navigate('timelineScreen');
   }
 
   render() {
@@ -42,11 +42,11 @@ export default class CameraHeader extends Component {
         <StatusBarBackground />
         <View style={styles.appBar}>
           {hasMenu && (
-             <RoundedButton
-             onPress={() => this.onBackButtonPress()}
-             name={"Back"}
-             buttonStyle={styles.buttonStyle}
-           />
+            <RoundedButton
+              onPress={() => this.onBackButtonPress()}
+              name={'Back'}
+              buttonStyle={styles.buttonStyle}
+            />
           )}
           {title && (
             <Text style={styles.appBarTitle}>{title}</Text>
@@ -74,47 +74,47 @@ const styles = StyleSheet.create({
   container: {
     height: 80,
     backgroundColor: medmindBlue,
-    width: "100%"
+    width: '100%'
   },
   appBar: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 15,
     marginRight: 10
   },
   hamburgerWrapper: {
     width: 32,
     height: 32,
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1
   },
   hamburgerIcon: {
-    alignSelf: "flex-start"
+    alignSelf: 'flex-start'
   },
   settingsWrapper: {
     width: 32,
     height: 32,
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1
   },
   settingsIcon: {
-    alignSelf: "flex-end"
+    alignSelf: 'flex-end'
   },
   appBarTitle: {
-    color: "white",
-    fontWeight: "500",
-    fontFamily: "System",
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: 'System',
     fontSize: 24,
     flex: 8,
-    textAlign: "center",
+    textAlign: 'center',
     position: 'relative',
     right: 7,
   },
   buttonStyle: {
     borderWidth: 2,
-    borderColor: "gray",
-    alignSelf: "center",
+    borderColor: 'gray',
+    alignSelf: 'center',
     width: 50,
     height: 37
   },

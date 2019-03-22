@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text
-} from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { medmindBlue } from '../../constants/styles';
 
 export default class MinusButton extends Component {
   static propTypes = {
@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   minus: {
-    color: "white",
+    color: 'white',
     fontSize: 30,
-    fontWeight: "600",
+    fontWeight: '600',
     bottom: 9
   },
   edit: {

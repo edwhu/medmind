@@ -18,7 +18,7 @@ export default class ColorPalette extends Component {
     this.renderColorOption = this.renderColorOption.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { value } = this.props;
     if (nextProps.value !== value) {
       this.setState({ color: nextProps.value });
@@ -113,7 +113,7 @@ ColorPalette.defaultProps = {
   onChange: () => {},
   defaultColor: null,
   scaleToWindow: false,
-  title: "Color Palette:",
+  title: 'Color Palette:',
   colors: [
     '#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9', '#3498DB', '#1ABC9C',
     '#16A085', '#27AE60', '#2ECC71', '#F1C40F', '#F39C12', '#E67E22', '#D35400',
