@@ -1,13 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ListItem from "../../components/ListItem/ListItem";
-import { medmindBlue } from "../../constants/styles";
-import styles from "./styles";
+import React, { Component } from 'react';
+import { View, ScrollView } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import ListItem from '../../components/ListItem/ListItem';
+import styles from './styles';
 
 class ChooseDrugScreen extends Component {
   static propTypes = {};
@@ -18,17 +15,18 @@ class ChooseDrugScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Drug Names"
+    title: this.props.title || 'Drug Names'
   };
 
   setDrug = (drugId, dosage) => {
     if (this.props.newReminder.drugId != drugId) {
-      this.props.updateNewReminder("drugId", drugId);
-      this.props.updateNewReminder("dosage", dosage);
+      this.props.updateNewReminder('drugId', drugId);
+      this.props.updateNewReminder('dosage', dosage);
     }
   };
 
@@ -57,7 +55,7 @@ class ChooseDrugScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     drugs: state.drugInfoReducer.drugInfo,
     newReminder: state.remindersReducer.newReminder,

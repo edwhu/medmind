@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import { Dimensions, View, Text, StyleSheet, Platform, TextInput, Picker, TouchableOpacity } from 'react-native';
-import { medmindBlue } from '../../constants/styles';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 
@@ -30,21 +29,21 @@ class RepeatPrompt extends Component {
         <View style={styles.row}>
           <TouchableOpacity 
             style={[styles.repeatButton, (this.props.newReminder.repeatInterval === 'day') && styles.pressedButton]} 
-            onPress={() => {this.props.onPress('day')}}>
+            onPress={() => {this.props.onPress('day');}}>
             <Text style={[styles.option, (this.props.newReminder.repeatInterval === 'day') && styles.pressedText]}>days</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={[styles.repeatButton, (this.props.newReminder.repeatInterval === 'week') && styles.pressedButton]} 
-            onPress={() => {this.props.onPress('week')}}>
+            onPress={() => {this.props.onPress('week');}}>
             <Text style={[styles.option, (this.props.newReminder.repeatInterval === 'week') && styles.pressedText]}>weeks</Text>
           </TouchableOpacity>
         </View>
       </View>
-    )
+    );
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     newReminder: state.remindersReducer.newReminder,
   };

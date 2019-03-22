@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
-import { Ionicons } from "@expo/vector-icons";
+import React, { Component } from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class EditButton extends Component {
   constructor(props) {
@@ -27,10 +26,10 @@ export default class EditButton extends Component {
 const styles = StyleSheet.create({
   arrowButton: {
     fontSize: 35,
-    color: "#BDBDBD",
+    color: '#BDBDBD',
   },
   container: {
-    position: "absolute",
+    position: 'absolute',
     right: 32
   }
 });

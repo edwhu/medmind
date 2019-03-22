@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
+import React, { Component } from 'react';
+import { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { medmindBlue } from '../../constants/styles';
 export default class RoundedButton extends Component {
   constructor(props) {
     super(props);
@@ -34,15 +34,15 @@ export default class RoundedButton extends Component {
 
 const styles = StyleSheet.create({
   loginButton: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: medmindBlue,
     borderRadius: 8
   },
   loginButtonText: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white"
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white'
   }
 });

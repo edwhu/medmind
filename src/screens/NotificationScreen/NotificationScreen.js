@@ -1,21 +1,20 @@
-import React, { Component } from "react";
-import { Image, View, Button } from "react-native";
-import { drawerIconStyle } from "../../constants/styles";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { fireNotification } from "../../utilities/notifications";
-import NotificationIcon from "../../assets/07-Settings.png";
+import React, { Component } from 'react';
+import { Image, View, Button } from 'react-native';
+import { drawerIconStyle } from '../../constants/styles';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fireNotification } from '../../utilities/notifications';
+import NotificationIcon from '../../assets/07-Settings.png';
 
 class NotificationScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Notification List",
+    drawerLabel: 'Notification List',
     drawerIcon: () => (
       <Image source={NotificationIcon} style={drawerIconStyle} />
     )
   };
 
-  onSubmit = e => {
-    console.log("Inside onSubmit");
+  onSubmit = () => {
     let drugs = this.props.testDrugs;
     let reminders = this.props.testReminders;
     // console.log(drugs)
@@ -33,12 +32,12 @@ class NotificationScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Button
           icon={{
-            name: "arrow-right",
+            name: 'arrow-right',
             size: 15,
-            color: "blue"
+            color: 'blue'
           }}
           title="Get Notification"
           onPress={this.onSubmit}
@@ -48,7 +47,7 @@ class NotificationScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     testDrugs: state.drugInfoReducer.drugInfo,
     testReminders: state.remindersReducer.reminders

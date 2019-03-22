@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text } from "react-native";
-import styles from "./styles";
-import { ScrollView, FlatList } from "react-native";
-import GlobalDrugListItem from "../../components/GlobalDrugListItem/GlobalDrugListItem";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import { toggleDrugToDelete } from "../../redux/actions/drug";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, Text } from 'react-native';
+import styles from './styles';
+import { ScrollView, FlatList } from 'react-native';
+import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import { toggleDrugToDelete } from '../../redux/actions/drug';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class GlobalDrugListScreen extends Component {
   static propTypes = {
@@ -110,7 +110,7 @@ const mapStateToProps = (state) => {
     editing: state.drugInfoReducer.editing,
     drugIdsToDelete: state.drugInfoReducer.drugIdsToDelete,
   };
-}
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({ toggleDrugToDelete }, dispatch);
 
