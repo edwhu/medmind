@@ -29,7 +29,7 @@ const initialState = {
     acc[day][hour].push(event);
     return acc;
   }, {}),
-}; // events are keyed by ID
+};
 
 const eventsReducer = (state = initialState, action) => {
   const { type } = action;
