@@ -34,9 +34,6 @@ const styles = StyleSheet.create({
     height: 74,
     borderRadius: 37,
     justifyContent: 'center',
-    alignItems:'center',
-    position: 'absolute',
-    justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
     bottom: 24,
@@ -47,10 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 55,
     marginBottom: 6,
     fontWeight: '200',
-    color: 'white',
-    fontSize: 55,
-    marginBottom: 6,
-    fontWeight: '200'
   },
 });
 

@@ -27,16 +27,20 @@ class AddDrugScreen extends Component {
       flex: 1,
       textAlign: 'center',
       marginRight: '23%',
-    },
-    headerLeft: <RoundedButton
+    },  
+    headerLeft: <TouchableOpacity 
       onPress={() => navigation.dangerouslyGetParent().navigate('timelineScreen')}
-      name={'Back'}
-      buttonStyle={styles.button}
-    />,
+      style={styles.back}
+    >
+      <View>
+        <Text style={styles.text}>
+                      Back
+        </Text>
+      </View>
+    </TouchableOpacity>,
     headerRight: null
   });
   state = {
-    asNeeded: false,
     name: 'Bevacizumab',
     dosage: '500mg',
     doctor: 'Dr. Who',
@@ -71,6 +75,7 @@ class AddDrugScreen extends Component {
       color: selectedColor});
     this.hideModal();
   }
+  
   render() {
     const color = {backgroundColor: this.state.color};
     return (
@@ -231,12 +236,12 @@ const styles = StyleSheet.create({
     width: 200,
     height: 40
   },
-  button: {
-    borderWidth: 2,
-    borderColor: 'gray',
-    alignSelf: 'center',
-    width: 50,
-    height: 37
+  text: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  back: {
+    marginLeft: 10,
   },
   colorButton: {
     borderWidth:1,
@@ -244,6 +249,13 @@ const styles = StyleSheet.create({
     width:30,
     height:30,
     borderRadius:15,
+  },
+  button: {
+    borderWidth: 2,
+    borderColor: 'gray',
+    alignSelf: 'center',
+    width: 50,
+    height: 37
   },
   footerStyle: {
     flex: 1,
@@ -264,5 +276,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
-  }
+  },
 });

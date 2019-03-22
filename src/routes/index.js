@@ -70,8 +70,9 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: 'reminderScreen',
-    defaultNavigationOptions: () => ({
-      headerTitle: 'Medmind',
+    // eslint-disable-next-line no-unused-vars
+    defaultNavigationOptions: ({navigation}) => ({
+      headerTitle: 'MedMind',
       headerStyle: {
         backgroundColor: medmindBlue,
       },
@@ -99,7 +100,7 @@ const withHeader = (screen, routeName, overrides = {}) =>
     {
       headerMode: 'screen',
       defaultNavigationOptions: ({navigation}) => ({
-        headerTitle: 'Medmind',
+        headerTitle: 'MedMind',
         headerStyle: {
           backgroundColor: medmindBlue,
         },

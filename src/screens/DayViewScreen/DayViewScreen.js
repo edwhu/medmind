@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Text, Image } from 'react-native';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import { View, Text} from 'react-native';
 import styles from './styles';
-import DayIcon from '../../assets/00-Day.png';
 import { ScrollView, FlatList } from 'react-native';
 import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [

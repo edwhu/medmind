@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native';
 import EmptyReminderIcon from '../../assets/empty-reminder.png';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import PlusButton from '../../components/PlusButton/PlusButton';
-import { medmindBlue } from '../../constants/styles';
 import styles from './styles';
 
 export default class EmptyReminderScreen extends Component {
