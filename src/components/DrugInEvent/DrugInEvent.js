@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   // Modal,
   StyleSheet,
@@ -20,7 +20,6 @@ import NotesIcon from "../../assets/icon-notes.jpg";
 import EditIcon from "../../assets/icon-edit2.png"
 import { getFadedFromHex } from "../../utilities/helpers";
 
-
 const createStyles = drugColor => {
   const lighterColor = getFadedFromHex(drugColor);
   return StyleSheet.create({
@@ -29,14 +28,14 @@ const createStyles = drugColor => {
       height: 75,
       borderTopLeftRadius: 37,
       borderBottomLeftRadius: 37,
-      backgroundColor: drugColor + "50",
+      backgroundColor: drugColor + '50',
       marginBottom: 10,
-      flexDirection: "row",
+      flexDirection: 'row',
       paddingLeft: 20,
       paddingTop: 5,
       paddingBottom: 5,
-      alignItems: "center",
-      shadowColor: "#000",
+      alignItems: 'center',
+      shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.3,
       shadowRadius: 2
@@ -45,7 +44,7 @@ const createStyles = drugColor => {
       marginLeft: 10
     },
     drugName: {
-      fontWeight: "bold"
+      fontWeight: 'bold'
     },
     modalContainer: {
       justifyContent: 'space-between',
@@ -140,21 +139,22 @@ class DrugInEvent extends Component{
   state = {
     modalVisible: false,
     editFormVisible: false,
-    styles: createStyles(this.props.drug.color)
+    // styles: createStyles(this.props.drug.color)
   };
 
   setModalVisible = visible => {
     this.setState({modalVisible: visible});
   };
 
-  componentWillReceiveProps() {
-    this.setState({styles: createStyles(this.props.drug.color)});
-  }
+  // componentWillReceiveProps() {
+  //   this.setState({styles: createStyles(this.props.drug.color)});
+  // }
 
   render(){
     const { drug } = this.props;
-    const { styles, modalVisible } = this.state;
+    const { modalVisible } = this.state;
     const color = drug.color;
+    const styles = createStyles(color);
     return (
         <View>
           <Modal

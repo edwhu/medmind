@@ -70,25 +70,25 @@ class EditDrugScreen extends Component {
         <ScreenHeader {...this.props} title={"Drug Entry"} />
         <FormField
           header="Drug Name"
-          onChangeText={name => this.setState({ name })}
+          onChange={name => this.setState({ name })}
           value={drug.name}
           placeholder={drug.name}
         />
         <FormField
           header="Dosage"
-          onChangeText={dosage => this.setState({ dosage })}
+          onChange={dosage => this.setState({ dosage })}
           value={drug.dosage}
           placeholder={drug.dosage}
         />
         <FormField
           header="Doctor"
-          onChangeText={doctor => this.setState({ doctor })}
+          onChange={doctor => this.setState({ doctor })}
           value={drug.doctor}
           placeholder={drug.doctor}
         />
         <FormField
           header="Frequency"
-          onChangeText={frequency => this.setState({ frequency })}
+          onChange={frequency => this.setState({ frequency })}
           value={drug.frequency}
           placeholder={drug.frequency}
         />
