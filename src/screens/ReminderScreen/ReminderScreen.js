@@ -11,13 +11,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from '../../redux/actions/reminder';
 import ReminderIcon from '../../assets/03-Notifs.png';
-import StatusBarBackground from '../../components/StatusBarBackground/StatusBarBackground';
 import EditButton from '../../components/EditButton/EditButton';
 import MinusButton from '../../components/MinusButton/MinusButton';
-import PlusButton from '../../components/PlusButton/PlusButton';
 import EmptyReminderScreen from '../EmptyScreens/EmptyReminderScreen';
-import { medmindBlue, drawerIconStyle } from '../../constants/styles';
-import { Ionicons } from '@expo/vector-icons';
+import { medmindBlue} from '../../constants/styles';
 import styles from './styles';
 
 class ReminderScreen extends Component {
@@ -187,11 +184,6 @@ class ReminderScreen extends Component {
         </View>
       );
     });
-    const editButton = (
-      <TouchableOpacity onPress={this.onEditPress}>
-        <Text>{this.state.editMode ? 'Done' : 'Edit'}</Text>
-      </TouchableOpacity>
-    );
 
     if (this.props.reminders.length === 0) {
       return (

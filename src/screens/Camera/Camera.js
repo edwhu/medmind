@@ -10,7 +10,6 @@ import { Camera, Permissions } from 'expo';
 import { getFDA } from '../../utilities/FDA';
 import { Ionicons } from '@expo/vector-icons';
 import drugData from '../../assets/Products.json';
-import RoundedButton from '../../components/RoundedButton/RoundedButton';
 
 const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
@@ -29,15 +28,15 @@ export default class CameraScreen extends React.Component {
     },
     headerLeft: null,
     headerRight:<TouchableOpacity 
-                  onPress={() => navigation.dangerouslyGetParent().navigate("addDrugScreen")}
-                  style={styles.back}
-                >
-                  <View>
-                    <Text style={styles.text}>
+      onPress={() => navigation.dangerouslyGetParent().navigate('addDrugScreen')}
+      style={styles.back}
+    >
+      <View>
+        <Text style={styles.text}>
                       Skip
-                    </Text>
-                  </View>
-                </TouchableOpacity>
+        </Text>
+      </View>
+    </TouchableOpacity>
   });
   state = {
     hasCameraPermission: null,

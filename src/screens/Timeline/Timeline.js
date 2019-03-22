@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, ScrollView, StyleSheet, Text, Image, } from 'react-native';
+import { View,  Image} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import WeekIcon from '../../assets/01-Week.png';
 import WeekSwiper from './WeekSwiper/WeekSwiper';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
-import { MONTHS } from '../../constants/constants';
 import styles from './styles';
-import moment from 'moment';
-import RoundedButton from '../../components/RoundedButton/RoundedButton';
 
 class TimelineScreen extends Component {
   static navigationOptions = {

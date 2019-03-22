@@ -5,7 +5,6 @@ import styles from './styles';
 import { ScrollView, FlatList } from 'react-native';
 import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { toggleDrugToDelete } from '../../redux/actions/drug';
 import { bindActionCreators } from 'redux';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';

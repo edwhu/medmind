@@ -15,7 +15,7 @@ export default class CameraHeader extends Component {
   };
 
   static defaultProps = {
-    title: "MedMind",
+    title: 'MedMind',
     hasMenu: true,
     hasSettings: true,
     fontSize: 24

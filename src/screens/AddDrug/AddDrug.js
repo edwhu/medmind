@@ -25,28 +25,28 @@ class AddDrugScreen extends Component {
       fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: "center",
-      marginRight: "23%",
+      textAlign: 'center',
+      marginRight: '23%',
     },  
     headerLeft: <TouchableOpacity 
-                  onPress={() => navigation.dangerouslyGetParent().navigate("timelineScreen")}
-                  style={styles.back}
-                >
-                  <View>
-                    <Text style={styles.text}>
+      onPress={() => navigation.dangerouslyGetParent().navigate('timelineScreen')}
+      style={styles.back}
+    >
+      <View>
+        <Text style={styles.text}>
                       Back
-                    </Text>
-                  </View>
-                </TouchableOpacity>,
+        </Text>
+      </View>
+    </TouchableOpacity>,
     headerRight: null
   });
   state = {
-    name: "Bevacizumab",
-    dosage: "500mg",
-    doctor: "Dr. Who",
-    frequency: "5x a day", 
-    startDate: moment().subtract(10, "days"),
-    endDate: moment().add(10, "days"),
+    name: 'Bevacizumab',
+    dosage: '500mg',
+    doctor: 'Dr. Who',
+    frequency: '5x a day', 
+    startDate: moment().subtract(10, 'days'),
+    endDate: moment().add(10, 'days'),
     color: '#AD2452',
     modalVisible: false,
     colorPicked: false,
@@ -249,19 +249,13 @@ const styles = StyleSheet.create({
     width:30,
     height:30,
     borderRadius:15,
+  },
   button: {
     borderWidth: 2,
     borderColor: 'gray',
     alignSelf: 'center',
     width: 50,
     height: 37
-  },
-  colorButton: {
-    borderWidth:1,
-    borderColor:'rgba(0,0,0,0.2)',
-    width:30,
-    height:30,
-    borderRadius:15,
   },
   footerStyle: {
     flex: 1,
@@ -282,5 +276,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
-  }
+  },
 });

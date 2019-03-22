@@ -17,7 +17,7 @@ export default class PrivacyScreen extends Component {
   };
 
   state = {
-    title: this.props.title || "MedMind"
+    title: this.props.title || 'MedMind'
   };
 
   render() {
