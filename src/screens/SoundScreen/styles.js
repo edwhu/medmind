@@ -1,49 +1,48 @@
-import { StyleSheet } from "react-native";
-import { medmindBlue } from "../../constants/styles";
+import { StyleSheet } from 'react-native';
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    height: "100%"
+    backgroundColor: 'white',
+    height: '100%'
   },
   horizontalLine: {
     borderWidth: 0.65,
-    borderColor: "#E5E5E5",
-    width: "92%",
-    alignSelf: "center"
+    borderColor: '#E5E5E5',
+    width: '92%',
+    alignSelf: 'center'
   },
   row: {
     height: 50,
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   setting: {
     fontSize: 15,
-    color: "#333333",
-    fontWeight: "400",
+    color: '#333333',
+    fontWeight: '400',
     left: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   entry: {
     fontSize: 15,
-    color: "#5B6571",
-    fontWeight: "400",
+    color: '#5B6571',
+    fontWeight: '400',
     right: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   button: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     right: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   arrowButton: {
     fontSize: 35,
-    color: "#BDBDBD",
-    fontWeight: "300"
+    color: '#BDBDBD',
+    fontWeight: '300'
   },
   switchButton: {
-    position: "absolute",
+    position: 'absolute',
     right: 20,
     transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
   }
-}));
+});

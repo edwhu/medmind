@@ -1,14 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Switch, TouchableOpacity, ScrollView } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateNewReminder } from "../../redux/actions/reminder";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import ListItem from "../../components/ListItem/ListItem";
-import { medmindBlue } from "../../constants/styles";
-import { testSounds } from "../../constants/constants";
-import styles from "./styles";
+import React, { Component } from 'react';
+import { View, ScrollView } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateNewReminder } from '../../redux/actions/reminder';
+import ListItem from '../../components/ListItem/ListItem';
+import { testSounds } from '../../constants/constants';
+import styles from './styles';
 
 class SoundScreen extends Component {
   static propTypes = {};
@@ -19,15 +16,16 @@ class SoundScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Sound"
+    title: this.props.title || 'Sound'
   };
 
   setSound = sound => {
-    this.props.updateNewReminder("sound", sound);
+    this.props.updateNewReminder('sound', sound);
   };
 
   checkSelected = sound => {
@@ -35,7 +33,7 @@ class SoundScreen extends Component {
   };
 
   render() {
-    soundList = testSounds.map(sound => {
+    const soundList = testSounds.map(sound => {
       return (
         <ListItem
           key={sound}
@@ -54,7 +52,7 @@ class SoundScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     newReminder: state.remindersReducer.newReminder,
   };

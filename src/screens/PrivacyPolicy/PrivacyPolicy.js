@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import PrivacyIcon from "../../assets/07-Settings.png";
-import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
+import { View, Text, ScrollView } from "react-native";
 import styles from "./styles";
-import { medmindBlue } from "../../constants/styles";
 import AcceptButton from "../../components/AcceptButton/AcceptButton";
 
 export default class PrivacyScreen extends Component {
@@ -18,11 +13,12 @@ export default class PrivacyScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Medmind"
+    title: this.props.title || 'Medmind'
   };
 
   onAcceptButtonPress = () => {
@@ -43,7 +39,7 @@ export default class PrivacyScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -51,7 +47,7 @@ export default class PrivacyScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -59,7 +55,7 @@ export default class PrivacyScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris

@@ -1,4 +1,9 @@
-import { ADD_DRUG, DELETE_DRUGS } from "../../constants/action-types";
+import { 
+  ADD_DRUG, 
+  DELETE_DRUGS, 
+  TOGGLE_DRUG_EDIT, 
+  TOGGLE_DRUG_TO_DELETE,
+} from '../../constants/action-types';
 
 export function addDrug(drug) {
   return {
@@ -7,16 +12,22 @@ export function addDrug(drug) {
   };
 }
 
-export function deleteDrugs(drugIds) {
+export function deleteDrugs() {
+  // these are stored in redux, so there's no need to send them with the action
   return {
     type: DELETE_DRUGS,
-    drugIds
   };
 }
 
-export function deleteDrug(drugId) {
+export function toggleDrugEdit() {
   return {
-    type: DELETE_DRUGS,
-    drugIds: [drugId],
+    type: TOGGLE_DRUG_EDIT,
+  };
+}
+
+export function toggleDrugToDelete(drugId) {
+  return {
+    type: TOGGLE_DRUG_TO_DELETE,
+    drugId,
   };
 }

@@ -1,23 +1,23 @@
 import { StyleSheet } from "react-native";
 import { medmindBlue } from "../../constants/styles";
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    backgroundColor: "#FBFBFB",
+    backgroundColor: '#FBFBFB',
     // backgroundColor: '#999999',
-    height: "100%"
+    height: '100%'
   },
   dayVerticalListWrapper: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
-    height: "auto"
+    height: 'auto'
   },
   dayVerticalList: {
-    backgroundColor: "white",
-    height: "auto",
-    width: "auto",
+    backgroundColor: 'white',
+    height: 'auto',
+    width: 'auto',
     marginTop: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
@@ -53,4 +53,4 @@ export default (styles = StyleSheet.create({
     marginBottom: 6,
     fontWeight: "200"
   }
-}));
+});

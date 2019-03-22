@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -7,20 +6,19 @@ import {
   ScrollView,
   TouchableOpacity,
   Image
-} from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateReminder } from "../../redux/actions/reminder";
-import ReminderIcon from "../../assets/03-Notifs.png";
-import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
-import MinusButton from "../../components/MinusButton/MinusButton";
-import { medmindBlue, drawerIconStyle } from "../../constants/styles";
-import { Ionicons } from "@expo/vector-icons";
-import styles from "./styles";
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from '../../redux/actions/reminder';
+import ReminderIcon from '../../assets/03-Notifs.png';
+import EditButton from '../../components/EditButton/EditButton';
+import MinusButton from '../../components/MinusButton/MinusButton';
+import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 class ReminderScreen extends Component {
   static navigationOptions = {
-    drawerLabel: "Reminders",
+    drawerLabel: 'Reminders',
     drawerIcon: () => <Image source={ReminderIcon} style={styles.imageStyle} />
   };
 
@@ -30,74 +28,53 @@ class ReminderScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Reminder",
+    title: this.props.title || 'Reminder',
     editMode: false
   };
 
   openReminderFormPage = () => {
-    this.props.navigation.navigate("reminderFormScreen");
+    this.props.setUpdateFlag(false);
+    this.setState({ editMode: false });
+    this.props.navigation.navigate('reminderFormScreen');
   };
 
   getDrugById = id => {
-    return this.props.drugs.filter(function(drug) {
-      return drug.id == id;
-    });
+    return this.props.drugs.find(drug => drug.id === id);
   };
 
   getDrugId = drugName => {
-    const drugId = this.props.drugs.filter(function(drug) {
-      return drug.name == drugName;
-    });
-    return drugId[0].id;
+    const drug = this.props.drugs.find(drug => drug.name === drugName);
+    if (typeof drug !== 'undefined') {
+      return drug.id;
+    }
   };
 
   groupReminders = () => {
     var dict = {};
     this.props.reminders.forEach(item => {
       var drug = this.getDrugById(item.drugId);
-      if (drug.length == 0) {
-        return;
+      if (!dict[drug.name]) {
+        dict[drug.name] = [];
       }
-      if (!dict[drug[0].name]) {
-        dict[drug[0].name] = [];
-      }
-      dict[drug[0].name].push(item);
+      dict[drug.name].push(item);
     });
     return dict;
   };
 
   toggleSnooze = id => {
-    const reminders = this.props.reminders.map(item => {
-      if (item.id === id) {
-        return {
-          ...item,
-          snooze: !item.snooze
-        };
-      } else {
-        return item;
-      }
-    });
-    this.props.updateReminder(reminders);
+    const reminder = this.props.reminders.find(item => item.id === id);
+    reminder.snooze = !reminder.snooze;
+    this.props.updateReminder(reminder);
   };
 
   toggleDrugSnooze = drugName => {
     const drugId = this.getDrugId(drugName);
-    const reminders = this.props.reminders.map(item => {
-      if (item.drugId === drugId) {
-        return {
-          ...item,
-          snooze: !item.snoozeDrug,
-          snoozeDrug: !item.snoozeDrug
-        };
-      } else {
-        return item;
-      }
-    });
-    this.props.updateReminder(reminders);
+    this.props.toggleDrugSnooze(drugId);
   };
 
   getSnooze = drugName => {
@@ -108,17 +85,19 @@ class ReminderScreen extends Component {
 
   displayRepeat = reminder => {
     switch (reminder.repeat) {
-      case "week":
-        return ", every " + reminder.time.format("dddd");
-      case "Custom":
-        if (reminder.repeatInterval === "week") {
-          return ", custom";
-        }
-        else {
-          return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
-        }
-      default:
-        return ", every " + reminder.repeat;
+    case 'week':
+      return ', every ' + reminder.time.format('dddd');
+    case 'Custom':
+      if (reminder.repeatInterval === 'week') {
+        return ', custom';
+      }
+      else {
+        return `, every ${reminder.repeatIntervalCount} ${reminder.repeatInterval}(s)`;
+      }
+    case 'Does not repeat': 
+      return '';
+    default:
+      return ', every ' + reminder.repeat;
     }
   };
 
@@ -126,34 +105,27 @@ class ReminderScreen extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
-  deleteReminder = (reminderId) => {
-    const reminders = this.props.reminders.filter(item => {
-      return item.id !== reminderId;
+  openReminderFormPageForEdit = (id) => {
+    const reminder = this.props.reminders.find(item => {
+      return item.id === id;
     });
-    this.props.updateReminder(reminders);
-  }
+    this.props.setNewReminder(reminder);
+    this.props.setUpdateFlag(true);
+    this.props.navigation.navigate('reminderFormScreen');
+  };
+
+  deleteReminder = (reminderId) => {
+    this.props.deleteReminder('id', reminderId);
+  };
 
   deleteRemindersByDrug = (drugName) => {
     const drugId = this.getDrugId(drugName);
-    const reminders = this.props.reminders.filter(item => {
-      return item.drugId !== drugId;
-    });
-    this.props.updateReminder(reminders);
-  }
+    this.props.deleteReminder('drugId', drugId);
+  };
 
   render() {
-    const arrowButton = (
-      <Ionicons name="ios-arrow-forward" style={styles.arrowButton} />
-    );
     const dict = this.groupReminders();
     const reminders = Object.keys(dict).map(drug => {
-      const minusButton = (
-        <View style={styles.edit}>
-          <TouchableOpacity style={styles.minusButton} onPress={this.deleteReminder}>
-            <Text style={styles.minus}>-</Text>
-          </TouchableOpacity>
-        </View>
-      );
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -177,14 +149,14 @@ class ReminderScreen extends Component {
           <View key={reminder.id}>
             <View style={styles.horizontalLine} />
             <View style={styles.reminder}>
-              {this.state.editMode ? <MinusButton onPress={(id) => this.deleteReminder(reminder.id)} /> : null}
+              {this.state.editMode ? <MinusButton onPress={() => this.deleteReminder(reminder.id)} /> : null}
               <View style={styles.info}>
                 <View style={styles.timeContainer}>
                   <Text style={styles.timeLabel}>
-                    {reminder.time.format("h:mm")}{" "}
+                    {reminder.time.format('h:mm')}{' '}
                   </Text>
                   <Text style={styles.timeMidday}>
-                    {reminder.time.format("A")}
+                    {reminder.time.format('A')}
                   </Text>
                 </View>
                 <View style={styles.detailsContainer}>
@@ -194,7 +166,7 @@ class ReminderScreen extends Component {
                   </Text>
                 </View>
               </View>
-              {this.state.editMode ? arrowButton : switchReminder}
+              {this.state.editMode ?<EditButton onPress={() => this.openReminderFormPageForEdit(reminder.id)} /> : switchReminder}
             </View>
             <View style={styles.horizontalLine} />
           </View>
@@ -203,9 +175,9 @@ class ReminderScreen extends Component {
       return (
         <View key={drug}>
           <View style={styles.drug}>
-            {this.state.editMode && <MinusButton onPress={(drugName) => this.deleteRemindersByDrug(drug)} />}
+            {this.state.editMode && <MinusButton onPress={() => this.deleteRemindersByDrug(drug)} />}
             <Text style={styles.drugName}>{drug}</Text>
-            {this.state.editMode ? arrowButton : switchDrug}
+            {switchDrug}
           </View>
           {reminderList}
         </View>
@@ -215,7 +187,7 @@ class ReminderScreen extends Component {
       <View style={styles.container}>
         <ScrollView>
           <TouchableOpacity onPress={this.onEditPress}>
-            <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+            <Text>{this.state.editMode ? 'Done' : 'Edit'}</Text>
           </TouchableOpacity>
           {reminders}
         </ScrollView>
@@ -230,16 +202,21 @@ class ReminderScreen extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     reminders: state.remindersReducer.reminders,
     newReminder: state.remindersReducer.newReminder,
-    drugs: state.drugInfoReducer.drugInfo
+    drugs: state.drugInfoReducer.drugInfo,
+    updateFlag: state.remindersReducer.updateFlag,
   };
 }
 
 const mapDispatchToProps = dispatch => ({
   updateReminder: bindActionCreators(updateReminder, dispatch),
+  deleteReminder: bindActionCreators(deleteReminder, dispatch),
+  setNewReminder: bindActionCreators(setNewReminder, dispatch),
+  setUpdateFlag: bindActionCreators(setUpdateFlag, dispatch),
+  toggleDrugSnooze: bindActionCreators(toggleDrugSnooze, dispatch),
 });
 
 export default connect(

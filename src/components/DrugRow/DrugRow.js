@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dimensions,
   View,
   StyleSheet,
   Text,
   TouchableOpacity
-} from "react-native";
-import moment from "moment";
-import DrugIcon from "../DrugIcon/DrugIcon";
-import { getFadedFromHex } from "../../utilities/helpers";
+} from 'react-native';
+import moment from 'moment';
+import DrugIcon from '../DrugIcon/DrugIcon';
+import { getFadedFromHex } from '../../utilities/helpers';
 
 
 class DrugWeek extends Component {
@@ -77,7 +77,7 @@ class DrugWeek extends Component {
     return barStyle;
   };
 
-  _openDrugInfo = (drugInfo) => {
+  _openDrugInfo = (/*drugInfo*/) => {
     // TODO: implement / import function here
   };
 
@@ -87,13 +87,13 @@ class DrugWeek extends Component {
     const { endOfWeek, beginningOfWeek } = this.props;
     const hideDrugIcon = startDate > endOfWeek || endDate < beginningOfWeek;
     return <TouchableOpacity key={id} style={barStyle} activeOpacity={0.6} onPress={() => this._openDrugInfo(drugInfo)}>
-        <View style={styles.drugBarContainer}>
-          {!hideDrugIcon && <DrugIcon color={drugInfo.color} />}
-          <Text style={styles.drugText} numberOfLines={2}>
-            {name}
-          </Text>
-        </View>
-      </TouchableOpacity>;
+      <View style={styles.drugBarContainer}>
+        {!hideDrugIcon && <DrugIcon color={drugInfo.color} />}
+        <Text style={styles.drugText} numberOfLines={2}>
+          {name}
+        </Text>
+      </View>
+    </TouchableOpacity>;
   };
 
   render() {

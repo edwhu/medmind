@@ -1,67 +1,60 @@
-import { StyleSheet } from "react-native";
-import { medmindBlue } from "../../constants/styles";
+import { StyleSheet } from 'react-native';
+import { medmindBlue } from '../../constants/styles';
 
-export default (styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    height: "100%"
+    backgroundColor: 'white',
+    height: '100%'
   },
   drug: {
     height: 60,
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   drugName: {
     fontSize: 20,
-    color: "black",
-    position: "absolute",
+    color: 'black',
     left: 22
   },
   reminder: {
     height: 100,
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  info: {
-    position: "absolute",
-    left: 20,
-    alignItems: "center",
-    alignContent: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   info: {
     marginLeft: 20
   },
   timeContainer: {
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   timeLabel: {
     fontSize: 38,
-    color: "#545f66",
-    fontWeight: "300",
+    color: '#545f66',
+    fontWeight: '300',
     marginLeft: 4
   },
   timeMidday: {
     fontSize: 28,
-    color: "#545f66",
+    color: '#545f66',
     marginTop: 9,
-    fontWeight: "300"
+    fontWeight: '300'
   },
   detailsContainer: {
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   details: {
     fontSize: 15,
-    color: "#36454f",
-    fontWeight: "400"
+    color: '#36454f',
+    fontWeight: '400'
   },
   horizontalLine: {
     borderWidth: 0.65,
-    borderColor: "#E0E0E0",
-    width: "90%",
-    alignSelf: "center"
+    borderColor: '#E0E0E0',
+    width: '90%',
+    alignSelf: 'center'
   },
   switchButton: {
-    position: "absolute",
+    position: 'absolute',
     right: 32,
     transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
   },
@@ -73,9 +66,6 @@ export default (styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     position: 'absolute',
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
     bottom: 24,
     right: 30
   },
@@ -83,11 +73,7 @@ export default (styles = StyleSheet.create({
     color:'white',
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200",
-    color: "white",
-    fontSize: 55,
-    marginBottom: 6,
-    fontWeight: "200"
+    fontWeight: '200',
   },
   edit: {
     marginLeft: 21
@@ -97,19 +83,19 @@ export default (styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   minus: {
-    color: "white",
+    color: 'white',
     fontSize: 30,
-    fontWeight: "600",
+    fontWeight: '600',
     bottom: 9
   },
   arrowButton: {
     fontSize: 35,
-    color: "#BDBDBD",
-    position: "absolute",
+    color: '#BDBDBD',
+    position: 'absolute',
     right: 32
   }
-}));
+});
