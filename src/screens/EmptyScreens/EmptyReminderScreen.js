@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, Image } from "react-native";
-import EmptyReminderIcon from "../../assets/empty-reminder.png";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import PlusButton from "../../components/PlusButton/PlusButton";
-import { medmindBlue } from "../../constants/styles";
-import styles from "./styles";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, Text, Image } from 'react-native';
+import EmptyReminderIcon from '../../assets/empty-reminder.png';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import PlusButton from '../../components/PlusButton/PlusButton';
+import { medmindBlue } from '../../constants/styles';
+import styles from './styles';
 
 export default class EmptyReminderScreen extends Component {
   static propTypes = { 
@@ -19,7 +19,7 @@ export default class EmptyReminderScreen extends Component {
           <Image source={EmptyReminderIcon} style={styles.icon} />
           <Text style={styles.iconText}>No Reminders</Text>
           <Text style={styles.iconTextBody}>
-            There are no reminders right now.{"\n"}
+            There are no reminders right now.{'\n'}
             Use the <Text style={styles.smallPlus}> + </Text> 
             button to add reminders.
           </Text>

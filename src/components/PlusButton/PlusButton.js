@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text
-} from "react-native";
-import PropTypes from "prop-types";
-import { medmindBlue } from "../../constants/styles";
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { medmindBlue } from '../../constants/styles';
 
 export default class PlusButton extends Component {
   static propTypes = {
@@ -17,11 +17,11 @@ export default class PlusButton extends Component {
     return (
       <View>
         <TouchableOpacity
-            style={styles.plusButton}
-            onPress={this.props.onPress}
-          >
-            <Text style={styles.plus}>+</Text>
-          </TouchableOpacity>
+          style={styles.plusButton}
+          onPress={this.props.onPress}
+        >
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -36,9 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     position: 'absolute',
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
     bottom: 24,
     right: 30
   },
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200",
-    color: "white",
+    fontWeight: '200',
+    color: 'white',
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200"
+    fontWeight: '200'
   },
 });
 

@@ -94,15 +94,15 @@ class AddDrugScreen extends Component {
           type="checkbox"
         />
         { !this.state.asNeeded && <CollapsibleDatePicker
-            header="Start Date"
-            setDate={startDate => this.setState({ startDate })}
-            date={this.state.startDate}
-          /> }
+          header="Start Date"
+          setDate={startDate => this.setState({ startDate })}
+          date={this.state.startDate}
+        /> }
         { !this.state.asNeeded && <CollapsibleDatePicker
-            header="End Date"
-            setDate={endDate => this.setState({ endDate })}
-            date={this.state.endDate}
-          /> }
+          header="End Date"
+          setDate={endDate => this.setState({ endDate })}
+          date={this.state.endDate}
+        /> }
 
         <View style={styles.form}>
           <View style={styles.fieldContainer}>

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image } from "react-native";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import styles from "./styles";
-import DayIcon from "../../assets/00-Day.png";
-import { ScrollView, FlatList } from "react-native";
-import DrugItemInDayView from "../../components/DrugItemInDayView/DrugItemInDayView";
-import EventInDayView from "../../components/EventInDayView/EventInDayView";
-import EmptyDrugScreen from "../EmptyScreens/EmptyDrugScreen";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import styles from './styles';
+import DayIcon from '../../assets/00-Day.png';
+import { ScrollView, FlatList } from 'react-native';
+import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
+import EventInDayView from '../../components/EventInDayView/EventInDayView';
+import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -134,10 +134,10 @@ class DayViewScreen extends Component {
   organizeDrugsByEvent() {}
 
   navigateCamera = () => {
-    this.props.navigation.navigate("cameraScreen")
+    this.props.navigation.navigate('cameraScreen');
   }
   navigateAddDrug = () => {
-    this.props.navigation.navigate("addDrugScreen")
+    this.props.navigation.navigate('addDrugScreen');
   }
 
   render() {
@@ -177,8 +177,8 @@ class DayViewScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     drugs: state.drugInfoReducer.drugInfo,
-  }
-}
+  };
+};
 
 
 export default connect(

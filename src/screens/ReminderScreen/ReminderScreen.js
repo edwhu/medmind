@@ -6,19 +6,19 @@ import {
   ScrollView,
   TouchableOpacity,
   Image
-} from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from "../../redux/actions/reminder";
-import ReminderIcon from "../../assets/03-Notifs.png";
-import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
-import EditButton from "../../components/EditButton/EditButton";
-import MinusButton from "../../components/MinusButton/MinusButton";
-import PlusButton from "../../components/PlusButton/PlusButton";
-import EmptyReminderScreen from "../EmptyScreens/EmptyReminderScreen";
-import { medmindBlue, drawerIconStyle } from "../../constants/styles";
-import { Ionicons } from "@expo/vector-icons";
-import styles from "./styles";
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDrugSnooze } from '../../redux/actions/reminder';
+import ReminderIcon from '../../assets/03-Notifs.png';
+import StatusBarBackground from '../../components/StatusBarBackground/StatusBarBackground';
+import EditButton from '../../components/EditButton/EditButton';
+import MinusButton from '../../components/MinusButton/MinusButton';
+import PlusButton from '../../components/PlusButton/PlusButton';
+import EmptyReminderScreen from '../EmptyScreens/EmptyReminderScreen';
+import { medmindBlue, drawerIconStyle } from '../../constants/styles';
+import { Ionicons } from '@expo/vector-icons';
+import styles from './styles';
 
 class ReminderScreen extends Component {
   static navigationOptions = {
@@ -189,7 +189,7 @@ class ReminderScreen extends Component {
     });
     const editButton = (
       <TouchableOpacity onPress={this.onEditPress}>
-        <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+        <Text>{this.state.editMode ? 'Done' : 'Edit'}</Text>
       </TouchableOpacity>
     );
 
@@ -205,7 +205,7 @@ class ReminderScreen extends Component {
         <View style={styles.container}>
           <ScrollView>
             <TouchableOpacity onPress={this.onEditPress}>
-              <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+              <Text>{this.state.editMode ? 'Done' : 'Edit'}</Text>
             </TouchableOpacity>
             {reminders}
           </ScrollView>
