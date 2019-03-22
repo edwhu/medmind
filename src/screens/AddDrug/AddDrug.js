@@ -65,8 +65,9 @@ class AddDrugScreen extends Component {
     navigate("timelineScreen");
   }
   onOK(selectedColor) {
-    this.setState({colorPicked: true});
-    this.setState({color: selectedColor});
+    this.setState({
+      colorPicked: true,
+      color: selectedColor});
     this.hideModal();
   }
   render() {
@@ -123,9 +124,7 @@ class AddDrugScreen extends Component {
             )}
             {this.state.colorPicked && (
               <TouchableOpacity
-                onPress = {() => {
-                  this.showModal()
-                }}
+                onPress = {this.showModal()}
                 hitSlop={{left: 100}}
                 style={[styles.colorButton, color]}
               />
