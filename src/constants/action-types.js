@@ -8,6 +8,8 @@ export const SET_NEW_REMINDER = 'SET_NEW_REMINDER';
 export const UPDATE_NEW_REMINDER = 'UPDATE_NEW_REMINDER';
 export const ADD_DRUG = 'ADD_DRUG';
 export const DELETE_DRUGS = 'DELETE_DRUGS';
+export const EDIT_DRUG = 'EDIT_DRUG';
 export const TOGGLE_DRUG_EDIT = 'TOGGLE_DRUG_EDIT';
 export const TOGGLE_DRUG_TO_DELETE = 'TOGGLE_DRUG_TO_DELETE';
 export const SET_UPDATE_FLAG = 'SET_UPDATE_FLAG';
+
