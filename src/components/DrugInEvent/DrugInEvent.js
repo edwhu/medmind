@@ -139,16 +139,11 @@ class DrugInEvent extends Component{
   state = {
     modalVisible: false,
     editFormVisible: false,
-    // styles: createStyles(this.props.drug.color)
   };
 
   setModalVisible = visible => {
     this.setState({modalVisible: visible});
   };
-
-  // componentWillReceiveProps() {
-  //   this.setState({styles: createStyles(this.props.drug.color)});
-  // }
 
   render(){
     const { drug } = this.props;

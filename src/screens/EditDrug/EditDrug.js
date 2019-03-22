@@ -13,6 +13,7 @@ import { editDrug } from '../../redux/actions/drug';
 import moment from 'moment';
 import { drawerIconStyle } from '../../constants/styles';
 import AddDrugIcon from '../../assets/07-Settings.png';
+import styles from './styles'
 
 class EditDrugScreen extends Component {
 
@@ -140,37 +141,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(EditDrugScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    backgroundColor: 'white'
-  },
-  buttonStyle: {
-    alignSelf: 'center',
-    width: 200,
-    height: 40
-  },
-  footerStyle: {
-    flex: 1,
-    // borderColor: 'black',
-    // borderWidth: 5,
-    height: 80,
-    flexGrow: 1,
-    justifyContent: 'center'
-  },
-  form: {
-    height: 40,
-    borderColor: medmindBlue,
-    borderBottomWidth: 1,
-    marginHorizontal: 20
-  },
-  fieldContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-});
