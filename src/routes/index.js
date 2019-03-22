@@ -1,5 +1,5 @@
 import { createAppContainer, createDrawerNavigator, createStackNavigator, NavigationActions } from "react-navigation";
-import { Dimensions, Image, StyleSheet, AsyncStorage} from "react-native";
+import { Dimensions, Image, StyleSheet, AsyncStorage, TouchableOpacity, Text} from "react-native";
 import LoginScreen from "../screens/Login/Login";
 import TimelineScreen from "../screens/Timeline/Timeline";
 import CustomDrawer from "../components/CustomDrawer/CustomDrawer";
@@ -84,9 +84,9 @@ const ReminderStack = createStackNavigator(
         flex: 1,
         textAlign: "center",
       },
-      headerRight: <SettingsButton onPress={()=>{
-        openSettings()
-      }}/>
+      headerRight: <TouchableOpacity onPress={this.onEditPress}>
+      <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
+    </TouchableOpacity>
     }) 
   }
 );
@@ -122,6 +122,31 @@ const withHeader = (screen, routeName) =>
     },
   );
 
+const withEditHeader = (screen, routeName) => 
+  createStackNavigator(
+    { [routeName]: { screen } },
+    {
+      headerMode: 'screen',
+      defaultNavigationOptions: ({navigation}) => ({
+        headerTitle: "Medmind",
+        headerStyle: {
+          backgroundColor: medmindBlue,
+        },
+        headerTitleStyle: {
+          color: "white",
+          fontWeight: "500",
+          fontFamily: "System",
+          fontSize: 24,
+          flex: 1,
+          textAlign: "center",
+        },
+        headerLeft: <DrawerIcon onPress={()=>{
+          navigation.dangerouslyGetParent().toggleDrawer()
+        }}/>,
+        headerRight: "Edit"
+      })
+    },
+  );
   
   
 const doNotAppearOnDrawer = {
