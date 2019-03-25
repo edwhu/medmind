@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const ListItem = ({ label, entry, arrowButtonPress, onPress, selected }) => {
   const button = (
@@ -31,44 +31,44 @@ const ListItem = ({ label, entry, arrowButtonPress, onPress, selected }) => {
 const styles = StyleSheet.create({
   horizontalLine: {
     borderWidth: 0.65,
-    borderColor: "#E5E5E5",
-    width: "92%",
-    alignSelf: "center"
+    borderColor: '#E5E5E5',
+    width: '92%',
+    alignSelf: 'center'
   },
   row: {
     height: 50,
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   setting: {
     fontSize: 15,
-    color: "#333333",
-    fontWeight: "400",
+    color: '#333333',
+    fontWeight: '400',
     left: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   entry: {
     fontSize: 15,
-    color: "#5B6571",
-    fontWeight: "400",
+    color: '#5B6571',
+    fontWeight: '400',
     right: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   button: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     right: 20,
-    position: "absolute"
+    position: 'absolute'
   },
   arrowButton: {
     fontSize: 35,
-    color: "#BDBDBD"
+    color: '#BDBDBD'
   },
   checkMark: {
     right: 25,
-    position: "absolute",
-    color: "#BDBDBD",
+    position: 'absolute',
+    color: '#BDBDBD',
     fontSize: 45,
-    fontWeight: "300"
+    fontWeight: '300'
   }
 });
 

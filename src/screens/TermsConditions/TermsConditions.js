@@ -1,12 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, ScrollView, Image, AsyncStorage } from "react-native";
-import TermIcon from "../../assets/00-Day.png";
-import StatusBarBackground from "../../components/StatusBarBackground/StatusBarBackground";
-import ScreenHeader from "../../components/ScreenHeader/ScreenHeader";
-import styles from "./styles";
-import { medmindBlue } from "../../constants/styles";
-import AcceptButton from "../../components/AcceptButton/AcceptButton";
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import styles from './styles';
+import AcceptButton from '../../components/AcceptButton/AcceptButton';
 
 export default class TermsAndConditionsScreen extends Component {
 
@@ -18,21 +13,22 @@ export default class TermsAndConditionsScreen extends Component {
 
   // callback for login errors
   onError = error => {
-    console.log("Error", error);
+    // eslint-disable-next-line no-console
+    console.log('Error', error);
   };
 
   state = {
-    title: this.props.title || "Medmind",
+    title: this.props.title || 'MedMind',
     showButton: false
   };
 
   onAcceptButtonPress = () => {
-    this.props.navigation.navigate("privacyPolicyScreen")
+    this.props.navigation.navigate('privacyPolicyScreen');
   }
 
   render() {
     const { navigation } = this.props;
-    const showButton = navigation.getParam("showButton", false);
+    const showButton = navigation.getParam('showButton', false);
     const button = (
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -57,7 +53,7 @@ export default class TermsAndConditionsScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -65,7 +61,7 @@ export default class TermsAndConditionsScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -73,7 +69,7 @@ export default class TermsAndConditionsScreen extends Component {
               reprehenderit in voluptate velit esse cillum dolore eu fugiat
               nulla pariatur. Excepteur sint occaecat cupidatat non proident,
               sunt in culpa qui officia deserunt mollit anim id est laborum.
-              {"\n"}
+              {'\n'}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris

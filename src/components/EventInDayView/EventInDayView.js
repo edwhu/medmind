@@ -1,22 +1,21 @@
-import React, { Component } from "react";
+import React from 'react';
 import {
   FlatList,
   StyleSheet,
   View,
-  TouchableHighlight,
   Text,
-  Image
-} from "react-native";
-import DrugInEvent from "../DrugInEvent/DrugInEvent";
+} from 'react-native';
+import DrugInEvent from '../DrugInEvent/DrugInEvent';
 
-const EventInDayView = ({ event }) => (
+const EventInDayView = ({ event, navigation}) => (
   <View style={styles.column}>
     <View style={styles.container}>
-      <Text style={styles.text}>{event.time}</Text>
+      <Text style={styles.text}>{event.time.format('HH:mm')}</Text>
       <FlatList
         data={event.drugs}
-        renderItem={({ item }) => <DrugInEvent drug={item} />}
+        renderItem={({ item }) => <DrugInEvent drug={item} navigation={navigation}/>}
         style={styles.drugList}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
     <View style={styles.line} />
@@ -25,28 +24,28 @@ const EventInDayView = ({ event }) => (
 
 const styles = StyleSheet.create({
   column: {
-    flexDirection: "column",
-    alignItems: "center"
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   container: {
     marginTop: 30,
-    flexDirection: "row",
+    flexDirection: 'row',
     // alignItems: "center",
-    justifyContent: "center"
+    justifyContent: 'center'
   },
   drugList: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "flex-end"
+    flexDirection: 'column',
+    alignItems: 'flex-end'
   },
   text: {
     margin: 10,
-    textAlign: "center"
+    textAlign: 'center'
   },
   line: {
-    borderBottomColor: "#C4C4C4",
+    borderBottomColor: '#C4C4C4',
     borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "95%",
+    width: '95%',
     marginTop: 25
   }
 });

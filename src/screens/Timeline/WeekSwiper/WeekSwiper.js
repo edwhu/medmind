@@ -1,16 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 // Extrenal Packages
-import Swiper from "react-native-swiper";
+import Swiper from 'react-native-swiper';
 // Local
-import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
-import RoundedButton from "../../../components/RoundedButton/RoundedButton";
-import styles from "./styles";
-import { updateWeek } from "../../../redux/actions/calendar";
-import PlusButton from "../../../components/PlusButton/PlusButton";
+import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
+import OptionButton from '../../../components/OptionButton/OptionButton';
+import styles from './styles';
+import { updateWeek } from '../../../redux/actions/calendar';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -37,8 +35,11 @@ class WeekSwiper extends Component {
     );
   };
 
-  onPlusButtonPress = () => {
-    this.props.navigation.navigate("cameraScreen")
+  navigateCamera = () => {
+    this.props.navigation.navigate('cameraScreen');
+  }
+  navigateAddDrug = () => {
+    this.props.navigation.navigate('addDrugScreen');
   }
 
   render() {
@@ -59,13 +60,15 @@ class WeekSwiper extends Component {
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
-        <PlusButton onPress={this.onPlusButtonPress}/>
+        <OptionButton
+          cameraOnPress={this.navigateCamera} 
+          drugOnPress={this.navigateAddDrug} />
       </View>
     );
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return state.timelineReducer;
 }
 
