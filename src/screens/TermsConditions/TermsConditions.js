@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import styles from "./styles";
-import AcceptButton from "../../components/AcceptButton/AcceptButton";
+import React, { Component } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import styles from './styles';
+import AcceptButton from '../../components/AcceptButton/AcceptButton';
 
 export default class TermsAndConditionsScreen extends Component {
 
@@ -23,7 +23,7 @@ export default class TermsAndConditionsScreen extends Component {
   };
 
   onAcceptButtonPress = () => {
-    this.props.navigation.navigate("privacyPolicyScreen")
+    this.props.navigation.navigate('privacyPolicyScreen');
   }
 
   render() {

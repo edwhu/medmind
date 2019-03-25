@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { View, Text, ScrollView } from "react-native";
-import styles from "./styles";
-import AcceptButton from "../../components/AcceptButton/AcceptButton";
+import React, { Component } from 'react';
+import { View, Text, ScrollView } from 'react-native';
+import styles from './styles';
+import AcceptButton from '../../components/AcceptButton/AcceptButton';
 
 export default class PrivacyScreen extends Component {
 
@@ -22,7 +22,7 @@ export default class PrivacyScreen extends Component {
   };
 
   onAcceptButtonPress = () => {
-    this.props.navigation.navigate("dayViewScreen");
+    this.props.navigation.navigate('dayViewScreen');
   }
 
   render() {

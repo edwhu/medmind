@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 // Extrenal Packages
 import Swiper from 'react-native-swiper';
 // Local
-import CalendarWeek from "../../../components/CalendarWeek/CalendarWeek";
+import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
 import OptionButton from '../../../components/OptionButton/OptionButton';
-import styles from "./styles";
-import { updateWeek } from "../../../redux/actions/calendar";
-import PlusButton from "../../../components/PlusButton/PlusButton";
+import styles from './styles';
+import { updateWeek } from '../../../redux/actions/calendar';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};

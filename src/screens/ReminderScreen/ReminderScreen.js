@@ -26,6 +26,10 @@ class ReminderScreen extends Component {
 
   static defaultProps = {};
 
+  componentDidMount() {
+    this.props.navigation.setParams({ onEditPress: this.onEditPress });
+  }
+
   // callback for login errors
   onError = error => {
     // eslint-disable-next-line no-console
@@ -186,9 +190,6 @@ class ReminderScreen extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <TouchableOpacity onPress={this.onEditPress}>
-            <Text>{this.state.editMode ? 'Done' : 'Edit'}</Text>
-          </TouchableOpacity>
           {reminders}
         </ScrollView>
         <TouchableOpacity

@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { medmindBlue } from "../../constants/styles";
+import { StyleSheet } from 'react-native';
+import { medmindBlue } from '../../constants/styles';
 
 export default StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 5,
-    marginLeft: "15.2%"
+    marginLeft: '15.2%'
   },
   button: {
     position: 'absolute',
@@ -48,9 +48,9 @@ export default StyleSheet.create({
     elevation: 10, // Android
   },
   plus: {
-    color: "white",
+    color: 'white',
     fontSize: 55,
     marginBottom: 6,
-    fontWeight: "200"
+    fontWeight: '200'
   }
 });

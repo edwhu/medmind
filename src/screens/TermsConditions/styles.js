@@ -23,7 +23,7 @@ export default StyleSheet.create({
     height: '75%'
   },
   textBox: {
-    width: "75%",
+    width: '75%',
     height: 475,
     borderWidth: 2,
     borderColor: 'rgb(72,72,72)'

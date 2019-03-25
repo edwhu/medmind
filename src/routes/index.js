@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { createAppContainer, createDrawerNavigator, createStackNavigator } from 'react-navigation';
-import { Dimensions, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import LoginScreen from '../screens/Login/Login';
 import TimelineScreen from '../screens/Timeline/Timeline';
 import CustomDrawer from '../components/CustomDrawer/CustomDrawer';
@@ -29,6 +29,7 @@ import ExportIcon from '../assets/05-ExportSumm.png';
 import DrugIcon from '../assets/04-DrugList.png';
 import NotifIcon from '../assets/03-Notifs.png';
 import GlobalDrugListHeaderRight from '../screens/GlobalDrugListScreen/HeaderRight';
+import HeaderEditButton from '../components/HeaderEditButton/HeaderEditButton';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -70,7 +71,7 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: 'reminderScreen',
-    defaultNavigationOptions: () => ({
+    defaultNavigationOptions: ( {navigation }) => ({
       headerTitle: 'Medmind',
       headerStyle: {
         backgroundColor: medmindBlue,
@@ -84,9 +85,9 @@ const ReminderStack = createStackNavigator(
         flex: 1,
         textAlign: 'center',
       },
-      headerRight: <TouchableOpacity onPress={this.onEditPress}>
-      <Text>{this.state.editMode ? "Done" : "Edit"}</Text>
-    </TouchableOpacity>
+      headerRight: (
+        <HeaderEditButton Press={navigation.getParam('onEditPress')}/>
+      ),
     }) 
   }
 );
@@ -121,33 +122,6 @@ const withHeader = (screen, routeName, overrides = {}) =>
       })
     },
   );
-
-const withEditHeader = (screen, routeName) => 
-  createStackNavigator(
-    { [routeName]: { screen } },
-    {
-      headerMode: 'screen',
-      defaultNavigationOptions: ({navigation}) => ({
-        headerTitle: "Medmind",
-        headerStyle: {
-          backgroundColor: medmindBlue,
-        },
-        headerTitleStyle: {
-          color: "white",
-          fontWeight: "500",
-          fontFamily: "System",
-          fontSize: 24,
-          flex: 1,
-          textAlign: "center",
-        },
-        headerLeft: <DrawerIcon onPress={()=>{
-          navigation.dangerouslyGetParent().toggleDrawer()
-        }}/>,
-        headerRight: "Edit"
-      })
-    },
-  );
-  
   
 const doNotAppearOnDrawer = {
   navigationOptions: {
@@ -227,7 +201,7 @@ const DrawerNavigation = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: "dayViewScreen",
+    initialRouteName: 'dayViewScreen',
     contentComponent: CustomDrawer,
     drawerWidth: Math.min(height, width) * 0.88,
     contentOptions: {

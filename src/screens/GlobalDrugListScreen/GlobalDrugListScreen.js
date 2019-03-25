@@ -6,7 +6,7 @@ import { ScrollView, FlatList } from 'react-native';
 import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { toggleDrugToDelete } from '../../redux/actions/drug';
-import PlusButton from "../../components/PlusButton/PlusButton";
+import PlusButton from '../../components/PlusButton/PlusButton';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -90,7 +90,7 @@ class GlobalDrugListScreen extends Component {
   }
 
   onPlusButtonPress = () => {
-    this.props.navigation.navigate("cameraScreen")
+    this.props.navigation.navigate('cameraScreen');
   }
 
   render() {

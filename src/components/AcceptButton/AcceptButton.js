@@ -4,13 +4,13 @@ import styles from './styles';
 
 export default class AcceptButton extends Component {
 
-    render() {
-        return (
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={this.props.onPress}>
-            <Text style={styles.word}>I Accept</Text>
-            </TouchableOpacity> 
-        );
-    }
+  render() {
+    return (
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={this.props.onPress}>
+        <Text style={styles.word}>I Accept</Text>
+      </TouchableOpacity> 
+    );
+  }
 }

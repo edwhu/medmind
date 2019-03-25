@@ -5,7 +5,7 @@ import styles from './styles';
 import { ScrollView, FlatList } from 'react-native';
 import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
-import PlusButton from "../../components/PlusButton/PlusButton";
+import PlusButton from '../../components/PlusButton/PlusButton';
 
 // Temp schema for as needed drugs
 const asNeededDrugs = [
@@ -130,7 +130,7 @@ export default class DayViewScreen extends Component {
   organizeDrugsByEvent() {}
 
   onPlusButtonPress = () => {
-    this.props.navigation.navigate("cameraScreen")
+    this.props.navigation.navigate('cameraScreen');
   }
 
   constructor(){
@@ -138,17 +138,12 @@ export default class DayViewScreen extends Component {
     this.state = {firstLaunch: null};
   }
   componentDidMount(){
-    AsyncStorage.getItem("alreadyLaunched").then(value => {
-        if(value == null){
-            console.log("value was null");
-             AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
-             this.setState({firstLaunch: true});
-             this.props.navigation.navigate("termsAndConditionsScreen");
-        }
-        else{
-            console.log("value was not null");
-             this.setState({firstLaunch: false});
-        }}) // Add some error handling, also you can simply do this.setState({fistLaunch: value == null})
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if(value == null){
+        AsyncStorage.setItem('alreadyLaunched', 'true'); // No need to wait for `setItem` to finish, although you might want to handle errors
+        this.props.navigation.navigate('termsAndConditionsScreen');
+      }
+    }); // Add some error handling, also you can simply do this.setState({fistLaunch: value == null})
   }
 
   render() {
