@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Modal,
   StyleSheet,
   View,
   TouchableHighlight,
@@ -9,7 +8,7 @@ import {
   Dimensions
 } from 'react-native';
 import DrugIcon from '../DrugIcon/DrugIcon';
-//import Modal from 'react-native-modal';
+import Modal from 'react-native-modal';
 import CloseButton from '../../assets/button-skip.png';
 import SkipButton from '../../assets/button-skip2.png';
 import TakeButton from '../../assets/button-take2.png';
