@@ -4,6 +4,8 @@ import {
   View,
   TouchableOpacity,
   DatePickerIOS,
+  DatePickerAndroid,
+  Platform,
   Text
 } from 'react-native';
 import Collapsible from 'react-native-collapsible';
@@ -24,12 +26,31 @@ export default class CollapsibleDatePicker extends Component {
 
   datePickerOnPress = () => {
     this.setState({ collapsed: !this.state.collapsed });
+    if(Platform.OS == 'android')
+      this.openUpPicker();
   };
 
   setDate = newDate => {
     const date = moment(newDate);
     this.setState({ date });
     this.props.setDate(date);
+  };
+
+  async openUpPicker() {
+    try {
+        const {action, year, month, day} = await DatePickerAndroid.open({
+          date: new Date(),
+          mode: 'default',
+        });
+        if (action === DatePickerAndroid.dateSetAction) {
+          var hours = new Date().getHours(); //Current Hours
+          var min = new Date().getMinutes(); //Current Minutes
+          const newDate = new Date(year, month, day, hours, min);
+          this.setDate(newDate);
+        }
+      } catch ({code, message}) {
+        console.warn('Cannot open date picker', message);
+      }
   };
 
   render() {
@@ -45,10 +66,13 @@ export default class CollapsibleDatePicker extends Component {
         </TouchableOpacity>
         <Collapsible collapsed={this.state.collapsed}>
           <View>
-            <DatePickerIOS
-              date={this.state.date.toDate()}
-              onDateChange={this.setDate}
-            />
+            {
+              Platform.OS == 'ios' &&
+                <DatePickerIOS
+                date={this.state.date.toDate()}
+                onDateChange={this.setDate}
+              />
+            }
           </View>
         </Collapsible>
       </View>
