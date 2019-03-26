@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
 import CollapsibleDatePicker from '../../components/CollapsibleDatePicker/CollapsibleDatePicker';
 import FormField from '../../components/FormField/FormField';
 import RoundedButton from '../../components/RoundedButton/RoundedButton';
 import { KeyboardAvoidingView } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { medmindBlue } from '../../constants/styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editDrug } from '../../redux/actions/drug';
 import moment from 'moment';
 import { drawerIconStyle } from '../../constants/styles';
 import AddDrugIcon from '../../assets/07-Settings.png';
-import styles from './styles'
+import styles from './styles';
 
 class EditDrugScreen extends Component {
 

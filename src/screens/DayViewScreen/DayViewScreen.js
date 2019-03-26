@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import ScreenHeader from '../../components/ScreenHeader/ScreenHeader';
+import { View, Text, AsyncStorage } from 'react-native';
 import styles from './styles';
 import { ScrollView, FlatList } from 'react-native';
 import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayView';
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
-import moment from 'moment';
 
 class DayViewScreen extends Component {
   static propTypes = {
@@ -73,6 +71,22 @@ class DayViewScreen extends Component {
     this.props.navigation.navigate('addDrugScreen');
   }
 
+  onPlusButtonPress = () => {
+    this.props.navigation.navigate('cameraScreen');
+  }
+
+  constructor(){
+    super();
+    this.state = {firstLaunch: null};
+  }
+  componentDidMount(){
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if(value == null){
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        this.props.navigation.navigate('termsAndConditionsScreen');
+      }});
+  }
+
   render() {
     const reminders = this.props.reminders;
     const drugs = this.props.drugs;
@@ -101,7 +115,7 @@ class DayViewScreen extends Component {
                 data={this.organizeDrugsByEvent(reminders)}
                 renderItem={({ item }) => <EventInDayView event={item} navigation={this.props.navigation}/>}
                 style={styles.dayVerticalList}
-                keyExtractor={(item, index) => item.key.toString()}
+                keyExtractor={(item) => item.key.toString()}
               />
             </View>
           </ScrollView>
@@ -112,7 +126,7 @@ class DayViewScreen extends Component {
 }
 
 
-function mapStateToProps(state, props){
+function mapStateToProps(state){
   return {
     reminders: state.remindersReducer.reminders,
     drugs: state.drugInfoReducer.drugInfo 

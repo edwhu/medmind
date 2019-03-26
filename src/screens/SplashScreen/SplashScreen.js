@@ -10,6 +10,11 @@ export default class SplashScreen extends Component {
     drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
   };
 
+  constructor(){
+    super();
+    this.state = {firstLaunch: null};
+  }
+
   render() {
     return (
       <View style={styles.container}>

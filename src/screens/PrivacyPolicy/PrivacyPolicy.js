@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import styles from './styles';
+import AcceptButton from '../../components/AcceptButton/AcceptButton';
 
 export default class PrivacyScreen extends Component {
 
@@ -19,6 +20,10 @@ export default class PrivacyScreen extends Component {
   state = {
     title: this.props.title || 'MedMind'
   };
+
+  onAcceptButtonPress = () => {
+    this.props.navigation.navigate('dayViewScreen');
+  }
 
   render() {
     return (
@@ -60,6 +65,7 @@ export default class PrivacyScreen extends Component {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
           </ScrollView>
+          <AcceptButton onPress={this.onAcceptButtonPress}/>
         </View>
       </View>
     );
