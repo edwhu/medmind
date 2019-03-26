@@ -111,7 +111,7 @@ class GlobalDrugListScreen extends Component {
           {!this.state.atTopOfList && <View style={styles.separator} />}
           <ScrollView
             style={styles.scrollView}
-            onScroll={this.handleScroll.bind(this)}
+            onScroll={this.handleScroll}
           >
             {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
           </ScrollView>
