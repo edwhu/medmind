@@ -18,6 +18,7 @@ import CameraScreen from '../screens/Camera/Camera';
 import AddDrugScreen from '../screens/AddDrug/AddDrug';
 import NotificationScreen from '../screens/NotificationScreen/NotificationScreen';
 import ShareDrugScreen from '../screens/ShareDrugScreen/ShareDrugScreen';
+import EditDrugScreen from '../screens/EditDrug/EditDrug.js';
 import { medmindBlue } from '../constants/styles';
 import DrawerIcon from '../components/DrawerIcon/DrawerIcon';
 import SettingsButton from '../components/SettingsButton/SettingsButton';
@@ -71,8 +72,8 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: 'reminderScreen',
-    defaultNavigationOptions: ( {navigation }) => ({
-      headerTitle: 'Medmind',
+    defaultNavigationOptions: ({navigation}) => ({
+      headerTitle: 'MedMind',
       headerStyle: {
         backgroundColor: medmindBlue,
       },
@@ -100,7 +101,7 @@ const withHeader = (screen, routeName, overrides = {}) =>
     {
       headerMode: 'screen',
       defaultNavigationOptions: ({navigation}) => ({
-        headerTitle: 'Medmind',
+        headerTitle: 'MedMind',
         headerStyle: {
           backgroundColor: medmindBlue,
         },
@@ -169,6 +170,9 @@ const DrawerNavigation = createDrawerNavigator(
         drawerLabel: 'Export Summary',
         drawerIcon: () => <Image source={ExportIcon} style={styles.imageStyle} />
       }
+    },
+    editDrugScreen: {
+      screen: EditDrugScreen
     },
     logout: {
       screen: LoginScreen,

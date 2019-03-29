@@ -97,5 +97,5 @@ export default StyleSheet.create({
     color: '#BDBDBD',
     position: 'absolute',
     right: 32
-  }
+  },
 });

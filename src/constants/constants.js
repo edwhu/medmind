@@ -25,6 +25,51 @@ export const DAYS = {
   6: 'Sun'
 };
 
+export const asNeededDrugs = [
+  {
+    id: 1,
+    key: '1',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#FFDF00'
+  },
+  {
+    id: 2,
+    key: '2',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#0000ff'
+  },
+  {
+    id: 3,
+    key: '3',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#009900'
+  },
+  {
+    id: 4,
+    key: '4',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#090990'
+  },
+  {
+    id: 5,
+    key: '5',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#123456'
+  },
+  {
+    id: 6,
+    key: '6',
+    name: 'Lorazepam',
+    dosage: '2 mg',
+    color: '#990099'
+  }
+];
+
 export const testDrugs = [
   {
     id: 1,
@@ -93,7 +138,7 @@ export const testReminders = [
   {
     id: 1,
     drugId: 1,
-    time: moment().add(2000),
+    time: moment('19:00', 'HH:mm'),
     repeat: 'week',
     dosage: '500mg',
     snooze: false,
@@ -102,7 +147,7 @@ export const testReminders = [
   {
     id: 2,
     drugId: 2,
-    time: moment(),
+    time: moment('19:00', 'HH:mm'),
     repeat: 'week',
     dosage: '200mg',
     snooze: false,
@@ -110,8 +155,17 @@ export const testReminders = [
   },
   {
     id: 3,
-    drugId: 2,
-    time: moment(),
+    drugId: 3,
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '700mg',
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 6,
+    drugId: 3,
+    time: moment('19:00', 'HH:mm'),
     repeat: 'week',
     dosage: '700mg',
     snooze: false,
@@ -119,8 +173,8 @@ export const testReminders = [
   },
   {
     id: 4,
-    drugId: 3,
-    time: moment(),
+    drugId: 4,
+    time: moment('21:00', 'HH:mm'),
     repeat: 'day',
     dosage: '400mg',
     snooze: true,
@@ -128,6 +182,45 @@ export const testReminders = [
   },
   {
     id: 5,
+    drugId: 5,
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'day',
+    dosage: '100mg',
+    snooze: false,
+    snoozeDrug: true
+  }
+];
+
+export const testRemindersUnsorted = [
+  {
+    id: 1,
+    drugId: 1,
+    time: moment('19:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '500mg',
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 2,
+    drugId: 2,
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '200mg',
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 3,
+    drugId: 3,
+    time: moment('21:00', 'HH:mm'),
+    repeat: 'week',
+    dosage: '700mg',
+    snooze: false,
+    snoozeDrug: false
+  },
+  {
+    id: 4,
     drugId: 4,
     time: moment(),
     repeat: 'day',

@@ -27,40 +27,57 @@ class AddDrugScreen extends Component {
       flex: 1,
       textAlign: 'center',
       marginRight: '23%',
-    },
-    headerLeft: <RoundedButton
+    },  
+    headerLeft: <TouchableOpacity 
       onPress={() => navigation.dangerouslyGetParent().navigate('timelineScreen')}
-      name={'Back'}
-      buttonStyle={styles.button}
-    />,
+      style={styles.back}
+    >
+      <View>
+        <Text style={styles.text}>
+                      Back
+        </Text>
+      </View>
+    </TouchableOpacity>,
     headerRight: null
   });
   state = {
-    asNeeded: false,
     name: 'Bevacizumab',
     dosage: '500mg',
     doctor: 'Dr. Who',
     frequency: '5x a day', 
     startDate: moment().subtract(10, 'days'),
     endDate: moment().add(10, 'days'),
-    color: '#990099',
-    modalVisible: false
+    color: '#AD2452',
+    modalVisible: false,
+    colorPicked: false,
   };
-
+  resetColor() {
+    this.setState({
+      color: '#AD2452',
+      colorPicked: false,
+    });
+  }
   hideModal() {
     this.setState({modalVisible: false});
   }
   showModal() {
     this.setState({modalVisible: true});
   }
-
   onSubmit() {
+    this.resetColor();
     const {navigate} = this.props.navigation;
     this.props.addDrug(this.state);
     navigate('timelineScreen');
   }
-
+  onOK(selectedColor) {
+    this.setState({
+      colorPicked: true,
+      color: selectedColor});
+    this.hideModal();
+  }
+  
   render() {
+    const color = {backgroundColor: this.state.color};
     return (
       <KeyboardAvoidingView style={styles.container}>
         <FormField
@@ -79,7 +96,7 @@ class AddDrugScreen extends Component {
           header="Doctor"
           onChange={doctor => this.setState({ doctor })}
           value={this.state.doctor}
-          placeholder={this.state.dosage}
+          placeholder={this.state.doctor}
         />
         <FormField
           header="Frequency"
@@ -107,15 +124,23 @@ class AddDrugScreen extends Component {
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Colors</Text>
-            <TouchableOpacity
-              onPress = {() => {
-                this.showModal();
-              }}
-              hitSlop={{left: 100}}
-            >
-              <Ionicons name="ios-arrow-forward" size={16} />
-            </TouchableOpacity>
-            
+            {!this.state.colorPicked && (
+              <TouchableOpacity
+                onPress = {() => {
+                  this.showModal();
+                }}
+                hitSlop={{left: 100}}
+              >
+                <Ionicons name="ios-arrow-forward" size={16} />
+              </TouchableOpacity>
+            )}
+            {this.state.colorPicked && (
+              <TouchableOpacity
+                onPress = {this.showModal}
+                hitSlop={{left: 100}}
+                style={[styles.colorButton, color]}
+              />
+            )}
           </View>
         </View>
 
@@ -126,18 +151,19 @@ class AddDrugScreen extends Component {
           style = {styles.modalContainer}
         >
           <View elevation = {5} style = {styles.container2}>
-            <ColorPicker/>
+            <ColorPicker
+              defaultColor={this.state.color}
+              ref={'colorpicker'}
+            />
             <View style = {styles.container3}>
               <TouchableOpacity
-                onPress={() => {
-                  this.hideModal();
-                }}
+                onPress={this.hideModal}
               >
                 <Text style = {styles.textStyle}>CANCEL</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  this.hideModal();
+                  this.onOK(this.refs['colorpicker'].state.value);
                 }}
               >
                 <Text style = {styles.textStyle}>OK</Text>
@@ -210,6 +236,20 @@ const styles = StyleSheet.create({
     width: 200,
     height: 40
   },
+  text: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  back: {
+    marginLeft: 10,
+  },
+  colorButton: {
+    borderWidth:1,
+    borderColor:'rgba(0,0,0,0.2)',
+    width:30,
+    height:30,
+    borderRadius:15,
+  },
   button: {
     borderWidth: 2,
     borderColor: 'gray',
@@ -236,5 +276,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
-  }
+  },
 });

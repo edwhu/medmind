@@ -18,7 +18,7 @@ export default class TermsAndConditionsScreen extends Component {
   };
 
   state = {
-    title: this.props.title || 'Medmind',
+    title: this.props.title || 'MedMind',
     showButton: false
   };
 

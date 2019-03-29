@@ -18,7 +18,7 @@ export default class PrivacyScreen extends Component {
   };
 
   state = {
-    title: this.props.title || 'Medmind'
+    title: this.props.title || 'MedMind'
   };
 
   onAcceptButtonPress = () => {

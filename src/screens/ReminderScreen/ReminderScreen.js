@@ -13,7 +13,8 @@ import { updateReminder, setNewReminder, deleteReminder, setUpdateFlag, toggleDr
 import ReminderIcon from '../../assets/03-Notifs.png';
 import EditButton from '../../components/EditButton/EditButton';
 import MinusButton from '../../components/MinusButton/MinusButton';
-import { medmindBlue } from '../../constants/styles';
+import EmptyReminderScreen from '../EmptyScreens/EmptyReminderScreen';
+import { medmindBlue} from '../../constants/styles';
 import styles from './styles';
 
 class ReminderScreen extends Component {
@@ -187,19 +188,29 @@ class ReminderScreen extends Component {
         </View>
       );
     });
-    return (
-      <View style={styles.container}>
-        <ScrollView>
-          {reminders}
-        </ScrollView>
-        <TouchableOpacity
-          style={styles.plusButton}
-          onPress={this.openReminderFormPage}
-        >
-          <Text style={styles.plus}>+</Text>
-        </TouchableOpacity>
-      </View>
-    );
+
+    if (this.props.reminders.length === 0) {
+      return (
+        <View>
+          <EmptyReminderScreen
+            onPress={this.openReminderFormPage}/>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <ScrollView>
+            {reminders}
+          </ScrollView>
+          <TouchableOpacity
+            style={styles.plusButton}
+            onPress={this.openReminderFormPage}
+          >
+            <Text style={styles.plus}>+</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 
