@@ -12,7 +12,9 @@ export default class HeaderEditButton extends Component {
     }
 
     onEditPress = () => {
-      this.setState({ editMode: !this.state.editMode });
+      this.setState(state => ({
+        editMode: !state.editMode,
+      }));
       this.props.onPress();
     };
 
