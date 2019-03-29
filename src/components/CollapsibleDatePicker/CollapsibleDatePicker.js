@@ -49,7 +49,7 @@ export default class CollapsibleDatePicker extends Component {
         this.setDate(newDate);
       }
     } catch ({code, message}) {
-      //TO DO
+      //TODO
     }
   }
 
