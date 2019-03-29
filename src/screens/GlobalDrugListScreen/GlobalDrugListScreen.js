@@ -7,6 +7,7 @@ import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugLi
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { bindActionCreators } from 'redux';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
+import OptionButton from '../../components/OptionButton/OptionButton';
 import { connect } from 'react-redux';
 
 class GlobalDrugListScreen extends Component {
@@ -115,6 +116,10 @@ class GlobalDrugListScreen extends Component {
           >
             {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
           </ScrollView>
+          <OptionButton
+            cameraOnPress={this.navigateCamera} 
+            drugOnPress={this.navigateAddDrug} 
+          />
         </View>
       );
     }
