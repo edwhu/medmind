@@ -87,7 +87,7 @@ const ReminderStack = createStackNavigator(
         textAlign: 'center',
       },
       headerRight: (
-        <HeaderEditButton Press={navigation.getParam('onEditPress')}/>
+        <HeaderEditButton onPress={navigation.getParam('onEditPress')}/>
       ),
     }) 
   }

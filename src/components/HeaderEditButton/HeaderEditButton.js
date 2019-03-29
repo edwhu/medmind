@@ -13,12 +13,13 @@ export default class HeaderEditButton extends Component {
 
     onEditPress = () => {
       this.setState({ editMode: !this.state.editMode });
+      this.props.onPress();
     };
 
     render() {
       return (
         <View >
-          <TouchableOpacity onPress={this.props.Press}>
+          <TouchableOpacity onPress={this.onEditPress}>
             <Text style={styles.text}>{this.state.editMode ? 'Done' : 'Edit'}</Text>
           </TouchableOpacity>
         </View>
