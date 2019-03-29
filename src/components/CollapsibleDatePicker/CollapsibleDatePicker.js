@@ -49,8 +49,7 @@ export default class CollapsibleDatePicker extends Component {
         this.setDate(newDate);
       }
     } catch ({code, message}) {
-      // eslint-disable-next-line no-console
-      console.warn('Cannot open date picker', message);
+      //TODO
     }
   }
 
