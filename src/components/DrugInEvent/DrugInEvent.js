@@ -29,7 +29,6 @@ class DrugInEvent extends Component{
 
   render(){
     const { drug } = this.props;
-    const { modalVisible } = this.state;
     const color = drug.color;
     const styles = createStyles(color);
     return (

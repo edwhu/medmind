@@ -38,20 +38,21 @@ export default class CollapsibleDatePicker extends Component {
 
   async openUpPicker() {
     try {
-        const {action, year, month, day} = await DatePickerAndroid.open({
-          date: new Date(),
-          mode: 'default',
-        });
-        if (action === DatePickerAndroid.dateSetAction) {
-          var hours = new Date().getHours(); //Current Hours
-          var min = new Date().getMinutes(); //Current Minutes
-          const newDate = new Date(year, month, day, hours, min);
-          this.setDate(newDate);
-        }
-      } catch ({code, message}) {
-        console.warn('Cannot open date picker', message);
+      const {action, year, month, day} = await DatePickerAndroid.open({
+        date: new Date(),
+        mode: 'default',
+      });
+      if (action === DatePickerAndroid.dateSetAction) {
+        var hours = new Date().getHours(); //Current Hours
+        var min = new Date().getMinutes(); //Current Minutes
+        const newDate = new Date(year, month, day, hours, min);
+        this.setDate(newDate);
       }
-  };
+    } catch ({code, message}) {
+      // eslint-disable-next-line no-console
+      console.warn('Cannot open date picker', message);
+    }
+  }
 
   render() {
     return (
@@ -69,9 +70,9 @@ export default class CollapsibleDatePicker extends Component {
             {
               Platform.OS == 'ios' &&
                 <DatePickerIOS
-                date={this.state.date.toDate()}
-                onDateChange={this.setDate}
-              />
+                  date={this.state.date.toDate()}
+                  onDateChange={this.setDate}
+                />
             }
           </View>
         </Collapsible>
