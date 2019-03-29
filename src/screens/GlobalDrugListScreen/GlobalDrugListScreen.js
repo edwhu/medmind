@@ -5,8 +5,8 @@ import styles from './styles';
 import { ScrollView, FlatList } from 'react-native';
 import GlobalDrugListItem from '../../components/GlobalDrugListItem/GlobalDrugListItem';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { toggleDrugToDelete } from '../../redux/actions/drug';
 import { bindActionCreators } from 'redux';
+import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
 
 class GlobalDrugListScreen extends Component {
@@ -88,19 +88,36 @@ class GlobalDrugListScreen extends Component {
     this.setState({query});
   }
 
+  navigateCamera = () => {
+    this.props.navigation.navigate('cameraScreen');
+  }
+  navigateAddDrug = () => {
+    this.props.navigation.navigate('addDrugScreen');
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <SearchBar atTopOfList={this.state.atTopOfList} onChange={this.updateQuery} />
-        {!this.state.atTopOfList && <View style={styles.separator} />}
-        <ScrollView
-          style={styles.scrollView}
-          onScroll={this.handleScroll.bind(this)}
-        >
-          {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
-        </ScrollView>
-      </View>
-    );
+    if (this.props.drugs.length === 0) {
+      return (
+        <View>
+          <EmptyDrugScreen 
+            cameraOnPress={this.navigateCamera} 
+            drugOnPress={this.navigateAddDrug} />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <SearchBar atTopOfList={this.state.atTopOfList} onChange={this.updateQuery} />
+          {!this.state.atTopOfList && <View style={styles.separator} />}
+          <ScrollView
+            style={styles.scrollView}
+            onScroll={this.handleScroll}
+          >
+            {this.state.query.trim() ? this.renderFilteredDrugs(this.state.query) : this.renderAlphabetizedDrugs()}
+          </ScrollView>
+        </View>
+      );
+    }
   }
 }
 
@@ -112,7 +129,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({ toggleDrugToDelete }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default connect(
   mapStateToProps,
