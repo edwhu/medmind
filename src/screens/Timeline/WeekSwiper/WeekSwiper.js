@@ -69,7 +69,9 @@ class WeekSwiper extends Component {
 }
 
 function mapStateToProps(state) {
-  return state.timelineReducer;
+  return {
+    currentWeek: state.timelineReducer.currentDay.startOf('isoWeek')
+  };
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ updateWeek }, dispatch);
