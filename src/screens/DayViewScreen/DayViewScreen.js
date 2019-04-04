@@ -89,7 +89,6 @@ class DayViewScreen extends Component {
   render() {
     const reminders = this.props.reminders;
     const drugs = this.props.drugs;
-    console.log('organized drugs:', this.organizeDrugsByEvent(reminders));
     if (this.props.drugs.length === 0) {
       return (
         <View>
