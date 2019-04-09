@@ -10,7 +10,7 @@ import moment from 'moment';
 
 class TimelineScreen extends Component {
   static navigationOptions = ({navigation}) => ({
-    headerTitle: navigation.getParam('title', moment().format("MMMM")),
+    headerTitle: navigation.getParam('title', moment().format('MMMM')),
     drawerLabel: 'Timeline',
     drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
   });
