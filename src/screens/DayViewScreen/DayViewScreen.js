@@ -8,13 +8,14 @@ import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
 import OptionButton from '../../components/OptionButton/OptionButton';
+import moment from 'moment';
 
 class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
   static navigationOptions = {
-    headerTitle: new Date().toDateString(),
+    headerTitle: moment().format('MMMM Do YYYY'),
   }
   static defaultProps = {};
 
