@@ -30,6 +30,7 @@ import ExportIcon from '../assets/05-ExportSumm.png';
 import DrugIcon from '../assets/04-DrugList.png';
 import NotifIcon from '../assets/03-Notifs.png';
 import GlobalDrugListHeaderRight from '../screens/GlobalDrugListScreen/HeaderRight';
+import HeaderEditButton from '../components/HeaderEditButton/HeaderEditButton';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -71,7 +72,6 @@ const ReminderStack = createStackNavigator(
   },
   {
     initialRouteName: 'reminderScreen',
-    // eslint-disable-next-line no-unused-vars
     defaultNavigationOptions: ({navigation}) => ({
       headerTitle: 'MedMind',
       headerStyle: {
@@ -86,9 +86,9 @@ const ReminderStack = createStackNavigator(
         flex: 1,
         textAlign: 'center',
       },
-      headerRight: <SettingsButton onPress={()=>{
-        openSettings();
-      }}/>
+      headerRight: (
+        <HeaderEditButton onPress={navigation.getParam('onEditPress')}/>
+      ),
     }) 
   }
 );
@@ -123,8 +123,6 @@ const withHeader = (screen, routeName, overrides = {}) =>
       })
     },
   );
-
-  
   
 const doNotAppearOnDrawer = {
   navigationOptions: {
