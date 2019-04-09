@@ -13,7 +13,9 @@ class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
-
+  static navigationOptions = {
+    headerTitle: new Date().toDateString(),
+  }
   static defaultProps = {};
 
   getDrug = (drugId) => {
