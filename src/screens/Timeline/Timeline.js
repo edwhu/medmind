@@ -6,12 +6,14 @@ import WeekIcon from '../../assets/01-Week.png';
 import WeekSwiper from './WeekSwiper/WeekSwiper';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import styles from './styles';
+import moment from 'moment';
 
 class TimelineScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
+    headerTitle: navigation.getParam('title', moment().format("MMMM")),
     drawerLabel: 'Timeline',
     drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
-  };
+  });
 
   static propTypes = {};
 

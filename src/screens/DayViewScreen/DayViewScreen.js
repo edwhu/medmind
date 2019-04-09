@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import OptionButton from '../../components/OptionButton/OptionButton';
 import moment from 'moment';
 
+
 class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
