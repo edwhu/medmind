@@ -148,16 +148,6 @@ class ReminderFormScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
-        <View style={styles.row}>
-          <Text style={styles.setting}>Snooze</Text>
-          <Switch
-            onTintColor={medmindBlue}
-            style={styles.switchButton}
-            onValueChange={() => updateNewReminder('snooze', newReminder.snooze)}
-            value={newReminder.snooze}
-          />
-        </View>
-        <View style={styles.horizontalLine} />
         <TouchableOpacity onPress={() => this.saveReminder()}>
           <Text>Save</Text>
         </TouchableOpacity>
