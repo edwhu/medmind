@@ -16,7 +16,7 @@ class DayViewScreen extends Component {
     title: PropTypes.string
   };
   static navigationOptions = {
-    headerTitle: moment().format('MMMM Do YYYY'),
+    headerTitle: moment().format('ddd MMMM D'),
   }
   static defaultProps = {};
 
