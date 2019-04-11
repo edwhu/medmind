@@ -31,11 +31,12 @@ class WeekSwiper extends Component {
   };
 
   _onIndexChanged = index => {
+    const newWeek = this.props.currentWeek.clone().add(index - 1, 'week');
     this.props.updateWeek(
-      this.props.currentWeek.clone().add(index - 1, 'week'),
+      newWeek,
     );
 
-    this.props.navigation.setParams({'title': MONTHS[this.props.currentWeek.clone().add(index - 1, 'week').month().toString()]});
+    this.props.navigation.setParams({'title': MONTHS[newWeek.month().toString()]});
   };
 
   navigateCamera = () => {
