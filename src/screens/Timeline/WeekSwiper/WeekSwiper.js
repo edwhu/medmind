@@ -35,7 +35,7 @@ class WeekSwiper extends Component {
       this.props.currentWeek.clone().add(index - 1, 'week'),
     );
 
-    this.props.navigation.setParams({'title': MONTHS[this.props.currentMonth]});
+    this.props.navigation.setParams({'title': MONTHS[this.props.currentWeek.clone().add(index - 1, 'week').month().toString()]});
   };
 
   navigateCamera = () => {
