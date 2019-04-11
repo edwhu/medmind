@@ -14,7 +14,7 @@ export default class OptionButton extends Component {
 
     render() {
       return (
-        <ActionButton buttonColor="rgba(101, 192, 190, 1)" size = {75}>
+        <ActionButton buttonColor="rgba(101, 192, 190, 1)" size = {75} buttonTextStyle={styles.plus}>
           <ActionButton.Item 
             buttonColor="rgba(101,192,190,1)" 
             title="Scan Drug Label" 
@@ -50,5 +50,8 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     height: 25,
+  },
+  plus: {
+    fontSize: 40,
   }
 });
