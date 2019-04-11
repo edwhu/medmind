@@ -135,14 +135,18 @@ const doNotAppearOnDrawer = {
 const DrawerNavigation = createDrawerNavigator(
   {
     dayViewScreen: {
-      screen: withHeader(DayViewScreen, 'dayViewScreen'),
+      screen: withHeader(DayViewScreen, 'dayViewScreen', {
+        headerRight: null
+      }),
       navigationOptions: {
         drawerLabel: 'Day',
         drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
       }
     },
     timelineScreen: {
-      screen: withHeader(TimelineScreen,'timelineScreen'),
+      screen: withHeader(TimelineScreen,'timelineScreen', {
+        headerRight: null
+      }),
       navigationOptions: {
         drawerLabel: 'Week',
         drawerIcon: () => <Image source={WeekIcon} style={styles.imageStyle} />,
