@@ -108,7 +108,7 @@ class DayViewScreen extends Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               data={drugs}
-              renderItem={({ item }) => <DrugItemInDayView drug={item}/>}
+              renderItem={({ item }) => <DrugItemInDayView drug={item} navigation={this.props.navigation}/>}
               keyExtractor={(item) => item.id.toString()}
             />
             <View style={styles.dayVerticalListWrapper}>
