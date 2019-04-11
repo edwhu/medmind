@@ -17,7 +17,7 @@ class DayViewScreen extends Component {
 
   getDrug = (drugId) => {
     const drugs = this.props.drugs;
-    let targetDrug = drugs.filter(drug => drug.id == drugId);
+    let targetDrug = drugs.filter((drug) => drug.id == drugId);
     if(targetDrug.length != 0){
       return targetDrug[0];
     }
@@ -28,7 +28,7 @@ class DayViewScreen extends Component {
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
   organizeDrugsByEvent = (allReminders) => {
     const { currentDay } = this.props;
-    const todaysReminders = allReminders.filter(reminder => {
+    const todaysReminders = allReminders.filter((reminder) => {
       if (reminder.endDate && reminder.endDate.isBefore(currentDay, 'day')) {
         return false;
       }
@@ -59,7 +59,7 @@ class DayViewScreen extends Component {
     return Object.entries(remindersByTime).map(([time, reminders], key) => ({
       time,
       key,
-      drugs: reminders.map(reminder => this.getDrug(reminder.drugId)),
+      drugs: reminders.map((reminder) => this.getDrug(reminder.drugId)),
     }));
   };
 
@@ -79,7 +79,7 @@ class DayViewScreen extends Component {
     this.state = {firstLaunch: null};
   }
   componentDidMount(){
-    AsyncStorage.getItem('alreadyLaunched').then(value => {
+    AsyncStorage.getItem('alreadyLaunched').then((value) => {
       if(value == null){
         AsyncStorage.setItem('alreadyLaunched', 'true');
         this.props.navigation.navigate('termsAndConditionsScreen');

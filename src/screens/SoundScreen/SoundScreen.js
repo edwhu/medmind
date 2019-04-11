@@ -15,7 +15,7 @@ class SoundScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -24,16 +24,16 @@ class SoundScreen extends Component {
     title: this.props.title || 'Sound'
   };
 
-  setSound = sound => {
+  setSound = (sound) => {
     this.props.updateNewReminder('sound', sound);
   };
 
-  checkSelected = sound => {
+  checkSelected = (sound) => {
     return this.props.newReminder.sound == sound;
   };
 
   render() {
-    const soundList = testSounds.map(sound => {
+    const soundList = testSounds.map((sound) => {
       return (
         <ListItem
           key={sound}
@@ -58,7 +58,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 

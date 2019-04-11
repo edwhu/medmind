@@ -20,7 +20,7 @@ class ReminderFormScreen extends Component {
   static defaultProps = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -47,15 +47,15 @@ class ReminderFormScreen extends Component {
     });
   };
 
-  getDrugName = drugId => {
-    const drug = this.props.drugs.find(drug => drug.id === drugId);
+  getDrugName = (drugId) => {
+    const drug = this.props.drugs.find((drug) => drug.id === drugId);
     if (typeof drug !== 'undefined') {
       return drug.name;
     }
   };
 
-  getDrugById = id => {
-    return this.props.drugs.find(drug => drug.id === id);
+  getDrugById = (id) => {
+    return this.props.drugs.find((drug) => drug.id === id);
   };
 
   updateReminder = () => {
@@ -108,7 +108,7 @@ class ReminderFormScreen extends Component {
       <View style={styles.container}>
         <TimePicker
           header="Time"
-          setDate={time => updateNewReminder('time', time)}
+          setDate={(time) => updateNewReminder('time', time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -175,7 +175,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addReminder: bindActionCreators(addReminder, dispatch),
   updateReminder: bindActionCreators(updateReminder, dispatch),
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch),

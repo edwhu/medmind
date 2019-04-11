@@ -41,7 +41,7 @@ class ShareDrugScreen extends React.Component {
   };
 
   render() {
-    const children = this.props.testDrugs.map(item => {
+    const children = this.props.testDrugs.map((item) => {
       return (
         <View key={item.name} style={styles.buttonContainer}>
           <View style={styles.columnContainer}>

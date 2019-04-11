@@ -20,16 +20,16 @@ class WeekSwiper extends Component {
   // Given the beginning date of a week, returns an array
   // containing data for that week, the week before, and the
   // week after.
-  _getSurroundingWeeks = middleWeekBegin => {
+  _getSurroundingWeeks = (middleWeekBegin) => {
     const middleWeekEnd = middleWeekBegin.clone().endOf('isoWeek');
     const diffs = [-1, 0, 1]; // # of weeks different from this week
-    return diffs.map(diff => ({
+    return diffs.map((diff) => ({
       beginning: middleWeekBegin.clone().add(diff, 'week'),
       end: middleWeekEnd.clone().add(diff, 'week'),
     }));
   };
 
-  _onIndexChanged = index => {
+  _onIndexChanged = (index) => {
     this.props.updateWeek(
       this.props.currentWeek.clone().add(index - 1, 'week'),
     );
@@ -56,7 +56,7 @@ class WeekSwiper extends Component {
           showsButtons={false}
           showsPagination={false}
         >
-          {weeks.map(week => (
+          {weeks.map((week) => (
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
@@ -74,7 +74,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ updateWeek }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ updateWeek }, dispatch);
 
 export default connect(
   mapStateToProps,

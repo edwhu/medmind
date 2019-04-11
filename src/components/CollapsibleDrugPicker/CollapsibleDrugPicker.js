@@ -25,7 +25,7 @@ export default class CollapsibleDatePicker extends Component {
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setDrugType = drugType => {
+  setDrugType = (drugType) => {
     this.setState({ chosenDrugType: drugType });
     this.props.setDrugType(drugType);
   };
