@@ -7,6 +7,7 @@ import DrugItemInDayView from '../../components/DrugItemInDayView/DrugItemInDayV
 import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
+import OptionButton from '../../components/OptionButton/OptionButton';
 
 class DayViewScreen extends Component {
   static propTypes = {
@@ -118,6 +119,10 @@ class DayViewScreen extends Component {
               />
             </View>
           </ScrollView>
+          <OptionButton
+            cameraOnPress={this.navigateCamera}
+            drugOnPress={this.navigateAddDrug}
+          />
         </View>
       );
     }
