@@ -17,13 +17,7 @@ class DayViewScreen extends Component {
   static defaultProps = {};
 
   getDrug = (drugId) => {
-    const drugs = this.props.drugs;
-    let targetDrug = drugs.filter((drug) => drug.id == drugId);
-    if(targetDrug.length != 0){
-      return targetDrug[0];
-    }
-    else 
-      return null;
+    return this.props.drugs.find((drug) => drug.id === drugId);
   };
 
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
