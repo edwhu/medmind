@@ -7,6 +7,15 @@ import { getFadedFromHex } from '../../utilities/helpers';
 export const createStyles = (drugColor) => {
   const lighterColor = getFadedFromHex(drugColor);
   return StyleSheet.create({
+    blurBackground: {
+      position: 'absolute', 
+      left: -20, 
+      right: 0, 
+      top: -20, 
+      bottom: 0,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    },
     container: {
       marginRight: 10,
       marginLeft: 10,
@@ -15,7 +24,7 @@ export const createStyles = (drugColor) => {
       width: 140,
       height: 110,
       backgroundColor: '#E2E2E2',
-      borderRadius: 20,
+      borderRadius: 10,
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'center',
@@ -27,7 +36,8 @@ export const createStyles = (drugColor) => {
     },
     drugName: {
       marginTop: 25,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      fontFamily: 'Helvetica-Light'
     },
     drugDosage: {
       marginTop: 5
@@ -36,13 +46,17 @@ export const createStyles = (drugColor) => {
       justifyContent: 'space-between',
       backgroundColor: 'white',
       borderRadius: 20,
-      borderWidth: 1,
       height:'60%', 
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.8,
+      shadowRadius: 1,
+      elevation: 5  
     },
     modalTopBar: { 
       borderTopLeftRadius: 20, 
       borderTopRightRadius:20, 
-      height: '15%',
+      height: '12.5%',
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 20,
@@ -50,11 +64,17 @@ export const createStyles = (drugColor) => {
     },
     pillContainer: {
       borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-      width: Dimensions.get('window').width * 0.15,
-      height: Dimensions.get('window').width * 0.15,
+      width: Dimensions.get('window').width * 0.25,
+      height: Dimensions.get('window').width * 0.25,
       backgroundColor: lighterColor,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.5,
+      shadowRadius: 1,
+      elevation: 3,
+      marginBottom: 10 
     },
     modalPillBar: {
       backgroundColor: 'white',
@@ -64,10 +84,14 @@ export const createStyles = (drugColor) => {
       height: '30%'
     },
     modalDrugName: {
+      marginTop: 10,
+      marginBottom: 10,
       fontSize: 20, 
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      color: '#5B6571'
     },
     infoBar: {
+      marginTop: 30,
       height: '30%',
       alignItems: 'flex-start',
       justifyContent: 'space-between'
@@ -82,18 +106,18 @@ export const createStyles = (drugColor) => {
       padding: 20
     },
     imageStyle: {
-      width: 40,
-      height: 40,
-  
+      marginTop: -5,
+      width: 35,
+      height: 35,
     },
     iconView: {
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
     iconStyle: {
-      width: 40,
-      height: 40,
-      marginLeft: 20,
+      width: 25,
+      height: 25,
+      marginLeft: 30,
     },
     iconTextView: {
       marginLeft: 20, 
@@ -101,12 +125,15 @@ export const createStyles = (drugColor) => {
       justifyContent: 'center'
     }, 
     iconText: {
-      fontSize: 15,
-      fontFamily: 'Helvetica-Light'
+      fontSize: 18,
+      fontFamily: 'Helvetica-Light',
+      color: '#5B6571'
     },
     closeButton: {
-      width: 34, 
-      height: 34
+      marginLeft: 5,
+      marginTop: 5,
+      width: 20, 
+      height: 20
     },
     skipButtonView: {
       alignItems: 'center',

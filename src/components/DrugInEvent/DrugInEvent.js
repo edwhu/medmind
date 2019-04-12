@@ -43,6 +43,4 @@ class DrugInEvent extends Component{
   }
 }
 
-
-
 export default DrugInEvent;

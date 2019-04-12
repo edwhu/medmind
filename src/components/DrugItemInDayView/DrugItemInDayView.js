@@ -20,7 +20,6 @@ class DrugItemInDayView extends Component{
 
   render() {
     const { drug } = this.props;
-    const color = drug.color;
     const styles = createStyles();
 
     return (
