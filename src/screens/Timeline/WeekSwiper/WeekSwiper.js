@@ -9,6 +9,7 @@ import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
 import OptionButton from '../../../components/OptionButton/OptionButton';
 import styles from './styles';
 import { updateWeek } from '../../../redux/actions/calendar';
+import {MONTHS} from '../../../constants/constants';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -30,9 +31,12 @@ class WeekSwiper extends Component {
   };
 
   _onIndexChanged = index => {
+    const newWeek = this.props.currentWeek.clone().add(index - 1, 'week');
     this.props.updateWeek(
-      this.props.currentWeek.clone().add(index - 1, 'week'),
+      newWeek,
     );
+
+    this.props.navigation.setParams({'title': MONTHS[newWeek.month().toString()]});
   };
 
   navigateCamera = () => {
