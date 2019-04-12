@@ -25,24 +25,16 @@ class DayViewScreen extends Component {
     const { currentDay } = this.props;
     const todaysReminders = allReminders.filter((reminder) => {
       if (reminder.endDate && reminder.endDate.isBefore(currentDay, 'day')) {
-        console.log('returning false');
         return false;
       }
-      console.log('reminder:', reminder);
-      console.log('currentDay:', currentDay);
       switch(reminder.repeat) {
       case 'week': {
-        console.log('comparing weeks:');
-        console.log('  reminder day:', reminder.time.day());
-        console.log('  todayDay:', currentDay.day());
         return reminder.time.day() === currentDay.day();
       }
       case 'day': {
         return true;
       }
       case 'custom': {
-        console.log('comparing custom:', currentDay.day());
-        console.log(reminder.selectedWeekdays);
         return reminder.selectedWeekdays[currentDay.day()];
       }
       }
