@@ -20,7 +20,7 @@ export default (state = drugState, action) => {
   case DELETE_DRUGS:
     return {
       ...state,
-      drugInfo: state.drugInfo.filter(drug => !state.drugIdsToDelete.includes(drug.id)),
+      drugInfo: state.drugInfo.filter((drug) => !state.drugIdsToDelete.includes(drug.id)),
       drugIdsToDelete: [],
     };
   case TOGGLE_DRUG_EDIT: 
@@ -31,12 +31,12 @@ export default (state = drugState, action) => {
     };
   case TOGGLE_DRUG_TO_DELETE: 
     const { drugId } = action;
-    const index = state.drugIdsToDelete.findIndex(id => id === drugId);
+    const index = state.drugIdsToDelete.findIndex((id) => id === drugId);
 
     if (index > -1) {
       return {
         ...state,
-        drugIdsToDelete: state.drugIdsToDelete.filter(id => id !== drugId),
+        drugIdsToDelete: state.drugIdsToDelete.filter((id) => id !== drugId),
       };
     }
       
@@ -46,7 +46,7 @@ export default (state = drugState, action) => {
     };
   case EDIT_DRUG:
     const editedDrug = action.drug;
-    const updatedDrugInfo = [...state.drugInfo.filter(drug => drug.id !== editedDrug.id), 
+    const updatedDrugInfo = [...state.drugInfo.filter((drug) => drug.id !== editedDrug.id), 
       Object.assign({}, editedDrug)];
     state = {...state, drugInfo: updatedDrugInfo};
     return state;

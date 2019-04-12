@@ -8,61 +8,57 @@ import EventInDayView from '../../components/EventInDayView/EventInDayView';
 import EmptyDrugScreen from '../EmptyScreens/EmptyDrugScreen';
 import { connect } from 'react-redux';
 import OptionButton from '../../components/OptionButton/OptionButton';
+import moment from 'moment';
+
 
 class DayViewScreen extends Component {
   static propTypes = {
     title: PropTypes.string
   };
-
+  static navigationOptions = {
+    headerTitle: moment().format('ddd MMMM D'),
+  }
   static defaultProps = {};
 
   getDrug = (drugId) => {
-    const drugs = this.props.drugs;
-    let targetDrug = drugs.filter(drug => drug.id == drugId);
-    if(targetDrug.length != 0){
-      return targetDrug[0];
-    }
-    else 
-      return null;
+    return this.props.drugs.find((drug) => drug.id === drugId);
   };
 
   // TODO: This function must be completed to take the drugs by event and put it in the correct schema so that the components can use them
-  organizeDrugsByEvent = (reminders) => {
-    // Sort by time 
-    reminders.sort((left, right) => left.time.minutes() + left.time.hours() * 60 > right.time.minutes() + right.time.hours() * 60 );
-    // Convert information from reminders and drugs into drugsByEvent schema
-    let key = -1;
-    let drugsByEvent = [];
-    let currentTimeDict = {time: null, key: key, drugs: []};
-    let currentTime = null; 
-
-    reminders.forEach(reminder => {
-      const drugId = reminder.drugId;
-      let drug = this.getDrug(drugId);
-      const reminderTime = reminder.time;
-      const reminderTimeString = reminder.time.format('HH:mm');
-      const currentTimeString = (currentTime != null) ? currentTime.format('HH:mm') : null;
-      // If we find a new time segment to take drugs, create a new entry
-      if(currentTimeString != reminderTimeString){
-        key++;
-        currentTimeDict = {time: reminderTime, key: key, drugs: []};
-        // Find corresponding drug given drugId
-        if(drug !== null){
-          currentTimeDict['drugs'].push(drug);
-        }
-        currentTime = reminder['time'];
-        drugsByEvent.push(currentTimeDict);
-
+  organizeDrugsByEvent = (allReminders) => {
+    const { currentDay } = this.props;
+    const todaysReminders = allReminders.filter((reminder) => {
+      if (reminder.endDate && reminder.endDate.isBefore(currentDay, 'day')) {
+        return false;
       }
-      // Otherwise, we append the current drug into the current time segment's array
-      else {
-        if(drug !== null){
-          currentTimeDict['drugs'].push(drug);
-        }
+      switch(reminder.repeat) {
+      case 'week': {
+        return reminder.time.day() === currentDay.day();
+      }
+      case 'day': {
+        return true;
+      }
+      case 'custom': {
+        return reminder.selectedWeekdays[currentDay.day()];
+      }
       }
     });
 
-    return drugsByEvent;
+    todaysReminders.sort((a, b) => a.time.isAfter(b.time, 'seconds'));
+    const remindersByTime = todaysReminders.reduce((acc, reminder) => {
+      const timeString = reminder.time.format('hh:mm A');
+      if (!acc[timeString]) {
+        acc[timeString] = [];
+      }
+      acc[timeString].push(reminder);
+      return acc;
+    }, {});
+
+    return Object.entries(remindersByTime).map(([time, reminders], key) => ({
+      time,
+      key,
+      drugs: reminders.map((reminder) => this.getDrug(reminder.drugId)),
+    }));
   };
 
   navigateCamera = () => {
@@ -81,7 +77,7 @@ class DayViewScreen extends Component {
     this.state = {firstLaunch: null};
   }
   componentDidMount(){
-    AsyncStorage.getItem('alreadyLaunched').then(value => {
+    AsyncStorage.getItem('alreadyLaunched').then((value) => {
       if(value == null){
         AsyncStorage.setItem('alreadyLaunched', 'true');
         this.props.navigation.navigate('termsAndConditionsScreen');
@@ -121,8 +117,8 @@ class DayViewScreen extends Component {
             </View>
           </ScrollView>
           <OptionButton
-            cameraOnPress={this.navigateCamera} 
-            drugOnPress={this.navigateAddDrug} 
+            cameraOnPress={this.navigateCamera}
+            drugOnPress={this.navigateAddDrug}
           />
         </View>
       );
@@ -134,7 +130,8 @@ class DayViewScreen extends Component {
 function mapStateToProps(state){
   return {
     reminders: state.remindersReducer.reminders,
-    drugs: state.drugInfoReducer.drugInfo 
+    drugs: state.drugInfoReducer.drugInfo,
+    currentDay: state.timelineReducer.currentDay,
   };
 }
 

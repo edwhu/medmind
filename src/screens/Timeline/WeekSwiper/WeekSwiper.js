@@ -8,7 +8,8 @@ import Swiper from 'react-native-swiper';
 import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
 import OptionButton from '../../../components/OptionButton/OptionButton';
 import styles from './styles';
-import { updateWeek } from '../../../redux/actions/calendar';
+import { updateDay } from '../../../redux/actions/calendar';
+import { MONTHS } from '../../../constants/constants';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -20,19 +21,19 @@ class WeekSwiper extends Component {
   // Given the beginning date of a week, returns an array
   // containing data for that week, the week before, and the
   // week after.
-  _getSurroundingWeeks = middleWeekBegin => {
+  _getSurroundingWeeks = (middleWeekBegin) => {
     const middleWeekEnd = middleWeekBegin.clone().endOf('isoWeek');
     const diffs = [-1, 0, 1]; // # of weeks different from this week
-    return diffs.map(diff => ({
+    return diffs.map((diff) => ({
       beginning: middleWeekBegin.clone().add(diff, 'week'),
       end: middleWeekEnd.clone().add(diff, 'week'),
     }));
   };
 
-  _onIndexChanged = index => {
-    this.props.updateWeek(
-      this.props.currentWeek.clone().add(index - 1, 'week'),
-    );
+  _onIndexChanged = (index) => {
+    const newWeek  = this.props.currentWeek.clone().add(index - 1, 'week');
+    this.props.updateDay(newWeek);
+    this.props.navigation.setParams({'title': MONTHS[newWeek.month().toString()]});
   };
 
   navigateCamera = () => {
@@ -56,7 +57,7 @@ class WeekSwiper extends Component {
           showsButtons={false}
           showsPagination={false}
         >
-          {weeks.map(week => (
+          {weeks.map((week) => (
             <CalendarWeek week={week} key={week.beginning.toString()} />
           ))}
         </Swiper>
@@ -69,10 +70,12 @@ class WeekSwiper extends Component {
 }
 
 function mapStateToProps(state) {
-  return state.timelineReducer;
+  return {
+    currentWeek: state.timelineReducer.currentDay.startOf('isoWeek'),
+  };
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ updateWeek }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ updateDay }, dispatch);
 
 export default connect(
   mapStateToProps,

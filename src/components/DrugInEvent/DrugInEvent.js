@@ -14,7 +14,7 @@ class DrugInEvent extends Component{
     editFormVisible: false,
   };
 
-  setModalVisible = visible => {
+  setModalVisible = (visible) => {
     this.setState({modalVisible: visible});
   };
 

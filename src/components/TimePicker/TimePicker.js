@@ -16,7 +16,7 @@ export default class TimePicker extends Component {
     this.state = { collapsed: true, chosenDate: moment() };
   }
 
-  setDate = newDate => {
+  setDate = (newDate) => {
     const date = moment(newDate);
     this.setState({ chosenDate: date });
     this.props.setDate(date);

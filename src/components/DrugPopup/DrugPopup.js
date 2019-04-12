@@ -44,7 +44,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
             }}>
             <Image source={EditIcon} style={styles.imageStyle} />
           </TouchableHighlight>
-                      
+
         </View> 
 
         <View style={styles.modalPillBar}>
@@ -55,6 +55,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
             <DrugIcon color={drug.color} scale={1.5}/>
           </TouchableHighlight>      
           <Text style={styles.modalDrugName}>{drug.name}</Text>    
+
         </View>
 
         <View style={styles.infoBar}>
@@ -64,6 +65,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
               <Text style={styles.iconText}
                 numberOfLines={2}> 
                                 Scheduled for {time.format('h:mm A')} on {time.format('MMM do')} </Text>
+
             </View>
           </View>
 
@@ -87,6 +89,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
         </View>
 
       </View> 
+
     </Modal>
   );
 

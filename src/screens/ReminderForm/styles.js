@@ -48,9 +48,4 @@ export default StyleSheet.create({
     fontSize: 25,
     color: medmindBlue
   },
-  switchButton: {
-    position: 'absolute',
-    right: 20,
-    transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }]
-  }
 });

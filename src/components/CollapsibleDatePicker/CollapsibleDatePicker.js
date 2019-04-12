@@ -30,7 +30,7 @@ export default class CollapsibleDatePicker extends Component {
       this.openUpPicker();
   };
 
-  setDate = newDate => {
+  setDate = (newDate) => {
     const date = moment(newDate);
     this.setState({ date });
     this.props.setDate(date);

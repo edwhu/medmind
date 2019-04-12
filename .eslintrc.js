@@ -40,5 +40,9 @@ module.exports = {
         'no-case-declarations': 0,
         'react/prop-types': 0,
         'react/no-string-refs': 0,
+        'arrow-parens': [
+            "error",
+            "always",
+        ]
     }
 };

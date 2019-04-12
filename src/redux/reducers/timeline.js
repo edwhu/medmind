@@ -1,25 +1,18 @@
 import moment from 'moment';
-import { UPDATE_WEEK } from '../../constants/action-types';
+import { UPDATE_DAY } from '../../constants/action-types';
 
-const now = moment();
-const start = now.clone().startOf('isoWeek');
-
-let timelineState = {
-  currentMonth: now.month(),
-  currentYear: now.year(),
-  currentWeek: start,
+let initialState = {
+  currentDay: moment().startOf('day'),
 };
 
-export default  (state = timelineState, action) => {
+export default  (state = initialState, action) => {
   switch (action.type) {
-  case UPDATE_WEEK:
-    const { currentWeek } = action;
-    state = Object.assign({}, state, { 
-      currentWeek,
-      currentMonth: currentWeek.month(),
-      currentYear: currentWeek.year(),
-    });
-    return state;
+  case UPDATE_DAY:
+    const { currentDay } = action;
+    return {
+      ...state,
+      currentDay,
+    };
   default:
     return state;
   }

@@ -15,7 +15,7 @@ class RepeatScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -31,13 +31,13 @@ class RepeatScreen extends Component {
     });
   };
 
-  setRepeat = repeat => {
+  setRepeat = (repeat) => {
     if (this.state.repeat != repeat) {
       this.props.updateNewReminder('repeat', repeat);
     }
   };
 
-  checkSelected = repeat => {
+  checkSelected = (repeat) => {
     return this.props.newReminder.repeat === repeat;
   };
 
@@ -92,7 +92,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 
