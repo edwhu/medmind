@@ -8,7 +8,7 @@ import Swiper from 'react-native-swiper';
 import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
 import OptionButton from '../../../components/OptionButton/OptionButton';
 import styles from './styles';
-import { updateWeek } from '../../../redux/actions/calendar';
+import { updateDay } from '../../../redux/actions/calendar';
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -30,7 +30,7 @@ class WeekSwiper extends Component {
   };
 
   _onIndexChanged = (index) => {
-    this.props.updateWeek(
+    this.props.updateDay(
       this.props.currentWeek.clone().add(index - 1, 'week'),
     );
   };
@@ -70,11 +70,11 @@ class WeekSwiper extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentWeek: state.timelineReducer.currentDay.startOf('isoWeek')
+    currentWeek: state.timelineReducer.currentDay.startOf('isoWeek'),
   };
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ updateWeek }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ updateDay }, dispatch);
 
 export default connect(
   mapStateToProps,

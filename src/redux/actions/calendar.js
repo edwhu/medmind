@@ -1,8 +1,8 @@
-import { UPDATE_WEEK } from '../../constants/action-types';
+import { UPDATE_DAY } from '../../constants/action-types';
 
-export function updateWeek(currentWeek) {
+export function updateDay(currentDay) {
   return {
-    type: UPDATE_WEEK,
-    currentWeek
+    type: UPDATE_DAY,
+    currentDay
   };
 }

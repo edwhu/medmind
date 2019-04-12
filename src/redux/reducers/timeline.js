@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { UPDATE_WEEK } from '../../constants/action-types';
+import { UPDATE_DAY } from '../../constants/action-types';
 
 let initialState = {
   currentDay: moment().startOf('day'),
@@ -7,11 +7,11 @@ let initialState = {
 
 export default  (state = initialState, action) => {
   switch (action.type) {
-  case UPDATE_WEEK:
-    const { currentWeek } = action;
+  case UPDATE_DAY:
+    const { currentDay } = action;
     return {
       ...state,
-      currentDay: currentWeek,
+      currentDay,
     };
   default:
     return state;
