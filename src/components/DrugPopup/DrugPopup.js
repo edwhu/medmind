@@ -24,12 +24,9 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
       animationInTiming = {300}
       transparent={true}
       visible={visible}
-      backdropColor="black"
-      backdropOpacity= {0.7}
-      backdropTransitionInTiming={1000}
       onBackdropPress={onClose}
     >
-      <BlurView style={styles.blurBackground}/>
+      <BlurView tint="light" intensity={70} style={styles.blurBackground}/>
       <View style={styles.modalContainer}>
         <View style={styles.modalTopBar}>
           <TouchableHighlight
