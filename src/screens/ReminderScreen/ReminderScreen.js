@@ -32,7 +32,7 @@ class ReminderScreen extends Component {
   }
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -48,12 +48,12 @@ class ReminderScreen extends Component {
     this.props.navigation.navigate('reminderFormScreen');
   };
 
-  getDrugById = id => {
-    return this.props.drugs.find(drug => drug.id === id);
+  getDrugById = (id) => {
+    return this.props.drugs.find((drug) => drug.id === id);
   };
 
-  getDrugId = drugName => {
-    const drug = this.props.drugs.find(drug => drug.name === drugName);
+  getDrugId = (drugName) => {
+    const drug = this.props.drugs.find((drug) => drug.name === drugName);
     if (typeof drug !== 'undefined') {
       return drug.id;
     }
@@ -61,7 +61,7 @@ class ReminderScreen extends Component {
 
   groupReminders = () => {
     var dict = {};
-    this.props.reminders.forEach(item => {
+    this.props.reminders.forEach((item) => {
       var drug = this.getDrugById(item.drugId);
       if (!dict[drug.name]) {
         dict[drug.name] = [];
@@ -71,24 +71,24 @@ class ReminderScreen extends Component {
     return dict;
   };
 
-  toggleSnooze = id => {
-    const reminder = this.props.reminders.find(item => item.id === id);
+  toggleSnooze = (id) => {
+    const reminder = this.props.reminders.find((item) => item.id === id);
     reminder.snooze = !reminder.snooze;
     this.props.updateReminder(reminder);
   };
 
-  toggleDrugSnooze = drugName => {
+  toggleDrugSnooze = (drugName) => {
     const drugId = this.getDrugId(drugName);
     this.props.toggleDrugSnooze(drugId);
   };
 
-  getSnooze = drugName => {
+  getSnooze = (drugName) => {
     const drugId = this.getDrugId(drugName);
-    const reminder = this.props.reminders.find(r => r.drugId === drugId);
+    const reminder = this.props.reminders.find((r) => r.drugId === drugId);
     return reminder.snoozeDrug;
   };
 
-  displayRepeat = reminder => {
+  displayRepeat = (reminder) => {
     switch (reminder.repeat) {
     case 'week':
       return ', every ' + reminder.time.format('dddd');
@@ -111,7 +111,7 @@ class ReminderScreen extends Component {
   };
 
   openReminderFormPageForEdit = (id) => {
-    const reminder = this.props.reminders.find(item => {
+    const reminder = this.props.reminders.find((item) => {
       return item.id === id;
     });
     this.props.setNewReminder(reminder);
@@ -130,7 +130,7 @@ class ReminderScreen extends Component {
 
   render() {
     const dict = this.groupReminders();
-    const reminders = Object.keys(dict).map(drug => {
+    const reminders = Object.keys(dict).map((drug) => {
       const switchDrug = (
         <Switch
           onTintColor={medmindBlue}
@@ -140,7 +140,7 @@ class ReminderScreen extends Component {
         />
       );
       const drugReminders = dict[drug];
-      const reminderList = drugReminders.map(reminder => {
+      const reminderList = drugReminders.map((reminder) => {
         const switchReminder = (
           <Switch
             onTintColor={medmindBlue}
@@ -224,7 +224,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateReminder: bindActionCreators(updateReminder, dispatch),
   deleteReminder: bindActionCreators(deleteReminder, dispatch),
   setNewReminder: bindActionCreators(setNewReminder, dispatch),

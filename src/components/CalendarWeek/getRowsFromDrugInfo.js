@@ -6,7 +6,7 @@ function rowCanContainDrug(row, drug) {
 
 export default (drugInfo) => {
   return drugInfo.reduce((acc, drug) => {
-    const row = acc.find(row => rowCanContainDrug(row, drug));
+    const row = acc.find((row) => rowCanContainDrug(row, drug));
 
     if (row) {
       row.push(drug);

@@ -54,14 +54,14 @@ class GlobalDrugListScreen extends Component {
 
   renderFilteredDrugs = (query) => {
     const sanitizedQuery = query.trim().toLowerCase();
-    const drugs = this.props.drugs.filter(drug => {
+    const drugs = this.props.drugs.filter((drug) => {
       const drugName = drug.name.toLowerCase();
       return drugName.startsWith(sanitizedQuery);
     });
 
     return <FlatList
       data={drugs}
-      keyExtractor={drug => drug.id}
+      keyExtractor={(drug) => drug.id}
       renderItem={this.renderDrugListItem}
     />;
   }
@@ -69,7 +69,7 @@ class GlobalDrugListScreen extends Component {
   renderAlphabetizedDrugs = () => {
     const alphabetizedDrugs = this.alphabetizeDrugs(this.props.drugs);
     const letters = Object.keys(alphabetizedDrugs).sort();
-    return letters.map(letter => {
+    return letters.map((letter) => {
       const drugs = alphabetizedDrugs[letter];
       return <View key={letter} style={styles.alphabetList}>
         <View style={styles.alphabetSeparator}>
@@ -78,7 +78,7 @@ class GlobalDrugListScreen extends Component {
         </View>
         <FlatList 
           data={drugs} 
-          keyExtractor={drug => drug.id.toString()} 
+          keyExtractor={(drug) => drug.id.toString()} 
           renderItem={this.renderDrugListItem} 
           style={styles.flatList} />
       </View>;
@@ -134,7 +134,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -26,7 +26,7 @@ class DrugWeek extends Component {
     width: 0,
   };
 
-  _getBarStyle = drugInfo => {
+  _getBarStyle = (drugInfo) => {
     const BORDER_RADIUS = 26;
     const { width } = Dimensions.get('window');
     const { beginningOfWeek, endOfWeek } = this.props;
@@ -81,7 +81,7 @@ class DrugWeek extends Component {
     // TODO: implement / import function here
   };
 
-  _renderBar = drugInfo => {
+  _renderBar = (drugInfo) => {
     const barStyle = this._getBarStyle(drugInfo);
     const { id, name, startDate, endDate } = drugInfo;
     const { endOfWeek, beginningOfWeek } = this.props;

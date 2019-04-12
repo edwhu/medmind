@@ -14,7 +14,7 @@ class ChooseDrugScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -30,13 +30,13 @@ class ChooseDrugScreen extends Component {
     }
   };
 
-  checkSelected = drugId => {
+  checkSelected = (drugId) => {
     return this.props.newReminder.drugId == drugId;
   };
 
   render() {
     let sortedDrugs = this.props.drugs.sort();
-    const drugList = sortedDrugs.map(drug => {
+    const drugList = sortedDrugs.map((drug) => {
       return (
         <ListItem
           key={drug.id}
@@ -62,7 +62,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 

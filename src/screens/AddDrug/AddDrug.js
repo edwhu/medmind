@@ -82,42 +82,42 @@ class AddDrugScreen extends Component {
       <KeyboardAvoidingView style={styles.container}>
         <FormField
           header="Drug Name"
-          onChange={name => this.setState({ name })}
+          onChange={(name) => this.setState({ name })}
           value={this.state.name}
           placeholder={this.state.name}
         />
         <FormField
           header="Dosage"
-          onChange={dosage => this.setState({ dosage })}
+          onChange={(dosage) => this.setState({ dosage })}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Doctor"
-          onChange={doctor => this.setState({ doctor })}
+          onChange={(doctor) => this.setState({ doctor })}
           value={this.state.doctor}
           placeholder={this.state.doctor}
         />
         <FormField
           header="Frequency"
-          onChange={frequency => this.setState({ frequency })}
+          onChange={(frequency) => this.setState({ frequency })}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
         <FormField 
           header="As Needed"
           value={this.state.asNeeded}
-          onChange={asNeeded => this.setState({ asNeeded })}
+          onChange={(asNeeded) => this.setState({ asNeeded })}
           type="checkbox"
         />
         { !this.state.asNeeded && <CollapsibleDatePicker
           header="Start Date"
-          setDate={startDate => this.setState({ startDate })}
+          setDate={(startDate) => this.setState({ startDate })}
           date={this.state.startDate}
         /> }
         { !this.state.asNeeded && <CollapsibleDatePicker
           header="End Date"
-          setDate={endDate => this.setState({ endDate })}
+          setDate={(endDate) => this.setState({ endDate })}
           date={this.state.endDate}
         /> }
 
@@ -192,7 +192,7 @@ class AddDrugScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ addDrug }, dispatch);
 
 export default connect(

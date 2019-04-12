@@ -1,4 +1,4 @@
-export const UPDATE_WEEK = 'UPDATE_WEEK';
+export const UPDATE_DAY = 'UPDATE_DAY';
 export const ADD_REMINDER = 'ADD_REMINDER';
 export const UPDATE_REMINDER = 'UPDATE_REMINDER';
 export const DELETE_REMINDER = 'DELETE_REMINDER';

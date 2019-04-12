@@ -130,13 +130,13 @@ const mapStateToProps = (state) => {
   state.drugInfoReducer.drugInfo.sort((a, b) => a.startDate - b.startDate);
   const drugInfoTest = getRowsFromDrugInfo(state.drugInfoReducer.drugInfo);
   return {
-    currentMonth: state.timelineReducer.currentMonth,
+    currentMonth: state.timelineReducer.currentDay.month(),
     drugInfo: state.drugInfoReducer.drugInfo,
     drugInfoTest,
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 
 export default connect(
   mapStateToProps,

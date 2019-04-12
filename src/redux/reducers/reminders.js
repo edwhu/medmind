@@ -23,7 +23,7 @@ const remindersReducer = (state = initialState, action) => {
       newReminder: defaultReminder,
     };
   case UPDATE_REMINDER:
-    const updatedReminders = state.reminders.map(item => {
+    const updatedReminders = state.reminders.map((item) => {
       return (item.id === action.reminder.id ? action.reminder : item);
     });
     return {
@@ -31,7 +31,7 @@ const remindersReducer = (state = initialState, action) => {
       reminders: updatedReminders,
     };
   case DELETE_REMINDER:
-    const newReminders = state.reminders.filter(item => {
+    const newReminders = state.reminders.filter((item) => {
       return item[action.idType] !== action.id;
     });
     return {
@@ -39,7 +39,7 @@ const remindersReducer = (state = initialState, action) => {
       reminders: newReminders,
     };
   case TOGGLE_DRUG_SNOOZE:
-    const toggledReminders = state.reminders.map(item => {
+    const toggledReminders = state.reminders.map((item) => {
       if (item.drugId === action.drugId) {
         return {
           ...item,
@@ -60,7 +60,7 @@ const remindersReducer = (state = initialState, action) => {
       newReminder: action.reminder,
     };
   case SAVE_NEW_REMINDER:
-    const updateReminders = state.reminders.map(item => {
+    const updateReminders = state.reminders.map((item) => {
       return (item.id === state.newReminder.id ? state.newReminder : item);
     });
     return {

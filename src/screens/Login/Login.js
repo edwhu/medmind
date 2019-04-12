@@ -18,7 +18,7 @@ export default class LoginScreen extends Component {
   state = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };

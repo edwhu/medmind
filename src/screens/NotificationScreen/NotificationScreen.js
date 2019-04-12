@@ -21,7 +21,7 @@ class NotificationScreen extends Component {
     let firstReminder = reminders[0];
 
     // get drug object
-    let drug = drugs.filter(drug => drug.id == firstReminder.drugId)[0];
+    let drug = drugs.filter((drug) => drug.id == firstReminder.drugId)[0];
 
     fireNotification(firstReminder, drug);
   };
