@@ -14,13 +14,12 @@ class DrugItemInDayView extends Component{
     editFormVisible: false,
   };
 
-  setModalVisible = visible => {
+  setModalVisible = (visible) => {
     this.setState({modalVisible: visible});
   };
 
   render() {
     const { drug } = this.props;
-    const color = drug.color;
     const styles = createStyles();
 
     return (
