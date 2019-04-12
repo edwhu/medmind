@@ -201,6 +201,7 @@ class ReminderScreen extends Component {
         <View style={styles.container}>
           <ScrollView>
             {reminders}
+            <View style={styles.reminder} />
           </ScrollView>
           <TouchableOpacity
             style={styles.plusButton}

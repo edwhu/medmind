@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { addReminder, updateNewReminder, updateReminder, setNewReminder, saveNewReminder } from '../../redux/actions/reminder';
 import { defaultReminder } from '../../constants/constants';
 import { connect } from 'react-redux';
 import TimePicker from '../../components/TimePicker/TimePicker';
 import { Ionicons } from '@expo/vector-icons';
-import { medmindBlue } from '../../constants/styles';
 import moment from 'moment';
 import styles from './styles';
 
@@ -146,16 +145,6 @@ class ReminderFormScreen extends Component {
           >
             {newReminder.sound ? soundText : arrowButton}
           </TouchableOpacity>
-        </View>
-        <View style={styles.horizontalLine} />
-        <View style={styles.row}>
-          <Text style={styles.setting}>Snooze</Text>
-          <Switch
-            onTintColor={medmindBlue}
-            style={styles.switchButton}
-            onValueChange={() => updateNewReminder('snooze', newReminder.snooze)}
-            value={newReminder.snooze}
-          />
         </View>
         <View style={styles.horizontalLine} />
         <TouchableOpacity onPress={() => this.saveReminder()}>

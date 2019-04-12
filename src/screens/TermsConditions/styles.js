@@ -17,14 +17,16 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: 'System',
     color: 'rgb(160,160,160)',
-    marginTop: 10
   },
   boxContainer: {
-    height: '75%'
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   textBox: {
     width: '75%',
-    height: 475,
+    maxHeight: '80%',
     borderWidth: 2,
     borderColor: 'rgb(72,72,72)'
   },

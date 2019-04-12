@@ -32,37 +32,34 @@ export default class PrivacyScreen extends Component {
         <View style={styles.boxContainer}>
           <ScrollView style={styles.textBox}>
             <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              PRIVACY POLICY FOR MEDMIND VERSION 1.0.0 (CURRENT VERSION):
               {'\n'}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              All data entered into MedMind is stored locally on your device. The current version of MedMind does not store or own any of your data, and is therefore not responsible for any compromises to your data on your mobile device. This also means that your data will be lost if you change devices or uninstall the MedMind app.
               {'\n'}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
               {'\n'}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              FULL DISCLOSURE OF FUTURE PRIVACY POLICY FOR UPDATES:
+              {'\n'}
+              As MedMind grows, there may be a need to store and/or back up your information on our servers. You will always be informed of any update to our above Privacy Policy. We intend to enact a Privacy Policy similar to that of our parent non-profit, CancerBase, detailed below:
+              {'\n'}
+              {'\n'}
+              Version 1.4. Last Revised: June 24, 2016 10:09:32 am Pacific Time
+              {'\n'}
+              CancerBase (“CancerBase”) is a patient/scientist nonprofit that seeks to:
+              {'\n'}
+              (a) bring together information about cancer
+              {'\n'}
+              (b) accelerate our understanding of cancer by globally sharing de-identified and anonymized data about cancer
+              {'\n'}
+              (c) empower people with cancer
+              {'\n'}
+              (d) give everyone a better understanding of the global where, when, and what of cancer
+              {'\n'}
+              {'\n'}
+              We are passionately committed to protecting your privacy.
+              {'\n'}
+              This Privacy Policy describes how CancerBase protects and uses your Data (as defined below) we collect on our website, located at CANCERBASE.ORG, our mobile application (“Application()“), and our widgets (collectively, the “Site”).
+              {'\n'}
+              CancerBase is not a covered entity or business associate of a covered entity as defined in the Health Insurance Portability and Accountability Act of 1996 (HIPAA). CancerBase does not create, receive, maintain, transmit, or share Protected Health Information (PHI) as defined in HIPAA. This means that the information that you provide to CancerBase is not protected by HIPAA.
             </Text>
           </ScrollView>
           <AcceptButton onPress={this.onAcceptButtonPress}/>

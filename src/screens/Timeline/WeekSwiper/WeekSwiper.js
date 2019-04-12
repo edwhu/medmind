@@ -8,7 +8,12 @@ import Swiper from 'react-native-swiper';
 import CalendarWeek from '../../../components/CalendarWeek/CalendarWeek';
 import OptionButton from '../../../components/OptionButton/OptionButton';
 import styles from './styles';
+<<<<<<< HEAD
 import { updateDay } from '../../../redux/actions/calendar';
+=======
+import { updateWeek } from '../../../redux/actions/calendar';
+import {MONTHS} from '../../../constants/constants';
+>>>>>>> origin/master
 
 class WeekSwiper extends Component {
   static navigationOptions = {};
@@ -33,6 +38,8 @@ class WeekSwiper extends Component {
     this.props.updateDay(
       this.props.currentWeek.clone().add(index - 1, 'week'),
     );
+
+    this.props.navigation.setParams({'title': MONTHS[newWeek.month().toString()]});
   };
 
   navigateCamera = () => {
