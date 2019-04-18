@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { addReminder, updateNewReminder, updateReminder, setNewReminder, saveNewReminder } from '../../redux/actions/reminder';
 import { defaultReminder } from '../../constants/constants';
 import { connect } from 'react-redux';
 import TimePicker from '../../components/TimePicker/TimePicker';
 import { Ionicons } from '@expo/vector-icons';
-import { medmindBlue } from '../../constants/styles';
 import moment from 'moment';
 import styles from './styles';
 
@@ -20,7 +19,7 @@ class ReminderFormScreen extends Component {
   static defaultProps = {};
 
   // callback for login errors
-  onError = error => {
+  onError = (error) => {
     // eslint-disable-next-line no-console
     console.log('Error', error);
   };
@@ -47,15 +46,15 @@ class ReminderFormScreen extends Component {
     });
   };
 
-  getDrugName = drugId => {
-    const drug = this.props.drugs.find(drug => drug.id === drugId);
+  getDrugName = (drugId) => {
+    const drug = this.props.drugs.find((drug) => drug.id === drugId);
     if (typeof drug !== 'undefined') {
       return drug.name;
     }
   };
 
-  getDrugById = id => {
-    return this.props.drugs.find(drug => drug.id === id);
+  getDrugById = (id) => {
+    return this.props.drugs.find((drug) => drug.id === id);
   };
 
   updateReminder = () => {
@@ -108,7 +107,7 @@ class ReminderFormScreen extends Component {
       <View style={styles.container}>
         <TimePicker
           header="Time"
-          setDate={time => updateNewReminder('time', time)}
+          setDate={(time) => updateNewReminder('time', time)}
         />
         <View style={styles.horizontalLine} />
         <View style={styles.row}>
@@ -148,16 +147,6 @@ class ReminderFormScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
-        <View style={styles.row}>
-          <Text style={styles.setting}>Snooze</Text>
-          <Switch
-            onTintColor={medmindBlue}
-            style={styles.switchButton}
-            onValueChange={() => updateNewReminder('snooze', newReminder.snooze)}
-            value={newReminder.snooze}
-          />
-        </View>
-        <View style={styles.horizontalLine} />
         <TouchableOpacity onPress={() => this.saveReminder()}>
           <Text>Save</Text>
         </TouchableOpacity>
@@ -175,7 +164,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addReminder: bindActionCreators(addReminder, dispatch),
   updateReminder: bindActionCreators(updateReminder, dispatch),
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch),

@@ -72,7 +72,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   updateNewReminder: bindActionCreators(updateNewReminder, dispatch)
 });
 

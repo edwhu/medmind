@@ -58,7 +58,7 @@ class EditDrugScreen extends Component {
   }
 
   componentWillUnmount() {
-    this.subs.forEach(sub => sub.remove());
+    this.subs.forEach((sub) => sub.remove());
   }
 
   render() {
@@ -70,36 +70,36 @@ class EditDrugScreen extends Component {
         <ScreenHeader {...this.props} title={'Drug Entry'} />
         <FormField
           header="Drug Name"
-          onChange={name => this.setState({ name })}
+          onChange={(name) => this.setState({ name })}
           value={drug.name}
           placeholder={drug.name}
         />
         <FormField
           header="Dosage"
-          onChange={dosage => this.setState({ dosage })}
+          onChange={(dosage) => this.setState({ dosage })}
           value={drug.dosage}
           placeholder={drug.dosage}
         />
         <FormField
           header="Doctor"
-          onChange={doctor => this.setState({ doctor })}
+          onChange={(doctor) => this.setState({ doctor })}
           value={drug.doctor}
           placeholder={drug.doctor}
         />
         <FormField
           header="Frequency"
-          onChange={frequency => this.setState({ frequency })}
+          onChange={(frequency) => this.setState({ frequency })}
           value={drug.frequency}
           placeholder={drug.frequency}
         />
         <CollapsibleDatePicker
           header="Start Date"
-          setDate={startDate => this.setState({ startDate })}
+          setDate={(startDate) => this.setState({ startDate })}
           date={this.state.startDate}
         />
         <CollapsibleDatePicker
           header="End Date"
-          setDate={endDate => this.setState({ endDate })}
+          setDate={(endDate) => this.setState({ endDate })}
           date={this.state.endDate}
         />
 
@@ -133,7 +133,7 @@ class EditDrugScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ editDrug }, dispatch);
 
 export default connect(

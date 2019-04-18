@@ -10,7 +10,7 @@ import DrugInEvent from '../DrugInEvent/DrugInEvent';
 const EventInDayView = ({ event, navigation}) => (
   <View style={styles.column}>
     <View style={styles.container}>
-      <Text style={styles.text}>{event.time.format('HH:mm')}</Text>
+      <Text style={styles.text}>{event.time}</Text>
       <FlatList
         data={event.drugs}
         renderItem={({ item }) => <DrugInEvent drug={item} navigation={navigation}/>}
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 30,
     flexDirection: 'row',
-    // alignItems: "center",
     justifyContent: 'center'
   },
   drugList: {
@@ -40,7 +39,10 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#5B6571',
+    fontSize: 18,
+    fontFamily: 'Helvetica-Light'
   },
   line: {
     borderBottomColor: '#C4C4C4',

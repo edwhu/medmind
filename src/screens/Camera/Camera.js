@@ -121,7 +121,7 @@ export default class CameraScreen extends React.Component {
           <Camera
             style={styles.flex}
             type={this.state.type}
-            ref={ref => {
+            ref={(ref) => {
               this.camera = ref;
             }}
           >

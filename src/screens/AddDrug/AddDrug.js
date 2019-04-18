@@ -25,7 +25,7 @@ class AddDrugScreen extends Component {
       fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: 'center',
+      textAlign: 'right',
       marginRight: '23%',
     },  
     headerLeft: <TouchableOpacity 
@@ -41,15 +41,17 @@ class AddDrugScreen extends Component {
     headerRight: null
   });
   state = {
-    name: 'Bevacizumab',
-    dosage: '500mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day', 
+    name: '',
+    dosage: '',
+    doctor: '',
+    frequency: '', 
     startDate: moment().subtract(10, 'days'),
     endDate: moment().add(10, 'days'),
     color: '#AD2452',
     modalVisible: false,
     colorPicked: false,
+    nameError: null,
+    dosageError: null,
   };
   resetColor() {
     this.setState({
@@ -82,42 +84,68 @@ class AddDrugScreen extends Component {
       <KeyboardAvoidingView style={styles.container}>
         <FormField
           header="Drug Name"
-          onChange={name => this.setState({ name })}
+          onChange={(name) => {
+            this.setState({ name });
+            this.setState(() => ({ nameError: null }));
+          }}
           value={this.state.name}
           placeholder={this.state.name}
         />
+        {!!this.state.nameError && (
+          <Text style={{ color: 'red' }}>{this.state.nameError}</Text>
+        )}
         <FormField
           header="Dosage"
-          onChange={dosage => this.setState({ dosage })}
+          onChange={(dosage) => {
+            this.setState({ dosage });
+            this.setState(() => ({ dosageError: null }));
+          }}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
+        {!!this.state.dosageError && (
+          <Text style={{ color: 'red' }}>{this.state.dosageError}</Text>
+        )}
         <FormField
           header="Doctor"
-          onChange={doctor => this.setState({ doctor })}
+          onChange={(doctor) => {
+            this.setState({ doctor });
+            this.setState(() => ({ doctorError: null }));
+          }}
           value={this.state.doctor}
           placeholder={this.state.doctor}
         />
+        {!!this.state.doctorError && (
+          <Text style={{ color: 'red' }}>{this.state.doctorError}</Text>
+        )}
         <FormField
           header="Frequency"
-          onChange={frequency => this.setState({ frequency })}
+          onChange={(frequency) => {
+            this.setState({ frequency });
+            this.setState(() => ({ frequencyError: null }));
+          }}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
+        {!!this.state.frequencyError && (
+          <Text style={{ color: 'red' }}>{this.state.frequencyError}</Text>
+        )}
         <FormField 
           header="As Needed"
           value={this.state.asNeeded}
-          onChange={asNeeded => this.setState({ asNeeded })}
+          onChange={(asNeeded) => this.setState({ asNeeded })}
           type="checkbox"
         />
         { !this.state.asNeeded && <CollapsibleDatePicker
+          style={styles.form}
           header="Start Date"
-          setDate={startDate => this.setState({ startDate })}
+          setDate={(startDate) => this.setState({ startDate })}
           date={this.state.startDate}
         /> }
         { !this.state.asNeeded && <CollapsibleDatePicker
+          style={styles.form}
           header="End Date"
-          setDate={endDate => this.setState({ endDate })}
+          setDate={(endDate) => this.setState({ endDate })}
           date={this.state.endDate}
         /> }
 
@@ -129,9 +157,9 @@ class AddDrugScreen extends Component {
                 onPress = {() => {
                   this.showModal();
                 }}
-                hitSlop={{left: 100}}
+                hitSlop={{left: 100, top: 100, bottom: 100, right: 100}}
               >
-                <Ionicons name="ios-arrow-forward" size={16} />
+                <Ionicons name="ios-arrow-forward" size={28} color='#BDBDBD' />
               </TouchableOpacity>
             )}
             {this.state.colorPicked && (
@@ -175,15 +203,36 @@ class AddDrugScreen extends Component {
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Notifications</Text>
-            <Ionicons name="ios-arrow-forward" size={16} />
+            <Ionicons name="ios-arrow-forward" size={28} color='#BDBDBD' />
           </View>
         </View>
 
         <View style={styles.footerStyle}>
           <RoundedButton
-            onPress={() => this.onSubmit()}
+            onPress={() => {
+              if(this.state.name.trim() === '') {
+                this.setState(() => ({ nameError: 'Drug name required'}));
+              }
+              if(this.state.dosage.trim() === '') {
+                this.setState(() => ({ dosageError: 'Dosage required'}));
+              }
+              if(this.state.doctor.trim() === '') {
+                this.setState(() => ({ doctorError: 'Doctor required'}));
+              }
+              if(this.state.frequency.trim() === '') {
+                this.setState(() => ({ frequency: 'Frequency required'}));
+              }
+              else {
+                this.setState(() => ({ nameError: null }));
+                this.setState(() => ({ dosageError: null }));
+                this.setState(() => ({ doctorError: null }));
+                this.setState(() => ({ frequencyError: null }));
+                this.onSubmit();
+              }
+            }}
             name={'Submit'}
             buttonStyle={styles.buttonStyle}
+            textStyle={styles.text}
           />
         </View>
         
@@ -192,7 +241,7 @@ class AddDrugScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ addDrug }, dispatch);
 
 export default connect(
@@ -233,12 +282,17 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     alignSelf: 'center',
-    width: 200,
-    height: 40
+    width: 266,
+    height: 46,
+    borderRadius: 46,
+    shadowOffset: { width: 0, height: 2 },
+    shadowColor: 'black',
+    shadowOpacity: 0.3
   },
   text: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'normal',
   },
   back: {
     marginLeft: 10,
@@ -263,10 +317,11 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     height: 80,
     flexGrow: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   form: {
-    height: 40,
+    height: 50,
+    width: 'auto',
     borderColor: medmindBlue,
     borderBottomWidth: 1,
     marginHorizontal: 20
