@@ -13,16 +13,20 @@ import TimeIcon from '../../assets/icon-time.png';
 import NotesIcon from '../../assets/icon-notes.jpg';
 import EditIcon from '../../assets/icon-edit2.png';
 import { createStyles } from './styles';
+import { BlurView } from 'expo';
 
 const DrugPopup = ({ drug, navigation, visible, onClose }) => {
   const color = drug.color;
   const styles = createStyles(color);
+  const time = drug.startDate;
   return(
     <Modal
       animationInTiming = {300}
       transparent={true}
       visible={visible}
+      onBackdropPress={onClose}
     >
+      <BlurView tint="light" intensity={70} style={styles.blurBackground}/>
       <View style={styles.modalContainer}>
         <View style={styles.modalTopBar}>
           <TouchableHighlight
@@ -32,12 +36,12 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
 
           <TouchableHighlight
             onPress={() => {
-              onClose();	
+              onClose();    
               navigation.navigate('editDrugScreen', {drug: drug});
             }}>
             <Image source={EditIcon} style={styles.imageStyle} />
           </TouchableHighlight>
-                    
+
         </View> 
 
         <View style={styles.modalPillBar}>
@@ -45,11 +49,10 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
             style = {styles.pillContainer}
             underlayColor = '#ccc'
           >
-            <DrugIcon color={drug.color} />
-          </TouchableHighlight>
-                  
-          <Text style={styles.modalDrugName}>{drug.name}</Text>
-                  
+            <DrugIcon color={drug.color} scale={1.5}/>
+          </TouchableHighlight>      
+          <Text style={styles.modalDrugName}>{drug.name}</Text>    
+
         </View>
 
         <View style={styles.infoBar}>
@@ -58,7 +61,8 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
             <View style={styles.iconTextView}>
               <Text style={styles.iconText}
                 numberOfLines={2}> 
-                              Scheduled for 9:30 AM on Oct 8 (Hardcoded)</Text>
+                                Scheduled for {time.format('h:mm A')} on {time.format('MMM do')} </Text>
+
             </View>
           </View>
 
@@ -81,8 +85,8 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
 
         </View>
 
-      </View>
-          
+      </View> 
+
     </Modal>
   );
 

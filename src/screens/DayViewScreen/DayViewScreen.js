@@ -46,7 +46,7 @@ class DayViewScreen extends Component {
 
     todaysReminders.sort((a, b) => a.time.isAfter(b.time, 'seconds'));
     const remindersByTime = todaysReminders.reduce((acc, reminder) => {
-      const timeString = reminder.time.format('hh:mm A');
+      const timeString = reminder.time.format('h:mm A');
       if (!acc[timeString]) {
         acc[timeString] = [];
       }
