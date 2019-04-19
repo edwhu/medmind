@@ -50,8 +50,12 @@ class AddDrugScreen extends Component {
     color: '#AD2452',
     modalVisible: false,
     colorPicked: false,
-    nameError: null,
-    dosageError: null,
+    nameError: false,
+    dosageError: false,
+    doctorError: false,
+    frequencyError: false,
+    mainError: null,
+    asNeeded: false,
   };
   resetColor() {
     this.setState({
@@ -82,54 +86,65 @@ class AddDrugScreen extends Component {
     const color = {backgroundColor: this.state.color};
     return (
       <KeyboardAvoidingView style={styles.container}>
+        {!!this.state.mainError && (
+          <View style={styles.container4}>
+            <Text style={styles.mainError}>{this.state.mainError}</Text>
+          </View>
+        )}
         <FormField
           header="Drug Name"
+          headerStyle={this.state.nameError ? styles.errorStyle : styles.headerStyle}
           onChange={(name) => {
             this.setState({ name });
-            this.setState(() => ({ nameError: null }));
+            this.setState({ nameError: false });
           }}
           value={this.state.name}
           placeholder={this.state.name}
         />
-        {!!this.state.nameError && (
+        {/*!!this.state.nameError && (
           <Text style={{ color: 'red' }}>{this.state.nameError}</Text>
-        )}
+        )*/}
         <FormField
           header="Dosage"
+          headerStyle={this.state.dosageError ? styles.errorStyle : styles.headerStyle}
           onChange={(dosage) => {
             this.setState({ dosage });
-            this.setState(() => ({ dosageError: null }));
+            this.setState({ dosageError: false });
+            this.setState({ mainError: null });
           }}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
-        {!!this.state.dosageError && (
+        {/*!!this.state.dosageError && (
           <Text style={{ color: 'red' }}>{this.state.dosageError}</Text>
-        )}
+        )*/}
         <FormField
           header="Doctor"
+          headerStyle={this.state.doctorError ? styles.errorStyle : styles.headerStyle}
           onChange={(doctor) => {
             this.setState({ doctor });
-            this.setState(() => ({ doctorError: null }));
+            this.setState({ doctorError: false });
           }}
           value={this.state.doctor}
           placeholder={this.state.doctor}
         />
-        {!!this.state.doctorError && (
+        {/*!!this.state.doctorError && (
           <Text style={{ color: 'red' }}>{this.state.doctorError}</Text>
-        )}
+        )*/}
         <FormField
           header="Frequency"
+          headerStyle={this.state.frequencyError ? styles.errorStyle : styles.headerStyle}
           onChange={(frequency) => {
-            this.setState({ frequency });
-            this.setState(() => ({ frequencyError: null }));
+            this.setState({ frequency,
+              frequencyError: null 
+            });
           }}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
-        {!!this.state.frequencyError && (
+        {/*!!this.state.frequencyError && (
           <Text style={{ color: 'red' }}>{this.state.frequencyError}</Text>
-        )}
+        )*/}
         <FormField 
           header="As Needed"
           value={this.state.asNeeded}
@@ -210,25 +225,37 @@ class AddDrugScreen extends Component {
         <View style={styles.footerStyle}>
           <RoundedButton
             onPress={() => {
+              let nameError = false;
+              let dosageError = false;
+              let doctorError = false;
+              let frequencyError = false;
+              let mainError = null;
               if(this.state.name.trim() === '') {
-                this.setState(() => ({ nameError: 'Drug name required'}));
+                nameError = true;
+                mainError = 'Please fill out all fields';
               }
               if(this.state.dosage.trim() === '') {
-                this.setState(() => ({ dosageError: 'Dosage required'}));
+                dosageError = true;
+                mainError = 'Please fill out all fields';
               }
               if(this.state.doctor.trim() === '') {
-                this.setState(() => ({ doctorError: 'Doctor required'}));
+                doctorError = true;
+                mainError = 'Please fill out all fields';
               }
               if(this.state.frequency.trim() === '') {
-                this.setState(() => ({ frequency: 'Frequency required'}));
+                frequencyError = true;
+                mainError = 'Please fill out all fields';
               }
               else {
-                this.setState(() => ({ nameError: null }));
-                this.setState(() => ({ dosageError: null }));
-                this.setState(() => ({ doctorError: null }));
-                this.setState(() => ({ frequencyError: null }));
                 this.onSubmit();
               }
+              this.setState({
+                nameError,
+                dosageError,
+                doctorError,
+                frequencyError,
+                mainError
+              });
             }}
             name={'Submit'}
             buttonStyle={styles.buttonStyle}
@@ -275,6 +302,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '35%',
     left: '23%',
+  },
+  container4: {
+    flex: .3,
+    alignItems: 'center',
+    height: 50,
+    justifyContent: 'center'
   },
   textStyle: {
     color: medmindBlue,
@@ -332,4 +365,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  headerStyle: {
+    fontSize: 15,
+    color: 'black',
+  },
+  errorStyle: {
+    fontSize: 15,
+    color: 'red',
+  },
+  mainError: {
+    fontSize: 16,
+    color: 'red',
+    flex: 1,
+    height: 50,
+    alignItems: 'center'
+  }
 });

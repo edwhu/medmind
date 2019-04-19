@@ -46,7 +46,7 @@ export default class FormField extends Component {
     return (
       <View style={styles.form}>
         <View style={styles.container}>
-          <Text style={styles.headerStyle}>{this.props.header}</Text>
+          <Text style={this.props.headerStyle}>{this.props.header}</Text>
           { content }
         </View>
       </View>
@@ -73,7 +73,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#5B6571'
   },
-  headerStyle: {
-    fontSize: 15,
-  }
 });
