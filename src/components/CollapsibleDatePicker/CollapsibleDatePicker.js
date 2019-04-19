@@ -58,8 +58,8 @@ export default class CollapsibleDatePicker extends Component {
       <View>
         <TouchableOpacity style={styles.form} onPress={this.datePickerOnPress}>
           <View style={styles.container}>
-            <Text>{this.props.header}</Text>
-            <Text>
+            <Text style={styles.headerStyle}>{this.props.header}</Text>
+            <Text style={styles.input}>
               {`${this.state.date.format('ddd, MMM D YYYY, h:mm a')}`}
             </Text>
           </View>
@@ -89,9 +89,16 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    height: 40,
+    height: 50,
     borderColor: medmindBlue,
     borderBottomWidth: 1,
     marginHorizontal: 20
+  },
+  input: {
+    fontSize: 14,
+    color: '#5B6571'
+  },
+  headerStyle: {
+    fontSize: 15
   }
 });

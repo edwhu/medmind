@@ -34,6 +34,7 @@ export default class FormField extends Component {
 
     default: {
       content = <TextInput
+        style={styles.input}
         onChangeText={this.props.onChange}
         value={this.props.value}
         placeholder={this.props.placeholder}
@@ -45,7 +46,7 @@ export default class FormField extends Component {
     return (
       <View style={styles.form}>
         <View style={styles.container}>
-          <Text>{this.props.header}</Text>
+          <Text style={this.props.headerStyle}>{this.props.header}</Text>
           { content }
         </View>
       </View>
@@ -62,9 +63,14 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    height: 40,
+    height: 50,
     borderColor: medmindBlue,
     borderBottomWidth: 1,
     marginHorizontal: 20
-  }
+  },
+  input: {
+    width: 150,
+    textAlign: 'center',
+    color: '#5B6571'
+  },
 });
