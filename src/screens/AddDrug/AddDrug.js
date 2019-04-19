@@ -101,9 +101,6 @@ class AddDrugScreen extends Component {
           value={this.state.name}
           placeholder={this.state.name}
         />
-        {/*!!this.state.nameError && (
-          <Text style={{ color: 'red' }}>{this.state.nameError}</Text>
-        )*/}
         <FormField
           header="Dosage"
           headerStyle={this.state.dosageError ? styles.errorStyle : styles.headerStyle}
@@ -115,9 +112,6 @@ class AddDrugScreen extends Component {
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
-        {/*!!this.state.dosageError && (
-          <Text style={{ color: 'red' }}>{this.state.dosageError}</Text>
-        )*/}
         <FormField
           header="Doctor"
           headerStyle={this.state.doctorError ? styles.errorStyle : styles.headerStyle}
@@ -128,9 +122,6 @@ class AddDrugScreen extends Component {
           value={this.state.doctor}
           placeholder={this.state.doctor}
         />
-        {/*!!this.state.doctorError && (
-          <Text style={{ color: 'red' }}>{this.state.doctorError}</Text>
-        )*/}
         <FormField
           header="Frequency"
           headerStyle={this.state.frequencyError ? styles.errorStyle : styles.headerStyle}
@@ -142,9 +133,6 @@ class AddDrugScreen extends Component {
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
-        {/*!!this.state.frequencyError && (
-          <Text style={{ color: 'red' }}>{this.state.frequencyError}</Text>
-        )*/}
         <FormField 
           header="As Needed"
           value={this.state.asNeeded}
