@@ -95,8 +95,7 @@ class AddDrugScreen extends Component {
           header="Drug Name"
           headerStyle={this.state.nameError ? styles.errorStyle : styles.headerStyle}
           onChange={(name) => {
-            this.setState({ name });
-            this.setState({ nameError: false });
+            this.setState({ name, nameError: false, mainError: null});
           }}
           value={this.state.name}
           placeholder={this.state.name}
@@ -105,9 +104,7 @@ class AddDrugScreen extends Component {
           header="Dosage"
           headerStyle={this.state.dosageError ? styles.errorStyle : styles.headerStyle}
           onChange={(dosage) => {
-            this.setState({ dosage });
-            this.setState({ dosageError: false });
-            this.setState({ mainError: null });
+            this.setState({ dosage, dosageError: false, mainError: null });
           }}
           value={this.state.dosage}
           placeholder={this.state.dosage}
@@ -116,8 +113,7 @@ class AddDrugScreen extends Component {
           header="Doctor"
           headerStyle={this.state.doctorError ? styles.errorStyle : styles.headerStyle}
           onChange={(doctor) => {
-            this.setState({ doctor });
-            this.setState({ doctorError: false });
+            this.setState({ doctor, doctorError: false, mainError: null });
           }}
           value={this.state.doctor}
           placeholder={this.state.doctor}
@@ -127,7 +123,8 @@ class AddDrugScreen extends Component {
           headerStyle={this.state.frequencyError ? styles.errorStyle : styles.headerStyle}
           onChange={(frequency) => {
             this.setState({ frequency,
-              frequencyError: null 
+              frequencyError: false,
+              mainError: null 
             });
           }}
           value={this.state.frequency}
