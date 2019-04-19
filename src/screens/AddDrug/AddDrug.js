@@ -51,16 +51,16 @@ class AddDrugScreen extends Component {
     modalVisible: false,
     colorPicked: false,
   };
-  resetColor() {
+  resetColor = () => {
     this.setState({
       color: '#AD2452',
       colorPicked: false,
     });
   }
-  hideModal() {
+  hideModal= () => {
     this.setState({modalVisible: false});
   }
-  showModal() {
+  showModal = () => {
     this.setState({modalVisible: true});
   }
   onSubmit() {
@@ -126,9 +126,7 @@ class AddDrugScreen extends Component {
             <Text>Colors</Text>
             {!this.state.colorPicked && (
               <TouchableOpacity
-                onPress = {() => {
-                  this.showModal();
-                }}
+                onPress = {this.showModal}
                 hitSlop={{left: 100}}
               >
                 <Ionicons name="ios-arrow-forward" size={16} />
@@ -146,7 +144,7 @@ class AddDrugScreen extends Component {
 
         <Modal
           visible={this.state.modalVisible}
-          onRequestClose = {() => {this.hideModal();}}
+          onRequestClose = {this.hideModal}
           transparent={true}
           style = {styles.modalContainer}
         >
