@@ -29,6 +29,7 @@ import SettingsIcon from '../assets/07-Settings.png';
 import ExportIcon from '../assets/05-ExportSumm.png';
 import DrugIcon from '../assets/04-DrugList.png';
 import NotifIcon from '../assets/03-Notifs.png';
+import LogoutIcon from '../assets/08-Logout.png';
 import GlobalDrugListHeaderRight from '../screens/GlobalDrugListScreen/HeaderRight';
 import HeaderEditButton from '../components/HeaderEditButton/HeaderEditButton';
 
@@ -176,28 +177,39 @@ const DrawerNavigation = createDrawerNavigator(
       }
     },
     editDrugScreen: {
-      screen: EditDrugScreen
+      screen: EditDrugScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+        drawerIcon: () => null
+      }
     },
     logout: {
       screen: LoginScreen,
+      navigationOptions: {
+        drawerIcon: () => <Image source={LogoutIcon} style={styles.imageStyle} />
+      }
     },
     termsAndConditionsScreen: {
       screen: withHeader(TermsAndConditionsScreen,'termsAndConditionsScreen'),
       navigationOptions: {
-        drawerLabel: 'Terms and Conditions',
-        drawerIcon: () => <Image source={DayIcon} style={styles.imageStyle} />
+        drawerLabel: () => null,
+        drawerIcon: () => null
       }
     },
     privacyPolicyScreen: {
       screen: withHeader(PrivacyPolicyScreen,'privacyPolicyScreen'),
       navigationOptions: {
-        drawerLabel: 'Privacy Policy',
-        drawerIcon: () => <Image source={SettingsIcon} style={styles.imageStyle} />
+        drawerLabel: () => null,
+        drawerIcon: () => null,
       },
     },
     
     notificationScreen: {
-      screen: NotificationScreen
+      screen: NotificationScreen,
+      navigationOptions: {
+        drawerLabel: () => null,
+        drawerIcon: () => null,
+      }
     },
     addDrugScreen: {
       screen: withHeader(AddDrugScreen, 'addDrugScreen'),
