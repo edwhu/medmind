@@ -25,7 +25,7 @@ class AddDrugScreen extends Component {
       fontFamily: 'System',
       fontSize: 24,
       flex: 1,
-      textAlign: 'center',
+      textAlign: 'right',
       marginRight: '23%',
     },  
     headerLeft: <TouchableOpacity 
@@ -41,15 +41,21 @@ class AddDrugScreen extends Component {
     headerRight: null
   });
   state = {
-    name: 'Bevacizumab',
-    dosage: '500mg',
-    doctor: 'Dr. Who',
-    frequency: '5x a day', 
+    name: '',
+    dosage: '',
+    doctor: '',
+    frequency: '', 
     startDate: moment().subtract(10, 'days'),
     endDate: moment().add(10, 'days'),
     color: '#AD2452',
     modalVisible: false,
     colorPicked: false,
+    nameError: false,
+    dosageError: false,
+    doctorError: false,
+    frequencyError: false,
+    mainError: null,
+    asNeeded: false,
   };
   resetColor = () => {
     this.setState({
@@ -80,27 +86,47 @@ class AddDrugScreen extends Component {
     const color = {backgroundColor: this.state.color};
     return (
       <KeyboardAvoidingView style={styles.container}>
+        {!!this.state.mainError && (
+          <View style={styles.container4}>
+            <Text style={styles.mainError}>{this.state.mainError}</Text>
+          </View>
+        )}
         <FormField
           header="Drug Name"
-          onChange={(name) => this.setState({ name })}
+          headerStyle={this.state.nameError ? styles.errorStyle : styles.headerStyle}
+          onChange={(name) => {
+            this.setState({ name, nameError: false, mainError: null});
+          }}
           value={this.state.name}
           placeholder={this.state.name}
         />
         <FormField
           header="Dosage"
-          onChange={(dosage) => this.setState({ dosage })}
+          headerStyle={this.state.dosageError ? styles.errorStyle : styles.headerStyle}
+          onChange={(dosage) => {
+            this.setState({ dosage, dosageError: false, mainError: null });
+          }}
           value={this.state.dosage}
           placeholder={this.state.dosage}
         />
         <FormField
           header="Doctor"
-          onChange={(doctor) => this.setState({ doctor })}
+          headerStyle={this.state.doctorError ? styles.errorStyle : styles.headerStyle}
+          onChange={(doctor) => {
+            this.setState({ doctor, doctorError: false, mainError: null });
+          }}
           value={this.state.doctor}
           placeholder={this.state.doctor}
         />
         <FormField
           header="Frequency"
-          onChange={(frequency) => this.setState({ frequency })}
+          headerStyle={this.state.frequencyError ? styles.errorStyle : styles.headerStyle}
+          onChange={(frequency) => {
+            this.setState({ frequency,
+              frequencyError: false,
+              mainError: null 
+            });
+          }}
           value={this.state.frequency}
           placeholder={this.state.frequency}
         />
@@ -111,11 +137,13 @@ class AddDrugScreen extends Component {
           type="checkbox"
         />
         { !this.state.asNeeded && <CollapsibleDatePicker
+          style={styles.form}
           header="Start Date"
           setDate={(startDate) => this.setState({ startDate })}
           date={this.state.startDate}
         /> }
         { !this.state.asNeeded && <CollapsibleDatePicker
+          style={styles.form}
           header="End Date"
           setDate={(endDate) => this.setState({ endDate })}
           date={this.state.endDate}
@@ -127,9 +155,9 @@ class AddDrugScreen extends Component {
             {!this.state.colorPicked && (
               <TouchableOpacity
                 onPress = {this.showModal}
-                hitSlop={{left: 100}}
+                hitSlop={{left: 100, top: 100, bottom: 100, right: 100}}
               >
-                <Ionicons name="ios-arrow-forward" size={16} />
+                <Ionicons name="ios-arrow-forward" size={28} color='#BDBDBD' />
               </TouchableOpacity>
             )}
             {this.state.colorPicked && (
@@ -173,15 +201,48 @@ class AddDrugScreen extends Component {
         <View style={styles.form}>
           <View style={styles.fieldContainer}>
             <Text>Notifications</Text>
-            <Ionicons name="ios-arrow-forward" size={16} />
+            <Ionicons name="ios-arrow-forward" size={28} color='#BDBDBD' />
           </View>
         </View>
 
         <View style={styles.footerStyle}>
           <RoundedButton
-            onPress={() => this.onSubmit()}
+            onPress={() => {
+              let nameError = false;
+              let dosageError = false;
+              let doctorError = false;
+              let frequencyError = false;
+              let mainError = null;
+              if(this.state.name.trim() === '') {
+                nameError = true;
+                mainError = 'Please fill out all fields';
+              }
+              if(this.state.dosage.trim() === '') {
+                dosageError = true;
+                mainError = 'Please fill out all fields';
+              }
+              if(this.state.doctor.trim() === '') {
+                doctorError = true;
+                mainError = 'Please fill out all fields';
+              }
+              if(this.state.frequency.trim() === '') {
+                frequencyError = true;
+                mainError = 'Please fill out all fields';
+              }
+              else {
+                this.onSubmit();
+              }
+              this.setState({
+                nameError,
+                dosageError,
+                doctorError,
+                frequencyError,
+                mainError
+              });
+            }}
             name={'Submit'}
             buttonStyle={styles.buttonStyle}
+            textStyle={styles.text}
           />
         </View>
         
@@ -225,18 +286,29 @@ const styles = StyleSheet.create({
     width: '35%',
     left: '23%',
   },
+  container4: {
+    flex: .3,
+    alignItems: 'center',
+    height: 50,
+    justifyContent: 'center'
+  },
   textStyle: {
     color: medmindBlue,
     fontSize: 14
   },
   buttonStyle: {
     alignSelf: 'center',
-    width: 200,
-    height: 40
+    width: 266,
+    height: 46,
+    borderRadius: 46,
+    shadowOffset: { width: 0, height: 2 },
+    shadowColor: 'black',
+    shadowOpacity: 0.3
   },
   text: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: 'normal',
   },
   back: {
     marginLeft: 10,
@@ -261,10 +333,11 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     height: 80,
     flexGrow: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   form: {
-    height: 40,
+    height: 50,
+    width: 'auto',
     borderColor: medmindBlue,
     borderBottomWidth: 1,
     marginHorizontal: 20
@@ -275,4 +348,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  headerStyle: {
+    fontSize: 15,
+    color: 'black',
+  },
+  errorStyle: {
+    fontSize: 15,
+    color: 'red',
+  },
+  mainError: {
+    fontSize: 16,
+    color: 'red',
+    flex: 1,
+    height: 50,
+    alignItems: 'center'
+  }
 });
