@@ -19,6 +19,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
   const color = drug.color;
   const styles = createStyles(color);
   const time = drug.startDate;
+
   return(
     <Modal
       animationInTiming = {300}
@@ -61,7 +62,7 @@ const DrugPopup = ({ drug, navigation, visible, onClose }) => {
             <View style={styles.iconTextView}>
               <Text style={styles.iconText}
                 numberOfLines={2}> 
-                                Scheduled for {time.format('h:mm A')} on {time.format('MMM do')} </Text>
+                                Scheduled for {time.format('h:mm A')} on {time.format('MMM Do')} </Text>
 
             </View>
           </View>

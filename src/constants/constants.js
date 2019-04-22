@@ -163,15 +163,6 @@ export const testReminders = [
     snoozeDrug: false
   },
   {
-    id: 6,
-    drugId: 3,
-    time: moment('19:00', 'HH:mm'),
-    repeat: 'week',
-    dosage: '700mg',
-    snooze: false,
-    snoozeDrug: false
-  },
-  {
     id: 4,
     drugId: 4,
     time: moment('21:00', 'HH:mm'),
