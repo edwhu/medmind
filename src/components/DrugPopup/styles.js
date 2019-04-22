@@ -1,4 +1,5 @@
 import { 
+  Platform,
   StyleSheet,
   Dimensions,
 } from 'react-native';
@@ -37,7 +38,7 @@ export const createStyles = (drugColor) => {
     drugName: {
       marginTop: 25,
       fontWeight: 'bold',
-      fontFamily: 'Helvetica-Light'
+      fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'normal',
     },
     drugDosage: {
       marginTop: 5
@@ -126,7 +127,7 @@ export const createStyles = (drugColor) => {
     }, 
     iconText: {
       fontSize: 18,
-      fontFamily: 'Helvetica-Light',
+      fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'normal',
       color: '#5B6571'
     },
     closeButton: {

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Platform,
 } from 'react-native';
 import DrugInEvent from '../DrugInEvent/DrugInEvent';
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#5B6571',
     fontSize: 18,
-    fontFamily: 'Helvetica-Light'
+    fontFamily: Platform.OS === 'ios' ? 'Helvetica-Light' : 'normal',
   },
   line: {
     borderBottomColor: '#C4C4C4',
