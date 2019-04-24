@@ -1,4 +1,4 @@
-import { ADD_DRUG, DELETE_DRUGS, TOGGLE_DRUG_EDIT, TOGGLE_DRUG_TO_DELETE, EDIT_DRUG } from '../../constants/action-types';
+import { ADD_DRUG_NAME, ADD_DRUG, DELETE_DRUGS, TOGGLE_DRUG_EDIT, TOGGLE_DRUG_TO_DELETE, EDIT_DRUG } from '../../constants/action-types';
 import { testDrugs } from '../../constants/constants';
 
 
@@ -7,10 +7,13 @@ let drugState = {
   drugId: 30,
   editing: false,
   drugIdsToDelete: [],
+  drugName: '',
 };
 
 export default (state = drugState, action) => {
   switch (action.type) {
+  case ADD_DRUG_NAME: // for camera screen
+    return {...state, drugName: action.drugName};
   case ADD_DRUG:
     const drug = { ...action.drug, id: state.drugId++ };
     return { 
@@ -39,7 +42,7 @@ export default (state = drugState, action) => {
         drugIdsToDelete: state.drugIdsToDelete.filter((id) => id !== drugId),
       };
     }
-      
+        
     return {
       ...state,
       drugIdsToDelete: [...state.drugIdsToDelete, drugId],

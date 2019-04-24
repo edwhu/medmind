@@ -6,15 +6,18 @@ import {
   Alert,
   StyleSheet
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addDrugName } from '../../redux/actions/drug';
 import { Camera, Permissions } from 'expo';
-import { getFDA } from '../../utilities/FDA';
+// import { getFDA } from '../../utilities/FDA';
 import { Ionicons } from '@expo/vector-icons';
 import drugData from '../../assets/Products.json';
 
 const GOOGLE_API_KEY = 'AIzaSyDlnentevJhpv1-abNDgnx3JZGu-CFZzlo';
 const GOOGLE_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_API_KEY}`;
 
-export default class CameraScreen extends React.Component {
+class CameraScreen extends React.Component {
   static navigationOptions =({navigation})=> ({
     headerTitle: 'Camera',
     headerTitleStyle: {
@@ -88,16 +91,18 @@ export default class CameraScreen extends React.Component {
           const desc = txt.description.toUpperCase();
           if (this.drugSet.has(desc)) {
             Alert.alert('Found a drug name', desc);
-            const fdaDrug = await getFDA(desc);
-            if (fdaDrug.error) {
-              throw new Error(fdaDrug.error.message);
-            }
-            const results = fdaDrug.results;
-            if (results.length == 0) {
-              throw new Error('no FDA results');
-            }
+            // const fdaDrug = await getFDA(desc);
+            // if (fdaDrug.error) {
+            //   throw new Error(fdaDrug.error.message);
+            // }
+            // const results = fdaDrug.results;
+            // if (results.length == 0) {
+            //   throw new Error('no FDA results');
+            // }
             // const firstDrug = results[0];
-            // navigateToDrugFormScreen(this.props, desc, firstDrug);
+            const {navigate} = this.props.navigation;
+            this.props.addDrugName(desc);
+            navigate('addDrugScreen');
             return;
           }
         }
@@ -105,8 +110,6 @@ export default class CameraScreen extends React.Component {
     } catch (err) {
       // TODO
     }
-    const {navigate} = this.props.navigation.navigate;
-    navigate('addDrugScreen');
   }
 
   render() {
@@ -148,6 +151,14 @@ export default class CameraScreen extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ addDrugName }, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CameraScreen);
+
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   cameraCircle: {
@@ -180,3 +191,4 @@ const styles = StyleSheet.create({
     marginRight: 10,
   }
 });
+

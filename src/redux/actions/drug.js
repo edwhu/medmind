@@ -1,10 +1,18 @@
-import { 
+import {
+  ADD_DRUG_NAME, 
   ADD_DRUG, 
   DELETE_DRUGS, 
   TOGGLE_DRUG_EDIT, 
   TOGGLE_DRUG_TO_DELETE,
   EDIT_DRUG
 } from '../../constants/action-types';
+
+export function addDrugName(drugName) {
+  return {
+    type: ADD_DRUG_NAME,
+    drugName,
+  };
+}
 
 export function addDrug(drug) {
   return {

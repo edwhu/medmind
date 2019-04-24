@@ -48,7 +48,6 @@ class EditDrugScreen extends Component {
       color: '#FFDF00'
     };
     this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
-
   }
 
   componentDidFocus() {

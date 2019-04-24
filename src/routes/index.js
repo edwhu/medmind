@@ -25,7 +25,6 @@ import SettingsButton from '../components/SettingsButton/SettingsButton';
 import React from 'react';
 import WeekIcon from '../assets/01-Week.png';
 import DayIcon from '../assets/00-Day.png';
-import SettingsIcon from '../assets/07-Settings.png';
 import ExportIcon from '../assets/05-ExportSumm.png';
 import DrugIcon from '../assets/04-DrugList.png';
 import NotifIcon from '../assets/03-Notifs.png';
