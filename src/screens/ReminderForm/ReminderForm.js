@@ -147,9 +147,11 @@ class ReminderFormScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.horizontalLine} />
-        <TouchableOpacity onPress={() => this.saveReminder()}>
-          <Text>Save</Text>
-        </TouchableOpacity>
+        <View style={styles.saveButtonContainer}>
+          <TouchableOpacity onPress={() => this.saveReminder()} style={styles.saveButton}>
+            <Text style={styles.saveButtonText}>Save</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
