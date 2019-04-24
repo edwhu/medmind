@@ -48,4 +48,20 @@ export default StyleSheet.create({
     fontSize: 25,
     color: medmindBlue
   },
+  saveButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
+  },
+  saveButton: {
+    backgroundColor: medmindBlue,
+    borderRadius: 20,
+    width: 250,
+  },
+  saveButtonText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    padding: 10,
+  }
 });
