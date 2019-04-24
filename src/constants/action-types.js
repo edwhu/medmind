@@ -7,6 +7,7 @@ export const SAVE_NEW_REMINDER = 'SAVE_NEW_REMINDER';
 export const SET_NEW_REMINDER = 'SET_NEW_REMINDER';
 export const UPDATE_NEW_REMINDER = 'UPDATE_NEW_REMINDER';
 export const ADD_DRUG = 'ADD_DRUG';
+export const ADD_DRUG_NAME = 'ADD_DRUG_NAME';
 export const DELETE_DRUGS = 'DELETE_DRUGS';
 export const EDIT_DRUG = 'EDIT_DRUG';
 export const TOGGLE_DRUG_EDIT = 'TOGGLE_DRUG_EDIT';

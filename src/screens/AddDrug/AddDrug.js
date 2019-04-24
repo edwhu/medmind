@@ -16,6 +16,23 @@ import ColorPicker from '../../components/ColorPicker/ColorPicker';
 class AddDrugScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: this.props.drugName || '',
+      dosage: '',
+      doctor: '',
+      frequency: '', 
+      startDate: moment().subtract(10, 'days'),
+      endDate: moment().add(10, 'days'),
+      color: '#AD2452',
+      modalVisible: false,
+      colorPicked: false,
+      nameError: false,
+      dosageError: false,
+      doctorError: false,
+      frequencyError: false,
+      mainError: null,
+      asNeeded: false,
+    };
   }
   static navigationOptions =({navigation})=> ({
     headerTitle: 'Enter Drug',
@@ -40,23 +57,13 @@ class AddDrugScreen extends Component {
     </TouchableOpacity>,
     headerRight: null
   });
-  state = {
-    name: '',
-    dosage: '',
-    doctor: '',
-    frequency: '', 
-    startDate: moment().subtract(10, 'days'),
-    endDate: moment().add(10, 'days'),
-    color: '#AD2452',
-    modalVisible: false,
-    colorPicked: false,
-    nameError: false,
-    dosageError: false,
-    doctorError: false,
-    frequencyError: false,
-    mainError: null,
-    asNeeded: false,
-  };
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.drugName!==prevState.name){
+      return { name: nextProps.drugName};
+    }
+    return null;
+  }
   resetColor = () => {
     this.setState({
       color: '#AD2452',
@@ -254,8 +261,11 @@ class AddDrugScreen extends Component {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ addDrug }, dispatch);
 
+const mapStateToProps = (state) => {
+  return {drugName: state.drugInfoReducer.drugName};
+};
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AddDrugScreen);
 
