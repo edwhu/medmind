@@ -4,6 +4,7 @@ Medmind is an open-source, medication management application for cancer patients
 MedMind uses computer vision to automatically read in drug information. It provides a user-friendly, intuitive interface and allows patients to manage their drugs and track and compare their side effects with other cancer patients.
 
 Please check out the [website](https://www.medmind.co/) for more information. 
+Medmind was under development by [Code The Change](https://www.ctcusc.com/) from 2018 to 2019. 
 
 Supported by:
 ![Cancerbase](supporters.png)
