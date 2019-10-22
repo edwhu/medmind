@@ -60,3 +60,6 @@ Should be depth 1
 
 ## API Reference
 - https://open.fda.gov/drug/label/reference/
+
+## LICENSE
+MIT License.
